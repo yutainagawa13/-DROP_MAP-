@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>大阪名所マップ（カテゴリ選択＋クリックログ）</title>
+
+  <!-- Leaflet (CDN) -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""
+  />
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""
+  ></script>
+
+  <style>
+    :root{
+      --bg:#0b1220;
+      --panel:#101a33;
+      --muted:#9fb0d0;
+      --text:#eaf0ff;
+      --line:#25335d;
+      --btn:#18254a;
+      --btnActive:#2a3f86;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 16px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+    html,body{height:100%; margin:0; background:var(--bg); color:var(--text); font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", "Meiryo", sans-serif;}
+    .app{height:100%; display:grid; grid-template-columns: 360px 1fr;}
+    .sidebar{
+      padding:16px;
+      background:linear-gradient(180deg, rgba(16,26,51,.95), rgba(11,18,32,.95));
+      border-right:1px solid var(--line);
+      box-shadow: var(--shadow);
+      z-index: 2;
+    }
+    .title{font-size:18px; font-weight:700; margin:4px 0 10px;}
+    .sub{color:var(--muted); font-size:12px; margin-bottom:14px; line-height:1.5;}
+    .card{
+      background:rgba(255,255,255,.04);
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      padding:12px;
+      margin-bottom:12px;
+    }
+    .row{display:flex; gap:8px; flex-wrap:wrap;}
+    .btn{
+      appearance:none; border:1px solid var(--line); background:var(--btn);
+      color:var(--text); padding:10px 10px; border-radius:12px;
+      cursor:pointer; font-weight:650; font-size:13px;
+      transition:.15s transform, .15s background;
+      user-select:none;
+    }
+    .btn:hover{transform: translateY(-1px);}
+    .btn.active{background:var(--btnActive); border-color:#3f5bd8;}
+    .stats{display:grid; grid-template-columns: 1fr 1fr; gap:8px; margin-top:10px;}
+    .stat{
+      border:1px solid var(--line);
+      border-radius:12px;
+      padding:10px;
+      background:rgba(0,0,0,.18);
+    }
+    .stat .k{font-size:11px; color:var(--muted);}
+    .stat .v{font-size:16px; font-weight:750; margin-top:2px;}
+    .log{
+      height:240px; overflow:auto;
+      border:1px solid var(--line);
+      border-radius:12px;
+      background:rgba(0,0,0,.25);
+      padding:10px;
+      font-family: var(--mono);
+      font-size:12px;
+      line-height:1.5;
+      white-space: pre-wrap;
+    }
+    .hint{font-size:12px; color:var(--muted); margin-top:10px; line-height:1.5;}
+    #map{height:100%; width:100%; z-index:1;}
+    .pill{
+      display:inline-flex; align-items:center; gap:6px;
+      font-size:11px; color:var(--muted);
+      padding:6px 10px; border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(0,0,0,.18);
+    }
+    .dot{width:10px; height:10px; border-radius:999px; display:inline-block;}
+    .legend{display:flex; flex-wrap:wrap; gap:8px;}
+  </style>
+</head>
+
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="title">大阪名所マップ</div>
+      <div class="sub">カテゴリを選ぶと該当スポットだけ表示。カテゴリ押下/スポット押下はログに記録（画面＋Console＋localStorage）。</div>
+
+      <div class="card">
+        <div style="font-weight:700; margin-bottom:8px;">カテゴリ</div>
+        <div class="row" id="categoryButtons"></div>
+
+        <div class="stats">
+          <div class="stat">
+            <div class="k">現在のカテゴリ</div>
+            <div class="v" id="currentCategory">ALL</div>
+          </div>
+          <div class="stat">
+            <div class="k">イベント件数</div>
+            <div class="v" id="eventCount">0</div>
+          </div>
+        </div>
+
+        <div class="hint">
+          <b>確認ポイント</b><br>
+          ・カテゴリボタン押下 → <span style="font-family:var(--mono)">category_select</span> が記録<br>
+          ・マーカー押下 → <span style="font-family:var(--mono)">poi_click</span> が記録
+        </div>
+      </div>
+
+      <div class="card">
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:8px;">
+          <div style="font-weight:700;">ログ（直近）</div>
+          <button class="btn" id="clearLog" title="ログを消去">クリア</button>
+        </div>
+        <div style="margin-top:10px;" class="log" id="logView"></div>
+        <div class="hint">
+          localStorageキー：<span style="font-family:var(--mono)">osaka_map_events_v1</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div style="font-weight:700; margin-bottom:8px;">凡例</div>
+        <div class="legend" id="legend"></div>
+      </div>
+
+      <div class="hint">
+        ※サーバ送信したい場合は <span style="font-family:var(--mono)">sendEventToServer()</span> のコメントを外して、社内APIにPOSTしてください。
+      </div>
+    </aside>
+
+    <div id="map"></div>
+  </div>
+
+  <script>
+    // ----------------------------
+    // 設定
+    // ----------------------------
+    const STORAGE_KEY = "osaka_map_events_v1";
+
+    const CATEGORY_CONFIG = {
+      history: { label: "歴史・文化", color: "#f59e0b" },
+      view:    { label: "展望・近代建築", color: "#60a5fa" },
+      food:    { label: "グルメ・市場", color: "#f472b6" },
+      nature:  { label: "自然・公園", color: "#34d399" }
+    };
+
+    // ----------------------------
+    // ログ管理
+    // ----------------------------
+    function loadEvents(){
+      try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]"); }
+      catch { return []; }
+    }
+    function saveEvents(events){
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(events));
+    }
+    let events = loadEvents();
+
+    function logEvent(evt){
+      events.push(evt);
+      saveEvents(events);
+
+      // 画面反映
+      renderLog();
+      document.getElementById("eventCount").textContent = String(events.length);
+
+      // Consoleにも出す
+      console.log("[TRACK]", evt);
+
+      // サーバに送る場合（必要なら有効化）
+      // sendEventToServer(evt);
+    }
+
+    // 例：社内APIに送信する場合の雛形（必要なら書き換え）
+    async function sendEventToServer(evt){
+      // await fetch("/api/map-events", {
+      //   method: "POST",
+      //   headers: { "Content-Type": "application/json" },
+      //   body: JSON.stringify(evt)
+      // });
+    }
+
+    function renderLog(){
+      const view = document.getElementById("logView");
+      const last = events.slice(-20).reverse();
+      view.textContent = last.map(e => JSON.stringify(e)).join("\n");
+    }
+
+    // ----------------------------
+    // 地図初期化
+    // ----------------------------
+    const map = L.map("map").setView([34.6937, 135.5023], 12);
+
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 19,
+      attribution: "&copy; OpenStreetMap contributors"
+    }).addTo(map);
+
+    // カテゴリごとのレイヤー
+    const layersByCategory = {
+      history: L.layerGroup().addTo(map),
+      view:    L.layerGroup().addTo(map),
+      food:    L.layerGroup().addTo(map),
+      nature:  L.layerGroup().addTo(map)
+    };
+
+    // 全POI保持（フィルタ用）
+    let allPois = [];
+    let currentCategory = "ALL";
+
+    // ----------------------------
+    // UI生成（カテゴリボタン・凡例）
+    // ----------------------------
+    function buildCategoryButtons(categories){
+      const wrap = document.getElementById("categoryButtons");
+      wrap.innerHTML = "";
+
+      const mkBtn = (id, label) => {
+        const b = document.createElement("button");
+        b.className = "btn";
+        b.dataset.cat = id;
+        b.textContent = label;
+        b.addEventListener("click", () => {
+          applyFilter(id);
+          logEvent({
+            type: "category_select",
+            category: id,
+            ts: new Date().toISOString()
+          });
+        });
+        return b;
+      };
+
+      wrap.appendChild(mkBtn("ALL", "すべて"));
+
+      categories.forEach(c => {
+        wrap.appendChild(mkBtn(c.id, c.label));
+      });
+
+      // 初期状態
+      setActiveButton("ALL");
+    }
+
+    function buildLegend(categories){
+      const wrap = document.getElementById("legend");
+      wrap.innerHTML = "";
+      categories.forEach(c => {
+        const conf = CATEGORY_CONFIG[c.id];
+        const pill = document.createElement("div");
+        pill.className = "pill";
+        const dot = document.createElement("span");
+        dot.className = "dot";
+        dot.style.background = conf?.color || "#94a3b8";
+        const txt = document.createElement("span");
+        txt.textContent = c.label;
+        pill.appendChild(dot);
+        pill.appendChild(txt);
+        wrap.appendChild(pill);
+      });
+    }
+
+    function setActiveButton(cat){
+      document.querySelectorAll(".btn[data-cat]").forEach(b => {
+        b.classList.toggle("active", b.dataset.cat === cat);
+      });
+      document.getElementById("currentCategory").textContent = cat;
+    }
+
+    // ----------------------------
+    // マーカー生成
+    // ----------------------------
+    function makeMarker(poi){
+      const conf = CATEGORY_CONFIG[poi.category] || { color: "#94a3b8" };
+
+      const marker = L.circleMarker([poi.lat, poi.lng], {
+        radius: 8,
+        color: conf.color,
+        weight: 2,
+        fillColor: conf.color,
+        fillOpacity: 0.85
+      });
+
+      const safeDesc = poi.desc ? `<div style="margin-top:6px; color:#334155; font-size:12px;">${escapeHtml(poi.desc)}</div>` : "";
+      marker.bindPopup(`
+        <div style="font-weight:800; font-size:14px; margin-bottom:4px;">${escapeHtml(poi.name)}</div>
+        <div style="font-size:12px; color:#475569;">カテゴリ：${escapeHtml(CATEGORY_CONFIG[poi.category]?.label || poi.category)}</div>
+        ${safeDesc}
+      `);
+
+      marker.on("click", () => {
+        logEvent({
+          type: "poi_click",
+          poiId: poi.id,
+          poiName: poi.name,
+          category: poi.category,
+          ts: new Date().toISOString()
+        });
+      });
+
+      return marker;
+    }
+
+    function renderPois(pois){
+      // 既存レイヤーをクリア
+      Object.values(layersByCategory).forEach(g => g.clearLayers());
+
+      // 追加
+      pois.forEach(p => {
+        const m = makeMarker(p);
+        layersByCategory[p.category]?.addLayer(m);
+      });
+
+      // 初期はALL
+      applyFilter("ALL");
+    }
+
+    // ----------------------------
+    // フィルタ（カテゴリ表示切替）
+    // ----------------------------
+    function applyFilter(cat){
+      currentCategory = cat;
+      setActiveButton(cat);
+
+      if (cat === "ALL"){
+        Object.values(layersByCategory).forEach(g => {
+          if (!map.hasLayer(g)) g.addTo(map);
+        });
+        return;
+      }
+
+      Object.entries(layersByCategory).forEach(([k, g]) => {
+        if (k === cat){
+          if (!map.hasLayer(g)) g.addTo(map);
+        } else {
+          if (map.hasLayer(g)) map.removeLayer(g);
+        }
+      });
+    }
+
+    // ----------------------------
+    // データ読み込み（pois.json）
+    //  - file://直開きだとfetchがブロックされる環境があるので、
+    //    失敗したら埋め込みデータにフォールバック
+    // ----------------------------
+    async function loadData(){
+      try{
+        const res = await fetch("./pois.json", { cache: "no-store" });
+        if(!res.ok) throw new Error("HTTP " + res.status);
+        return await res.json();
+      }catch(e){
+        console.warn("pois.jsonの読み込みに失敗。埋め込みデータを使用します。理由:", e);
+        return POIS_INLINE;
+      }
+    }
+
+    // ----------------------------
+    // XSS対策（簡易）
+    // ----------------------------
+    function escapeHtml(str){
+      return String(str)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+    }
+
+    // ----------------------------
+    // クリアボタン
+    // ----------------------------
+    document.getElementById("clearLog").addEventListener("click", () => {
+      events = [];
+      saveEvents(events);
+      renderLog();
+      document.getElementById("eventCount").textContent = "0";
+    });
+
+    // ----------------------------
+    // 埋め込みデータ（fetch不可のときの保険）
+    //  ※pois.jsonと同内容
+    // ----------------------------
+    const POIS_INLINE = {
+      "categories": [
+        { "id": "history", "label": "歴史・文化" },
+        { "id": "view", "label": "展望・近代建築" },
+        { "id": "food", "label": "グルメ・市場" },
+        { "id": "nature", "label": "自然・公園" }
+      ],
+      "pois": [
+        { "id":"osaka_castle","name":"大阪城（大坂城）","category":"history","lat":34.6873778,"lng":135.5258444,"desc":"大阪を代表する城郭。天守閣と大阪城公園。" },
+        { "id":"shitennoji","name":"四天王寺","category":"history","lat":34.6539,"lng":135.51645,"desc":"日本最古級の官寺として知られる古刹。" },
+        { "id":"umeda_sky_building","name":"梅田スカイビル（空中庭園展望台）","category":"view","lat":34.705307,"lng":135.489639,"desc":"空中庭園展望台で人気のランドマーク。" },
+        { "id":"abeno_harukas","name":"あべのハルカス","category":"view","lat":34.646075,"lng":135.513387,"desc":"日本有数の超高層複合ビル。展望台ハルカス300。" },
+        { "id":"tsutenkaku","name":"通天閣","category":"view","lat":34.6525361,"lng":135.506325,"desc":"新世界のランドマーク。展望台と賑わいの街並み。" },
+        { "id":"dotonbori","name":"道頓堀","category":"food","lat":34.6686694,"lng":135.5031056,"desc":"大阪ミナミの繁華街。グルメとネオンで有名。" },
+        { "id":"kuromon_market","name":"黒門市場","category":"food","lat":34.6653442,"lng":135.506271,"desc":"“浪速の台所”。食べ歩き・鮮魚・青果など。" },
+        { "id":"kaiyukan","name":"海遊館","category":"nature","lat":34.654472,"lng":135.428889,"desc":"世界最大級の水族館の一つ。天保山エリア。" },
+        { "id":"nakanoshima_park","name":"中之島公園","category":"nature","lat":34.69306,"lng":135.506417,"desc":"都心の水辺公園。バラ園などで有名。" }
+      ]
+    };
+
+    // ----------------------------
+    // 起動
+    // ----------------------------
+    (async function init(){
+      const data = await loadData();
+      allPois = data.pois || [];
+
+      buildCategoryButtons(data.categories || []);
+      buildLegend(data.categories || []);
+      renderPois(allPois);
+
+      // 初期表示
+      renderLog();
+      document.getElementById("eventCount").textContent = String(events.length);
+
+      // 初回に「初期表示」イベントを入れておく（任意）
+      logEvent({
+        type: "page_view",
+        ts: new Date().toISOString()
+      });
+    })();
+  </script>
+</body>
+</html>

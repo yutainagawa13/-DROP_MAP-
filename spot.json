@@ -1,0 +1,82 @@
+{
+  "categories": [
+    { "id": "history", "label": "歴史・文化" },
+    { "id": "view", "label": "展望・近代建築" },
+    { "id": "food", "label": "グルメ・市場" },
+    { "id": "nature", "label": "自然・公園" }
+  ],
+  "pois": [
+    {
+      "id": "osaka_castle",
+      "name": "大阪城（大坂城）",
+      "category": "history",
+      "lat": 34.6873778,
+      "lng": 135.5258444,
+      "desc": "大阪を代表する城郭。天守閣と大阪城公園。"
+    },
+    {
+      "id": "shitennoji",
+      "name": "四天王寺",
+      "category": "history",
+      "lat": 34.6539,
+      "lng": 135.51645,
+      "desc": "日本最古級の官寺として知られる古刹。"
+    },
+    {
+      "id": "umeda_sky_building",
+      "name": "梅田スカイビル（空中庭園展望台）",
+      "category": "view",
+      "lat": 34.705307,
+      "lng": 135.489639,
+      "desc": "空中庭園展望台で人気のランドマーク。"
+    },
+    {
+      "id": "abeno_harukas",
+      "name": "あべのハルカス",
+      "category": "view",
+      "lat": 34.646075,
+      "lng": 135.513387,
+      "desc": "日本有数の超高層複合ビル。展望台ハルカス300。"
+    },
+    {
+      "id": "tsutenkaku",
+      "name": "通天閣",
+      "category": "view",
+      "lat": 34.6525361,
+      "lng": 135.506325,
+      "desc": "新世界のランドマーク。展望台と賑わいの街並み。"
+    },
+    {
+      "id": "dotonbori",
+      "name": "道頓堀",
+      "category": "food",
+      "lat": 34.6686694,
+      "lng": 135.5031056,
+      "desc": "大阪ミナミの繁華街。グルメとネオンで有名。"
+    },
+    {
+      "id": "kuromon_market",
+      "name": "黒門市場",
+      "category": "food",
+      "lat": 34.6653442,
+      "lng": 135.506271,
+      "desc": "“浪速の台所”。食べ歩き・鮮魚・青果など。"
+    },
+    {
+      "id": "kaiyukan",
+      "name": "海遊館",
+      "category": "nature",
+      "lat": 34.654472,
+      "lng": 135.428889,
+      "desc": "世界最大級の水族館の一つ。天保山エリア。"
+    },
+    {
+      "id": "nakanoshima_park",
+      "name": "中之島公園",
+      "category": "nature",
+      "lat": 34.69306,
+      "lng": 135.506417,
+      "desc": "都心の水辺公園。バラ園などで有名。"
+    }
+  ]
+}
