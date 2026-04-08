@@ -154,7 +154,7 @@
    - GitHub Pages(Project): "/リポジトリ名" にすると安定
    例: const BASE_PATH = "/osaka-map";
 ============================ */
-const BASE_PATH = ""; // ←必要なら "/repo-name" に変更（先頭スラッシュあり、末尾なし）
+const BASE_PATH = "/-DROP_MAP-";
 
 const STORAGE_KEY = "osaka_map_events_v1";
 const CATEGORY_CONFIG = {
@@ -394,7 +394,7 @@ async function loadData(){
 // ----------------------------
 // XSS対策（簡易）
 // ----------------------------
-function escapeHtml(str){
+  function escapeHtml(str){
   return String(str)
     .replaceAll("&", "&amp;")
     .replaceAll("<", "&lt;")
