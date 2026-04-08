@@ -97,7 +97,9 @@
   <div class="app">
     <aside class="sidebar">
       <div class="title">大阪名所マップ</div>
-      <div class="sub">カテゴリを選ぶと該当スポットだけ表示。カテゴリ押下/スポット押下はログに記録（画面＋Console＋localStorage）。</div>
+      <div class="sub">
+        カテゴリを選ぶと該当スポットだけ表示。カテゴリ押下/スポット押下はログに記録（画面＋Console＋localStorage）。
+      </div>
 
       <div class="card">
         <div style="font-weight:700; margin-bottom:8px;">カテゴリ</div>
@@ -145,295 +147,308 @@
     <div id="map"></div>
   </div>
 
-  <script>
-    // ----------------------------
-    // 設定
-    // ----------------------------
-    const STORAGE_KEY = "osaka_map_events_v1";
+<script>
+/* ============================
+   http 用ベースパス設定
+   - ローカル: "" のままでOK
+   - GitHub Pages(Project): "/リポジトリ名" にすると安定
+   例: const BASE_PATH = "/osaka-map";
+============================ */
+const BASE_PATH = ""; // ←必要なら "/repo-name" に変更（先頭スラッシュあり、末尾なし）
 
-    const CATEGORY_CONFIG = {
-      history: { label: "歴史・文化", color: "#f59e0b" },
-      view:    { label: "展望・近代建築", color: "#60a5fa" },
-      food:    { label: "グルメ・市場", color: "#f472b6" },
-      nature:  { label: "自然・公園", color: "#34d399" }
-    };
+const STORAGE_KEY = "osaka_map_events_v1";
+const CATEGORY_CONFIG = {
+  history: { label: "歴史・文化", color: "#f59e0b" },
+  view:    { label: "展望・近代建築", color: "#60a5fa" },
+  food:    { label: "グルメ・市場", color: "#f472b6" },
+  nature:  { label: "自然・公園", color: "#34d399" }
+};
 
-    // ----------------------------
-    // ログ管理
-    // ----------------------------
-    function loadEvents(){
-      try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]"); }
-      catch { return []; }
-    }
-    function saveEvents(events){
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(events));
-    }
-    let events = loadEvents();
+// ----------------------------
+// ログ管理
+// ----------------------------
+function loadEvents(){
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]"); }
+  catch { return []; }
+}
+function saveEvents(events){
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(events));
+}
+let events = loadEvents();
 
-    function logEvent(evt){
-      events.push(evt);
-      saveEvents(events);
+function logEvent(evt){
+  events.push(evt);
+  saveEvents(events);
+  renderLog();
+  document.getElementById("eventCount").textContent = String(events.length);
+  console.log("[TRACK]", evt);
+  // sendEventToServer(evt); // 必要なら有効化
+}
 
-      // 画面反映
-      renderLog();
-      document.getElementById("eventCount").textContent = String(events.length);
+async function sendEventToServer(evt){
+  // await fetch("/api/map-events", {
+  //   method: "POST",
+  //   headers: { "Content-Type": "application/json" },
+  //   body: JSON.stringify(evt)
+  // });
+}
 
-      // Consoleにも出す
-      console.log("[TRACK]", evt);
+function renderLog(){
+  const view = document.getElementById("logView");
+  const last = events.slice(-20).reverse();
+  view.textContent = last.map(e => JSON.stringify(e)).join("\n");
+}
 
-      // サーバに送る場合（必要なら有効化）
-      // sendEventToServer(evt);
-    }
+// ----------------------------
+// 地図初期化
+// ----------------------------
+const map = L.map("map").setView([34.6937, 135.5023], 12);
+L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+  maxZoom: 19,
+  attribution: "&copy; OpenStreetMap contributors"
+}).addTo(map);
 
-    // 例：社内APIに送信する場合の雛形（必要なら書き換え）
-    async function sendEventToServer(evt){
-      // await fetch("/api/map-events", {
-      //   method: "POST",
-      //   headers: { "Content-Type": "application/json" },
-      //   body: JSON.stringify(evt)
-      // });
-    }
+const layersByCategory = {
+  history: L.layerGroup().addTo(map),
+  view:    L.layerGroup().addTo(map),
+  food:    L.layerGroup().addTo(map),
+  nature:  L.layerGroup().addTo(map)
+};
 
-    function renderLog(){
-      const view = document.getElementById("logView");
-      const last = events.slice(-20).reverse();
-      view.textContent = last.map(e => JSON.stringify(e)).join("\n");
-    }
+let allPois = [];
+let selectedCategories = new Set();
 
-    // ----------------------------
-    // 地図初期化
-    // ----------------------------
-    const map = L.map("map").setView([34.6937, 135.5023], 12);
+// ----------------------------
+// UI生成（カテゴリボタン・凡例）
+// ----------------------------
+function buildCategoryButtons(categories){
+  const wrap = document.getElementById("categoryButtons");
+  wrap.innerHTML = "";
 
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      maxZoom: 19,
-      attribution: "&copy; OpenStreetMap contributors"
-    }).addTo(map);
+  const mkBtn = (id, label) => {
+    const b = document.createElement("button");
+    b.className = "btn";
+    b.dataset.cat = id;
+    b.textContent = label;
 
-    // カテゴリごとのレイヤー
-    const layersByCategory = {
-      history: L.layerGroup().addTo(map),
-      view:    L.layerGroup().addTo(map),
-      food:    L.layerGroup().addTo(map),
-      nature:  L.layerGroup().addTo(map)
-    };
+    b.addEventListener("click", () => {
+      const wasSelected = selectedCategories.has(id);
+      const hadAnySelected = selectedCategories.size > 0;
 
-    // 全POI保持（フィルタ用）
-    let allPois = [];
-    let currentCategory = "ALL";
+      toggleCategory(id);
 
-    // ----------------------------
-    // UI生成（カテゴリボタン・凡例）
-    // ----------------------------
-    function buildCategoryButtons(categories){
-      const wrap = document.getElementById("categoryButtons");
-      wrap.innerHTML = "";
-
-      const mkBtn = (id, label) => {
-        const b = document.createElement("button");
-        b.className = "btn";
-        b.dataset.cat = id;
-        b.textContent = label;
-        b.addEventListener("click", () => {
-          applyFilter(id);
-          logEvent({
-            type: "category_select",
-            category: id,
-            ts: new Date().toISOString()
-          });
-        });
-        return b;
-      };
-
-      wrap.appendChild(mkBtn("ALL", "すべて"));
-
-      categories.forEach(c => {
-        wrap.appendChild(mkBtn(c.id, c.label));
-      });
-
-      // 初期状態
-      setActiveButton("ALL");
-    }
-
-    function buildLegend(categories){
-      const wrap = document.getElementById("legend");
-      wrap.innerHTML = "";
-      categories.forEach(c => {
-        const conf = CATEGORY_CONFIG[c.id];
-        const pill = document.createElement("div");
-        pill.className = "pill";
-        const dot = document.createElement("span");
-        dot.className = "dot";
-        dot.style.background = conf?.color || "#94a3b8";
-        const txt = document.createElement("span");
-        txt.textContent = c.label;
-        pill.appendChild(dot);
-        pill.appendChild(txt);
-        wrap.appendChild(pill);
-      });
-    }
-
-    function setActiveButton(cat){
-      document.querySelectorAll(".btn[data-cat]").forEach(b => {
-        b.classList.toggle("active", b.dataset.cat === cat);
-      });
-      document.getElementById("currentCategory").textContent = cat;
-    }
-
-    // ----------------------------
-    // マーカー生成
-    // ----------------------------
-    function makeMarker(poi){
-      const conf = CATEGORY_CONFIG[poi.category] || { color: "#94a3b8" };
-
-      const marker = L.circleMarker([poi.lat, poi.lng], {
-        radius: 8,
-        color: conf.color,
-        weight: 2,
-        fillColor: conf.color,
-        fillOpacity: 0.85
-      });
-
-      const safeDesc = poi.desc ? `<div style="margin-top:6px; color:#334155; font-size:12px;">${escapeHtml(poi.desc)}</div>` : "";
-      marker.bindPopup(`
-        <div style="font-weight:800; font-size:14px; margin-bottom:4px;">${escapeHtml(poi.name)}</div>
-        <div style="font-size:12px; color:#475569;">カテゴリ：${escapeHtml(CATEGORY_CONFIG[poi.category]?.label || poi.category)}</div>
-        ${safeDesc}
-      `);
-
-      marker.on("click", () => {
-        logEvent({
-          type: "poi_click",
-          poiId: poi.id,
-          poiName: poi.name,
-          category: poi.category,
-          ts: new Date().toISOString()
-        });
-      });
-
-      return marker;
-    }
-
-    function renderPois(pois){
-      // 既存レイヤーをクリア
-      Object.values(layersByCategory).forEach(g => g.clearLayers());
-
-      // 追加
-      pois.forEach(p => {
-        const m = makeMarker(p);
-        layersByCategory[p.category]?.addLayer(m);
-      });
-
-      // 初期はALL
-      applyFilter("ALL");
-    }
-
-    // ----------------------------
-    // フィルタ（カテゴリ表示切替）
-    // ----------------------------
-    function applyFilter(cat){
-      currentCategory = cat;
-      setActiveButton(cat);
-
-      if (cat === "ALL"){
-        Object.values(layersByCategory).forEach(g => {
-          if (!map.hasLayer(g)) g.addTo(map);
-        });
-        return;
+      if (id !== "ALL" && !wasSelected) {
+        logEvent({ type: "category_select", category: id, selected: Array.from(selectedCategories), ts: new Date().toISOString() });
       }
 
-      Object.entries(layersByCategory).forEach(([k, g]) => {
-        if (k === cat){
-          if (!map.hasLayer(g)) g.addTo(map);
-        } else {
-          if (map.hasLayer(g)) map.removeLayer(g);
+      if (id !== "ALL" && wasSelected) {
+        logEvent({ type: "category_deselect", category: id, selected: Array.from(selectedCategories), ts: new Date().toISOString() });
+        if (hadAnySelected && selectedCategories.size === 0) {
+          logEvent({ type: "category_select", category: "ALL", selected: [], ts: new Date().toISOString() });
         }
-      });
-    }
-
-    // ----------------------------
-    // データ読み込み（pois.json）
-    //  - file://直開きだとfetchがブロックされる環境があるので、
-    //    失敗したら埋め込みデータにフォールバック
-    // ----------------------------
-    async function loadData(){
-      try{
-        const res = await fetch("./pois.json", { cache: "no-store" });
-        if(!res.ok) throw new Error("HTTP " + res.status);
-        return await res.json();
-      }catch(e){
-        console.warn("pois.jsonの読み込みに失敗。埋め込みデータを使用します。理由:", e);
-        return POIS_INLINE;
       }
-    }
 
-    // ----------------------------
-    // XSS対策（簡易）
-    // ----------------------------
-    function escapeHtml(str){
-      return String(str)
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#039;");
-    }
-
-    // ----------------------------
-    // クリアボタン
-    // ----------------------------
-    document.getElementById("clearLog").addEventListener("click", () => {
-      events = [];
-      saveEvents(events);
-      renderLog();
-      document.getElementById("eventCount").textContent = "0";
+      if (id === "ALL" && hadAnySelected && selectedCategories.size === 0) {
+        logEvent({ type: "category_select", category: "ALL", selected: [], ts: new Date().toISOString() });
+      }
     });
 
-    // ----------------------------
-    // 埋め込みデータ（fetch不可のときの保険）
-    //  ※pois.jsonと同内容
-    // ----------------------------
-    const POIS_INLINE = {
-      "categories": [
-        { "id": "history", "label": "歴史・文化" },
-        { "id": "view", "label": "展望・近代建築" },
-        { "id": "food", "label": "グルメ・市場" },
-        { "id": "nature", "label": "自然・公園" }
-      ],
-      "pois": [
-        { "id":"osaka_castle","name":"大阪城（大坂城）","category":"history","lat":34.6873778,"lng":135.5258444,"desc":"大阪を代表する城郭。天守閣と大阪城公園。" },
-        { "id":"shitennoji","name":"四天王寺","category":"history","lat":34.6539,"lng":135.51645,"desc":"日本最古級の官寺として知られる古刹。" },
-        { "id":"umeda_sky_building","name":"梅田スカイビル（空中庭園展望台）","category":"view","lat":34.705307,"lng":135.489639,"desc":"空中庭園展望台で人気のランドマーク。" },
-        { "id":"abeno_harukas","name":"あべのハルカス","category":"view","lat":34.646075,"lng":135.513387,"desc":"日本有数の超高層複合ビル。展望台ハルカス300。" },
-        { "id":"tsutenkaku","name":"通天閣","category":"view","lat":34.6525361,"lng":135.506325,"desc":"新世界のランドマーク。展望台と賑わいの街並み。" },
-        { "id":"dotonbori","name":"道頓堀","category":"food","lat":34.6686694,"lng":135.5031056,"desc":"大阪ミナミの繁華街。グルメとネオンで有名。" },
-        { "id":"kuromon_market","name":"黒門市場","category":"food","lat":34.6653442,"lng":135.506271,"desc":"“浪速の台所”。食べ歩き・鮮魚・青果など。" },
-        { "id":"kaiyukan","name":"海遊館","category":"nature","lat":34.654472,"lng":135.428889,"desc":"世界最大級の水族館の一つ。天保山エリア。" },
-        { "id":"nakanoshima_park","name":"中之島公園","category":"nature","lat":34.69306,"lng":135.506417,"desc":"都心の水辺公園。バラ園などで有名。" }
-      ]
-    };
+    return b;
+  };
 
-    // ----------------------------
-    // 起動
-    // ----------------------------
-    (async function init(){
-      const data = await loadData();
-      allPois = data.pois || [];
+  wrap.appendChild(mkBtn("ALL", "すべて"));
+  categories.forEach(c => wrap.appendChild(mkBtn(c.id, c.label)));
+}
 
-      buildCategoryButtons(data.categories || []);
-      buildLegend(data.categories || []);
-      renderPois(allPois);
+function buildLegend(categories){
+  const wrap = document.getElementById("legend");
+  wrap.innerHTML = "";
+  categories.forEach(c => {
+    const conf = CATEGORY_CONFIG[c.id];
+    const pill = document.createElement("div");
+    pill.className = "pill";
+    const dot = document.createElement("span");
+    dot.className = "dot";
+    dot.style.background = conf?.color || "#94a3b8";
+    const txt = document.createElement("span");
+    txt.textContent = c.label;
+    pill.appendChild(dot);
+    pill.appendChild(txt);
+    wrap.appendChild(pill);
+  });
+}
 
-      // 初期表示
-      renderLog();
-      document.getElementById("eventCount").textContent = String(events.length);
+// ----------------------------
+// ピンアイコン生成
+// ----------------------------
+function createPinIcon(color) {
+  return L.divIcon({
+    className: "",
+    html: `
+      <svg width="28" height="42" viewBox="0 0 24 36" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 0C5.4 0 0 5.4 0 12c0 9 12 24 12 24s12-15 12-24C24 5.4 18.6 0 12 0z" fill="${color}"/>
+        <circle cx="12" cy="12" r="5" fill="white"/>
+      </svg>
+    `,
+    iconSize: [28, 42],
+    iconAnchor: [14, 42],
+    popupAnchor: [0, -36]
+  });
+}
 
-      // 初回に「初期表示」イベントを入れておく（任意）
-      logEvent({
-        type: "page_view",
-        ts: new Date().toISOString()
-      });
-    })();
-  </script>
+function makeMarker(poi){
+  const conf = CATEGORY_CONFIG[poi.category] || { color: "#94a3b8" };
+  const marker = L.marker([poi.lat, poi.lng], { icon: createPinIcon(conf.color) });
+
+  marker.bindPopup(`
+    <div style="font-weight:800; font-size:14px; margin-bottom:4px;">
+      ${escapeHtml(poi.name)}
+    </div>
+    <div style="font-size:12px; color:#475569;">
+      カテゴリ：${escapeHtml(CATEGORY_CONFIG[poi.category]?.label || poi.category)}
+    </div>
+  `);
+
+  marker.on("click", () => {
+    logEvent({ type: "poi_click", poiId: poi.id, poiName: poi.name, category: poi.category, ts: new Date().toISOString() });
+  });
+
+  return marker;
+}
+
+function renderPois(pois){
+  Object.values(layersByCategory).forEach(g => g.clearLayers());
+  pois.forEach(p => {
+    const m = makeMarker(p);
+    layersByCategory[p.category]?.addLayer(m);
+  });
+  applyMultiFilter();
+  updateActiveButtons();
+  updateCurrentCategoryLabel();
+}
+
+// ----------------------------
+// フィルタ（複数選択）
+// ----------------------------
+function toggleCategory(cat){
+  if (cat === "ALL") {
+    selectedCategories.clear();
+  } else {
+    if (selectedCategories.has(cat)) selectedCategories.delete(cat);
+    else selectedCategories.add(cat);
+  }
+  applyMultiFilter();
+  updateActiveButtons();
+  updateCurrentCategoryLabel();
+}
+
+function applyMultiFilter(){
+  if (selectedCategories.size === 0){
+    Object.values(layersByCategory).forEach(layer => {
+      if (!map.hasLayer(layer)) layer.addTo(map);
+    });
+    return;
+  }
+  Object.entries(layersByCategory).forEach(([cat, layer]) => {
+    if (selectedCategories.has(cat)) {
+      if (!map.hasLayer(layer)) layer.addTo(map);
+    } else {
+      if (map.hasLayer(layer)) map.removeLayer(layer);
+    }
+  });
+}
+
+function updateActiveButtons(){
+  document.querySelectorAll(".btn[data-cat]").forEach(b => {
+    const cat = b.dataset.cat;
+    const isActive = (selectedCategories.size === 0 && cat === "ALL") || selectedCategories.has(cat);
+    b.classList.toggle("active", isActive);
+  });
+}
+
+function updateCurrentCategoryLabel(){
+  const el = document.getElementById("currentCategory");
+  el.textContent = (selectedCategories.size === 0) ? "ALL" : Array.from(selectedCategories).join(", ");
+}
+
+// ----------------------------
+// データ読み込み（http前提で安定）
+// ----------------------------
+function withBasePath(path){
+  // path: "/pois.json" or "pois.json" どちらでもOKにする
+  const p = path.startsWith("/") ? path : ("/" + path);
+  return (BASE_PATH || "") + p;
+}
+
+async function loadData(){
+  try{
+    const res = await fetch(withBasePath("pois.json"), { cache: "no-store" });
+    if(!res.ok) throw new Error("HTTP " + res.status);
+    return await res.json();
+  }catch(e){
+    console.warn("pois.jsonの読み込みに失敗。埋め込みデータを使用します。理由:", e);
+    return POIS_INLINE;
+  }
+}
+
+// ----------------------------
+// XSS対策（簡易）
+// ----------------------------
+function escapeHtml(str){
+  return String(str)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+// ----------------------------
+// クリアボタン
+// ----------------------------
+document.getElementById("clearLog").addEventListener("click", () => {
+  events = [];
+  saveEvents(events);
+  renderLog();
+  document.getElementById("eventCount").textContent = "0";
+});
+
+// ----------------------------
+// 埋め込みデータ（保険）
+// ----------------------------
+const POIS_INLINE = {
+  "categories": [
+    { "id": "history", "label": "歴史・文化" },
+    { "id": "view", "label": "展望・近代建築" },
+    { "id": "food", "label": "グルメ・市場" },
+    { "id": "nature", "label": "自然・公園" }
+  ],
+  "pois": [
+    { "id":"osaka_castle","name":"大阪城（大坂城）","category":"history","lat":34.6873778,"lng":135.5258444,"desc":"大阪を代表する城郭。天守閣と大阪城公園。" },
+    { "id":"shitennoji","name":"四天王寺","category":"history","lat":34.6539,"lng":135.51645,"desc":"日本最古級の官寺として知られる古刹。" },
+    { "id":"umeda_sky_building","name":"梅田スカイビル（空中庭園展望台）","category":"view","lat":34.705307,"lng":135.489639,"desc":"空中庭園展望台で人気のランドマーク。" },
+    { "id":"abeno_harukas","name":"あべのハルカス","category":"view","lat":34.646075,"lng":135.513387,"desc":"日本有数の超高層複合ビル。展望台ハルカス300。" },
+    { "id":"tsutenkaku","name":"通天閣","category":"view","lat":34.6525361,"lng":135.506325,"desc":"新世界のランドマーク。展望台と賑わいの街並み。" },
+    { "id":"dotonbori","name":"道頓堀","category":"food","lat":34.6686694,"lng":135.5031056,"desc":"大阪ミナミの繁華街。グルメとネオンで有名。" },
+    { "id":"kuromon_market","name":"黒門市場","category":"food","lat":34.6653442,"lng":135.506271,"desc":"“浪速の台所”。食べ歩き・鮮魚・青果など。" },
+    { "id":"kaiyukan","name":"海遊館","category":"nature","lat":34.654472,"lng":135.428889,"desc":"世界最大級の水族館の一つ。天保山エリア。" },
+    { "id":"nakanoshima_park","name":"中之島公園","category":"nature","lat":34.69306,"lng":135.506417,"desc":"都心の水辺公園。バラ園などで有名。" }
+  ]
+};
+
+// ----------------------------
+// 起動
+// ----------------------------
+(async function init(){
+  const data = await loadData();
+  allPois = data.pois || [];
+  buildCategoryButtons(data.categories || []);
+  buildLegend(data.categories || []);
+  renderPois(allPois);
+  renderLog();
+  document.getElementById("eventCount").textContent = String(events.length);
+  logEvent({ type: "page_view", ts: new Date().toISOString() });
+})();
+</script>
 </body>
 </html>
