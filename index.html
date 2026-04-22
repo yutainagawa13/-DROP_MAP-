@@ -18,6 +18,15 @@
     crossorigin=""
   ></script>
 
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YGD8E8JZJM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YGD8E8JZJM');
+</script>
+
   <style>
     :root{
       --bg:#0b1220;
@@ -182,7 +191,19 @@ function logEvent(evt){
   renderLog();
   document.getElementById("eventCount").textContent = String(events.length);
   console.log("[TRACK]", evt);
-  // sendEventToServer(evt); // 必要なら有効化
+
+  // --- GA4へ送信（追加）---
+  if (typeof gtag === "function") {
+    // GA4の event_name は英小文字+アンダースコアが推奨
+    // このHTMLは evt.type が "category_select" 等なのでそのまま使える
+    gtag('event', evt.type, {
+      category: evt.category || null,
+      poi_id: evt.poiId || null,
+      poi_name: evt.poiName || null,
+      selected: Array.isArray(evt.selected) ? evt.selected.join(",") : null,
+      event_ts: evt.ts || null
+    });
+  }
 }
 
 async function sendEventToServer(evt){
