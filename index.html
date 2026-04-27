@@ -2,30 +2,28 @@
 <html lang="ja">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>大阪名所マップ（カテゴリ選択＋クリックログ）</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1, viewport-fit=cover" />
+  <title>大阪名所マップ（カテゴリ選択）</title>
 
   <!-- Leaflet (CDN) -->
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-    crossorigin=""
-  />
+  <link rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin=""/>
   <script
-    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-    crossorigin=""
-  ></script>
+        src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin=""></script>
 
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-YGD8E8JZJM"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-YGD8E8JZJM');
-</script>
+  <!-- Google tag (gtag.js) : 必要ならON（ログ表示はしないがGA送信は可） -->
+  <!-- 元ファイルに合わせて Measurement ID を維持 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YGD8E8JZJM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-YGD8E8JZJM');
+  </script>
 
   <style>
     :root{
@@ -34,199 +32,233 @@
       --muted:#9fb0d0;
       --text:#eaf0ff;
       --line:#25335d;
-      --btn:#18254a;
-      --btnActive:#2a3f86;
+      --chip:#142148;
+      --chipOn:#2a3f86;
       --shadow: 0 10px 30px rgba(0,0,0,.35);
       --radius: 16px;
-      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --safeTop: env(safe-area-inset-top, 0px);
+      --safeBottom: env(safe-area-inset-bottom, 0px);
     }
-    html,body{height:100%; margin:0; background:var(--bg); color:var(--text); font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", "Meiryo", sans-serif;}
-    .app{height:100%; display:grid; grid-template-columns: 360px 1fr;}
-    .sidebar{
-      padding:16px;
-      background:linear-gradient(180deg, rgba(16,26,51,.95), rgba(11,18,32,.95));
-      border-right:1px solid var(--line);
+    html,body{
+      height:100%;
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Hiragino Kaku Gothic ProN",
+                   "Noto Sans JP", "Yu Gothic", "Meiryo", sans-serif;
+      overflow:hidden;
+    }
+
+    /* map full screen */
+    #map{ height:100svh; width:100vw; }
+
+    /* Top overlay (mobile-first) */
+    .topbar{
+      position: fixed;
+      left:0; right:0; top:0;
+      padding: calc(10px + var(--safeTop)) 12px 10px;
+      z-index: 1000;
+      background: linear-gradient(180deg, rgba(11,18,32,.92), rgba(11,18,32,.70), rgba(11,18,32,0));
+      pointer-events:none; /* allow map gestures except inside panels */
+    }
+    .panel{
+      pointer-events:auto;
+      background: rgba(16,26,51,.88);
+      border: 1px solid var(--line);
       box-shadow: var(--shadow);
-      z-index: 2;
+      border-radius: 18px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      overflow:hidden;
     }
-    .title{font-size:18px; font-weight:700; margin:4px 0 10px;}
-    .sub{color:var(--muted); font-size:12px; margin-bottom:14px; line-height:1.5;}
-    .card{
-      background:rgba(255,255,255,.04);
-      border:1px solid var(--line);
-      border-radius: var(--radius);
-      padding:12px;
-      margin-bottom:12px;
+    .panelHead{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding: 10px 12px;
+      border-bottom: 1px solid rgba(37,51,93,.6);
     }
-    .row{display:flex; gap:8px; flex-wrap:wrap;}
-    .btn{
-      appearance:none; border:1px solid var(--line); background:var(--btn);
-      color:var(--text); padding:10px 10px; border-radius:12px;
-      cursor:pointer; font-weight:650; font-size:13px;
-      transition:.15s transform, .15s background;
-      user-select:none;
+    .title{
+      font-weight:800;
+      letter-spacing:.02em;
+      font-size:14px;
+      line-height:1.2;
     }
-    .btn:hover{transform: translateY(-1px);}
-    .btn.active{background:var(--btnActive); border-color:#3f5bd8;}
-    .stats{display:grid; grid-template-columns: 1fr 1fr; gap:8px; margin-top:10px;}
-    .stat{
-      border:1px solid var(--line);
-      border-radius:12px;
-      padding:10px;
-      background:rgba(0,0,0,.18);
-    }
-    .stat .k{font-size:11px; color:var(--muted);}
-    .stat .v{font-size:16px; font-weight:750; margin-top:2px;}
-    .log{
-      height:240px; overflow:auto;
-      border:1px solid var(--line);
-      border-radius:12px;
-      background:rgba(0,0,0,.25);
-      padding:10px;
-      font-family: var(--mono);
+    .sub{
+      color:var(--muted);
       font-size:12px;
-      line-height:1.5;
-      white-space: pre-wrap;
+      line-height:1.4;
     }
-    .hint{font-size:12px; color:var(--muted); margin-top:10px; line-height:1.5;}
-    #map{height:100%; width:100%; z-index:1;}
+    .meta{
+      display:flex;
+      gap:8px;
+      align-items:center;
+      color:var(--muted);
+      font-size:12px;
+      white-space:nowrap;
+    }
     .pill{
-      display:inline-flex; align-items:center; gap:6px;
-      font-size:11px; color:var(--muted);
-      padding:6px 10px; border-radius:999px;
-      border:1px solid var(--line);
-      background:rgba(0,0,0,.18);
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:6px 10px;
+      border:1px solid rgba(37,51,93,.8);
+      border-radius:999px;
+      background: rgba(0,0,0,.18);
     }
-    .dot{width:10px; height:10px; border-radius:999px; display:inline-block;}
-    .legend{display:flex; flex-wrap:wrap; gap:8px;}
+    .dot{ width:10px; height:10px; border-radius:999px; display:inline-block; }
+
+    /* Category chips (thumb friendly) */
+    .chipRow{
+      display:flex;
+      gap:10px;
+      padding: 10px 12px;
+      overflow-x:auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width:none;
+    }
+    .chipRow::-webkit-scrollbar{ display:none; }
+
+    .chip{
+      flex:0 0 auto;
+      appearance:none;
+      border:1px solid rgba(37,51,93,.9);
+      background: var(--chip);
+      color: var(--text);
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-weight: 750;
+      font-size: 13px;
+      cursor:pointer;
+      user-select:none;
+      transition: .15s transform, .15s background, .15s border-color;
+      min-height: 40px; /* touch target */
+    }
+    .chip:active{ transform: scale(.98); }
+    .chip.active{
+      background: var(--chipOn);
+      border-color: #3f5bd8;
+    }
+    .chip.all{
+      background: rgba(255,255,255,.08);
+    }
+
+    /* Legend (collapsible on small screens) */
+    details.legendBox{
+      pointer-events:auto;
+      position: fixed;
+      left:12px;
+      right:12px;
+      bottom: calc(12px + var(--safeBottom));
+      z-index: 1000;
+    }
+    details.legendBox > summary{
+      list-style:none;
+      cursor:pointer;
+      user-select:none;
+      padding: 12px 14px;
+      border-radius: 18px;
+      border:1px solid var(--line);
+      background: rgba(16,26,51,.88);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      font-weight:800;
+      font-size:13px;
+    }
+    details.legendBox > summary::-webkit-details-marker{ display:none; }
+    .legendBody{
+      margin-top:10px;
+      padding: 10px 12px 12px;
+      border-radius: 18px;
+      border:1px solid var(--line);
+      background: rgba(16,26,51,.88);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    .legendGrid{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+
+    /* Desktop: make topbar narrower like a nice card */
+    @media (min-width: 900px){
+      .topbar{
+        left:16px; right:auto;
+        width: 420px;
+        padding: 16px 0 0;
+        background: none;
+        pointer-events:none;
+      }
+      .topbar .panel{ pointer-events:auto; }
+      details.legendBox{
+        left:16px;
+        right:auto;
+        width: 420px;
+      }
+    }
   </style>
 </head>
 
 <body>
-  <div class="app">
-    <aside class="sidebar">
-      <div class="title">大阪名所マップ</div>
-      <div class="sub">
-        カテゴリを選ぶと該当スポットだけ表示。カテゴリ押下/スポット押下はログに記録（画面＋Console＋localStorage）。
-      </div>
+  <div id="map"></div>
 
-      <div class="card">
-        <div style="font-weight:700; margin-bottom:8px;">カテゴリ</div>
-        <div class="row" id="categoryButtons"></div>
-
-        <div class="stats">
-          <div class="stat">
-            <div class="k">現在のカテゴリ</div>
-            <div class="v" id="currentCategory">ALL</div>
-          </div>
-          <div class="stat">
-            <div class="k">イベント件数</div>
-            <div class="v" id="eventCount">0</div>
-          </div>
+  <!-- Mobile-friendly category UI (top overlay) -->
+  <div class="topbar">
+    <div class="panel">
+      <div class="panelHead">
+        <div>
+          <div class="title">大阪名所マップ</div>
+          <div class="sub">カテゴリを選ぶと該当スポットだけ表示</div>
         </div>
-
-        <div class="hint">
-          <b>確認ポイント</b><br>
-          ・カテゴリボタン押下 → <span style="font-family:var(--mono)">category_select</span> が記録<br>
-          ・マーカー押下 → <span style="font-family:var(--mono)">poi_click</span> が記録
+        <div class="meta">
+          <span class="pill">
+            <span class="dot" id="currentDot" style="background:#94a3b8"></span>
+            <span id="currentCategory">ALL</span>
+          </span>
         </div>
       </div>
-
-      <div class="card">
-        <div style="display:flex; align-items:center; justify-content:space-between; gap:8px;">
-          <div style="font-weight:700;">ログ（直近）</div>
-          <button class="btn" id="clearLog" title="ログを消去">クリア</button>
-        </div>
-        <div style="margin-top:10px;" class="log" id="logView"></div>
-        <div class="hint">
-          localStorageキー：<span style="font-family:var(--mono)">osaka_map_events_v1</span>
-        </div>
-      </div>
-
-      <div class="card">
-        <div style="font-weight:700; margin-bottom:8px;">凡例</div>
-        <div class="legend" id="legend"></div>
-      </div>
-
-      <div class="hint">
-        ※サーバ送信したい場合は <span style="font-family:var(--mono)">sendEventToServer()</span> のコメントを外して、社内APIにPOSTしてください。
-      </div>
-    </aside>
-
-    <div id="map"></div>
+      <div class="chipRow" id="categoryChips"></div>
+    </div>
   </div>
+
+  <!-- Legend (bottom, collapsible) -->
+  <details class="legendBox">
+    <summary>凡例（タップで開閉） <span style="color:var(--muted); font-weight:700;">▲</span></summary>
+    <div class="legendBody">
+      <div class="legendGrid" id="legend"></div>
+    </div>
+  </details>
 
 <script>
 /* ============================
-   http 用ベースパス設定
-   - ローカル: "" のままでOK
-   - GitHub Pages(Project): "/リポジトリ名" にすると安定
-   例: const BASE_PATH = "/osaka-map";
+  http 用ベースパス設定
+  - ローカル: "" のままでOK
+  - GitHub Pages(Project): "/リポジトリ名" にすると安定
+  例: const BASE_PATH = "/osaka-map";
+  元ファイルは "/-DROP_MAP-" でした
 ============================ */
-const BASE_PATH = "/-DROP_MAP-";
-
-const STORAGE_KEY = "osaka_map_events_v1";
+const BASE_PATH = "/-DROP_MAP-"; // 必要に応じて変更
 const CATEGORY_CONFIG = {
   history: { label: "歴史・文化", color: "#f59e0b" },
   view:    { label: "展望・近代建築", color: "#60a5fa" },
-  food:    { label: "グルメ・市場", color: "#f472b6" },
-  nature:  { label: "自然・公園", color: "#34d399" }
+  food:    { label: "グルメ・市場",  color: "#f472b6" },
+  nature:  { label: "自然・公園",    color: "#34d399" }
 };
 
-// ----------------------------
-// ログ管理
-// ----------------------------
-function loadEvents(){
-  try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]"); }
-  catch { return []; }
-}
-function saveEvents(events){
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(events));
-}
-let events = loadEvents();
+const map = L.map("map", { zoomControl: false }).setView([34.6937, 135.5023], 12);
+L.control.zoom({ position: "bottomright" }).addTo(map);
 
-function logEvent(evt){
-  events.push(evt);
-  saveEvents(events);
-  renderLog();
-  document.getElementById("eventCount").textContent = String(events.length);
-  console.log("[TRACK]", evt);
-
-  // --- GA4へ送信（追加）---
-  if (typeof gtag === "function") {
-    // GA4の event_name は英小文字+アンダースコアが推奨
-    // このHTMLは evt.type が "category_select" 等なのでそのまま使える
-    gtag('event', evt.type, {
-      category: evt.category || null,
-      poi_id: evt.poiId || null,
-      poi_name: evt.poiName || null,
-      selected: Array.isArray(evt.selected) ? evt.selected.join(",") : null,
-      event_ts: evt.ts || null
-    });
-  }
-}
-
-async function sendEventToServer(evt){
-  // await fetch("/api/map-events", {
-  //   method: "POST",
-  //   headers: { "Content-Type": "application/json" },
-  //   body: JSON.stringify(evt)
-  // });
-}
-
-function renderLog(){
-  const view = document.getElementById("logView");
-  const last = events.slice(-20).reverse();
-  view.textContent = last.map(e => JSON.stringify(e)).join("\n");
-}
-
-// ----------------------------
-// 地図初期化
-// ----------------------------
-const map = L.map("map").setView([34.6937, 135.5023], 12);
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
   maxZoom: 19,
-  attribution: "&copy; OpenStreetMap contributors"
+  attribution: "© OpenStreetMap contributors"
 }).addTo(map);
 
 const layersByCategory = {
@@ -237,48 +269,167 @@ const layersByCategory = {
 };
 
 let allPois = [];
-let selectedCategories = new Set();
+let selected = new Set(); // empty means ALL
 
-// ----------------------------
-// UI生成（カテゴリボタン・凡例）
-// ----------------------------
-function buildCategoryButtons(categories){
-  const wrap = document.getElementById("categoryButtons");
+function withBasePath(path){
+  const p = path.startsWith("/") ? path : ("/" + path);
+  return (BASE_PATH || "") + p;
+}
+
+async function loadData(){
+  try{
+    const res = await fetch(withBasePath("pois.json"), { cache:"no-store" });
+    if(!res.ok) throw new Error("HTTP " + res.status);
+    return await res.json();
+  }catch(e){
+    console.warn("pois.jsonの読み込みに失敗。埋め込みデータを使用します。理由:", e);
+    return POIS_INLINE;
+  }
+}
+
+function escapeHtml(str){
+  return String(str)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#39;");
+}
+
+/* ====== GA送信（画面ログは一切出さない） ======
+   必要なければ、gtag('event',...) ブロックを削除 or コメントアウトでOK
+============================================ */
+function track(evt){
+  // console.logも localStorage も使いません（ログ不要要件）
+  if (typeof gtag === "function") {
+    gtag("event", evt.type, {
+      category: evt.category ?? null,
+      poi_id: evt.poiId ?? null,
+      poi_name: evt.poiName ?? null,
+      selected: Array.isArray(evt.selected) ? evt.selected.join(",") : null,
+      event_ts: evt.ts ?? null
+    });
+  }
+}
+
+function createPinIcon(color){
+  return L.divIcon({
+    className: "",
+    html: `
+      <svg width="28" height="42" viewBox="0 0 24 36" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 0C5.4 0 0 5.4 0 12c0 9 12 24 12 24s12-15 12-24C24 5.4 18.6 0 12 0z" fill="${color}"/>
+        <circle cx="12" cy="12" r="5" fill="white"/>
+      </svg>`,
+    iconSize: [28,42],
+    iconAnchor: [14,42],
+    popupAnchor: [0,-36]
+  });
+}
+
+function makeMarker(poi){
+  const conf = CATEGORY_CONFIG[poi.category] || { color:"#94a3b8" };
+  const marker = L.marker([poi.lat, poi.lng], { icon: createPinIcon(conf.color) });
+  marker.bindPopup(`
+    <div style="font-weight:800; font-size:14px; margin-bottom:4px;">
+      ${escapeHtml(poi.name)}
+    </div>
+    <div style="font-size:12px; color:#475569;">
+      カテゴリ：${escapeHtml(CATEGORY_CONFIG[poi.category]?.label || poi.category)}
+    </div>
+  `);
+  marker.on("click", () => {
+    track({ type:"poi_click", poiId: poi.id, poiName: poi.name, category: poi.category, ts: new Date().toISOString() });
+  });
+  return marker;
+}
+
+function renderPois(pois){
+  Object.values(layersByCategory).forEach(g => g.clearLayers());
+  pois.forEach(p => {
+    const m = makeMarker(p);
+    layersByCategory[p.category]?.addLayer(m);
+  });
+  applyFilter();
+  updateUI();
+}
+
+function applyFilter(){
+  if(selected.size === 0){
+    Object.values(layersByCategory).forEach(layer => { if(!map.hasLayer(layer)) layer.addTo(map); });
+    return;
+  }
+  Object.entries(layersByCategory).forEach(([cat, layer]) => {
+    if(selected.has(cat)) { if(!map.hasLayer(layer)) layer.addTo(map); }
+    else { if(map.hasLayer(layer)) map.removeLayer(layer); }
+  });
+}
+
+function updateUI(){
+  // chip active
+  document.querySelectorAll(".chip[data-cat]").forEach(btn => {
+    const cat = btn.dataset.cat;
+    const isActive = (selected.size === 0 && cat === "ALL") || selected.has(cat);
+    btn.classList.toggle("active", isActive);
+  });
+
+  // current label + dot
+  const label = (selected.size === 0) ? "ALL" : Array.from(selected).map(c => CATEGORY_CONFIG[c]?.label || c).join(", ");
+  document.getElementById("currentCategory").textContent = label;
+
+  const dot = document.getElementById("currentDot");
+  if(selected.size === 1){
+    const only = Array.from(selected)[0];
+    dot.style.background = (CATEGORY_CONFIG[only]?.color || "#94a3b8");
+  }else{
+    dot.style.background = "#94a3b8";
+  }
+}
+
+function toggleCategory(cat){
+  if(cat === "ALL"){
+    selected.clear();
+    track({ type:"category_select", category:"ALL", selected:[], ts:new Date().toISOString() });
+  }else{
+    const was = selected.has(cat);
+    if(was) selected.delete(cat);
+    else selected.add(cat);
+
+    // 0件になったら ALL 扱い
+    if(selected.size === 0){
+      track({ type:"category_select", category:"ALL", selected:[], ts:new Date().toISOString() });
+    }else{
+      track({
+        type: was ? "category_deselect" : "category_select",
+        category: cat,
+        selected: Array.from(selected),
+        ts: new Date().toISOString()
+      });
+    }
+  }
+  applyFilter();
+  updateUI();
+}
+
+function buildCategoryChips(categories){
+  const wrap = document.getElementById("categoryChips");
   wrap.innerHTML = "";
 
-  const mkBtn = (id, label) => {
+  const mk = (id, label, extraClass="") => {
     const b = document.createElement("button");
-    b.className = "btn";
+    b.className = "chip " + extraClass;
     b.dataset.cat = id;
+    b.type = "button";
     b.textContent = label;
 
-    b.addEventListener("click", () => {
-      const wasSelected = selectedCategories.has(id);
-      const hadAnySelected = selectedCategories.size > 0;
+    // touch delay を減らす
+    b.style.touchAction = "manipulation";
 
-      toggleCategory(id);
-
-      if (id !== "ALL" && !wasSelected) {
-        logEvent({ type: "category_select", category: id, selected: Array.from(selectedCategories), ts: new Date().toISOString() });
-      }
-
-      if (id !== "ALL" && wasSelected) {
-        logEvent({ type: "category_deselect", category: id, selected: Array.from(selectedCategories), ts: new Date().toISOString() });
-        if (hadAnySelected && selectedCategories.size === 0) {
-          logEvent({ type: "category_select", category: "ALL", selected: [], ts: new Date().toISOString() });
-        }
-      }
-
-      if (id === "ALL" && hadAnySelected && selectedCategories.size === 0) {
-        logEvent({ type: "category_select", category: "ALL", selected: [], ts: new Date().toISOString() });
-      }
-    });
-
+    b.addEventListener("click", () => toggleCategory(id));
     return b;
   };
 
-  wrap.appendChild(mkBtn("ALL", "すべて"));
-  categories.forEach(c => wrap.appendChild(mkBtn(c.id, c.label)));
+  wrap.appendChild(mk("ALL", "すべて", "all"));
+  categories.forEach(c => wrap.appendChild(mk(c.id, c.label)));
 }
 
 function buildLegend(categories){
@@ -299,150 +450,13 @@ function buildLegend(categories){
   });
 }
 
-// ----------------------------
-// ピンアイコン生成
-// ----------------------------
-function createPinIcon(color) {
-  return L.divIcon({
-    className: "",
-    html: `
-      <svg width="28" height="42" viewBox="0 0 24 36" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 0C5.4 0 0 5.4 0 12c0 9 12 24 12 24s12-15 12-24C24 5.4 18.6 0 12 0z" fill="${color}"/>
-        <circle cx="12" cy="12" r="5" fill="white"/>
-      </svg>
-    `,
-    iconSize: [28, 42],
-    iconAnchor: [14, 42],
-    popupAnchor: [0, -36]
-  });
-}
-
-function makeMarker(poi){
-  const conf = CATEGORY_CONFIG[poi.category] || { color: "#94a3b8" };
-  const marker = L.marker([poi.lat, poi.lng], { icon: createPinIcon(conf.color) });
-
-  marker.bindPopup(`
-    <div style="font-weight:800; font-size:14px; margin-bottom:4px;">
-      ${escapeHtml(poi.name)}
-    </div>
-    <div style="font-size:12px; color:#475569;">
-      カテゴリ：${escapeHtml(CATEGORY_CONFIG[poi.category]?.label || poi.category)}
-    </div>
-  `);
-
-  marker.on("click", () => {
-    logEvent({ type: "poi_click", poiId: poi.id, poiName: poi.name, category: poi.category, ts: new Date().toISOString() });
-  });
-
-  return marker;
-}
-
-function renderPois(pois){
-  Object.values(layersByCategory).forEach(g => g.clearLayers());
-  pois.forEach(p => {
-    const m = makeMarker(p);
-    layersByCategory[p.category]?.addLayer(m);
-  });
-  applyMultiFilter();
-  updateActiveButtons();
-  updateCurrentCategoryLabel();
-}
-
-// ----------------------------
-// フィルタ（複数選択）
-// ----------------------------
-function toggleCategory(cat){
-  if (cat === "ALL") {
-    selectedCategories.clear();
-  } else {
-    if (selectedCategories.has(cat)) selectedCategories.delete(cat);
-    else selectedCategories.add(cat);
-  }
-  applyMultiFilter();
-  updateActiveButtons();
-  updateCurrentCategoryLabel();
-}
-
-function applyMultiFilter(){
-  if (selectedCategories.size === 0){
-    Object.values(layersByCategory).forEach(layer => {
-      if (!map.hasLayer(layer)) layer.addTo(map);
-    });
-    return;
-  }
-  Object.entries(layersByCategory).forEach(([cat, layer]) => {
-    if (selectedCategories.has(cat)) {
-      if (!map.hasLayer(layer)) layer.addTo(map);
-    } else {
-      if (map.hasLayer(layer)) map.removeLayer(layer);
-    }
-  });
-}
-
-function updateActiveButtons(){
-  document.querySelectorAll(".btn[data-cat]").forEach(b => {
-    const cat = b.dataset.cat;
-    const isActive = (selectedCategories.size === 0 && cat === "ALL") || selectedCategories.has(cat);
-    b.classList.toggle("active", isActive);
-  });
-}
-
-function updateCurrentCategoryLabel(){
-  const el = document.getElementById("currentCategory");
-  el.textContent = (selectedCategories.size === 0) ? "ALL" : Array.from(selectedCategories).join(", ");
-}
-
-// ----------------------------
-// データ読み込み（http前提で安定）
-// ----------------------------
-function withBasePath(path){
-  // path: "/pois.json" or "pois.json" どちらでもOKにする
-  const p = path.startsWith("/") ? path : ("/" + path);
-  return (BASE_PATH || "") + p;
-}
-
-async function loadData(){
-  try{
-    const res = await fetch(withBasePath("pois.json"), { cache: "no-store" });
-    if(!res.ok) throw new Error("HTTP " + res.status);
-    return await res.json();
-  }catch(e){
-    console.warn("pois.jsonの読み込みに失敗。埋め込みデータを使用します。理由:", e);
-    return POIS_INLINE;
-  }
-}
-
-// ----------------------------
-// XSS対策（簡易）
-// ----------------------------
-  function escapeHtml(str){
-  return String(str)
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
-}
-
-// ----------------------------
-// クリアボタン
-// ----------------------------
-document.getElementById("clearLog").addEventListener("click", () => {
-  events = [];
-  saveEvents(events);
-  renderLog();
-  document.getElementById("eventCount").textContent = "0";
-});
-
-// ----------------------------
-// 埋め込みデータ（保険）
-// ----------------------------
+/* 埋め込みデータ（保険） */
 const POIS_INLINE = {
   "categories": [
     { "id": "history", "label": "歴史・文化" },
-    { "id": "view", "label": "展望・近代建築" },
-    { "id": "food", "label": "グルメ・市場" },
-    { "id": "nature", "label": "自然・公園" }
+    { "id": "view",    "label": "展望・近代建築" },
+    { "id": "food",    "label": "グルメ・市場" },
+    { "id": "nature",  "label": "自然・公園" }
   ],
   "pois": [
     { "id":"osaka_castle","name":"大阪城（大坂城）","category":"history","lat":34.6873778,"lng":135.5258444,"desc":"大阪を代表する城郭。天守閣と大阪城公園。" },
@@ -457,18 +471,16 @@ const POIS_INLINE = {
   ]
 };
 
-// ----------------------------
-// 起動
-// ----------------------------
 (async function init(){
   const data = await loadData();
   allPois = data.pois || [];
-  buildCategoryButtons(data.categories || []);
+
+  buildCategoryChips(data.categories || []);
   buildLegend(data.categories || []);
   renderPois(allPois);
-  renderLog();
-  document.getElementById("eventCount").textContent = String(events.length);
-  logEvent({ type: "page_view", ts: new Date().toISOString() });
+
+  // 初回（ページビュー）だけ必要なら送る（不要なら消してOK）
+  track({ type:"page_view", ts: new Date().toISOString() });
 })();
 </script>
 </body>
