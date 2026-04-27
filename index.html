@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1, viewport-fit=cover" />
-  <title>大阪名所マップ（カテゴリ選択）</title>
+  <title>大阪名所マップ（カテゴリ即時反映）</title>
 
   <!-- Leaflet -->
   <link rel="stylesheet"
@@ -38,7 +38,11 @@
       --safeTop: env(safe-area-inset-top, 0px);
       --safeLeft: env(safe-area-inset-left, 0px);
     }
-    html,body{height:100%; margin:0; background:var(--bg); color:var(--text);
+    html,body{
+      height:100%;
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
       font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Hiragino Kaku Gothic ProN",
                    "Noto Sans JP", "Yu Gothic", "Meiryo", sans-serif;
       overflow:hidden;
@@ -66,6 +70,12 @@
       border-bottom:1px solid rgba(37,51,93,.6);
       display:flex; align-items:center; justify-content:space-between; gap:10px;
     }
+    .state{
+      color:var(--muted);
+      font-size:12px;
+      font-weight:800;
+      white-space:nowrap;
+    }
     .toggle{
       appearance:none;
       border:1px solid rgba(37,51,93,.9);
@@ -90,6 +100,7 @@
       outline:none;
       font-size:13px;
     }
+
     .actions{display:flex; gap:8px; margin:10px 0 10px;}
     .btn{
       flex:1;
@@ -106,7 +117,6 @@
       transition:.15s transform, .15s background, .15s border-color;
     }
     .btn:active{transform: scale(.99);}
-    .btn.primary{border-color: rgba(63,91,216,.9); background: rgba(42,63,134,.95);}
 
     .list{display:grid; gap:10px; margin-top:6px;}
     .row{display:flex; align-items:center; gap:10px; font-size:13px;}
@@ -117,10 +127,8 @@
 
     .hint{color:var(--muted); font-size:12px; line-height:1.5; margin-top:8px;}
 
-    /* Collapse */
     .collapsed .body{display:none;}
 
-    /* Make panel a bit wider on PC, but still "chon" */
     @media (min-width: 900px){
       .panel{ width: 340px; }
     }
@@ -130,19 +138,19 @@
 <body>
   <div id="map"></div>
 
-  <!-- Floating category panel -->
   <div class="panel" id="panel">
     <div class="head">
       <div>カテゴリ</div>
+      <div class="state" id="stateLabel">全表示</div>
       <button class="toggle" id="btnToggle" type="button">−</button>
     </div>
+
     <div class="body">
       <input class="search" id="searchBox" placeholder="カテゴリを絞り込み" />
 
       <div class="actions">
         <button class="btn" id="btnAll" type="button">全選択</button>
         <button class="btn" id="btnNone" type="button">全解除</button>
-        <button class="btn primary" id="btnApply" type="button">範囲更新</button>
       </div>
 
       <div class="list" id="categoryList"></div>
@@ -152,7 +160,7 @@
 
 <script>
 /* ===== base path（既存は "/-DROP_MAP-"） ===== */
-const BASE_PATH = "/-DROP_MAP-"; // 必要に応じて変更 [2](https://obayashig.sharepoint.com/teams/SE/Shared%20Documents/03_%e3%83%97%e3%83%ad%e3%83%88%e3%82%bf%e3%82%a4%e3%83%94%e3%83%b3%e3%82%b0/OAD_MAP/%e7%a8%b2%e5%b7%9d%e4%bd%9c%e6%88%90_20260408/index_GA%e7%94%a8.html?web=1)
+const BASE_PATH = "/-DROP_MAP-"; // 必要に応じて変更 [3](https://obayashig-my.sharepoint.com/personal/uy2316_obayashi_co_jp/Documents/Microsoft%20Copilot%20Chat%20%e3%83%95%e3%82%a1%e3%82%a4%e3%83%ab/index_GA%e7%94%a8.html?web=1)
 
 const CATEGORY_CONFIG = {
   history: { label: "歴史・文化", color: "#f59e0b" },
@@ -183,7 +191,8 @@ function escapeHtml(str){
     .replaceAll('"',"&quot;").replaceAll("'","&#39;");
 }
 
-/* GA4送信（画面ログなし） */
+/* GA4送信（画面ログなし）
+   不要なら、この track 関数の中身を空にするだけでOK */
 function track(evt){
   if (typeof gtag === "function") {
     gtag("event", evt.type, {
@@ -196,7 +205,7 @@ function track(evt){
   }
 }
 
-/* Map */
+/* ===== Map ===== */
 const map = L.map("map", { zoomControl:false }).setView([34.6937, 135.5023], 12);
 L.control.zoom({ position:"bottomright" }).addTo(map);
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -235,8 +244,7 @@ function makeMarker(poi){
 
 let allPois = [];
 let categories = [];
-let selected = new Set();   // 実際の適用状態（空=ALL）
-let pending = new Set();    // チェック状態（範囲更新でselectedへ）
+let selected = new Set();  // 適用中カテゴリ（空=全表示/フィルタ解除）
 
 function renderPois(pois){
   Object.values(layersByCategory).forEach(g => g.clearLayers());
@@ -247,11 +255,14 @@ function renderPois(pois){
 function applyFilter(){
   if(selected.size === 0){
     Object.values(layersByCategory).forEach(layer => { if(!map.hasLayer(layer)) layer.addTo(map); });
+    document.getElementById("stateLabel").textContent = "全表示";
   }else{
     Object.entries(layersByCategory).forEach(([cat, layer]) => {
       if(selected.has(cat)){ if(!map.hasLayer(layer)) layer.addTo(map); }
       else { if(map.hasLayer(layer)) map.removeLayer(layer); }
     });
+    const labels = Array.from(selected).map(c => CATEGORY_CONFIG[c]?.label || c);
+    document.getElementById("stateLabel").textContent = labels.join(" / ");
   }
 }
 
@@ -273,10 +284,25 @@ function buildCategoryList(){
 
     const cb = document.createElement("input");
     cb.type = "checkbox";
-    cb.checked = pending.has(c.id);
+    cb.checked = selected.has(c.id); // ★即時反映なので selected を直接参照
     cb.addEventListener("change", () => {
-      if(cb.checked) pending.add(c.id);
-      else pending.delete(c.id);
+      const now = cb.checked;
+      if(now) selected.add(c.id);
+      else selected.delete(c.id);
+
+      // ★即時反映
+      applyFilter();
+
+      // ★操作ログ：チェックごとに送信
+      track({
+        type: now ? "category_select" : "category_deselect",
+        category: c.id,
+        selected: Array.from(selected),
+        ts: new Date().toISOString()
+      });
+
+      // UI上の他行（検索で絞っていても状態が正しく保たれるように）
+      // ここでは再描画は不要だが、必要なら buildCategoryList() を呼んでもOK
     });
 
     const dot = document.createElement("span");
@@ -303,26 +329,30 @@ function buildCategoryList(){
 document.getElementById("searchBox").addEventListener("input", buildCategoryList);
 
 document.getElementById("btnAll").addEventListener("click", () => {
-  pending = new Set(categories.map(c => c.id));
-  buildCategoryList();
-});
-
-document.getElementById("btnNone").addEventListener("click", () => {
-  pending.clear();
-  buildCategoryList();
-});
-
-document.getElementById("btnApply").addEventListener("click", () => {
-  selected = new Set(pending);
+  selected = new Set(categories.map(c => c.id));
+  applyFilter();
+  buildCategoryList(); // チェック表示更新
 
   track({
     type:"category_select",
-    category: (selected.size===0 ? "ALL" : "MULTI"),
+    category:"MULTI",
     selected: Array.from(selected),
     ts: new Date().toISOString()
   });
+});
 
+document.getElementById("btnNone").addEventListener("click", () => {
+  // 全解除＝フィルタ解除（全表示）として扱う（selectedを空にする）
+  selected.clear();
   applyFilter();
+  buildCategoryList(); // チェック表示更新
+
+  track({
+    type:"category_select",
+    category:"ALL",
+    selected: [],
+    ts: new Date().toISOString()
+  });
 });
 
 /* Collapse toggle */
@@ -358,9 +388,7 @@ const POIS_INLINE = {
   categories = data.categories || [];
   allPois = data.pois || [];
 
-  // 初期：全チェック（pending）だが表示はALL（selected空）→画面上は全部表示
-  pending = new Set(categories.map(c => c.id));
-
+  // 初期は全表示（フィルタ解除状態＝selected空）
   renderPois(allPois);
   buildCategoryList();
 
@@ -369,4 +397,3 @@ const POIS_INLINE = {
 </script>
 </body>
 </html>
-``
