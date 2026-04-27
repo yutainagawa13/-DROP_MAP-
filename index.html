@@ -2,67 +2,53 @@
 <html lang="ja">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>大阪名所マップ</title>
 
-<link
-  rel="stylesheet"
-  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-/>
+<link rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
+<!-- GA4（不要なら削除OK） -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YGD8E8JZJM"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-YGD8E8JZJM');
+</script>
+
 <style>
-body, html {
-  margin: 0;
-  height: 100%;
-}
-#map {
-  height: 100%;
-}
+html,body,#map{height:100%;margin:0;}
+#map{z-index:0;}
 
-/* 左上ちょこんパネル */
-.panel {
-  position: absolute;
-  top: 12px;
-  left: 12px;
-  background: #0f1730;
-  color: #fff;
-  padding: 12px 14px;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0,0,0,.35);
-  font-family: sans-serif;
-  z-index: 1000;
+.panel{
+  position:fixed;
+  top:12px;
+  left:12px;
+  background:#0f1730;
+  color:#fff;
+  padding:12px 14px;
+  border-radius:12px;
+  box-shadow:0 10px 30px rgba(0,0,0,.35);
+  z-index:1000;
+  font-family:system-ui, sans-serif;
 }
+.panel h3{margin:0 0 8px;font-size:14px;}
 
-.panel h3 {
-  margin: 0 0 8px;
-  font-size: 14px;
+.item{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:13px;
+  margin:6px 0;
 }
-
-.item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 13px;
-  margin: 6px 0;
-}
-
-.item input {
-  width: 16px;
-  height: 16px;
-}
-
-.dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  display: inline-block;
-}
+.item input{width:16px;height:16px;}
+.dot{width:12px;height:12px;border-radius:50%;}
 </style>
 </head>
 
 <body>
-
 <div id="map"></div>
 
 <div class="panel">
@@ -72,79 +58,81 @@ body, html {
 
 <script>
 /* ===== 設定 ===== */
-const BASE_PATH = "/-DROP_MAP-"; // 必要なら変更
-
+const BASE_PATH = "/-DROP_MAP-";   // 必要に応じて変更
 const CATEGORY_CONFIG = {
-  other:   { label: "その他", color: "#ef4444" },
-  art:     { label: "アート・デザイン", color: "#db2777" },
-  arch:    { label: "建築", color: "#f97316" },
-  history: { label: "歴史", color: "#7c2d12" }
+  other:   { label:"その他", color:"#ef4444" },
+  art:     { label:"アート・デザイン", color:"#db2777" },
+  arch:    { label:"建築", color:"#f97316" },
+  history: { label:"歴史", color:"#7c2d12" }
 };
-
 const withBasePath = p => (BASE_PATH||"") + (p.startsWith("/")?p:"/"+p);
 
 /* ===== Map ===== */
-const map = L.map("map").setView([34.6937, 135.5023], 12);
-L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-  maxZoom: 19
-}).addTo(map);
+const map = L.map("map").setView([34.6937,135.5023],12);
+L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19}).addTo(map);
 
 const layers = {};
-Object.keys(CATEGORY_CONFIG).forEach(k => {
-  layers[k] = L.layerGroup().addTo(map);
+Object.keys(CATEGORY_CONFIG).forEach(k=>{
+  layers[k]=L.layerGroup().addTo(map);
 });
 
 let selected = new Set();
 
-/* ===== データ読み込み ===== */
-(async () => {
-  const res = await fetch(withBasePath("pois.json")).then(r => r.json());
+/* ===== GA送信 ===== */
+function track(evt){
+  if(typeof gtag==="function"){
+    gtag("event", evt.type, {
+      category: evt.category,
+      selected: evt.selected,
+      event_ts: evt.ts
+    });
+  }
+}
+
+/* ===== Init ===== */
+(async()=>{
+  const res = await fetch(withBasePath("spot.json")).then(r=>r.json());
   const pois = res.pois || res.spots || [];
 
-  // カテゴリ自動生成
-  const categories = [...new Set(pois.map(p => p.category))];
+  // カテゴリ自動生成（JSONに依存しない）
+  const categories = [...new Set(pois.map(p=>p.category))];
 
-  // マーカー描画
-  pois.forEach(p => {
-    if (!layers[p.category]) return;
-    L.marker([p.lat, p.lng]).bindPopup(p.name).addTo(layers[p.category]);
+  // ピン配置
+  pois.forEach(p=>{
+    if(!layers[p.category]) return;
+    L.marker([p.lat,p.lng]).bindPopup(p.name).addTo(layers[p.category]);
   });
 
-  buildCategoryUI(categories);
-})();
-
-/* ===== UI ===== */
-function buildCategoryUI(categories) {
-  const wrap = document.getElementById("categoryList");
-  wrap.innerHTML = "";
-
-  categories.forEach(cat => {
-    const conf = CATEGORY_CONFIG[cat] || { label: cat, color: "#999" };
-
-    const row = document.createElement("label");
-    row.className = "item";
-    row.innerHTML = `
+  // UI生成
+  const wrap=document.getElementById("categoryList");
+  categories.forEach(cat=>{
+    const conf=CATEGORY_CONFIG[cat]||{label:cat,color:"#999"};
+    const row=document.createElement("label");
+    row.className="item";
+    row.innerHTML=`
       <input type="checkbox" checked>
       <span class="dot" style="background:${conf.color}"></span>
       <span>${conf.label}</span>
     `;
-
-    row.querySelector("input").addEventListener("change", e => {
-      if (e.target.checked) {
+    row.querySelector("input").addEventListener("change",e=>{
+      if(e.target.checked){
         selected.add(cat);
         map.addLayer(layers[cat]);
-      } else {
+      }else{
         selected.delete(cat);
         map.removeLayer(layers[cat]);
       }
+      track({
+        type:e.target.checked?"category_select":"category_deselect",
+        category:cat,
+        selected:[...selected].join(","),
+        ts:new Date().toISOString()
+      });
     });
-
     wrap.appendChild(row);
     selected.add(cat); // 初期は全表示
   });
-}
+})();
 </script>
-
 </body>
 </html>
-``
