@@ -74,6 +74,16 @@ html,body,#map{height:100%;margin:0;}
 const BASE_PATH = "/-DROP_MAP-"; // 必要なら変更
 const withBasePath = p => (BASE_PATH||"") + (p.startsWith("/")?p:"/"+p);
 
+/* カテゴリ色（必要に応じて調整） */
+function getColor(id){
+  return {
+    history:"#7c2d12",
+    view:"#60a5fa",
+    food:"#f472b6",
+    nature:"#34d399"
+  }[id] || "#999";
+}
+
 /* ===== Map ===== */
 const map = L.map("map").setView([34.6937,135.5023],12);
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{
@@ -177,15 +187,6 @@ marker.on("click", () => {
   });
 })();
 
-/* カテゴリ色（必要に応じて調整） */
-function getColor(id){
-  return {
-    history:"#7c2d12",
-    view:"#60a5fa",
-    food:"#f472b6",
-    nature:"#34d399"
-  }[id] || "#999";
-}
 </script>
 </body>
 </html>
