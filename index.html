@@ -126,13 +126,22 @@ function track(evt){
     if(!layers[p.category]) return;
     const color = getColor(p.category);
 
-L.marker(
+const marker = L.marker(
   [p.lat, p.lng],
   { icon: createPinIcon(color) }
 )
 .bindPopup(`<b>${p.name}</b><br>${p.desc || ""}`)
 .addTo(layers[p.category]);
+
+marker.on("click", () => {
+  track({
+    type: "poi_click",
+    category: p.category,
+    poi_id: p.id,
+    poi_name: p.name,
+    ts: new Date().toISOString()
   });
+});
 
   // UI生成（チェック即時反映）
   const wrap = document.getElementById("categoryList");
