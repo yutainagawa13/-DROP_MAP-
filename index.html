@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1, viewport-fit=cover" />
   <title>大阪名所マップ（カテゴリ選択）</title>
 
-  <!-- Leaflet (CDN) -->
+  <!-- Leaflet -->
   <link rel="stylesheet"
         href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
@@ -15,7 +15,7 @@
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
         crossorigin=""></script>
 
-  <!-- GA4（必要ならON。画面ログは出さない） -->
+  <!-- GA4（必要ならON。画面ログは出しません） -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-YGD8E8JZJM"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -33,49 +33,56 @@
       --muted:#9fb0d0;
       --line:#25335d;
       --accent:#3f5bd8;
-      --chip:#142148;
-      --chipOn:#2a3f86;
       --shadow:0 14px 40px rgba(0,0,0,.35);
-      --r:16px;
+      --r:14px;
       --safeTop: env(safe-area-inset-top, 0px);
-      --safeBottom: env(safe-area-inset-bottom, 0px);
       --safeLeft: env(safe-area-inset-left, 0px);
-      --safeRight: env(safe-area-inset-right, 0px);
     }
     html,body{height:100%; margin:0; background:var(--bg); color:var(--text);
       font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Hiragino Kaku Gothic ProN",
                    "Noto Sans JP", "Yu Gothic", "Meiryo", sans-serif;
       overflow:hidden;
     }
-
-    /* Layout */
-    .app{height:100%; display:grid; grid-template-columns: 360px 1fr;}
-    .side{
-      padding: 14px;
-      padding-left: calc(14px + var(--safeLeft));
-      background: linear-gradient(180deg, rgba(17,28,58,.96), rgba(11,18,32,.92));
-      border-right:1px solid var(--line);
-      box-shadow: var(--shadow);
-      z-index: 1000;
-    }
     #map{height:100%; width:100%;}
 
-    /* Card */
-    .card{
-      background: rgba(255,255,255,.04);
-      border:1px solid rgba(37,51,93,.9);
+    /* ===== Floating panel (top-left) ===== */
+    .panel{
+      position: fixed;
+      top: calc(12px + var(--safeTop));
+      left: calc(12px + var(--safeLeft));
+      width: min(320px, calc(100vw - 24px));
+      z-index: 1200;
+      background: rgba(17,28,58,.92);
+      border: 1px solid rgba(37,51,93,.95);
       border-radius: var(--r);
-      padding: 12px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      overflow:hidden;
     }
-    .h1{font-weight:900; font-size:16px; margin:4px 0 10px;}
-    .hint{color:var(--muted); font-size:12px; line-height:1.5; margin-top:8px;}
+    .head{
+      padding:10px 12px;
+      font-weight: 900;
+      border-bottom:1px solid rgba(37,51,93,.6);
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+    }
+    .toggle{
+      appearance:none;
+      border:1px solid rgba(37,51,93,.9);
+      background: rgba(20,33,72,.85);
+      color:var(--text);
+      border-radius: 10px;
+      padding:6px 10px;
+      font-weight:900;
+      cursor:pointer;
+      user-select:none;
+    }
+    .body{ padding: 10px 12px 12px; }
 
-    /* Desktop category panel (no scroll required) */
-    .boxTitle{font-weight:900; margin-bottom:10px;}
     .search{
       width:100%;
       box-sizing:border-box;
-      background: rgba(0,0,0,.20);
+      background: rgba(0,0,0,.18);
       border:1px solid rgba(37,51,93,.9);
       color:var(--text);
       padding:10px 12px;
@@ -93,122 +100,59 @@
       padding:10px 10px;
       border-radius: 12px;
       cursor:pointer;
-      font-weight:800;
+      font-weight:900;
       font-size:12px;
-      transition:.15s transform, .15s background, .15s border-color;
       user-select:none;
+      transition:.15s transform, .15s background, .15s border-color;
     }
     .btn:active{transform: scale(.99);}
     .btn.primary{border-color: rgba(63,91,216,.9); background: rgba(42,63,134,.95);}
-    .list{margin-top:8px; display:grid; gap:10px;}
-    .row{
-      display:flex; align-items:center; gap:10px;
-      font-size:13px;
-    }
+
+    .list{display:grid; gap:10px; margin-top:6px;}
+    .row{display:flex; align-items:center; gap:10px; font-size:13px;}
     .row input{width:18px; height:18px;}
     .dot{width:14px; height:14px; border-radius:999px; display:inline-block;}
-    .label{font-weight:800;}
+    .label{font-weight:900;}
     .count{margin-left:auto; color:var(--muted); font-size:12px;}
 
-    /* Mobile: hide sidebar, show top chips */
-    .topbar{
-      display:none;
-      position: fixed;
-      left:0; right:0; top:0;
-      padding: calc(10px + var(--safeTop)) 12px 10px;
-      padding-left: calc(12px + var(--safeLeft));
-      padding-right: calc(12px + var(--safeRight));
-      z-index: 1200;
-      background: linear-gradient(180deg, rgba(11,18,32,.92), rgba(11,18,32,.65), rgba(11,18,32,0));
-      pointer-events:none;
-    }
-    .topPanel{
-      pointer-events:auto;
-      background: rgba(16,26,51,.88);
-      border: 1px solid var(--line);
-      box-shadow: var(--shadow);
-      border-radius: 18px;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      overflow:hidden;
-    }
-    .topHead{
-      padding:10px 12px;
-      border-bottom:1px solid rgba(37,51,93,.6);
-      display:flex; align-items:center; justify-content:space-between; gap:10px;
-    }
-    .chipRow{
-      display:flex; gap:10px;
-      padding:10px 12px;
-      overflow-x:auto;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width:none;
-    }
-    .chipRow::-webkit-scrollbar{display:none;}
-    .chip{
-      flex:0 0 auto;
-      appearance:none;
-      border:1px solid rgba(37,51,93,.9);
-      background: var(--chip);
-      color:var(--text);
-      padding:10px 14px;
-      border-radius:999px;
-      font-weight:900;
-      font-size:13px;
-      cursor:pointer;
-      user-select:none;
-      min-height:40px;
-      transition:.15s transform, .15s background, .15s border-color;
-    }
-    .chip:active{transform: scale(.98);}
-    .chip.active{background: var(--chipOn); border-color: rgba(63,91,216,.95);}
+    .hint{color:var(--muted); font-size:12px; line-height:1.5; margin-top:8px;}
 
-    @media (max-width: 820px){
-      .app{grid-template-columns: 1fr;}
-      .side{display:none;}
-      .topbar{display:block;}
+    /* Collapse */
+    .collapsed .body{display:none;}
+
+    /* Make panel a bit wider on PC, but still "chon" */
+    @media (min-width: 900px){
+      .panel{ width: 340px; }
     }
   </style>
 </head>
 
 <body>
-  <div class="app">
-    <!-- Desktop sidebar -->
-    <aside class="side">
-      <div class="h1">大阪名所マップ</div>
-      <div class="card">
-        <div class="boxTitle">カテゴリ</div>
-        <input class="search" id="searchBox" placeholder="カテゴリを絞り込み" />
+  <div id="map"></div>
 
-        <div class="actions">
-          <button class="btn" id="btnAll">全選択</button>
-          <button class="btn" id="btnNone">全解除</button>
-          <button class="btn primary" id="btnApply">範囲更新</button>
-        </div>
+  <!-- Floating category panel -->
+  <div class="panel" id="panel">
+    <div class="head">
+      <div>カテゴリ</div>
+      <button class="toggle" id="btnToggle" type="button">−</button>
+    </div>
+    <div class="body">
+      <input class="search" id="searchBox" placeholder="カテゴリを絞り込み" />
 
-        <div class="list" id="categoryList"></div>
-
-        <div class="hint">※ <span style="font-weight:800;">pois.json</span>（spots一覧）を絞り込んで表示します。</div>
+      <div class="actions">
+        <button class="btn" id="btnAll" type="button">全選択</button>
+        <button class="btn" id="btnNone" type="button">全解除</button>
+        <button class="btn primary" id="btnApply" type="button">範囲更新</button>
       </div>
-    </aside>
 
-    <div id="map"></div>
-  </div>
-
-  <!-- Mobile top chips -->
-  <div class="topbar">
-    <div class="topPanel">
-      <div class="topHead">
-        <div style="font-weight:900;">カテゴリ</div>
-        <div style="color:var(--muted); font-size:12px;" id="mobileState">ALL</div>
-      </div>
-      <div class="chipRow" id="mobileChips"></div>
+      <div class="list" id="categoryList"></div>
+      <div class="hint">※ <b>pois.json</b>（spots一覧）を読み込んで表示します。</div>
     </div>
   </div>
 
 <script>
-/* ===== base path（元HTMLは "/-DROP_MAP-"） ===== */
-const BASE_PATH = "/-DROP_MAP-"; // 必要に応じて変更 [2](https://obayashig-my.sharepoint.com/personal/uy2316_obayashi_co_jp/Documents/Microsoft%20Copilot%20Chat%20%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB/index_GA%E7%94%A8.html)
+/* ===== base path（既存は "/-DROP_MAP-"） ===== */
+const BASE_PATH = "/-DROP_MAP-"; // 必要に応じて変更 [2](https://obayashig.sharepoint.com/teams/SE/Shared%20Documents/03_%e3%83%97%e3%83%ad%e3%83%88%e3%82%bf%e3%82%a4%e3%83%94%e3%83%b3%e3%82%b0/OAD_MAP/%e7%a8%b2%e5%b7%9d%e4%bd%9c%e6%88%90_20260408/index_GA%e7%94%a8.html?web=1)
 
 const CATEGORY_CONFIG = {
   history: { label: "歴史・文化", color: "#f59e0b" },
@@ -239,7 +183,7 @@ function escapeHtml(str){
     .replaceAll('"',"&quot;").replaceAll("'","&#39;");
 }
 
-/* ===== GA4送信（画面ログなし） ===== */
+/* GA4送信（画面ログなし） */
 function track(evt){
   if (typeof gtag === "function") {
     gtag("event", evt.type, {
@@ -252,11 +196,11 @@ function track(evt){
   }
 }
 
-/* ===== Leaflet map ===== */
+/* Map */
 const map = L.map("map", { zoomControl:false }).setView([34.6937, 135.5023], 12);
 L.control.zoom({ position:"bottomright" }).addTo(map);
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-  maxZoom: 19, attribution: "© OpenStreetMap contributors"
+  maxZoom:19, attribution:"© OpenStreetMap contributors"
 }).addTo(map);
 
 const layersByCategory = {
@@ -276,7 +220,6 @@ function createPinIcon(color){
     iconSize:[28,42], iconAnchor:[14,42], popupAnchor:[0,-36]
   });
 }
-
 function makeMarker(poi){
   const conf = CATEGORY_CONFIG[poi.category] || { color:"#94a3b8" };
   const marker = L.marker([poi.lat, poi.lng], { icon: createPinIcon(conf.color) });
@@ -292,8 +235,8 @@ function makeMarker(poi){
 
 let allPois = [];
 let categories = [];
-let selected = new Set();   // 複数選択。空=ALL
-let pending = new Set();    // PC側：チェック状態（範囲更新でselectedへ反映）
+let selected = new Set();   // 実際の適用状態（空=ALL）
+let pending = new Set();    // チェック状態（範囲更新でselectedへ）
 
 function renderPois(pois){
   Object.values(layersByCategory).forEach(g => g.clearLayers());
@@ -310,14 +253,8 @@ function applyFilter(){
       else { if(map.hasLayer(layer)) map.removeLayer(layer); }
     });
   }
-  // mobile state
-  const mobileState = document.getElementById("mobileState");
-  if(mobileState){
-    mobileState.textContent = (selected.size===0) ? "ALL" : Array.from(selected).map(c => CATEGORY_CONFIG[c]?.label || c).join(", ");
-  }
 }
 
-/* ===== PC panel ===== */
 function buildCategoryList(){
   const list = document.getElementById("categoryList");
   const q = (document.getElementById("searchBox").value || "").trim().toLowerCase();
@@ -330,6 +267,7 @@ function buildCategoryList(){
 
   filtered.forEach(c => {
     const conf = CATEGORY_CONFIG[c.id] || { color:"#94a3b8", label:c.label || c.id };
+
     const row = document.createElement("label");
     row.className = "row";
 
@@ -361,6 +299,7 @@ function buildCategoryList(){
   });
 }
 
+/* UI wiring */
 document.getElementById("searchBox").addEventListener("input", buildCategoryList);
 
 document.getElementById("btnAll").addEventListener("click", () => {
@@ -374,10 +313,8 @@ document.getElementById("btnNone").addEventListener("click", () => {
 });
 
 document.getElementById("btnApply").addEventListener("click", () => {
-  // pending → selected 反映
   selected = new Set(pending);
 
-  // GAイベント（カテゴリ更新）
   track({
     type:"category_select",
     category: (selected.size===0 ? "ALL" : "MULTI"),
@@ -388,61 +325,14 @@ document.getElementById("btnApply").addEventListener("click", () => {
   applyFilter();
 });
 
-/* ===== Mobile chips ===== */
-function buildMobileChips(){
-  const wrap = document.getElementById("mobileChips");
-  wrap.innerHTML = "";
+/* Collapse toggle */
+document.getElementById("btnToggle").addEventListener("click", () => {
+  const p = document.getElementById("panel");
+  p.classList.toggle("collapsed");
+  document.getElementById("btnToggle").textContent = p.classList.contains("collapsed") ? "+" : "−";
+});
 
-  const mk = (id, label) => {
-    const b = document.createElement("button");
-    b.className = "chip";
-    b.type = "button";
-    b.dataset.cat = id;
-    b.textContent = label;
-    b.style.touchAction = "manipulation";
-    b.addEventListener("click", () => {
-      if(id === "ALL"){
-        selected.clear();
-      }else{
-        if(selected.has(id)) selected.delete(id);
-        else selected.add(id);
-      }
-      // PC側のチェック状態も同期
-      pending = new Set(selected);
-
-      // GA送信
-      track({
-        type: selected.has(id) ? "category_select" : "category_deselect",
-        category: id === "ALL" ? "ALL" : id,
-        selected: Array.from(selected),
-        ts: new Date().toISOString()
-      });
-
-      updateMobileActive();
-      buildCategoryList();
-      applyFilter();
-    });
-    return b;
-  };
-
-  wrap.appendChild(mk("ALL", "すべて"));
-  categories.forEach(c => {
-    const label = CATEGORY_CONFIG[c.id]?.label || c.label || c.id;
-    wrap.appendChild(mk(c.id, label));
-  });
-
-  updateMobileActive();
-}
-
-function updateMobileActive(){
-  document.querySelectorAll(".chip[data-cat]").forEach(b => {
-    const cat = b.dataset.cat;
-    const active = (selected.size===0 && cat==="ALL") || selected.has(cat);
-    b.classList.toggle("active", active);
-  });
-}
-
-/* ===== Inline fallback ===== */
+/* Inline fallback */
 const POIS_INLINE = {
   "categories": [
     { "id": "history", "label": "歴史・文化" },
@@ -468,15 +358,11 @@ const POIS_INLINE = {
   categories = data.categories || [];
   allPois = data.pois || [];
 
-  // 初期：ALL（selected空）・PC側 pendingもALL扱い＝全チェック
+  // 初期：全チェック（pending）だが表示はALL（selected空）→画面上は全部表示
   pending = new Set(categories.map(c => c.id));
-  // ※ “範囲更新”押すまで selected は変えない → 画像の挙動に寄せる
-  // ただし初回は全表示なので selected は空のままにしておく（ALL表示）
 
   renderPois(allPois);
   buildCategoryList();
-  buildMobileChips();
-  applyFilter();
 
   track({ type:"page_view", ts: new Date().toISOString() });
 })();
