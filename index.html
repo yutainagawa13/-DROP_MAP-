@@ -3,19 +3,22 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1, viewport-fit=cover" />
-  <title>大阪名所マップ（カテゴリ即時反映）</title>
+  <title>大阪名所マップ</title>
 
   <!-- Leaflet -->
-  <link rel="stylesheet"
-        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-        crossorigin=""/>
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""
+  />
   <script
-        src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-        crossorigin=""></script>
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""
+  ></script>
 
-  <!-- GA4（必要ならON。画面ログは出しません） -->
+  <!-- GA4（必要なければ削除OK） -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-YGD8E8JZJM"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -28,11 +31,9 @@
     :root{
       --bg:#0b1220;
       --panel:#0f1730;
-      --panel2:#111c3a;
       --text:#eaf0ff;
       --muted:#9fb0d0;
       --line:#25335d;
-      --accent:#3f5bd8;
       --shadow:0 14px 40px rgba(0,0,0,.35);
       --r:14px;
       --safeTop: env(safe-area-inset-top, 0px);
@@ -43,8 +44,8 @@
       margin:0;
       background:var(--bg);
       color:var(--text);
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Hiragino Kaku Gothic ProN",
-                   "Noto Sans JP", "Yu Gothic", "Meiryo", sans-serif;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto,
+        "Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic","Meiryo", sans-serif;
       overflow:hidden;
     }
     #map{height:100%; width:100%;}
@@ -66,71 +67,85 @@
     }
     .head{
       padding:10px 12px;
-      font-weight: 900;
+      font-weight:900;
       border-bottom:1px solid rgba(37,51,93,.6);
-      display:flex; align-items:center; justify-content:space-between; gap:10px;
-    }
-    .state{
-      color:var(--muted);
-      font-size:12px;
-      font-weight:800;
-      white-space:nowrap;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
     }
     .toggle{
       appearance:none;
       border:1px solid rgba(37,51,93,.9);
       background: rgba(20,33,72,.85);
       color:var(--text);
-      border-radius: 10px;
+      border-radius:10px;
       padding:6px 10px;
       font-weight:900;
       cursor:pointer;
-      user-select:none;
     }
-    .body{ padding: 10px 12px 12px; }
+    .body{ padding:10px 12px 12px; }
 
     .search{
       width:100%;
-      box-sizing:border-box;
       background: rgba(0,0,0,.18);
       border:1px solid rgba(37,51,93,.9);
       color:var(--text);
       padding:10px 12px;
-      border-radius: 12px;
-      outline:none;
+      border-radius:12px;
       font-size:13px;
+      outline:none;
     }
 
-    .actions{display:flex; gap:8px; margin:10px 0 10px;}
+    .actions{
+      display:flex;
+      gap:8px;
+      margin:10px 0;
+    }
     .btn{
       flex:1;
-      appearance:none;
       border:1px solid rgba(37,51,93,.9);
       background: rgba(20,33,72,.85);
       color:var(--text);
-      padding:10px 10px;
-      border-radius: 12px;
-      cursor:pointer;
+      padding:10px;
+      border-radius:12px;
       font-weight:900;
       font-size:12px;
-      user-select:none;
-      transition:.15s transform, .15s background, .15s border-color;
+      cursor:pointer;
     }
-    .btn:active{transform: scale(.99);}
 
-    .list{display:grid; gap:10px; margin-top:6px;}
-    .row{display:flex; align-items:center; gap:10px; font-size:13px;}
-    .row input{width:18px; height:18px;}
-    .dot{width:14px; height:14px; border-radius:999px; display:inline-block;}
-    .label{font-weight:900;}
-    .count{margin-left:auto; color:var(--muted); font-size:12px;}
+    .list{
+      display:grid;
+      gap:10px;
+      margin-top:6px;
+    }
+    .row{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-size:13px;
+    }
+    .row input{ width:18px; height:18px; }
+    .dot{
+      width:14px;
+      height:14px;
+      border-radius:999px;
+      display:inline-block;
+    }
+    .label{ font-weight:900; }
+    .count{
+      margin-left:auto;
+      color:var(--muted);
+      font-size:12px;
+    }
+    .hint{
+      color:var(--muted);
+      font-size:12px;
+      margin-top:8px;
+    }
+    .collapsed .body{ display:none; }
 
-    .hint{color:var(--muted); font-size:12px; line-height:1.5; margin-top:8px;}
-
-    .collapsed .body{display:none;}
-
-    @media (min-width: 900px){
-      .panel{ width: 340px; }
+    @media (min-width:900px){
+      .panel{ width:340px; }
     }
   </style>
 </head>
@@ -138,261 +153,140 @@
 <body>
   <div id="map"></div>
 
+  <!-- Category panel -->
   <div class="panel" id="panel">
     <div class="head">
       <div>カテゴリ</div>
-      <div class="state" id="stateLabel">全表示</div>
-      <button class="toggle" id="btnToggle" type="button">−</button>
+      <button class="toggle" id="btnToggle">−</button>
     </div>
 
     <div class="body">
       <input class="search" id="searchBox" placeholder="カテゴリを絞り込み" />
 
       <div class="actions">
-        <button class="btn" id="btnAll" type="button">全選択</button>
-        <button class="btn" id="btnNone" type="button">全解除</button>
+        <button class="btn" id="btnAll">全選択</button>
+        <button class="btn" id="btnNone">全解除</button>
       </div>
 
       <div class="list" id="categoryList"></div>
-      <div class="hint">※ <b>pois.json</b>（spots一覧）を読み込んで表示します。</div>
+      <div class="hint">※ pois.json（spots一覧）を読み込んで表示します。</div>
     </div>
   </div>
 
 <script>
-/* ===== base path（既存は "/-DROP_MAP-"） ===== */
-const BASE_PATH = "/-DROP_MAP-"; // 必要に応じて変更 [3](https://obayashig-my.sharepoint.com/personal/uy2316_obayashi_co_jp/Documents/Microsoft%20Copilot%20Chat%20%e3%83%95%e3%82%a1%e3%82%a4%e3%83%ab/index_GA%e7%94%a8.html?web=1)
-
+/* ===== 設定 ===== */
+const BASE_PATH = "/-DROP_MAP-";   // 環境に応じて変更
 const CATEGORY_CONFIG = {
-  history: { label: "歴史・文化", color: "#f59e0b" },
-  view:    { label: "展望・近代建築", color: "#60a5fa" },
-  food:    { label: "グルメ・市場",  color: "#f472b6" },
-  nature:  { label: "自然・公園",    color: "#34d399" }
+  history:{ label:"歴史・文化", color:"#f59e0b" },
+  view:{ label:"展望・近代建築", color:"#60a5fa" },
+  food:{ label:"グルメ・市場", color:"#f472b6" },
+  nature:{ label:"自然・公園", color:"#34d399" }
 };
 
-function withBasePath(path){
-  const p = path.startsWith("/") ? path : ("/" + path);
-  return (BASE_PATH || "") + p;
-}
-
-async function loadData(){
-  try{
-    const res = await fetch(withBasePath("pois.json"), { cache:"no-store" });
-    if(!res.ok) throw new Error("HTTP " + res.status);
-    return await res.json();
-  }catch(e){
-    console.warn("pois.jsonの読み込みに失敗。埋め込みデータを使用します。理由:", e);
-    return POIS_INLINE;
-  }
-}
-
-function escapeHtml(str){
-  return String(str)
-    .replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;").replaceAll("'","&#39;");
-}
-
-/* GA4送信（画面ログなし）
-   不要なら、この track 関数の中身を空にするだけでOK */
-function track(evt){
-  if (typeof gtag === "function") {
+/* ===== Utility ===== */
+const withBasePath = p => (BASE_PATH||"") + (p.startsWith("/")?p:"/"+p);
+const track = evt => {
+  if(typeof gtag==="function"){
     gtag("event", evt.type, {
       category: evt.category ?? null,
-      poi_id: evt.poiId ?? null,
-      poi_name: evt.poiName ?? null,
-      selected: Array.isArray(evt.selected) ? evt.selected.join(",") : null,
+      selected: evt.selected ?? null,
       event_ts: evt.ts ?? null
     });
   }
-}
+};
 
 /* ===== Map ===== */
-const map = L.map("map", { zoomControl:false }).setView([34.6937, 135.5023], 12);
-L.control.zoom({ position:"bottomright" }).addTo(map);
-L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+const map = L.map("map",{zoomControl:false}).setView([34.6937,135.5023],12);
+L.control.zoom({position:"bottomright"}).addTo(map);
+L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{
   maxZoom:19, attribution:"© OpenStreetMap contributors"
 }).addTo(map);
 
-const layersByCategory = {
-  history: L.layerGroup().addTo(map),
-  view:    L.layerGroup().addTo(map),
-  food:    L.layerGroup().addTo(map),
-  nature:  L.layerGroup().addTo(map)
+const layers = {
+  history:L.layerGroup().addTo(map),
+  view:L.layerGroup().addTo(map),
+  food:L.layerGroup().addTo(map),
+  nature:L.layerGroup().addTo(map)
 };
 
-function createPinIcon(color){
-  return L.divIcon({
-    className:"",
-    html:`<svg width="28" height="42" viewBox="0 0 24 36" xmlns="http://www.w3.org/2000/svg">
-      <path d="M12 0C5.4 0 0 5.4 0 12c0 9 12 24 12 24s12-15 12-24C24 5.4 18.6 0 12 0z" fill="${color}"/>
-      <circle cx="12" cy="12" r="5" fill="white"/>
-    </svg>`,
-    iconSize:[28,42], iconAnchor:[14,42], popupAnchor:[0,-36]
-  });
-}
-function makeMarker(poi){
-  const conf = CATEGORY_CONFIG[poi.category] || { color:"#94a3b8" };
-  const marker = L.marker([poi.lat, poi.lng], { icon: createPinIcon(conf.color) });
-  marker.bindPopup(`
-    <div style="font-weight:900; font-size:14px; margin-bottom:4px;">${escapeHtml(poi.name)}</div>
-    <div style="font-size:12px; color:#475569;">カテゴリ：${escapeHtml(CATEGORY_CONFIG[poi.category]?.label || poi.category)}</div>
-  `);
-  marker.on("click", () => {
-    track({ type:"poi_click", poiId: poi.id, poiName: poi.name, category: poi.category, ts: new Date().toISOString() });
-  });
-  return marker;
-}
+const pin = c => L.divIcon({
+  className:"",
+  html:`<svg width="28" height="42" viewBox="0 0 24 36">
+    <path d="M12 0C5.4 0 0 5.4 0 12c0 9 12 24 12 24s12-15 12-24C24 5.4 18.6 0 12 0z" fill="${c}"/>
+    <circle cx="12" cy="12" r="5" fill="white"/></svg>`,
+  iconSize:[28,42], iconAnchor:[14,42]
+});
 
-let allPois = [];
-let categories = [];
-let selected = new Set();  // 適用中カテゴリ（空=全表示/フィルタ解除）
+let categories=[], pois=[], selected=new Set();
 
-function renderPois(pois){
-  Object.values(layersByCategory).forEach(g => g.clearLayers());
-  pois.forEach(p => layersByCategory[p.category]?.addLayer(makeMarker(p)));
-  applyFilter();
-}
-
+/* ===== 描画 ===== */
 function applyFilter(){
-  if(selected.size === 0){
-    Object.values(layersByCategory).forEach(layer => { if(!map.hasLayer(layer)) layer.addTo(map); });
-    document.getElementById("stateLabel").textContent = "全表示";
+  if(selected.size===0){
+    Object.values(layers).forEach(l=>!map.hasLayer(l)&&l.addTo(map));
   }else{
-    Object.entries(layersByCategory).forEach(([cat, layer]) => {
-      if(selected.has(cat)){ if(!map.hasLayer(layer)) layer.addTo(map); }
-      else { if(map.hasLayer(layer)) map.removeLayer(layer); }
+    Object.entries(layers).forEach(([k,l])=>{
+      selected.has(k)?(!map.hasLayer(l)&&l.addTo(map)):(map.hasLayer(l)&&map.removeLayer(l));
     });
-    const labels = Array.from(selected).map(c => CATEGORY_CONFIG[c]?.label || c);
-    document.getElementById("stateLabel").textContent = labels.join(" / ");
   }
 }
 
-function buildCategoryList(){
-  const list = document.getElementById("categoryList");
-  const q = (document.getElementById("searchBox").value || "").trim().toLowerCase();
-
-  list.innerHTML = "";
-  const filtered = categories.filter(c => {
-    const label = (CATEGORY_CONFIG[c.id]?.label || c.label || c.id).toLowerCase();
-    return !q || label.includes(q) || c.id.toLowerCase().includes(q);
-  });
-
-  filtered.forEach(c => {
-    const conf = CATEGORY_CONFIG[c.id] || { color:"#94a3b8", label:c.label || c.id };
-
-    const row = document.createElement("label");
-    row.className = "row";
-
-    const cb = document.createElement("input");
-    cb.type = "checkbox";
-    cb.checked = selected.has(c.id); // ★即時反映なので selected を直接参照
-    cb.addEventListener("change", () => {
-      const now = cb.checked;
-      if(now) selected.add(c.id);
-      else selected.delete(c.id);
-
-      // ★即時反映
+function buildList(){
+  const q=(searchBox.value||"").toLowerCase();
+  categoryList.innerHTML="";
+  categories.filter(c=>{
+    const t=(CATEGORY_CONFIG[c.id]?.label||c.id).toLowerCase();
+    return !q||t.includes(q);
+  }).forEach(c=>{
+    const conf=CATEGORY_CONFIG[c.id];
+    const row=document.createElement("label");
+    row.className="row";
+    row.innerHTML=`
+      <input type="checkbox" ${selected.has(c.id)?"checked":""}>
+      <span class="dot" style="background:${conf.color}"></span>
+      <span class="label">${conf.label}</span>
+      <span class="count">${pois.filter(p=>p.category===c.id).length}</span>
+    `;
+    row.querySelector("input").addEventListener("change",e=>{
+      e.target.checked?selected.add(c.id):selected.delete(c.id);
       applyFilter();
-
-      // ★操作ログ：チェックごとに送信
       track({
-        type: now ? "category_select" : "category_deselect",
-        category: c.id,
-        selected: Array.from(selected),
-        ts: new Date().toISOString()
+        type:e.target.checked?"category_select":"category_deselect",
+        category:c.id,
+        selected:[...selected].join(","),
+        ts:new Date().toISOString()
       });
-
-      // UI上の他行（検索で絞っていても状態が正しく保たれるように）
-      // ここでは再描画は不要だが、必要なら buildCategoryList() を呼んでもOK
     });
-
-    const dot = document.createElement("span");
-    dot.className = "dot";
-    dot.style.background = conf.color;
-
-    const txt = document.createElement("span");
-    txt.className = "label";
-    txt.textContent = conf.label;
-
-    const cnt = document.createElement("span");
-    cnt.className = "count";
-    cnt.textContent = String(allPois.filter(p => p.category === c.id).length);
-
-    row.appendChild(cb);
-    row.appendChild(dot);
-    row.appendChild(txt);
-    row.appendChild(cnt);
-    list.appendChild(row);
+    categoryList.appendChild(row);
   });
 }
 
-/* UI wiring */
-document.getElementById("searchBox").addEventListener("input", buildCategoryList);
-
-document.getElementById("btnAll").addEventListener("click", () => {
-  selected = new Set(categories.map(c => c.id));
-  applyFilter();
-  buildCategoryList(); // チェック表示更新
-
-  track({
-    type:"category_select",
-    category:"MULTI",
-    selected: Array.from(selected),
-    ts: new Date().toISOString()
-  });
-});
-
-document.getElementById("btnNone").addEventListener("click", () => {
-  // 全解除＝フィルタ解除（全表示）として扱う（selectedを空にする）
+/* ===== Events ===== */
+btnAll.onclick=()=>{
+  selected=new Set(categories.map(c=>c.id));
+  applyFilter(); buildList();
+};
+btnNone.onclick=()=>{
   selected.clear();
-  applyFilter();
-  buildCategoryList(); // チェック表示更新
-
-  track({
-    type:"category_select",
-    category:"ALL",
-    selected: [],
-    ts: new Date().toISOString()
-  });
-});
-
-/* Collapse toggle */
-document.getElementById("btnToggle").addEventListener("click", () => {
-  const p = document.getElementById("panel");
-  p.classList.toggle("collapsed");
-  document.getElementById("btnToggle").textContent = p.classList.contains("collapsed") ? "+" : "−";
-});
-
-/* Inline fallback */
-const POIS_INLINE = {
-  "categories": [
-    { "id": "history", "label": "歴史・文化" },
-    { "id": "view",    "label": "展望・近代建築" },
-    { "id": "food",    "label": "グルメ・市場" },
-    { "id": "nature",  "label": "自然・公園" }
-  ],
-  "pois": [
-    { "id":"osaka_castle","name":"大阪城（大坂城）","category":"history","lat":34.6873778,"lng":135.5258444 },
-    { "id":"shitennoji","name":"四天王寺","category":"history","lat":34.6539,"lng":135.51645 },
-    { "id":"umeda_sky_building","name":"梅田スカイビル（空中庭園展望台）","category":"view","lat":34.705307,"lng":135.489639 },
-    { "id":"abeno_harukas","name":"あべのハルカス","category":"view","lat":34.646075,"lng":135.513387 },
-    { "id":"tsutenkaku","name":"通天閣","category":"view","lat":34.6525361,"lng":135.506325 },
-    { "id":"dotonbori","name":"道頓堀","category":"food","lat":34.6686694,"lng":135.5031056 },
-    { "id":"kuromon_market","name":"黒門市場","category":"food","lat":34.6653442,"lng":135.506271 },
-    { "id":"kaiyukan","name":"海遊館","category":"nature","lat":34.654472,"lng":135.428889 },
-    { "id":"nakanoshima_park","name":"中之島公園","category":"nature","lat":34.69306,"lng":135.506417 }
-  ]
+  applyFilter(); buildList();
+};
+searchBox.oninput=buildList;
+btnToggle.onclick=()=>{
+  panel.classList.toggle("collapsed");
+  btnToggle.textContent=panel.classList.contains("collapsed")?"+":"−";
 };
 
-(async function init(){
-  const data = await loadData();
-  categories = data.categories || [];
-  allPois = data.pois || [];
+/* ===== Init ===== */
+(async()=>{
+  const res=await fetch(withBasePath("pois.json")).then(r=>r.json());
+  categories=res.categories;
+  pois=res.pois;
 
-  // 初期は全表示（フィルタ解除状態＝selected空）
-  renderPois(allPois);
-  buildCategoryList();
-
-  track({ type:"page_view", ts: new Date().toISOString() });
+  pois.forEach(p=>{
+    L.marker([p.lat,p.lng],{icon:pin(CATEGORY_CONFIG[p.category].color)})
+      .bindPopup(p.name)
+      .addTo(layers[p.category]);
+  });
+  buildList();
 })();
 </script>
 </body>
