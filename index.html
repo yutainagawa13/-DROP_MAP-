@@ -18,7 +18,7 @@
     crossorigin=""
   ></script>
 
-  <!-- GA4（必要なければ削除OK） -->
+  <!-- GA4（不要なら丸ごと削除OK） -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-YGD8E8JZJM"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -50,7 +50,7 @@
     }
     #map{height:100%; width:100%;}
 
-    /* ===== Floating panel (top-left) ===== */
+    /* ===== 左上フローティングパネル ===== */
     .panel{
       position: fixed;
       top: calc(12px + var(--safeTop));
@@ -70,11 +70,10 @@
       font-weight:900;
       border-bottom:1px solid rgba(37,51,93,.6);
       display:flex;
-      align-items:center;
       justify-content:space-between;
+      align-items:center;
     }
     .toggle{
-      appearance:none;
       border:1px solid rgba(37,51,93,.9);
       background: rgba(20,33,72,.85);
       color:var(--text);
@@ -151,31 +150,31 @@
 </head>
 
 <body>
-  <div id="map"></div>
+<div id="map"></div>
 
-  <!-- Category panel -->
-  <div class="panel" id="panel">
-    <div class="head">
-      <div>カテゴリ</div>
-      <button class="toggle" id="btnToggle">−</button>
-    </div>
-
-    <div class="body">
-      <input class="search" id="searchBox" placeholder="カテゴリを絞り込み" />
-
-      <div class="actions">
-        <button class="btn" id="btnAll">全選択</button>
-        <button class="btn" id="btnNone">全解除</button>
-      </div>
-
-      <div class="list" id="categoryList"></div>
-      <div class="hint">※ pois.json（spots一覧）を読み込んで表示します。</div>
-    </div>
+<div class="panel" id="panel">
+  <div class="head">
+    <div>カテゴリ</div>
+    <button class="toggle" id="btnToggle">−</button>
   </div>
+
+  <div class="body">
+    <input class="search" id="searchBox" placeholder="カテゴリを絞り込み" />
+
+    <div class="actions">
+      <button class="btn" id="btnAll">全選択</button>
+      <button class="btn" id="btnNone">全解除</button>
+    </div>
+
+    <div class="list" id="categoryList"></div>
+    <div class="hint">※ spots.json / pois.json を読み込んで表示します。</div>
+  </div>
+</div>
 
 <script>
 /* ===== 設定 ===== */
-const BASE_PATH = "/-DROP_MAP-";   // 環境に応じて変更
+const BASE_PATH = "/-DROP_MAP-"; // 必要に応じて変更
+
 const CATEGORY_CONFIG = {
   history:{ label:"歴史・文化", color:"#f59e0b" },
   view:{ label:"展望・近代建築", color:"#60a5fa" },
@@ -183,9 +182,10 @@ const CATEGORY_CONFIG = {
   nature:{ label:"自然・公園", color:"#34d399" }
 };
 
-/* ===== Utility ===== */
 const withBasePath = p => (BASE_PATH||"") + (p.startsWith("/")?p:"/"+p);
-const track = evt => {
+
+/* ===== GA送信 ===== */
+function track(evt){
   if(typeof gtag==="function"){
     gtag("event", evt.type, {
       category: evt.category ?? null,
@@ -193,7 +193,7 @@ const track = evt => {
       event_ts: evt.ts ?? null
     });
   }
-};
+}
 
 /* ===== Map ===== */
 const map = L.map("map",{zoomControl:false}).setView([34.6937,135.5023],12);
@@ -217,27 +217,34 @@ const pin = c => L.divIcon({
   iconSize:[28,42], iconAnchor:[14,42]
 });
 
-let categories=[], pois=[], selected=new Set();
+let pois = [];
+let categories = [];
+let selected = new Set();
 
-/* ===== 描画 ===== */
+/* ===== フィルタ ===== */
 function applyFilter(){
   if(selected.size===0){
     Object.values(layers).forEach(l=>!map.hasLayer(l)&&l.addTo(map));
   }else{
     Object.entries(layers).forEach(([k,l])=>{
-      selected.has(k)?(!map.hasLayer(l)&&l.addTo(map)):(map.hasLayer(l)&&map.removeLayer(l));
+      selected.has(k)
+        ? (!map.hasLayer(l)&&l.addTo(map))
+        : (map.hasLayer(l)&&map.removeLayer(l));
     });
   }
 }
 
+/* ===== カテゴリ描画 ===== */
 function buildList(){
   const q=(searchBox.value||"").toLowerCase();
   categoryList.innerHTML="";
+
   categories.filter(c=>{
-    const t=(CATEGORY_CONFIG[c.id]?.label||c.id).toLowerCase();
-    return !q||t.includes(q);
+    const label=(CATEGORY_CONFIG[c.id]?.label||c.id).toLowerCase();
+    return !q||label.includes(q);
   }).forEach(c=>{
-    const conf=CATEGORY_CONFIG[c.id];
+    const conf=CATEGORY_CONFIG[c.id]||{label:c.id,color:"#94a3b8"};
+
     const row=document.createElement("label");
     row.className="row";
     row.innerHTML=`
@@ -260,7 +267,7 @@ function buildList(){
   });
 }
 
-/* ===== Events ===== */
+/* ===== UI ===== */
 btnAll.onclick=()=>{
   selected=new Set(categories.map(c=>c.id));
   applyFilter(); buildList();
@@ -275,17 +282,25 @@ btnToggle.onclick=()=>{
   btnToggle.textContent=panel.classList.contains("collapsed")?"+":"−";
 };
 
-/* ===== Init ===== */
+/* ===== Init（★ここが重要） ===== */
 (async()=>{
-  const res=await fetch(withBasePath("pois.json")).then(r=>r.json());
-  categories=res.categories;
-  pois=res.pois;
+  const res = await fetch(withBasePath("pois.json")).then(r=>r.json());
 
+  // pois / spots 両対応
+  pois = res.pois || res.spots || [];
+
+  // ★ categories が無くても spots から自動生成
+  categories = res.categories
+    || [...new Set(pois.map(p=>p.category))].map(id=>({id}));
+
+  // ピン描画
   pois.forEach(p=>{
-    L.marker([p.lat,p.lng],{icon:pin(CATEGORY_CONFIG[p.category].color)})
+    if(!layers[p.category]) return;
+    L.marker([p.lat,p.lng],{icon:pin(CATEGORY_CONFIG[p.category]?.color||"#94a3b8")})
       .bindPopup(p.name)
       .addTo(layers[p.category]);
   });
+
   buildList();
 })();
 </script>
