@@ -50,20 +50,52 @@ html,body,#map{height:100%;margin:0;}
   background:none;
   border:none;
 }
+  
+.popup {
+  max-width: 240px;   /* ← 横を抑える */
+}
+
+.popup-thumb {
+  width: 100%;
+  height: 140px;      /* ← 縦を確保 */
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 6px;
+}
+
+.popup-body h4 {
+  font-size: 14px;
+  margin: 4px 0;
+}
+
+.popup-body p {
+  font-size: 12px;
+  line-height: 1.5;
+  margin: 4px 0 6px;
+}
+
 </style>
 </head>
 
 <body>
 <div id="map"></div>
 
-<div class="panel">
-  <h3>カテゴリ
-　　<span id="categoryHint" style="font-size:12px;opacity:.7;margin-left:8px;">
-    　選択してください
-  　</span>
+<h3 style="display:flex;align-items:center;justify-content:space-between;">
+  <span>
+    カテゴリ
+    <span id="categoryHint"
+          style="font-size:12px;opacity:.7;margin-left:6px;">
+      選択してください
+    </span>
+  </span>
+
+  <button id="toggleCategory"
+          style="background:none;border:none;color:white;font-size:18px;cursor:pointer;">
+    －
+  </button>
 </h3>
-  <div id="categoryList"></div>
-</div>
+
+<div id="categoryList"></div>
 
 <script>
 /* ===== 設定 ===== */
@@ -129,11 +161,23 @@ function createPinIcon(color){
       [p.spot.latitude, p.spot.longitude],
       { icon:createPinIcon(p.category.color_code) }
     )
-    .bindPopup(`
-      <b>${p.event_name}</b><br>
-      ${p.description || ""}<br><br>
+    
+.bindPopup(`
+  <div class="popup">
+    ${p.thumbnail_url ? `
+      <img src="${p.thumbnail_url}"
+           class="popup-thumb"
+           alt="${p.event_name}">
+    ` : ""}
+
+    <div class="popup-body">
+      <h4>${p.event_name}</h4>
+      <p>${p.description || ""}</p>
       <a href="${p.detail_url}" target="_blank">詳細を見る</a>
-    `)
+    </div>
+  </div>
+`)
+
     .addTo(layers[cat]);
 
     marker.on("click",()=>{
