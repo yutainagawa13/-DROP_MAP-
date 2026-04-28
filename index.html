@@ -33,6 +33,7 @@ html,body,#map{height:100%;margin:0;}
   box-shadow:0 10px 30px rgba(0,0,0,.35);
   z-index:1000;
   font-family:system-ui,sans-serif;
+  min-width:220px;
 }
 .panel h3{margin:0 0 8px;font-size:14px;}
 
@@ -46,56 +47,55 @@ html,body,#map{height:100%;margin:0;}
 .item input{width:16px;height:16px;}
 .dot{width:12px;height:12px;border-radius:50%;}
 
+#categoryList.hidden{
+  display:none;
+}
+
 .leaflet-div-icon.custom-pin{
   background:none;
   border:none;
 }
-  
-.popup {
-  max-width: 240px;   /* ← 横を抑える */
-}
 
-.popup-thumb {
-  width: 100%;
-  height: 140px;      /* ← 縦を確保 */
-  object-fit: cover;
-  border-radius: 8px;
-  margin-bottom: 6px;
+/* popup */
+.popup{max-width:240px;}
+.popup-thumb{
+  width:100%;
+  height:140px;
+  object-fit:cover;
+  border-radius:8px;
+  margin-bottom:6px;
 }
-
-.popup-body h4 {
-  font-size: 14px;
-  margin: 4px 0;
+.popup-body h4{
+  font-size:14px;
+  margin:4px 0;
 }
-
-.popup-body p {
-  font-size: 12px;
-  line-height: 1.5;
-  margin: 4px 0 6px;
+.popup-body p{
+  font-size:12px;
+  line-height:1.5;
+  margin:4px 0 6px;
 }
-
 </style>
 </head>
 
 <body>
 <div id="map"></div>
 
-<h3 style="display:flex;align-items:center;justify-content:space-between;">
-  <span>
-    カテゴリ
-    <span id="categoryHint"
-          style="font-size:12px;opacity:.7;margin-left:6px;">
-      選択してください
+<div class="panel">
+  <h3 style="display:flex;align-items:center;justify-content:space-between;">
+    <span>
+      カテゴリ
+      <span id="categoryHint"
+            style="font-size:12px;opacity:.7;margin-left:6px;">
+        選択してください
+      </span>
     </span>
-  </span>
-
-  <button id="toggleCategory"
-          style="background:none;border:none;color:white;font-size:18px;cursor:pointer;">
-    －
-  </button>
-</h3>
-
-<div id="categoryList"></div>
+    <button id="toggleCategory"
+      style="background:none;border:none;color:white;font-size:18px;cursor:pointer;">
+      －
+    </button>
+  </h3>
+  <div id="categoryList"></div>
+</div>
 
 <script>
 /* ===== 設定 ===== */
@@ -109,7 +109,7 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{
   attribution:"© OpenStreetMap contributors"
 }).addTo(map);
 
-/* ===== GA送信 ===== */
+/* ===== GA ===== */
 function track(evt){
   if(typeof gtag==="function"){
     gtag("event", evt.type, evt);
@@ -121,7 +121,7 @@ function createPinIcon(color){
   return L.divIcon({
     className:"custom-pin",
     html:`
-      <svg width="26" height="40" viewBox="0 0 24 36" xmlns="http://www.w3.org/2000/svg">
+      <svg width="26" height="40" viewBox="0 0 24 36">
         <path d="M12 0C5.4 0 0 5.4 0 12c0 9 12 24 12 24s12-15 12-24C24 5.4 18.6 0 12 0z"
               fill="${color}"/>
         <circle cx="12" cy="12" r="5" fill="white"/>
@@ -136,64 +136,54 @@ function createPinIcon(color){
 /* ===== Init ===== */
 (async()=>{
   const data = await fetch(withBasePath("pois.json")).then(r=>r.json());
-
   const categories = data.categories;
   const pois = data.pois;
 
-  /* カテゴリ辞書 */
-  const catMap = {};
-  categories.forEach(c=>{
-    catMap[c.category_id] = c;
-  });
-
-  /* レイヤー */
+  /* layers */
   const layers = {};
   categories.forEach(c=>{
     layers[c.category_id] = L.layerGroup();
   });
 
-  /* マーカー */
+  /* markers */
   pois.forEach(p=>{
-    const cat = p.category.category_id;
-    if(!layers[cat]) return;
+    const catId = p.category.category_id;
+    if(!layers[catId]) return;
 
     const marker = L.marker(
       [p.spot.latitude, p.spot.longitude],
       { icon:createPinIcon(p.category.color_code) }
     )
-    
-.bindPopup(`
-  <div class="popup">
-    ${p.thumbnail_url ? `
-      <img src="${p.thumbnail_url}"
-           class="popup-thumb"
-           alt="${p.event_name}">
-    ` : ""}
-
-    <div class="popup-body">
-      <h4>${p.event_name}</h4>
-      <p>${p.description || ""}</p>
-      <a href="${p.detail_url}" target="_blank">詳細を見る</a>
-    </div>
-  </div>
-`)
-
-    .addTo(layers[cat]);
+    .bindPopup(`
+      <div class="popup">
+        ${p.thumbnail_url ? `
+          <img src="${p.thumbnail_url}"
+               class="popup-thumb"
+               alt="${p.event_name}">
+        `:""}
+        <div class="popup-body">
+          <h4>${p.event_name}</h4>
+          <p>${p.description || ""}</p>
+          <a href="${p.detail_url}" target="_blank">詳細を見る</a>
+        </div>
+      </div>
+    `)
+    .addTo(layers[catId]);
 
     marker.on("click",()=>{
       track({
         type:"poi_click",
         event_id:p.event_id,
-        event_name: p.event_name,
-        category_id:cat
+        event_name:p.event_name,
+        category_id:catId,
+        category_name:p.category.category_name
       });
     });
   });
-  
-　const hint = document.getElementById("categoryHint");
-  
+
   /* UI */
   const wrap = document.getElementById("categoryList");
+  const hint = document.getElementById("categoryHint");
   const selected = new Set();
 
   categories.forEach(c=>{
@@ -214,17 +204,26 @@ function createPinIcon(color){
         selected.delete(c.category_id);
       }
 
-      hint.style.display = selected.size === 0 ? "inline" : "none";
+      hint.style.display = selected.size===0 ? "inline" : "none";
 
       track({
-        type:e.target.checked?"category_select":"category_deselect",
-        category_id:c.category_id,
-        category_name: c.category_name, 
+        type: e.target.checked ? "category_select" : "category_deselect",
+        category_id: c.category_id,
+        category_name: c.category_name,
         selected:[...selected].join(",")
       });
     });
 
     wrap.appendChild(row);
+  });
+
+  /* toggle */
+  const toggleBtn = document.getElementById("toggleCategory");
+  let open = true;
+  toggleBtn.addEventListener("click",()=>{
+    open = !open;
+    wrap.classList.toggle("hidden",!open);
+    toggleBtn.textContent = open ? "－" : "＋";
   });
 })();
 </script>
