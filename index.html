@@ -1,15 +1,15 @@
 <!doctype html>
 <html lang="ja">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>大阪名所マップ</title>
 
 <!-- Leaflet -->
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<!-- GA4（不要なら削除OK） -->
+<!-- GA4 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-YGD8E8JZJM"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
@@ -32,9 +32,9 @@ html,body,#map{height:100%;margin:0;}
   border-radius:12px;
   box-shadow:0 10px 30px rgba(0,0,0,.35);
   z-index:1000;
-  font-family:system-ui, sans-serif;
+  font-family:system-ui,sans-serif;
 }
-.panel h3{ margin:0 0 8px; font-size:14px; }
+.panel h3{margin:0 0 8px;font-size:14px;}
 
 .item{
   display:flex;
@@ -44,7 +44,7 @@ html,body,#map{height:100%;margin:0;}
   margin:6px 0;
 }
 .item input{width:16px;height:16px;}
-.dot{ width:12px; height:12px; border-radius:50%; }
+.dot{width:12px;height:12px;border-radius:50%;}
 
 .leaflet-div-icon.custom-pin{
   background:none;
@@ -63,48 +63,8 @@ html,body,#map{height:100%;margin:0;}
 
 <script>
 /* ===== 設定 ===== */
-const BASE_PATH = "/-DROP_MAP-"; // GitHub Pages の Project Pages ならこれでOK
-const withBasePath = p => (BASE_PATH||"") + (p.startsWith("/")?p:"/"+p);
-
-/* カテゴリ色 */
-function getColor(id){
-  return {
-    history:"#7c2d12",
-    view:"#60a5fa",
-    food:"#f472b6",
-    nature:"#34d399"
-  }[id] || "#999";
-}
-
-/* GA送信 */
-function track(evt){
-  if(typeof gtag==="function"){
-    gtag("event", evt.type, {
-      category: evt.category ?? null,
-      selected: evt.selected ?? null,
-      poi_id: evt.poi_id ?? null,
-      poi_name: evt.poi_name ?? null,
-      event_ts: evt.ts ?? null
-    });
-  }
-}
-
-/* SVGピン */
-function createPinIcon(color){
-  return L.divIcon({
-    className: "custom-pin",
-    html: `
-      <svg width="26" height="40" viewBox="0 0 24 36" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 0C5.4 0 0 5.4 0 12c0 9 12 24 12 24s12-15 12-24C24 5.4 18.6 0 12 0z"
-              fill="${color}"/>
-        <circle cx="12" cy="12" r="5" fill="white"/>
-      </svg>
-    `,
-    iconSize: [26, 40],
-    iconAnchor: [13, 40],
-    popupAnchor: [0, -34]
-  });
-}
+const BASE_PATH = "/-DROP_MAP-";
+const withBasePath = p => BASE_PATH + "/" + p;
 
 /* ===== Map ===== */
 const map = L.map("map").setView([34.6937,135.5023],12);
@@ -113,81 +73,106 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{
   attribution:"© OpenStreetMap contributors"
 }).addTo(map);
 
+/* ===== GA送信 ===== */
+function track(evt){
+  if(typeof gtag==="function"){
+    gtag("event", evt.type, evt);
+  }
+}
+
+/* ===== SVGピン ===== */
+function createPinIcon(color){
+  return L.divIcon({
+    className:"custom-pin",
+    html:`
+      <svg width="26" height="40" viewBox="0 0 24 36" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 0C5.4 0 0 5.4 0 12c0 9 12 24 12 24s12-15 12-24C24 5.4 18.6 0 12 0z"
+              fill="${color}"/>
+        <circle cx="12" cy="12" r="5" fill="white"/>
+      </svg>
+    `,
+    iconSize:[26,40],
+    iconAnchor:[13,40],
+    popupAnchor:[0,-34]
+  });
+}
+
 /* ===== Init ===== */
-(async () => {
-  const res = await fetch(withBasePath("spot.json")).then(r => {
-    if(!r.ok) throw new Error("spot.json HTTP " + r.status);
-    return r.json();
+(async()=>{
+  const data = await fetch(withBasePath("pois.json")).then(r=>r.json());
+
+  const categories = data.categories;
+  const pois = data.pois;
+
+  /* カテゴリ辞書 */
+  const catMap = {};
+  categories.forEach(c=>{
+    catMap[c.category_id] = c;
   });
 
-  // あなたのJSON形式に一致（categories + pois）[1](https://obayashig-my.sharepoint.com/personal/uy2316_obayashi_co_jp/Documents/Microsoft%20Copilot%20Chat%20%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB/spot.json)
-  const categories = res.categories || [];
-  const pois = res.pois || [];
-
-  // カテゴリ別レイヤー
+  /* レイヤー */
   const layers = {};
-  categories.forEach(c => {
-    layers[c.id] = L.layerGroup().addTo(map);
+  categories.forEach(c=>{
+    layers[c.category_id] = L.layerGroup().addTo(map);
   });
 
-  // マーカー配置（色付き）
-  pois.forEach(p => {
-    if(!layers[p.category]) return;
+  /* マーカー */
+  pois.forEach(p=>{
+    const cat = p.category.category_id;
+    if(!layers[cat]) return;
 
-    const color = getColor(p.category);
-    const marker = L.marker([p.lat, p.lng], { icon: createPinIcon(color) })
-      .bindPopup(`<b>${p.name}</b><br>${p.desc || ""}`)
-      .addTo(layers[p.category]);
+    const marker = L.marker(
+      [p.spot.latitude, p.spot.longitude],
+      { icon:createPinIcon(p.category.color_code) }
+    )
+    .bindPopup(`
+      <b>${p.event_name}</b><br>
+      ${p.description || ""}<br><br>
+      <a href="${p.detail_url}" target="_blank">詳細を見る</a>
+    `)
+    .addTo(layers[cat]);
 
-    // ピンクリックログ
-    marker.on("click", () => {
+    marker.on("click",()=>{
       track({
-        type: "poi_click",
-        category: p.category,
-        poi_id: p.id,
-        poi_name: p.name,
-        ts: new Date().toISOString()
+        type:"poi_click",
+        event_id:p.event_id,
+        category_id:cat
       });
     });
   });
 
-  // UI生成（チェック即時反映）
+  /* UI */
   const wrap = document.getElementById("categoryList");
-  const selected = new Set(categories.map(c => c.id)); // 初期：全表示
+  const selected = new Set(categories.map(c=>c.category_id));
 
-  categories.forEach(c => {
+  categories.forEach(c=>{
     const row = document.createElement("label");
-    row.className = "item";
-    row.innerHTML = `
+    row.className="item";
+    row.innerHTML=`
       <input type="checkbox" checked>
-      <span class="dot" style="background:${getColor(c.id)}"></span>
-      <span>${c.label}</span>
+      <span class="dot" style="background:${c.color_code}"></span>
+      <span>${c.category_name}</span>
     `;
 
-    row.querySelector("input").addEventListener("change", e => {
+    row.querySelector("input").addEventListener("change",e=>{
       if(e.target.checked){
-        selected.add(c.id);
-        map.addLayer(layers[c.id]);
+        map.addLayer(layers[c.category_id]);
+        selected.add(c.category_id);
       }else{
-        selected.delete(c.id);
-        map.removeLayer(layers[c.id]);
+        map.removeLayer(layers[c.category_id]);
+        selected.delete(c.category_id);
       }
 
       track({
-        type: e.target.checked ? "category_select" : "category_deselect",
-        category: c.id,
-        selected: [...selected].join(","),
-        ts: new Date().toISOString()
+        type:e.target.checked?"category_select":"category_deselect",
+        category_id:c.category_id,
+        selected:[...selected].join(",")
       });
     });
 
     wrap.appendChild(row);
   });
-
-  // 初回（任意）
-  track({ type: "page_view", ts: new Date().toISOString() });
 })();
 </script>
 </body>
 </html>
-``
