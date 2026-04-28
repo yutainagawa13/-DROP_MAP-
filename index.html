@@ -113,7 +113,7 @@ function createPinIcon(color){
   /* レイヤー */
   const layers = {};
   categories.forEach(c=>{
-    layers[c.category_id] = L.layerGroup().addTo(map);
+    layers[c.category_id] = L.layerGroup();
   });
 
   /* マーカー */
@@ -136,6 +136,7 @@ function createPinIcon(color){
       track({
         type:"poi_click",
         event_id:p.event_id,
+        event_name: p.event_name,
         category_id:cat
       });
     });
@@ -143,13 +144,13 @@ function createPinIcon(color){
 
   /* UI */
   const wrap = document.getElementById("categoryList");
-  const selected = new Set(categories.map(c=>c.category_id));
+  const selected = new Set();
 
   categories.forEach(c=>{
     const row = document.createElement("label");
     row.className="item";
     row.innerHTML=`
-      <input type="checkbox" checked>
+      <input type="checkbox">
       <span class="dot" style="background:${c.color_code}"></span>
       <span>${c.category_name}</span>
     `;
@@ -166,6 +167,7 @@ function createPinIcon(color){
       track({
         type:e.target.checked?"category_select":"category_deselect",
         category_id:c.category_id,
+        category_name: c.category_name, 
         selected:[...selected].join(",")
       });
     });
