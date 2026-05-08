@@ -5,23 +5,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>大阪名所マップ</title>
 
-<!-- Leaflet -->
+<!-- Leaflet（地図ライブラリ） -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<!-- GA4 -->
+<!-- Google Analitcs用イベント送信 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-YGD8E8JZJM"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
-gtag('config', 'G-YGD8E8JZJM');
+gtag('config', 'G-YGD8E8JZJM');　/*GAに送信するID*/
 </script>
 
+<!-- CSS（画面レイアウト・見た目）-->
+/* 画面全体を地図に */
 <style>
 html,body,#map{height:100%;margin:0;}
 #map{z-index:0;}
-
+  
+/* カテゴリパネル */
 .panel{
   position:fixed;
   top:12px;
@@ -37,6 +40,7 @@ html,body,#map{height:100%;margin:0;}
 }
 .panel h3{margin:0 0 8px;font-size:14px;}
 
+/* チェックボックス1行 */
 .item{
   display:flex;
   align-items:center;
@@ -45,18 +49,22 @@ html,body,#map{height:100%;margin:0;}
   margin:6px 0;
 }
 .item input{width:16px;height:16px;}
+
+/* カテゴリ色ドット */
 .dot{width:12px;height:12px;border-radius:50%;}
 
+/* カテゴリ開閉 */
 #categoryList.hidden{
   display:none;
 }
 
+/* Leafletデフォルトピンを消す */
 .leaflet-div-icon.custom-pin{
   background:none;
   border:none;
 }
-
-/* popup */
+  
+/*  ポップアップ */
 .popup{max-width:160px;}
 .popup-thumb{
   width:100%;
@@ -78,7 +86,11 @@ html,body,#map{height:100%;margin:0;}
 </head>
 
 <body>
+
+<!-- 地図表示領域 -->
 <div id="map"></div>
+
+<!-- カテゴリ選択パネル -->
 
 <div class="panel">
   <h3 style="display:flex;align-items:center;justify-content:space-between;">
@@ -94,15 +106,18 @@ html,body,#map{height:100%;margin:0;}
       －
     </button>
   </h3>
+  <!-- カテゴリ一覧（JSで生成） -->
   <div id="categoryList"></div>
 </div>
 
 <script>
 /* ===== 設定 ===== */
+// JSON や画像のベースパス
 const BASE_PATH = "/-DROP_MAP-";
 const withBasePath = p => BASE_PATH + "/" + p;
 
 /* ===== Map ===== */
+// 大阪中心で地図を表示
 const map = L.map("map").setView([34.6937,135.5023],12);
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{
   maxZoom:19,
@@ -110,6 +125,7 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{
 }).addTo(map);
 
 /* ===== GA ===== */
+// イベント送信ラッパー
 function track(evt){
   if(typeof gtag==="function"){
     gtag("event", evt.type, evt);
@@ -170,6 +186,7 @@ function createPinIcon(color){
     `)
     .addTo(layers[catId]);
 
+// ピンクリック時ログ
     marker.on("click",()=>{
       track({
         type:"poi_click",
@@ -206,6 +223,7 @@ function createPinIcon(color){
 
       hint.style.display = selected.size===0 ? "inline" : "none";
 
+      // カテゴリ選択ログ
       track({
         type: e.target.checked ? "category_select" : "category_deselect",
         category_id: c.category_id,
