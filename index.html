@@ -91,7 +91,6 @@ html,body,#map{height:100%;margin:0;}
 <div id="map"></div>
 
 <!-- カテゴリ選択パネル -->
-
 <div class="panel">
   <h3 style="display:flex;align-items:center;justify-content:space-between;">
     <span>
@@ -125,7 +124,7 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{
 }).addTo(map);
 
 /* ===== GA ===== */
-// イベント送信ラッパー
+// イベント送信ラッパー（※修正しない）
 function track(evt){
   if(typeof gtag==="function"){
     gtag("event", evt.type, evt);
@@ -186,7 +185,7 @@ function createPinIcon(color){
     `)
     .addTo(layers[catId]);
 
-// ピンクリック時ログ
+// ピンクリック時ログ（※修正しない）
     marker.on("click",()=>{
       track({
         type:"poi_click",
@@ -223,7 +222,7 @@ function createPinIcon(color){
 
       hint.style.display = selected.size===0 ? "inline" : "none";
 
-      // カテゴリ選択ログ
+      // カテゴリ選択ログ(※修正しない)
       track({
         type: e.target.checked ? "category_select" : "category_deselect",
         category_id: c.category_id,
@@ -235,7 +234,7 @@ function createPinIcon(color){
     wrap.appendChild(row);
   });
 
-  /* toggle */
+  /* カテゴリ開閉 */
   const toggleBtn = document.getElementById("toggleCategory");
   let open = true;
   toggleBtn.addEventListener("click",()=>{
