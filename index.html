@@ -31,16 +31,30 @@ html, body, #map { height:100%; margin:0; }
  color:#fff;
  padding:12px 14px;
  border-radius:12px;
+ box-shadow:0 10px 30px rgba(0,0,0,.35);
  z-index:1000;
+ min-width:220px;
+ font-family:sans-serif;
+}
+
+.panel h3{
+ margin:0 0 8px;
+ font-size:14px;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
 }
 
 .item{
  display:flex;
  align-items:center;
  gap:8px;
+ font-size:13px;
  margin:6px 0;
  cursor:pointer;
 }
+
+.item input{ width:16px; height:16px; }
 
 .dot{
  width:12px;
@@ -49,7 +63,32 @@ html, body, #map { height:100%; margin:0; }
 }
 
 #categoryList.hidden{ display:none; }
-.leaflet-div-icon{ background:none;border:none; }
+
+.leaflet-div-icon.custom-pin{
+ background:none;
+ border:none;
+}
+
+.popup{ max-width:160px; }
+
+.popup-thumb{
+ width:100%;
+ height:180px;
+ object-fit:cover;
+ border-radius:8px;
+ margin-bottom:6px;
+}
+
+.popup-body h4{
+ font-size:14px;
+ margin:4px 0;
+}
+
+.popup-body p{
+ font-size:12px;
+ line-height:1.7;
+ margin:0 0 8px;
+}
 </style>
 </head>
 
@@ -59,7 +98,7 @@ html, body, #map { height:100%; margin:0; }
 
 <div class="panel">
   <h3>
-    カテゴリ
+    <span>カテゴリ</span>
     <button id="toggleCategory">－</button>
   </h3>
   <div id="categoryList"></div>
@@ -70,162 +109,189 @@ const BASE_PATH = "/-DROP_MAP-";
 const withBasePath = p => BASE_PATH + "/" + p;
 
 /* ===== Map ===== */
-const map = L.map("map").setView([34.6937,135.5023],12);
+const map = L.map("map").setView([34.6937, 135.5023], 12);
 
-L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{
+L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
  maxZoom:19
 }).addTo(map);
 
-/* ===== GA共通 ===== */
+/* ===== GA ===== */
 function track(evt){
-  if(typeof gtag==="function"){
-    gtag("event", evt.type, evt);
-  }
+ if(typeof gtag === "function"){
+  gtag("event", evt.type, evt);
+ }
 }
 
+/* ===== ピン（色分け） ===== */
+function createPinIcon(color){
+ return L.divIcon({
+  className:"custom-pin",
+  html:`
+   <svg width="26" height="40" viewBox="0 0 24 36">
+     <path d="M12 0C5.4 0 0 5.4 0 12c0 9 12 24 12 24s12-15 12-24
+              C24 5.4 18.6 0 12 0z"
+           fill="${color}"/>
+     <circle cx="12" cy="12" r="5" fill="white"/>
+   </svg>
+  `,
+  iconSize:[26,40],
+  iconAnchor:[13,40],
+  popupAnchor:[0,-34]
+ });
+}
+
+/* ===== Init ===== */
 (async () => {
 
-  const data = await fetch(withBasePath("pois.json")).then(r=>r.json());
-  const categories = data.categories;
-  const pois = data.pois;
+ const data = await fetch(withBasePath("pois.json")).then(r => r.json());
+ const categories = data.categories;
+ const pois = data.pois;
 
-  /* ===== レイヤー ===== */
-  const layers = {};
-  categories.forEach(c=>{
-    layers[c.category_id] = L.layerGroup();
-  });
+ /* --- レイヤー --- */
+ const layers = {};
+ categories.forEach(c => {
+   layers[c.category_id] = L.layerGroup();
+ });
 
-  /* ===== マーカー ===== */
-  pois.forEach(p=>{
-    const catId = p.category.category_id;
+ /* --- マーカー --- */
+ pois.forEach(p => {
 
-    const marker = L.marker([
-      p.spot.latitude,
-      p.spot.longitude
-    ]).addTo(layers[catId]);
+   const catId = p.category.category_id;
 
-    // ✅ POIクリックログ
-    marker.on("click", ()=>{
-      track({
-        type:"poi_click",
-        event_id:p.event_id,
-        event_name:p.event_name,
-        category_id:catId,
-        category_name:p.category.category_name
-      });
-    });
-  });
+   const marker = L.marker(
+     [p.spot.latitude, p.spot.longitude],
+     { icon: createPinIcon(p.category.color_code) }
+   )
+   .bindPopup(`
+     <div class="popup">
+       ${p.thumbnail_url ? `
+         <img src="${p.thumbnail_url}"
+              class="popup-thumb"
+              alt="${p.event_name}">
+       ` : ""}
+       <div class="popup-body">
+         <h4>${p.event_name}</h4>
+         <p>${p.description || ""}</p>
+         <a href="${p.detail_url}" target="_blank">詳細を見る</a>
+       </div>
+     </div>
+   `)
+   .addTo(layers[catId]);
 
-  const wrap = document.getElementById("categoryList");
+   /* ✅ GA：POIクリック */
+   marker.on("click", () => {
+     track({
+       type:"poi_click",
+       event_id:p.event_id,
+       event_name:p.event_name,
+       category_id:catId,
+       category_name:p.category.category_name
+     });
+   });
 
-  /* =============================
-     ロジック（初期処理とは完全分離）
-     ============================= */
+ });
 
-  function hideAll(){
-    Object.values(layers).forEach(l=>map.removeLayer(l));
-  }
+ const wrap = document.getElementById("categoryList");
 
-  function showAll(){
-    Object.values(layers).forEach(l=>map.addLayer(l));
-  }
+ /* ✅ フラグ（初回GA抑制） */
+ let isFirst = true;
 
-  function resetCheck(){
-    document.querySelectorAll("#categoryList input")
-      .forEach(cb=>cb.checked=false);
-  }
+ /* ===== ロジック（完全分離） ===== */
 
-  /* 🔵 GA送信用フラグ */
-  let isFirst = true;
+ function hideAll(){
+   Object.values(layers).forEach(l => map.removeLayer(l));
+ }
 
-  function selectAll(){
-    hideAll();
-    showAll();
-    resetCheck();
-    allCheckbox.checked = true;
+ function showAll(){
+   Object.values(layers).forEach(l => map.addLayer(l));
+ }
 
-    // ✅ GA（初回除外）
-    if(!isFirst){
-      track({
-        type:"category_select",
-        category_id:"all",
-        category_name:"すべて"
-      });
-    }
-  }
+ function resetCheck(){
+   document.querySelectorAll("#categoryList input")
+     .forEach(cb => cb.checked = false);
+ }
 
-  function selectCategory(catId, checkbox, catName){
-    hideAll();
-    map.addLayer(layers[catId]);
-    resetCheck();
-    checkbox.checked = true;
+ function selectAll(){
+   hideAll();
+   showAll();
+   resetCheck();
+   allCheckbox.checked = true;
 
-    // ✅ GA
-    track({
-      type:"category_select",
-      category_id:catId,
-      category_name:catName
-    });
-  }
+   if(!isFirst){
+     track({
+       type:"category_select",
+       category_id:"all",
+       category_name:"すべて"
+     });
+   }
+ }
+ /* ✅ GA：カテゴリクリック */
+ function selectCategory(catId, checkbox, name){
+   hideAll();
+   map.addLayer(layers[catId]);
+   resetCheck();
+   checkbox.checked = true;
 
-  /* =============================
-     UI
-     ============================= */
+   track({
+     type:"category_select",
+     category_id:catId,
+     category_name:name
+   });
+ }
 
-  /* --- すべて --- */
-  const allRow = document.createElement("label");
-  allRow.className="item";
-  allRow.innerHTML=`
-    <input type="checkbox">
-    <span class="dot" style="background:#ccc"></span>
-    <span>すべて</span>
-  `;
-  const allCheckbox = allRow.querySelector("input");
+ /* ===== UI ===== */
 
-  // ✅ イベント
-  allCheckbox.addEventListener("change", ()=>{
-    selectAll();
-    isFirst = false;
-  });
+ /* --- すべて --- */
+ const allRow = document.createElement("label");
+ allRow.className = "item";
+ allRow.innerHTML = `
+   <input type="checkbox">
+   <span class="dot" style="background:#ccc"></span>
+   <span>すべて</span>
+ `;
+ const allCheckbox = allRow.querySelector("input");
 
-  wrap.appendChild(allRow);
+ allCheckbox.addEventListener("change", ()=>{
+   selectAll();
+   isFirst = false;
+ });
 
-  /* --- 個別 --- */
-  categories.forEach(c=>{
-    const row = document.createElement("label");
-    row.className="item";
+ wrap.appendChild(allRow);
 
-    row.innerHTML=`
-      <input type="checkbox">
-      <span class="dot" style="background:${c.color_code}"></span>
-      <span>${c.category_name}</span>
-    `;
+ /* --- 個別カテゴリ --- */
+ categories.forEach(c => {
 
-    const checkbox = row.querySelector("input");
-    checkbox.addEventListener("change", ()=>{
-      selectCategory(c.category_id, checkbox, c.category_name);
-      isFirst = false;
-    });
+   const row = document.createElement("label");
+   row.className = "item";
 
-    wrap.appendChild(row);
-  });
+   row.innerHTML = `
+     <input type="checkbox">
+     <span class="dot" style="background:${c.color_code}"></span>
+     <span>${c.category_name}</span>
+   `;
 
-  /* =============================
-     開閉
-     ============================= */
-  const toggleBtn = document.getElementById("toggleCategory");
-  let open=true;
+   const checkbox = row.querySelector("input");
 
-  toggleBtn.addEventListener("click",()=>{
-    open=!open;
-    wrap.classList.toggle("hidden", !open);
-    toggleBtn.textContent = open ? "－" : "＋";
-  });
+   checkbox.addEventListener("change", ()=>{
+     selectCategory(c.category_id, checkbox, c.category_name);
+     isFirst = false;
+   });
 
-  /* =============================
-     ✅ 初期処理（完全独立）
-     ============================= */
-  selectAll();
+   wrap.appendChild(row);
+ });
+
+ /* ----- 開閉 ----- */
+ const toggleBtn = document.getElementById("toggleCategory");
+ let open = true;
+
+ toggleBtn.addEventListener("click", ()=>{
+   open = !open;
+   wrap.classList.toggle("hidden", !open);
+   toggleBtn.textContent = open ? "－" : "＋";
+ });
+
+ /* ✅ 初期処理（ここが超重要） */
+ selectAll();
 
 })();
 </script>
