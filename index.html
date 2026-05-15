@@ -265,6 +265,10 @@ function createPinIcon(color){
     open = !open;
     wrap.classList.toggle("hidden", !open);
     toggleBtn.textContent = open ? "－" : "＋";
+    
+  /* ★ 初期表示：すべてを選択 */
+  allCheckbox.checked = true;
+  allCheckbox.dispatchEvent(new Event("change"));
   });
 
 })();
