@@ -5,28 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>大阪名所マップ</title>
 
-  <!-- Leaflet（地図ライブラリ） -->
+  <!-- Leaflet -->
   <link rel="stylesheet"
         href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-  <!-- GA4　Google Analitcs イベント送信 (※ID該当部分のみ修正要) -->
+  <!-- GA4 -->
   <script async
           src="https://www.googletagmanager.com/gtag/js?id=G-YGD8E8JZJM"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){ dataLayer.push(arguments); }
     gtag('js', new Date());
-    gtag('config', 'G-YGD8E8JZJM'); //右側はIDを入れるところ
+    gtag('config', 'G-YGD8E8JZJM');
   </script>
 
- <!-- CSS画面レイアウト -->
   <style>
-    /* 画面全体を地図に */
     html, body, #map { height:100%; margin:0; }
     #map { z-index:0; }
 
-    /* カテゴリパネル */
     .panel{
       position:fixed;
       top:12px;
@@ -40,7 +37,6 @@
       min-width:220px;
       font-family:system-ui,sans-serif;
     }
-
     .panel h3{
       margin:0 0 8px;
       font-size:14px;
@@ -49,35 +45,32 @@
       align-items:center;
     }
 
-    /* チェックボックス1行 */
     .item{
       display:flex;
       align-items:center;
       gap:8px;
       font-size:13px;
       margin:6px 0;
+      cursor:pointer;
     }
 
     .item input{ width:16px; height:16px; }
 
-    /* カテゴリ色ドット */
     .dot{
       width:12px;
       height:12px;
       border-radius:50%;
     }
 
-    /* カテゴリ開閉 */
     #categoryList.hidden{ display:none; }
 
-    /* Leafletデフォルトピンを消す */
     .leaflet-div-icon.custom-pin{
       background:none;
       border:none;
     }
 
-    /* ポップアップ */
     .popup{ max-width:160px; }
+
     .popup-thumb{
       width:100%;
       height:180px;
@@ -85,10 +78,12 @@
       border-radius:8px;
       margin-bottom:6px;
     }
+
     .popup-body h4{
       font-size:14px;
       margin:4px 0;
     }
+
     .popup-body p{
       font-size:12px;
       line-height:1.7;
@@ -98,29 +93,23 @@
 </head>
 
 <body>
-
-<!-- 地図表示領域 -->
 <div id="map"></div>
 
-<!-- カテゴリ選択パネル -->
 <div class="panel">
   <h3>
     <span>
       カテゴリ
-      <!-- 未選択時のヒント表示 -->
       <span id="categoryHint"
             style="font-size:12px;opacity:.7;margin-left:6px;">
         選択してください
       </span>
     </span>
-    <!-- カテゴリ開閉ボタン -->
     <button id="toggleCategory"
             style="background:none;border:none;color:white;
                    font-size:18px;cursor:pointer;">
       －
     </button>
   </h3>
-  <!-- カテゴリ一覧（JSで生成） -->
   <div id="categoryList"></div>
 </div>
 
@@ -137,14 +126,13 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
 }).addTo(map);
 
 /* ===== GA ===== */
-// イベント送信ラッパー(※修正しない)
 function track(evt){
   if(typeof gtag === "function"){
     gtag("event", evt.type, evt);
   }
 }
 
-/* ===== SVGピン ===== */
+/* ===== SVG ピン ===== */
 function createPinIcon(color){
   return L.divIcon({
     className:"custom-pin",
@@ -164,18 +152,17 @@ function createPinIcon(color){
 
 /* ===== Init ===== */
 (async () => {
-
   const data = await fetch(withBasePath("pois.json")).then(r => r.json());
   const categories = data.categories;
   const pois = data.pois;
 
-  /* --- カテゴリ別レイヤー --- */
+  /* --- レイヤー --- */
   const layers = {};
   categories.forEach(c => {
     layers[c.category_id] = L.layerGroup();
   });
 
-  /* --- ピン生成 --- */
+  /* --- マーカー --- */
   pois.forEach(p => {
     const catId = p.category.category_id;
     if(!layers[catId]) return;
@@ -200,7 +187,6 @@ function createPinIcon(color){
     `)
     .addTo(layers[catId]);
 
-    // ピンクリック時ログ(※修正しない)
     marker.on("click", () => {
       track({
         type:"poi_click",
@@ -212,11 +198,39 @@ function createPinIcon(color){
     });
   });
 
-  /* --- カテゴリUI（単一選択） --- */
+  /* --- カテゴリUI --- */
   const wrap = document.getElementById("categoryList");
   const hint = document.getElementById("categoryHint");
-  let selectedCategoryId = null;
 
+  /* ==== すべて ==== */
+  const allRow = document.createElement("label");
+  allRow.className = "item";
+  allRow.innerHTML = `
+    <input type="checkbox">
+    <span class="dot" style="background:#ccc"></span>
+    <span>すべて</span>
+  `;
+  const allCheckbox = allRow.querySelector("input");
+
+  allCheckbox.addEventListener("change", () => {
+    document.querySelectorAll("#categoryList input[type='checkbox']")
+      .forEach(cb => cb.checked = false);
+
+    Object.values(layers).forEach(layer => map.addLayer(layer));
+
+    allCheckbox.checked = true;
+    hint.style.display = "none";
+
+    track({
+      type: "category_select",
+      category_id: "all",
+      category_name: "すべて"
+    });
+  });
+
+  wrap.appendChild(allRow);
+
+  /* ==== 個別カテゴリ ==== */
   categories.forEach(c => {
     const row = document.createElement("label");
     row.className = "item";
@@ -225,28 +239,21 @@ function createPinIcon(color){
       <span class="dot" style="background:${c.color_code}"></span>
       <span>${c.category_name}</span>
     `;
-
     const checkbox = row.querySelector("input");
 
     checkbox.addEventListener("change", () => {
-
-      // 全チェック解除
-      document
-        .querySelectorAll("#categoryList input[type='checkbox']")
+      document.querySelectorAll("#categoryList input[type='checkbox']")
         .forEach(cb => cb.checked = false);
 
-      // 全レイヤー非表示
+      allCheckbox.checked = false;
+
       Object.values(layers)
         .forEach(layer => map.removeLayer(layer));
 
-      // 選択中のみ表示
       checkbox.checked = true;
       map.addLayer(layers[c.category_id]);
-
-      selectedCategoryId = c.category_id;
       hint.style.display = "none";
 
-      // カテゴリ選択ログ(※修正しない)
       track({
         type: "category_select",
         category_id: c.category_id,
@@ -257,18 +264,22 @@ function createPinIcon(color){
     wrap.appendChild(row);
   });
 
-  /* --- カテゴリ開閉 --- */
+  /* --- 開閉 --- */
   const toggleBtn = document.getElementById("toggleCategory");
   let open = true;
-
   toggleBtn.addEventListener("click", () => {
     open = !open;
     wrap.classList.toggle("hidden", !open);
     toggleBtn.textContent = open ? "－" : "＋";
+
+    
+ /* ★ 初期表示：すべてを選択 */
+  allCheckbox.checked = true;
+  allCheckbox.dispatchEvent(new Event("change"));
+
   });
 
 })();
 </script>
-
 </body>
 </html>
