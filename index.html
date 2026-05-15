@@ -62,6 +62,28 @@ html, body, #map { height:100%; margin:0; }
  border-radius:50%;
 }
 
+/*  ◎（すべて用）だけ追加 */
+.dot-all{
+ width:12px;
+ height:12px;
+ border:2px solid #aaa;
+ border-radius:50%;
+ position:relative;
+ background:none !important;
+}
+
+.dot-all::after{
+ content:"";
+ width:6px;
+ height:6px;
+ background:#aaa;
+ border-radius:50%;
+ position:absolute;
+ top:50%;
+ left:50%;
+ transform:translate(-50%, -50%);
+}
+
 #categoryList.hidden{ display:none; }
 
 .leaflet-div-icon.custom-pin{
@@ -97,11 +119,11 @@ html, body, #map { height:100%; margin:0; }
 <div id="map"></div>
 
 <div class="panel">
-  <h3>
-    <span>カテゴリ</span>
-    <button id="toggleCategory">－</button>
-  </h3>
-  <div id="categoryList"></div>
+ <h3>
+  <span>カテゴリ</span>
+  <button id="toggleCategory">－</button>
+ </h3>
+ <div id="categoryList"></div>
 </div>
 
 <script>
@@ -110,7 +132,6 @@ const withBasePath = p => BASE_PATH + "/" + p;
 
 /* ===== Map ===== */
 const map = L.map("map").setView([34.6937, 135.5023], 12);
-
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
  maxZoom:19
 }).addTo(map);
@@ -122,17 +143,17 @@ function track(evt){
  }
 }
 
-/* ===== ピン（色分け） ===== */
+/* ===== ピン ===== */
 function createPinIcon(color){
  return L.divIcon({
   className:"custom-pin",
   html:`
-   <svg width="26" height="40" viewBox="0 0 24 36">
-     <path d="M12 0C5.4 0 0 5.4 0 12c0 9 12 24 12 24s12-15 12-24
-              C24 5.4 18.6 0 12 0z"
-           fill="${color}"/>
-     <circle cx="12" cy="12" r="5" fill="white"/>
-   </svg>
+  <svg width="26" height="40" viewBox="0 0 24 36">
+  <path d="M12 0C5.4 0 0 5.4 0 12c0 9 12 24 12 24s12-15 12-24
+  C24 5.4 18.6 0 12 0z"
+  fill="${color}"/>
+  <circle cx="12" cy="12" r="5" fill="white"/>
+  </svg>
   `,
   iconSize:[26,40],
   iconAnchor:[13,40],
@@ -144,153 +165,142 @@ function createPinIcon(color){
 (async () => {
 
  const data = await fetch(withBasePath("pois.json")).then(r => r.json());
+
  const categories = data.categories;
  const pois = data.pois;
 
- /* --- レイヤー --- */
  const layers = {};
  categories.forEach(c => {
-   layers[c.category_id] = L.layerGroup();
+  layers[c.category_id] = L.layerGroup();
  });
 
- /* --- マーカー --- */
  pois.forEach(p => {
+  const catId = p.category.category_id;
 
-   const catId = p.category.category_id;
-
-   const marker = L.marker(
-     [p.spot.latitude, p.spot.longitude],
-     { icon: createPinIcon(p.category.color_code) }
-   )
-   .bindPopup(`
-     <div class="popup">
-       ${p.thumbnail_url ? `
-         <img src="${p.thumbnail_url}"
-              class="popup-thumb"
-              alt="${p.event_name}">
-       ` : ""}
-       <div class="popup-body">
-         <h4>${p.event_name}</h4>
-         <p>${p.description || ""}</p>
-         <a href="${p.detail_url}" target="_blank">詳細を見る</a>
-       </div>
-     </div>
-   `)
-   .addTo(layers[catId]);
-
-   /* ✅ GA：POIクリック */
-   marker.on("click", () => {
-     track({
-       type:"poi_click",
-       event_id:p.event_id,
-       event_name:p.event_name,
-       category_id:catId,
-       category_name:p.category.category_name
-     });
+  const marker = L.marker(
+   [p.spot.latitude, p.spot.longitude],
+   { icon: createPinIcon(p.category.color_code) }
+  )
+  .bindPopup(`
+   <div class="popup">
+    ${p.thumbnail_url ? `
+     <img src="${p.thumbnail_url}"
+     class="popup-thumb"
+     alt="${p.event_name}">
+    ` : ""}
+    <div class="popup-body">
+     <h4>${p.event_name}</h4>
+     <p>${p.description || ""}</p>
+     <a href="${p.detail_url}" target="_blank">詳細を見る</a>
+    </div>
+   </div>
+  `)
+  .addTo(layers[catId]);
+　
+　/* GA送信、ピン選択 */
+  marker.on("click", () => {
+   track({
+    type:"poi_click",
+    event_id:p.event_id,
+    event_name:p.event_name,
+    category_id:catId,
+    category_name:p.category.category_name
    });
-
+  });
  });
 
  const wrap = document.getElementById("categoryList");
 
- /* ✅ フラグ（初回GA抑制） */
  let isFirst = true;
 
- /* ===== ロジック（完全分離） ===== */
-
  function hideAll(){
-   Object.values(layers).forEach(l => map.removeLayer(l));
+  Object.values(layers).forEach(l => map.removeLayer(l));
  }
 
  function showAll(){
-   Object.values(layers).forEach(l => map.addLayer(l));
+  Object.values(layers).forEach(l => map.addLayer(l));
  }
 
  function resetCheck(){
-   document.querySelectorAll("#categoryList input")
-     .forEach(cb => cb.checked = false);
+  document.querySelectorAll("#categoryList input")
+  .forEach(cb => cb.checked = false);
  }
 
  function selectAll(){
-   hideAll();
-   showAll();
-   resetCheck();
-   allCheckbox.checked = true;
-
-   if(!isFirst){
-     track({
-       type:"category_select",
-       category_id:"all",
-       category_name:"すべて"
-     });
-   }
- }
- /* ✅ GA：カテゴリクリック */
- function selectCategory(catId, checkbox, name){
-   hideAll();
-   map.addLayer(layers[catId]);
-   resetCheck();
-   checkbox.checked = true;
-
+  hideAll();
+  showAll();
+  resetCheck();
+  allCheckbox.checked = true;
+  if(!isFirst){
    track({
-     type:"category_select",
-     category_id:catId,
-     category_name:name
+    type:"category_select",
+    category_id:"all",
+    category_name:"すべて"
    });
+  }
  }
 
- /* ===== UI ===== */
+ function selectCategory(catId, checkbox, name){
+  hideAll();
+  map.addLayer(layers[catId]);
+  resetCheck();
+  checkbox.checked = true;
+  
+  /* GA送信、カテゴリ選択 */
+  track({
+   type:"category_select",
+   category_id:catId,
+   category_name:name
+  });
+ }
 
- /* --- すべて --- */
+ /* すべてのみ（◎）に表示 */
  const allRow = document.createElement("label");
  allRow.className = "item";
  allRow.innerHTML = `
-   <input type="checkbox">
-   <span class="dot" style="background:#ccc"></span>
-   <span>すべて</span>
+  <input type="checkbox">
+  <span class="dot dot-all"></span>
+  <span>すべて</span>
  `;
+
  const allCheckbox = allRow.querySelector("input");
 
  allCheckbox.addEventListener("change", ()=>{
-   selectAll();
-   isFirst = false;
+  selectAll();
+  isFirst = false;
  });
 
  wrap.appendChild(allRow);
 
  /* --- 個別カテゴリ --- */
  categories.forEach(c => {
+  const row = document.createElement("label");
+  row.className = "item";
+  row.innerHTML = `
+   <input type="checkbox">
+   <span class="dot" style="background:${c.color_code}"></span>
+   <span>${c.category_name}</span>
+  `;
 
-   const row = document.createElement("label");
-   row.className = "item";
+  const checkbox = row.querySelector("input");
 
-   row.innerHTML = `
-     <input type="checkbox">
-     <span class="dot" style="background:${c.color_code}"></span>
-     <span>${c.category_name}</span>
-   `;
+  checkbox.addEventListener("change", ()=>{
+   selectCategory(c.category_id, checkbox, c.category_name);
+   isFirst = false;
+  });
 
-   const checkbox = row.querySelector("input");
-
-   checkbox.addEventListener("change", ()=>{
-     selectCategory(c.category_id, checkbox, c.category_name);
-     isFirst = false;
-   });
-
-   wrap.appendChild(row);
+  wrap.appendChild(row);
  });
-
- /* ----- 開閉 ----- */
+/* --- カテゴリ開閉 --- */
  const toggleBtn = document.getElementById("toggleCategory");
  let open = true;
 
  toggleBtn.addEventListener("click", ()=>{
-   open = !open;
-   wrap.classList.toggle("hidden", !open);
-   toggleBtn.textContent = open ? "－" : "＋";
+  open = !open;
+  wrap.classList.toggle("hidden", !open);
+  toggleBtn.textContent = open ? "－" : "＋";
  });
 
- /* ✅ 初期処理（ここが超重要） */
  selectAll();
 
 })();
@@ -298,4 +308,3 @@ function createPinIcon(color){
 
 </body>
 </html>
-``
