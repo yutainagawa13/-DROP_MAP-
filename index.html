@@ -1,310 +1,413 @@
 <!doctype html>
 <html lang="ja">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>大阪名所マップ</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>大阪名所マップ</title>
 
-<!-- Leaflet -->
-<link rel="stylesheet"
- href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <!-- Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<!-- GA4 -->
-<script async
- src="https://www.googletagmanager.com/gtag/js?id=G-YGD8E8JZJM"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){ dataLayer.push(arguments); }
-gtag('js', new Date());
-gtag('config', 'G-YGD8E8JZJM');
-</script>
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YGD8E8JZJM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-YGD8E8JZJM');
+  </script>
 
-<style>
-html, body, #map { height:100%; margin:0; }
+  <style>
+    html, body, #map { height:100%; margin:0; }
 
-.panel{
- position:fixed;
- top:12px;
- left:12px;
- background:#0f1730;
- color:#fff;
- padding:12px 14px;
- border-radius:12px;
- box-shadow:0 10px 30px rgba(0,0,0,.35);
- z-index:1000;
- min-width:220px;
- font-family:sans-serif;
-}
+    .panel{
+      position:fixed;
+      top:12px;
+      left:12px;
+      background:#0f1730;
+      color:#fff;
+      padding:12px 14px;
+      border-radius:12px;
+      box-shadow:0 10px 30px rgba(0,0,0,.35);
+      z-index:1000;
+      min-width:220px;
+      font-family:sans-serif;
+    }
+    .panel h3{
+      margin:0 0 8px;
+      font-size:14px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+    .item{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      font-size:13px;
+      margin:6px 0;
+      cursor:pointer;
+    }
+    .item input{ width:16px; height:16px; }
+    .dot{
+      width:12px;
+      height:12px;
+      border-radius:50%;
+    }
+    /* ◎（すべて用）だけ追加 */
+    .dot-all{
+      width:12px;
+      height:12px;
+      border:2px solid #aaa;
+      border-radius:50%;
+      position:relative;
+      background:none !important;
+    }
+    .dot-all::after{
+      content:"";
+      width:6px;
+      height:6px;
+      background:#aaa;
+      border-radius:50%;
+      position:absolute;
+      top:50%;
+      left:50%;
+      transform:translate(-50%, -50%);
+    }
+    #categoryList.hidden{ display:none; }
 
-.panel h3{
- margin:0 0 8px;
- font-size:14px;
- display:flex;
- justify-content:space-between;
- align-items:center;
-}
+    .leaflet-div-icon.custom-pin{
+      background:none;
+      border:none;
+    }
 
-.item{
- display:flex;
- align-items:center;
- gap:8px;
- font-size:13px;
- margin:6px 0;
- cursor:pointer;
-}
+    /* ===== スポット情報モーダル（固定サイズ＋中身スクロール） ===== */
+    .spot-modal{
+      position:fixed;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:2000; /* カテゴリパネル(1000)より前面 */
+    }
+    .spot-modal.hidden{ display:none; }
 
-.item input{ width:16px; height:16px; }
+    .spot-modal-backdrop{
+      position:absolute;
+      inset:0;
+      background:rgba(0,0,0,.45);
+    }
 
-.dot{
- width:12px;
- height:12px;
- border-radius:50%;
-}
+    .spot-modal-dialog{
+      position:relative;
+      width:420px;         /* PC: 固定サイズ */
+      height:520px;        /* PC: 固定サイズ */
+      max-width:92vw;      /* 画面に収まるように上限 */
+      max-height:80vh;     /* 画面に収まるように上限 */
+      background:#fff;
+      border-radius:14px;
+      box-shadow:0 12px 40px rgba(0,0,0,.35);
+      overflow:hidden;     /* 中のスクロール領域だけ使う */
+      z-index:1;
+      font-family:sans-serif;
+    }
 
-/*  ◎（すべて用）だけ追加 */
-.dot-all{
- width:12px;
- height:12px;
- border:2px solid #aaa;
- border-radius:50%;
- position:relative;
- background:none !important;
-}
+    .spot-modal-close{
+      position:absolute;
+      top:8px;
+      right:10px;
+      width:36px;
+      height:36px;
+      border:none;
+      border-radius:10px;
+      background:rgba(0,0,0,.06);
+      cursor:pointer;
+      font-size:20px;
+      line-height:36px;
+    }
 
-.dot-all::after{
- content:"";
- width:6px;
- height:6px;
- background:#aaa;
- border-radius:50%;
- position:absolute;
- top:50%;
- left:50%;
- transform:translate(-50%, -50%);
-}
+    .spot-modal-content{
+      height:100%;
+      overflow-y:auto;     /* ★ モーダル内スクロール */
+      -webkit-overflow-scrolling:touch;
+      padding:14px 14px 18px;
+      box-sizing:border-box;
+    }
 
-#categoryList.hidden{ display:none; }
+    .spot-thumb{
+      width:100%;
+      height:200px;
+      object-fit:cover;
+      border-radius:10px;
+      margin-bottom:10px;
+    }
 
-.leaflet-div-icon.custom-pin{
- background:none;
- border:none;
-}
+    .spot-body h4{
+      font-size:16px;
+      margin:6px 0 8px;
+    }
+    .spot-body p{
+      font-size:13px;
+      line-height:1.75;
+      margin:0 0 10px;
+      white-space:pre-wrap;
+    }
 
-.popup{ max-width:160px; }
+    /* ★ URLはみ出し対策（モーダル内・リンク全般） */
+    .spot-body a{
+      display:inline-block;
+      max-width:100%;
+      overflow-wrap:anywhere;
+      word-break:break-word;
+    }
 
-.popup-thumb{
- width:100%;
- height:180px;
- object-fit:cover;
- border-radius:8px;
- margin-bottom:6px;
-}
+    /* bodyスクロール抑止（モーダル表示中） */
+    body.modal-open{
+      overflow:hidden;
+      touch-action:none;
+    }
 
-.popup-body h4{
- font-size:14px;
- margin:4px 0;
-}
-
-.popup-body p{
- font-size:12px;
- line-height:1.7;
- margin:0 0 8px;
-}
-</style>
+    /* ===== スマホ: ボトムシート化（カテゴリと重なりにくく） ===== */
+    @media (max-width: 600px){
+      .spot-modal{
+        align-items:flex-end;
+        justify-content:center;
+      }
+      .spot-modal-dialog{
+        width:100%;
+        max-width:none;
+        height:70vh;
+        max-height:70vh;
+        border-radius:16px 16px 0 0;
+      }
+      .spot-thumb{
+        height:180px;
+      }
+      /* カテゴリパネルはそのまま（設定変更なし）だが、重なっても modal(2000) が前面 */
+    }
+  </style>
 </head>
 
 <body>
+  <div id="map"></div>
 
-<div id="map"></div>
+  <div class="panel">
+    <h3>
+      <span>カテゴリ</span>
+      <button id="toggleCategory">－</button>
+    </h3>
+    <div id="categoryList"></div>
+  </div>
 
-<div class="panel">
- <h3>
-  <span>カテゴリ</span>
-  <button id="toggleCategory">－</button>
- </h3>
- <div id="categoryList"></div>
-</div>
-
-<script>
-const BASE_PATH = "/-DROP_MAP-";
-const withBasePath = p => BASE_PATH + "/" + p;
-
-/* ===== Map ===== */
-const map = L.map("map").setView([34.6937, 135.5023], 12);
-L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
- maxZoom:19
-}).addTo(map);
-
-/* ===== GA ===== */
-function track(evt){
- if(typeof gtag === "function"){
-  gtag("event", evt.type, evt);
- }
-}
-
-/* ===== ピン ===== */
-function createPinIcon(color){
- return L.divIcon({
-  className:"custom-pin",
-  html:`
-  <svg width="26" height="40" viewBox="0 0 24 36">
-  <path d="M12 0C5.4 0 0 5.4 0 12c0 9 12 24 12 24s12-15 12-24
-  C24 5.4 18.6 0 12 0z"
-  fill="${color}"/>
-  <circle cx="12" cy="12" r="5" fill="white"/>
-  </svg>
-  `,
-  iconSize:[26,40],
-  iconAnchor:[13,40],
-  popupAnchor:[0,-34]
- });
-}
-
-/* ===== Init ===== */
-(async () => {
-
- const data = await fetch(withBasePath("pois.json")).then(r => r.json());
-
- const categories = data.categories;
- const pois = data.pois;
-
- const layers = {};
- categories.forEach(c => {
-  layers[c.category_id] = L.layerGroup();
- });
-
- pois.forEach(p => {
-  const catId = p.category.category_id;
-
-  const marker = L.marker(
-   [p.spot.latitude, p.spot.longitude],
-   { icon: createPinIcon(p.category.color_code) }
-  )
-  .bindPopup(`
-   <div class="popup">
-    ${p.thumbnail_url ? `
-     <img src="${p.thumbnail_url}"
-     class="popup-thumb"
-     alt="${p.event_name}">
-    ` : ""}
-    <div class="popup-body">
-     <h4>${p.event_name}</h4>
-     <p>${p.description || ""}</p>
-     <a href="${p.detail_url}" target="_blank">詳細を見る</a>
+  <!-- スポット情報モーダル -->
+  <div id="spotModal" class="spot-modal hidden" aria-hidden="true">
+    <div class="spot-modal-backdrop" id="spotModalBackdrop"></div>
+    <div class="spot-modal-dialog" role="dialog" aria-modal="true" aria-label="スポット情報">
+      <button id="spotModalClose" class="spot-modal-close" aria-label="閉じる">×</button>
+      <div id="spotModalContent" class="spot-modal-content"></div>
     </div>
-   </div>
-  `)
-  .addTo(layers[catId]);
-　
-　/* GA送信、ピン選択 */
-  marker.on("click", () => {
-   track({
-    type:"poi_click",
-    event_id:p.event_id,
-    event_name:p.event_name,
-    category_id:catId,
-    category_name:p.category.category_name
-   });
-  });
- });
+  </div>
 
- const wrap = document.getElementById("categoryList");
+  <script>
+    const BASE_PATH = "/-DROP_MAP-";
+    const withBasePath = p => BASE_PATH + "/" + p;
 
- let isFirst = true;
+    /* ===== Map ===== */
+    const map = L.map("map").setView([34.6937, 135.5023], 12);
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom:19
+    }).addTo(map);
 
- function hideAll(){
-  Object.values(layers).forEach(l => map.removeLayer(l));
- }
+    /* ===== GA ===== */
+    function track(evt){
+      if(typeof gtag === "function"){
+        gtag("event", evt.type, evt);
+      }
+    }
 
- function showAll(){
-  Object.values(layers).forEach(l => map.addLayer(l));
- }
+    /* ===== ピン ===== */
+    function createPinIcon(color){
+      return L.divIcon({
+        className:"custom-pin",
+        html:`
+          <svg width="26" height="40" viewBox="0 0 24 36">
+            <path d="M12 0C5.4 0 0 5.4 0 12c0 9 12 24 12 24s12-15 12-24
+              C24 5.4 18.6 0 12 0z" fill="${color}"/>
+            <circle cx="12" cy="12" r="5" fill="white"/>
+          </svg>
+        `,
+        iconSize:[26,40],
+        iconAnchor:[13,40]
+      });
+    }
 
- function resetCheck(){
-  document.querySelectorAll("#categoryList input")
-  .forEach(cb => cb.checked = false);
- }
+    /* ===== スポットモーダル制御 ===== */
+    const spotModal = document.getElementById("spotModal");
+    const spotModalContent = document.getElementById("spotModalContent");
+    const spotModalClose = document.getElementById("spotModalClose");
+    const spotModalBackdrop = document.getElementById("spotModalBackdrop");
 
- function selectAll(){
-  hideAll();
-  showAll();
-  resetCheck();
-  allCheckbox.checked = true;
-  if(!isFirst){
-   track({
-    type:"category_select",
-    category_id:"all",
-    category_name:"すべて"
-   });
-  }
- }
+    function openSpotModal(p){
+      // 中身（固定サイズの枠の中をスクロール）
+      const html = `
+        ${p.thumbnail_url ? `
+          <img src="${p.thumbnail_url}" class="spot-thumb" alt="${p.event_name}">
+        ` : ""}
+        <div class="spot-body">
+          <h4>${p.event_name}</h4>
+          <p>${(p.description || "")}</p>
+          <a href="${p.detail_url}" target="_blank" rel="noopener noreferrer">詳細を見る</a>
+        </div>
+      `;
+      spotModalContent.innerHTML = html;
 
- function selectCategory(catId, checkbox, name){
-  hideAll();
-  map.addLayer(layers[catId]);
-  resetCheck();
-  checkbox.checked = true;
-  
-  /* GA送信、カテゴリ選択 */
-  track({
-   type:"category_select",
-   category_id:catId,
-   category_name:name
-  });
- }
+      document.body.classList.add("modal-open");
+      spotModal.classList.remove("hidden");
+      spotModal.setAttribute("aria-hidden", "false");
 
- /* すべてのみ（◎）に表示 */
- const allRow = document.createElement("label");
- allRow.className = "item";
- allRow.innerHTML = `
-  <input type="checkbox">
-  <span class="dot dot-all"></span>
-  <span>すべて</span>
- `;
+      // 先頭へ
+      spotModalContent.scrollTop = 0;
+    }
 
- const allCheckbox = allRow.querySelector("input");
+    function closeSpotModal(){
+      spotModal.classList.add("hidden");
+      spotModal.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("modal-open");
+    }
 
- allCheckbox.addEventListener("change", ()=>{
-  selectAll();
-  isFirst = false;
- });
+    spotModalClose.addEventListener("click", closeSpotModal);
+    spotModalBackdrop.addEventListener("click", closeSpotModal);
 
- wrap.appendChild(allRow);
+    // Escで閉じる（PC向け）
+    document.addEventListener("keydown", (e) => {
+      if(e.key === "Escape" && !spotModal.classList.contains("hidden")){
+        closeSpotModal();
+      }
+    });
 
- /* --- 個別カテゴリ --- */
- categories.forEach(c => {
-  const row = document.createElement("label");
-  row.className = "item";
-  row.innerHTML = `
-   <input type="checkbox">
-   <span class="dot" style="background:${c.color_code}"></span>
-   <span>${c.category_name}</span>
-  `;
+    /* ===== Init ===== */
+    (async () => {
+      const data = await fetch(withBasePath("pois.json")).then(r => r.json());
+      const categories = data.categories;
+      const pois = data.pois;
 
-  const checkbox = row.querySelector("input");
+      const layers = {};
+      categories.forEach(c => {
+        layers[c.category_id] = L.layerGroup();
+      });
 
-  checkbox.addEventListener("change", ()=>{
-   selectCategory(c.category_id, checkbox, c.category_name);
-   isFirst = false;
-  });
+      pois.forEach(p => {
+        const catId = p.category.category_id;
 
-  wrap.appendChild(row);
- });
-/* --- カテゴリ開閉 --- */
- const toggleBtn = document.getElementById("toggleCategory");
- let open = true;
+        const marker = L.marker(
+          [p.spot.latitude, p.spot.longitude],
+          { icon: createPinIcon(p.category.color_code) }
+        ).addTo(layers[catId]);
 
- toggleBtn.addEventListener("click", ()=>{
-  open = !open;
-  wrap.classList.toggle("hidden", !open);
-  toggleBtn.textContent = open ? "－" : "＋";
- });
+        /* GA送信、ピン選択 + モーダル表示（MAPは動かない） */
+        marker.on("click", (ev) => {
+          track({
+            type:"poi_click",
+            event_id:p.event_id,
+            event_name:p.event_name,
+            category_id:catId,
+            category_name:p.category.category_name
+          });
 
- selectAll();
+          openSpotModal(p);
 
-})();
-</script>
+          // クリックが地図に伝播して不用意な挙動をしないように（念のため）
+          if(ev && ev.originalEvent){
+            ev.originalEvent.preventDefault?.();
+            ev.originalEvent.stopPropagation?.();
+          }
+        });
+      });
 
+      const wrap = document.getElementById("categoryList");
+      let isFirst = true;
+
+      function hideAll(){
+        Object.values(layers).forEach(l => map.removeLayer(l));
+      }
+      function showAll(){
+        Object.values(layers).forEach(l => map.addLayer(l));
+      }
+      function resetCheck(){
+        document.querySelectorAll("#categoryList input")
+          .forEach(cb => cb.checked = false);
+      }
+      function selectAll(){
+        hideAll();
+        showAll();
+        resetCheck();
+        allCheckbox.checked = true;
+        if(!isFirst){
+          track({
+            type:"category_select",
+            category_id:"all",
+            category_name:"すべて"
+          });
+        }
+      }
+      function selectCategory(catId, checkbox, name){
+        hideAll();
+        map.addLayer(layers[catId]);
+        resetCheck();
+        checkbox.checked = true;
+        /* GA送信、カテゴリ選択 */
+        track({
+          type:"category_select",
+          category_id:catId,
+          category_name:name
+        });
+      }
+
+      /* すべてのみ（◎）に表示 */
+      const allRow = document.createElement("label");
+      allRow.className = "item";
+      allRow.innerHTML = `
+        <input type="checkbox">
+        <span class="dot dot-all"></span>
+        <span>すべて</span>
+      `;
+      const allCheckbox = allRow.querySelector("input");
+      allCheckbox.addEventListener("change", () => {
+        selectAll();
+        isFirst = false;
+      });
+      wrap.appendChild(allRow);
+
+      /* --- 個別カテゴリ --- */
+      categories.forEach(c => {
+        const row = document.createElement("label");
+        row.className = "item";
+        row.innerHTML = `
+          <input type="checkbox">
+          <span class="dot" style="background:${c.color_code}"></span>
+          <span>${c.category_name}</span>
+        `;
+        const checkbox = row.querySelector("input");
+        checkbox.addEventListener("change", () => {
+          selectCategory(c.category_id, checkbox, c.category_name);
+          isFirst = false;
+        });
+        wrap.appendChild(row);
+      });
+
+      /* --- カテゴリ開閉 --- */
+      const toggleBtn = document.getElementById("toggleCategory");
+      let open = true;
+      toggleBtn.addEventListener("click", () => {
+        open = !open;
+        wrap.classList.toggle("hidden", !open);
+        toggleBtn.textContent = open ? "－" : "＋";
+      });
+
+      selectAll();
+    })();
+  </script>
 </body>
 </html>
+``
