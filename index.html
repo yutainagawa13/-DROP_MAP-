@@ -150,22 +150,6 @@
       font-size:10.5px;
       line-height:1.4;
     }
-
-    /* 小さい×（閉じたいとき用。閉じなくても他ピン押せる） */
-    .spot-close{
-      position:absolute;
-      top:6px;
-      right:6px;
-      width:28px;
-      height:28px;
-      border:none;
-      border-radius:10px;
-      background:rgba(0,0,0,.08);
-      cursor:pointer;
-      font-size:18px;
-      line-height:28px;
-      z-index:1;
-    }
   </style>
 </head>
 
@@ -223,7 +207,6 @@
     /* ===== 説明カード（body直下）制御 ===== */
     const spotCard = document.getElementById("spotCard");
     const spotCardInner = document.getElementById("spotCardInner");
-    const spotClose = document.getElementById("spotClose");
 
     let currentLatLng = null; // 表示中のピン位置（地図移動に追従させる）
 
@@ -251,7 +234,7 @@
 
       // 「ピン先端の少し上」を基準点にする
       const anchorX = rect.left + pt.x;
-      const anchorY = rect.top + pt.y - 12; // 12px上
+      const anchorY = rect.top + pt.y - 12;
 
       // 一旦表示してサイズ取得
       spotCard.style.left = "0px";
@@ -262,11 +245,11 @@
       const w = cardRect.width;
       const h = cardRect.height;
 
-      // 「ピンの上に出る」配置：中央寄せで上に積む
+      // ピンの上に表示（中央寄せ）
       let x = anchorX - (w / 2);
       let y = anchorY - h;
 
-      // 画面はみ出し軽減（最低限）
+      // 画面はみ出し軽減
       const pad = 6;
       x = Math.max(pad, Math.min(x, window.innerWidth - w - pad));
       y = Math.max(pad, Math.min(y, window.innerHeight - h - pad));
@@ -277,14 +260,8 @@
 
     function openCard(p, latlng){
       currentLatLng = latlng;
-
-      // 内容差し替え（×を押さなくても他ピンで更新される）
       spotCardInner.innerHTML = buildCardHtml(p);
-
-      // スクロールを先頭に戻す
       spotCard.scrollTop = 0;
-
-      // 位置合わせ
       placeCardAt(latlng);
     }
 
@@ -295,19 +272,15 @@
       spotCard.style.top = "-9999px";
     }
 
-    
-　　document.addEventListener("click", (e) => {
-  　　if (spotCard.classList.contains("hidden")) return;
-
- 　　 // カード内クリックは無視
-  　　if (spotCard.contains(e.target)) return;
-
-  　　// それ以外は閉じる
- 　　 closeCard();
-　　　});
-
-
-    spotClose.addEventListener("click", closeCard);
+    /* ★ 説明カード以外をクリックしたら閉じる（×不要） */
+    document.addEventListener("click", (e) => {
+      // 次フレームで判定（クリック衝突で即閉じを防止）
+      setTimeout(() => {
+        if (spotCard.classList.contains("hidden")) return;
+        if (spotCard.contains(e.target)) return; // カード内は閉じない
+        closeCard();
+      }, 0);
+    });
 
     // 地図を動かしたりズームしたときも、表示中のカードを追従
     map.on("move zoom", () => {
@@ -345,19 +318,10 @@
             category_name:p.category.category_name
           });
 
-          // e.latlng を使ってピン位置に追従
           openCard(p, e.latlng);
 
-          
-　　　　　// ★ここ重要（外クリック誤判定防止）
-  　　　　if(e.originalEvent){
-    　　　　e.originalEvent.stopPropagation();
- 　　　　 }
-
-
-          // クリック伝播を極力抑制（念のため）
+          // ★ document click に伝播させない（他ピン押下はそのまま切替）
           if(e && e.originalEvent){
-            e.originalEvent.preventDefault?.();
             e.originalEvent.stopPropagation?.();
           }
         });
