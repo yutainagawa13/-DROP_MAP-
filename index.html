@@ -296,3 +296,276 @@
 
     // 説明文内URLを自動リンク化（http/https）
     function linkify(text){
+      const safe = escapeHtml(text || "");
+      const urlRe = /(https?:\/\/[^\s<>"']+)/g;
+      return safe.replace(urlRe, (url) => {
+        return `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`;
+      });
+    }
+
+    function buildCardHtml(p){
+      const thumb = p.thumbnail_url
+        ? `<img src="${p.thumbnail_url}" class="spot-thumb" alt="${escapeHtml(p.event_name)}">`
+        : `<div class="no-image">No Image</div>`;
+
+      const descHtml = linkify(p.description || "");
+
+      return `
+        ${thumb}
+        <div class="spot-body">
+          <h4>${escapeHtml(p.event_name)}</h4>
+          <p>${descHtml}</p>
+          <a href="${p.detail_url}" target="_blank" rel="noopener noreferrer">詳細を見る</a>
+        </div>
+      `;
+    }
+
+    function rectIntersects(a, b){
+      return !(a.right < b.left || a.left > b.right || a.bottom < b.top || a.top > b.bottom);
+    }
+
+    function isLatLngInView(latlng){
+      const pt = map.latLngToContainerPoint(latlng);
+      const size = map.getSize();
+      return pt.x >= 0 && pt.y >= 0 && pt.x <= size.x && pt.y <= size.y;
+    }
+
+    function placeCardAt(latlng){
+      if(!latlng) return;
+
+      const pt = map.latLngToContainerPoint(latlng);
+      const mapRect = map.getContainer().getBoundingClientRect();
+      const panelRect = panelEl.getBoundingClientRect();
+
+      const anchorX = mapRect.left + pt.x;
+      const anchorY = mapRect.top + pt.y;
+
+      spotCard.style.left = "0px";
+      spotCard.style.top = "0px";
+      spotCard.classList.remove("hidden");
+
+      const cardRect0 = spotCard.getBoundingClientRect();
+      const w = cardRect0.width;
+      const h = cardRect0.height;
+
+      const pad = 6;
+      const offset = 14;
+
+      const candidates = [
+        { name:"top",    x: anchorX - w/2,        y: anchorY - h - offset },
+        { name:"right",  x: anchorX + offset,     y: anchorY - h/2 },
+        { name:"left",   x: anchorX - w - offset, y: anchorY - h/2 },
+        { name:"bottom", x: anchorX - w/2,        y: anchorY + offset }
+      ];
+
+      function clamp(pos){
+        const cx = Math.max(pad, Math.min(pos.x, window.innerWidth  - w - pad));
+        const cy = Math.max(pad, Math.min(pos.y, window.innerHeight - h - pad));
+        return { ...pos, x: cx, y: cy };
+      }
+
+      function score(pos){
+        const cl = clamp(pos);
+        spotCard.style.left = cl.x + "px";
+        spotCard.style.top  = cl.y + "px";
+        const r = spotCard.getBoundingClientRect();
+
+        let s = 0;
+        if(rectIntersects(r, panelRect)) s += 10000;
+
+        const dx = (r.left + r.width/2) - anchorX;
+        const dy = (r.top + r.height/2) - anchorY;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        s += Math.max(0, 120 - dist);
+
+        s += (r.left < 10 || r.right > window.innerWidth - 10) ? 50 : 0;
+        s += (r.top  < 10 || r.bottom > window.innerHeight - 10) ? 50 : 0;
+
+        return { s, cl };
+      }
+
+      let best = null;
+      for(const c of candidates){
+        const res = score(c);
+        if(!best || res.s < best.s){
+          best = { ...res, name:c.name };
+        }
+      }
+
+      spotCard.style.left = best.cl.x + "px";
+      spotCard.style.top  = best.cl.y + "px";
+    }
+
+    function setSelectedMarker(marker, color){
+      if(currentMarker && currentMarkerColor){
+        currentMarker.setIcon(createPinIcon(currentMarkerColor, false));
+        currentMarker.setZIndexOffset(0);
+      }
+      currentMarker = marker;
+      currentMarkerColor = color;
+
+      if(currentMarker && currentMarkerColor){
+        currentMarker.setIcon(createPinIcon(currentMarkerColor, true)); // ★リングON
+        currentMarker.setZIndexOffset(1000);
+      }
+    }
+
+    function openCard(p, latlng, marker){
+      currentLatLng = latlng;
+      setSelectedMarker(marker, p.category.color_code);
+
+      spotCardInner.innerHTML = buildCardHtml(p);
+      spotCard.scrollTop = 0;        // ★常に画像が先頭
+      placeCardAt(latlng);
+    }
+
+    function closeCard(){
+      currentLatLng = null;
+
+      if(currentMarker && currentMarkerColor){
+        currentMarker.setIcon(createPinIcon(currentMarkerColor, false));
+        currentMarker.setZIndexOffset(0);
+      }
+      currentMarker = null;
+      currentMarkerColor = null;
+
+      spotCard.classList.add("hidden");
+      spotCard.style.left = "-9999px";
+      spotCard.style.top = "-9999px";
+    }
+
+    // 説明カード以外クリックで閉じる
+    document.addEventListener("click", (e) => {
+      setTimeout(() => {
+        if (spotCard.classList.contains("hidden")) return;
+        if (spotCard.contains(e.target)) return;
+        closeCard();
+      }, 0);
+    });
+
+    // マップ操作中の挙動
+    map.on("movestart zoomstart", () => {
+      if(!spotCard.classList.contains("hidden")){
+        spotCard.classList.add("is-interacting");
+      }
+    });
+
+    map.on("moveend zoomend", () => {
+      if(!spotCard.classList.contains("hidden")){
+        spotCard.classList.remove("is-interacting");
+
+        if(currentLatLng){
+          if(!isLatLngInView(currentLatLng)){
+            closeCard();
+            return;
+          }
+          placeCardAt(currentLatLng);
+        }
+      }
+    });
+
+    window.addEventListener("resize", () => {
+      if(currentLatLng && !spotCard.classList.contains("hidden")){
+        placeCardAt(currentLatLng);
+      }
+    });
+
+    /* ===== Init ===== */
+    (async () => {
+      const data = await fetch(withBasePath("pois.json")).then(r => r.json());
+      const categories = data.categories;
+      const pois = data.pois;
+
+      const layers = {};
+      categories.forEach(c => { layers[c.category_id] = L.layerGroup(); });
+
+      pois.forEach(p => {
+        const catId = p.category.category_id;
+
+        const marker = L.marker(
+          [p.spot.latitude, p.spot.longitude],
+          { icon: createPinIcon(p.category.color_code, false) }
+        ).addTo(layers[catId]);
+
+        marker.on("click", (e) => {
+          track({
+            type:"poi_click",
+            event_id:p.event_id,
+            event_name:p.event_name,
+            category_id:catId,
+            category_name:p.category.category_name
+          });
+
+          openCard(p, e.latlng, marker);
+
+          if(e && e.originalEvent){
+            e.originalEvent.stopPropagation?.();
+          }
+        });
+      });
+
+      const wrap = document.getElementById("categoryList");
+      let isFirst = true;
+
+      function hideAll(){ Object.values(layers).forEach(l => map.removeLayer(l)); }
+      function showAll(){ Object.values(layers).forEach(l => map.addLayer(l)); }
+      function resetCheck(){
+        document.querySelectorAll("#categoryList input").forEach(cb => cb.checked = false);
+      }
+
+      function selectAll(){
+        hideAll(); showAll(); resetCheck();
+        allCheckbox.checked = true;
+        if(!isFirst){
+          track({ type:"category_select", category_id:"all", category_name:"すべて" });
+        }
+      }
+
+      function selectCategory(catId, checkbox, name){
+        hideAll();
+        map.addLayer(layers[catId]);
+        resetCheck();
+        checkbox.checked = true;
+        track({ type:"category_select", category_id:catId, category_name:name });
+      }
+
+      const allRow = document.createElement("label");
+      allRow.className = "item";
+      allRow.innerHTML = `
+        <input type="checkbox">
+        <span class="dot dot-all"></span>
+        <span>すべて</span>
+      `;
+      const allCheckbox = allRow.querySelector("input");
+      allCheckbox.addEventListener("change", () => { selectAll(); isFirst = false; });
+      wrap.appendChild(allRow);
+
+      categories.forEach(c => {
+        const row = document.createElement("label");
+        row.className = "item";
+        row.innerHTML = `
+          <input type="checkbox">
+          <span class="dot" style="background:${c.color_code}"></span>
+          <span>${c.category_name}</span>
+        `;
+        const checkbox = row.querySelector("input");
+        checkbox.addEventListener("change", () => {
+          selectCategory(c.category_id, checkbox, c.category_name);
+          isFirst = false;
+        });
+        wrap.appendChild(row);
+      });
+
+      const toggleBtn = document.getElementById("toggleCategory");
+      let open = true;
+      toggleBtn.addEventListener("click", () => {
+        open = !open;
+        wrap.classList.toggle("hidden", !open);
+        toggleBtn.textContent = open ? "－" : "＋";
+      });
+
+      selectAll();
+    })();
+  </script>
+</body>
+</html>
