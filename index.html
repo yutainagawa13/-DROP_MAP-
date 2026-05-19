@@ -82,26 +82,30 @@
       border:none;
     }
 
-    /* ===== ここから：ピン上に出る説明（Popup）を幅160で整える ===== */
+    /* =========================================================
+       ★ 重要：カテゴリパネルより「必ず」前面に出す（画像の状態を回避）
+       ========================================================= */
+    .leaflet-pane.leaflet-popup-pane { z-index: 5000 !important; }
+    .leaflet-popup { z-index: 5000 !important; }
+    .spot-popup { z-index: 5000 !important; }
 
-    /* カテゴリパネル(1000)より必ず前面に */
-    .leaflet-popup-pane { z-index: 3000 !important; }
-
-    /* 余白を詰めてカードっぽく */
+    /* =========================================================
+       ピン上に出る説明（Popup）を幅160で整える
+       ========================================================= */
     .spot-popup .leaflet-popup-content-wrapper{
       border-radius:12px;
       overflow:hidden;
     }
     .spot-popup .leaflet-popup-content{
-      margin:0;              /* Leaflet標準余白を消す */
-      width:160px;           /* ★固定幅160 */
+      margin:0;             /* Leaflet標準余白を消す */
+      width:160px;          /* ★固定幅160 */
     }
 
     /* スポットカード本体（中だけスクロール） */
     .spot-card{
-      width:160px;           /* ★固定幅160 */
-      max-height:260px;      /* 高さは画面に応じて。中身はスクロール */
-      overflow-y:auto;       /* ★内部スクロール */
+      width:160px;          /* ★固定幅160 */
+      max-height:300px;     /* 必要なら調整 */
+      overflow-y:auto;      /* ★内部スクロール */
       -webkit-overflow-scrolling:touch;
       font-family:sans-serif;
       background:#fff;
@@ -111,7 +115,7 @@
     /* 画像：幅160に対して縦長になりすぎないよう調整 */
     .spot-thumb{
       width:100%;
-      height:90px;           /* ★見た目改善：コンパクト固定 */
+      height:90px;          /* ★見た目改善（コンパクト） */
       object-fit:cover;
       display:block;
     }
@@ -122,14 +126,14 @@
 
     /* タイトル */
     .spot-body h4{
-      font-size:13px;        /* ← ここで調整可 */
+      font-size:12px;      
       margin:0 0 6px;
       line-height:1.25;
     }
 
     /* 説明文 */
     .spot-body p{
-      font-size:10.5px;      /* ← ここで調整可 */
+      font-size:10px;     
       line-height:1.55;
       margin:0 0 8px;
       white-space:pre-wrap;
@@ -141,11 +145,11 @@
       max-width:100%;
       overflow-wrap:anywhere;
       word-break:break-word;
-      font-size:10.5px;      /* ← URLだけ変えたい時はここ */
+      font-size:10px;     
       line-height:1.4;
     }
 
-    /* 閉じる×は残す（任意）。押さなくても他ピン選択可能にしてある */
+    /* ×は残す（任意）。押さなくても他ピンを押せるようになっている */
     .spot-popup .leaflet-popup-close-button{
       padding:6px 8px;
     }
@@ -236,21 +240,21 @@
         );
 
         // ★ ピン上に出す：地図を動かさない（autoPan:false）
-        // ★ 他ピンを押せる：新しいピンを押せば自動的に内容が切り替わる（autoClose:true）
+        // ★ 他ピンを押せる：別ピンを押すと前のPopupが閉じて新しいPopupが開く（autoClose:true）
         marker.bindPopup(buildPopupHtml(p), {
           className: "spot-popup",
-          autoPan: false,       // ★MAPが動かない
+          autoPan: false,        // ★MAPが動かない
           keepInView: false,
-          closeButton: true,    // ×は残す（不要なら false でもOK）
-          autoClose: true,
-          closeOnClick: false,  // 地図タップで閉じたくないならfalse（trueにすれば地図タップで閉じる）
+          closeButton: true,
+          autoClose: true,       // ★別ピン押下で自動的に切替
+          closeOnClick: false,   // 地図タップで閉じたければ true に変更OK
           maxWidth: 160,
           minWidth: 160
         });
 
         marker.addTo(layers[catId]);
 
-        /* GA送信、ピン選択（クリックでpopup表示） */
+        /* GA送信、ピン選択 */
         marker.on("click", () => {
           track({
             type:"poi_click",
@@ -259,7 +263,7 @@
             category_id:catId,
             category_name:p.category.category_name
           });
-          // bindPopupしているのでクリックで自動表示される
+          // bindPopup済みなのでクリックで表示される
         });
       });
 
@@ -348,3 +352,4 @@
   </script>
 </body>
 </html>
+``
