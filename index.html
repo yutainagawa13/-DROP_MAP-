@@ -358,14 +358,17 @@
       const h = cardRect0.height;
 
       const pad = 6;
-      const offset = 42;   // ★ 14 → 28（ピンから“もう少し上”に離す）
+      const offset = 45;   // ★ 14 → 28（ピンから“もう少し上”に離す）　　
+　　　const offsetBottom = 15;  // 下は近づける ← ここがポイント
+　　　const offsetSide = 25;    // 横は中間
 
+      
       // 候補位置：上 / 右 / 左 / 下
       const candidates = [
         { name:"top",    x: anchorX - w/2,        y: anchorY - h - offset },
-        { name:"right",  x: anchorX + offset,     y: anchorY - h/2 },
-        { name:"left",   x: anchorX - w - offset, y: anchorY - h/2 },
-        { name:"bottom", x: anchorX - w/2,        y: anchorY + offset }
+        { name:"right",  x: anchorX + offsetSide,     y: anchorY - h/2 },
+        { name:"left",   x: anchorX - w - offsetSide, y: anchorY - h/2 },
+        { name:"bottom", x: anchorX - w/2,        y: anchorY + offsetBottom }
       ];
 
       function clamp(pos){
