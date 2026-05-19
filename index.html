@@ -94,16 +94,14 @@
     .spot-modal.hidden{ display:none; }
 
     .spot-modal-backdrop{
-      position:absolute;
-      inset:0;
-      background:rgba(0,0,0,.45);
+      display:none;
     }
 
     .spot-modal-dialog{
       position:relative;
-      width:420px;         /* PC: 固定サイズ */
-      height:520px;        /* PC: 固定サイズ */
-      max-width:92vw;      /* 画面に収まるように上限 */
+      width:160px;         /* スマホ: 固定サイズ */
+      height:320px;        /* PC: 固定サイズ */
+      max-width:none;      /* 画面に収まるように上限 */
       max-height:80vh;     /* 画面に収まるように上限 */
       background:#fff;
       border-radius:14px;
