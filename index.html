@@ -183,7 +183,6 @@
   <!-- ★ body直下のフローティング説明（地図より上、カテゴリより上） -->
   <div id="spotFloating">
     <div id="spotCard" class="hidden">
-      <button class="spot-close" id="spotClose" aria-label="閉じる">×</button>
       <div id="spotCardInner"></div>
     </div>
   </div>
@@ -296,6 +295,18 @@
       spotCard.style.top = "-9999px";
     }
 
+    
+　　document.addEventListener("click", (e) => {
+  　　if (spotCard.classList.contains("hidden")) return;
+
+ 　　 // カード内クリックは無視
+  　　if (spotCard.contains(e.target)) return;
+
+  　　// それ以外は閉じる
+ 　　 closeCard();
+　　　});
+
+
     spotClose.addEventListener("click", closeCard);
 
     // 地図を動かしたりズームしたときも、表示中のカードを追従
@@ -336,6 +347,13 @@
 
           // e.latlng を使ってピン位置に追従
           openCard(p, e.latlng);
+
+          
+　　　　　// ★ここ重要（外クリック誤判定防止）
+  　　　　if(e.originalEvent){
+    　　　　e.originalEvent.stopPropagation();
+ 　　　　 }
+
 
           // クリック伝播を極力抑制（念のため）
           if(e && e.originalEvent){
