@@ -82,108 +82,72 @@
       border:none;
     }
 
-    /* ===== スポット情報モーダル（固定サイズ＋中身スクロール） ===== */
-    .spot-modal{
-      position:fixed;
-      inset:0;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      z-index:2000; /* カテゴリパネル(1000)より前面 */
-    }
-    .spot-modal.hidden{ display:none; }
+    /* ===== ここから：ピン上に出る説明（Popup）を幅160で整える ===== */
 
-    .spot-modal-backdrop{
-      display:none;
-    }
+    /* カテゴリパネル(1000)より必ず前面に */
+    .leaflet-popup-pane { z-index: 3000 !important; }
 
-    .spot-modal-dialog{
-      position:relative;
-      width:160px;         /* スマホ: 固定サイズ */
-      height:320px;        /* PC: 固定サイズ */
-      max-width:none;      /* 画面に収まるように上限 */
-      max-height:80vh;     /* 画面に収まるように上限 */
-      background:#fff;
-      border-radius:14px;
-      box-shadow:0 12px 40px rgba(0,0,0,.35);
-      overflow:hidden;     /* 中のスクロール領域だけ使う */
-      z-index:1;
-      font-family:sans-serif;
+    /* 余白を詰めてカードっぽく */
+    .spot-popup .leaflet-popup-content-wrapper{
+      border-radius:12px;
+      overflow:hidden;
+    }
+    .spot-popup .leaflet-popup-content{
+      margin:0;              /* Leaflet標準余白を消す */
+      width:160px;           /* ★固定幅160 */
     }
 
-    .spot-modal-close{
-      position:absolute;
-      top:8px;
-      right:10px;
-      width:36px;
-      height:36px;
-      border:none;
-      border-radius:10px;
-      background:rgba(0,0,0,.06);
-      cursor:pointer;
-      font-size:20px;
-      line-height:36px;
-    }
-
-    .spot-modal-content{
-      height:100%;
-      overflow-y:auto;     /* ★ モーダル内スクロール */
+    /* スポットカード本体（中だけスクロール） */
+    .spot-card{
+      width:160px;           /* ★固定幅160 */
+      max-height:260px;      /* 高さは画面に応じて。中身はスクロール */
+      overflow-y:auto;       /* ★内部スクロール */
       -webkit-overflow-scrolling:touch;
-      padding:14px 14px 18px;
+      font-family:sans-serif;
+      background:#fff;
       box-sizing:border-box;
     }
 
+    /* 画像：幅160に対して縦長になりすぎないよう調整 */
     .spot-thumb{
       width:100%;
-      height:90px;
+      height:90px;           /* ★見た目改善：コンパクト固定 */
       object-fit:cover;
-      border-radius:8px;
-      margin-bottom:6px;
+      display:block;
     }
 
-    .spot-body h4{
-      font-size:14px;
-      margin:6px 0 8px;
+    .spot-body{
+      padding:10px 10px 12px;
     }
+
+    /* タイトル */
+    .spot-body h4{
+      font-size:13px;        /* ← ここで調整可 */
+      margin:0 0 6px;
+      line-height:1.25;
+    }
+
+    /* 説明文 */
     .spot-body p{
-      font-size:11px;
-      line-height:1.75;
-      margin:0 0 10px;
+      font-size:10.5px;      /* ← ここで調整可 */
+      line-height:1.55;
+      margin:0 0 8px;
       white-space:pre-wrap;
     }
 
-    /* ★ URLはみ出し対策（モーダル内・リンク全般） */
+    /* ★ URLはみ出し対策（＋文字サイズ） */
     .spot-body a{
       display:inline-block;
       max-width:100%;
       overflow-wrap:anywhere;
       word-break:break-word;
-      font-size:11px;
+      font-size:10.5px;      /* ← URLだけ変えたい時はここ */
+      line-height:1.4;
     }
 
-    /* bodyスクロール抑止（モーダル表示中） */
-    body.modal-open{
-      overflow:hidden;
-      touch-action:none;
-    }
-
-    /* ===== スマホ: ボトムシート化（カテゴリと重なりにくく） ===== */
-    @media (max-width: 600px){
-      .spot-modal{
-        align-items:flex-end;
-        justify-content:center;
-      }
-      .spot-modal-dialog{
-        width:100%;
-        max-width:none;
-        height:70vh;
-        max-height:70vh;
-        border-radius:16px 16px 0 0;
-      }
-      .spot-thumb{
-        height:180px;
-      }
-      /* カテゴリパネルはそのまま（設定変更なし）だが、重なっても modal(2000) が前面 */
+    /* 閉じる×は残す（任意）。押さなくても他ピン選択可能にしてある */
+    .spot-popup .leaflet-popup-close-button{
+      padding:6px 8px;
     }
   </style>
 </head>
@@ -197,15 +161,6 @@
       <button id="toggleCategory">－</button>
     </h3>
     <div id="categoryList"></div>
-  </div>
-
-  <!-- スポット情報モーダル -->
-  <div id="spotModal" class="spot-modal hidden" aria-hidden="true">
-    <div class="spot-modal-backdrop" id="spotModalBackdrop"></div>
-    <div class="spot-modal-dialog" role="dialog" aria-modal="true" aria-label="スポット情報">
-      <button id="spotModalClose" class="spot-modal-close" aria-label="閉じる">×</button>
-      <div id="spotModalContent" class="spot-modal-content"></div>
-    </div>
   </div>
 
   <script>
@@ -237,53 +192,29 @@
           </svg>
         `,
         iconSize:[26,40],
-        iconAnchor:[13,40]
+        iconAnchor:[13,40],
+        popupAnchor:[0,-34]
       });
     }
 
-    /* ===== スポットモーダル制御 ===== */
-    const spotModal = document.getElementById("spotModal");
-    const spotModalContent = document.getElementById("spotModalContent");
-    const spotModalClose = document.getElementById("spotModalClose");
-    const spotModalBackdrop = document.getElementById("spotModalBackdrop");
+    /* ===== Popup HTML ===== */
+    function buildPopupHtml(p){
+      const thumb = p.thumbnail_url
+        ? `<img src="${p.thumbnail_url}" class="spot-thumb" alt="${p.event_name}">`
+        : "";
+      const desc = (p.description || "");
 
-    function openSpotModal(p){
-      // 中身（固定サイズの枠の中をスクロール）
-      const html = `
-        ${p.thumbnail_url ? `
-          <img src="${p.thumbnail_url}" class="spot-thumb" alt="${p.event_name}">
-        ` : ""}
-        <div class="spot-body">
-          <h4>${p.event_name}</h4>
-          <p>${(p.description || "")}</p>
-          <a href="${p.detail_url}" target="_blank" rel="noopener noreferrer">詳細を見る</a>
+      return `
+        <div class="spot-card">
+          ${thumb}
+          <div class="spot-body">
+            <h4>${p.event_name}</h4>
+            <p>${desc}</p>
+            <a href="${p.detail_url}" target="_blank" rel="noopener noreferrer">詳細を見る</a>
+          </div>
         </div>
       `;
-      spotModalContent.innerHTML = html;
-
-      document.body.classList.add("modal-open");
-      spotModal.classList.remove("hidden");
-      spotModal.setAttribute("aria-hidden", "false");
-
-      // 先頭へ
-      spotModalContent.scrollTop = 0;
     }
-
-    function closeSpotModal(){
-      spotModal.classList.add("hidden");
-      spotModal.setAttribute("aria-hidden", "true");
-      document.body.classList.remove("modal-open");
-    }
-
-    spotModalClose.addEventListener("click", closeSpotModal);
-    spotModalBackdrop.addEventListener("click", closeSpotModal);
-
-    // Escで閉じる（PC向け）
-    document.addEventListener("keydown", (e) => {
-      if(e.key === "Escape" && !spotModal.classList.contains("hidden")){
-        closeSpotModal();
-      }
-    });
 
     /* ===== Init ===== */
     (async () => {
@@ -302,10 +233,25 @@
         const marker = L.marker(
           [p.spot.latitude, p.spot.longitude],
           { icon: createPinIcon(p.category.color_code) }
-        ).addTo(layers[catId]);
+        );
 
-        /* GA送信、ピン選択 + モーダル表示（MAPは動かない） */
-        marker.on("click", (ev) => {
+        // ★ ピン上に出す：地図を動かさない（autoPan:false）
+        // ★ 他ピンを押せる：新しいピンを押せば自動的に内容が切り替わる（autoClose:true）
+        marker.bindPopup(buildPopupHtml(p), {
+          className: "spot-popup",
+          autoPan: false,       // ★MAPが動かない
+          keepInView: false,
+          closeButton: true,    // ×は残す（不要なら false でもOK）
+          autoClose: true,
+          closeOnClick: false,  // 地図タップで閉じたくないならfalse（trueにすれば地図タップで閉じる）
+          maxWidth: 160,
+          minWidth: 160
+        });
+
+        marker.addTo(layers[catId]);
+
+        /* GA送信、ピン選択（クリックでpopup表示） */
+        marker.on("click", () => {
           track({
             type:"poi_click",
             event_id:p.event_id,
@@ -313,14 +259,7 @@
             category_id:catId,
             category_name:p.category.category_name
           });
-
-          openSpotModal(p);
-
-          // クリックが地図に伝播して不用意な挙動をしないように（念のため）
-          if(ev && ev.originalEvent){
-            ev.originalEvent.preventDefault?.();
-            ev.originalEvent.stopPropagation?.();
-          }
+          // bindPopupしているのでクリックで自動表示される
         });
       });
 
@@ -355,7 +294,7 @@
         map.addLayer(layers[catId]);
         resetCheck();
         checkbox.checked = true;
-        /* GA送信、カテゴリ選択 */
+
         track({
           type:"category_select",
           category_id:catId,
@@ -409,4 +348,3 @@
   </script>
 </body>
 </html>
-``
