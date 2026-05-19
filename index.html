@@ -83,31 +83,73 @@
     }
 
     /* =========================================================
+       ★ 選択ピン：リング（波紋）アニメーション
+       ========================================================= */
+    .pin-wrap{
+      position:relative;
+      width:var(--w);
+      height:var(--h);
+      transform:translateZ(0);
+      pointer-events:none; /* アイコン自体はLeafletが拾うのでOK */
+    }
+    .pin-ring{
+      position:absolute;
+      left:50%;
+      top:var(--ringTop);
+      width:var(--ringSize);
+      height:var(--ringSize);
+      border-radius:999px;
+      border:2px solid rgba(255,255,255,.9);
+      transform:translate(-50%, -50%) scale(.6);
+      opacity:0;
+      pointer-events:none;
+      box-sizing:border-box;
+      filter:drop-shadow(0 2px 2px rgba(0,0,0,.25));
+    }
+    .pin-wrap.is-selected .pin-ring.r1{
+      animation:pinRipple 1.4s ease-out infinite;
+    }
+    .pin-wrap.is-selected .pin-ring.r2{
+      animation:pinRipple 1.4s ease-out infinite;
+      animation-delay:.7s;
+    }
+    @keyframes pinRipple{
+      0%   { transform:translate(-50%, -50%) scale(.6); opacity:.75; }
+      100% { transform:translate(-50%, -50%) scale(2.1); opacity:0; }
+    }
+
+    /* =========================================================
        ★ body直下に出す「ピン説明カード」(カテゴリパネルより上に固定)
        ========================================================= */
     #spotFloating{
       position:fixed;
       inset:0;
-      z-index:3000;          /* panel(1000)より上 */
-      pointer-events:none;   /* ★全面はクリック透過（地図操作できる） */
+      z-index:3000;
+      pointer-events:none;
     }
     #spotCard{
       position:fixed;
       left:-9999px;
       top:-9999px;
-      width:180px;           /* ★固定幅160 */
-      max-height:300px;      /* カード内スクロール */
-      overflow:auto;
+      width:160px;
+      max-height:260px;
+      overflow-y:auto;
+      overflow-x:hidden;     /* 横スクロール禁止 */
       -webkit-overflow-scrolling:touch;
       background:#fff;
       border-radius:12px;
       box-shadow:0 12px 40px rgba(0,0,0,.35);
-      pointer-events:auto;   /* ★カード部分だけクリック可能 */
+      pointer-events:auto;
       font-family:sans-serif;
+      box-sizing:border-box;
     }
     #spotCard.hidden{ display:none; }
 
-    /* 吹き出しの“しっぽ”（任意） */
+    #spotCard.is-interacting{
+      opacity:0.35;
+      pointer-events:none;
+    }
+
     #spotCard::after{
       content:"";
       position:absolute;
@@ -123,11 +165,25 @@
 
     .spot-thumb{
       width:100%;
-      height:90px;           /* ★画像を縦長にしない */
+      height:90px;
       object-fit:cover;
       display:block;
       border-radius:12px 12px 0 0;
+      background:#f2f2f2;
     }
+    .no-image{
+      width:100%;
+      height:90px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:#f2f2f2;
+      color:#888;
+      font-size:12px;
+      border-radius:12px 12px 0 0;
+      user-select:none;
+    }
+
     .spot-body{
       padding:10px 10px 12px;
     }
@@ -137,10 +193,12 @@
       line-height:1.25;
     }
     .spot-body p{
-      font-size:13px;
+      font-size:10.5px;
       line-height:1.55;
       margin:0 0 8px;
       white-space:pre-wrap;
+      overflow-wrap:anywhere;
+      word-break:break-word;
     }
     .spot-body a{
       display:inline-block;
@@ -164,7 +222,6 @@
     <div id="categoryList"></div>
   </div>
 
-  <!-- ★ body直下のフローティング説明（地図より上、カテゴリより上） -->
   <div id="spotFloating">
     <div id="spotCard" class="hidden">
       <div id="spotCardInner"></div>
@@ -177,9 +234,7 @@
 
     /* ===== Map ===== */
     const map = L.map("map").setView([34.6937, 135.5023], 12);
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      maxZoom:19
-    }).addTo(map);
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom:19 }).addTo(map);
 
     /* ===== GA ===== */
     function track(evt){
@@ -188,227 +243,56 @@
       }
     }
 
-    /* ===== ピン ===== */
-    function createPinIcon(color){
+    /* ===== ピン（リング付き） ===== */
+    function createPinIcon(color, selected=false){
+      const w = selected ? 32 : 26;
+      const h = selected ? 48 : 40;
+      const anchorX = Math.round(w/2);
+      const anchorY = h;
+
+      // リングの位置/サイズ（ピンの丸い部分の中心あたり）
+      const ringSize = Math.round(w * 1.05);  // リング直径
+      const ringTop  = Math.round(h * 0.30);  // 上からの位置
+
+      const shadow = selected ? 'filter="drop-shadow(0 3px 6px rgba(0,0,0,.45))"' : '';
+      const stroke = selected ? 'stroke="#ffffff" stroke-width="1.2"' : '';
+
       return L.divIcon({
         className:"custom-pin",
         html:`
-          <svg width="26" height="40" viewBox="0 0 24 36">
-            <path d="M12 0C5.4 0 0 5.4 0 12c0 9 12 24 12 24s12-15 12-24
-              C24 5.4 18.6 0 12 0z" fill="${color}"/>
-            <circle cx="12" cy="12" r="5" fill="white"/>
-          </svg>
+          <div class="pin-wrap ${selected ? "is-selected" : ""}"
+               style="--w:${w}px;--h:${h}px;--ringSize:${ringSize}px;--ringTop:${ringTop}px;">
+            <span class="pin-ring r1"></span>
+            <span class="pin-ring r2"></span>
+            <svg ${shadow} width="${w}" height="${h}" viewBox="0 0 24 36">
+              <path d="M12 0C5.4 0 0 5.4 0 12c0 9 12 24 12 24s12-15 12-24C24 5.4 18.6 0 12 0z"
+                fill="${color}" ${stroke}/>
+              <circle cx="12" cy="12" r="5" fill="white"/>
+            </svg>
+          </div>
         `,
-        iconSize:[26,40],
-        iconAnchor:[13,40]
+        iconSize:[w,h],
+        iconAnchor:[anchorX, anchorY]
       });
     }
 
-    /* ===== 説明カード（body直下）制御 ===== */
+    /* ===== 説明カード制御 ===== */
     const spotCard = document.getElementById("spotCard");
     const spotCardInner = document.getElementById("spotCardInner");
+    const panelEl = document.querySelector(".panel");
 
-    let currentLatLng = null; // 表示中のピン位置（地図移動に追従させる）
+    let currentLatLng = null;
+    let currentMarker = null;
+    let currentMarkerColor = null;
 
-    function buildCardHtml(p){
-      const thumb = p.thumbnail_url
-        ? `<img src="${p.thumbnail_url}" class="spot-thumb" alt="${p.event_name}">`
-        : "";
-      const desc = (p.description || "");
-      return `
-        ${thumb}
-        <div class="spot-body">
-          <h4>${p.event_name}</h4>
-          <p>${desc}</p>
-          <a href="${p.detail_url}" target="_blank" rel="noopener noreferrer">詳細を見る</a>
-        </div>
-      `;
+    function escapeHtml(str){
+      return (str ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#39;");
     }
 
-    function placeCardAt(latlng){
-      if(!latlng) return;
-
-      // ピンの画面座標（地図コンテナ内）
-      const pt = map.latLngToContainerPoint(latlng);
-      const rect = map.getContainer().getBoundingClientRect();
-
-      // 「ピン先端の少し上」を基準点にする
-      const anchorX = rect.left + pt.x;
-      const anchorY = rect.top + pt.y - 12;
-
-      // 一旦表示してサイズ取得
-      spotCard.style.left = "0px";
-      spotCard.style.top = "0px";
-      spotCard.classList.remove("hidden");
-
-      const cardRect = spotCard.getBoundingClientRect();
-      const w = cardRect.width;
-      const h = cardRect.height;
-
-      // ピンの上に表示（中央寄せ）
-      let x = anchorX - (w / 2);
-      let y = anchorY - h;
-
-      // 画面はみ出し軽減
-      const pad = 6;
-      x = Math.max(pad, Math.min(x, window.innerWidth - w - pad));
-      y = Math.max(pad, Math.min(y, window.innerHeight - h - pad));
-
-      spotCard.style.left = x + "px";
-      spotCard.style.top = y + "px";
-    }
-
-    function openCard(p, latlng){
-      currentLatLng = latlng;
-      spotCardInner.innerHTML = buildCardHtml(p);
-      spotCard.scrollTop = 0;
-      placeCardAt(latlng);
-    }
-
-    function closeCard(){
-      currentLatLng = null;
-      spotCard.classList.add("hidden");
-      spotCard.style.left = "-9999px";
-      spotCard.style.top = "-9999px";
-    }
-
-    /* ★ 説明カード以外をクリックしたら閉じる（×不要） */
-    document.addEventListener("click", (e) => {
-      // 次フレームで判定（クリック衝突で即閉じを防止）
-      setTimeout(() => {
-        if (spotCard.classList.contains("hidden")) return;
-        if (spotCard.contains(e.target)) return; // カード内は閉じない
-        closeCard();
-      }, 0);
-    });
-
-    // 地図を動かしたりズームしたときも、表示中のカードを追従
-    map.on("move zoom", () => {
-      if(currentLatLng && !spotCard.classList.contains("hidden")){
-        placeCardAt(currentLatLng);
-      }
-    });
-
-    /* ===== Init ===== */
-    (async () => {
-      const data = await fetch(withBasePath("pois.json")).then(r => r.json());
-      const categories = data.categories;
-      const pois = data.pois;
-
-      const layers = {};
-      categories.forEach(c => {
-        layers[c.category_id] = L.layerGroup();
-      });
-
-      pois.forEach(p => {
-        const catId = p.category.category_id;
-
-        const marker = L.marker(
-          [p.spot.latitude, p.spot.longitude],
-          { icon: createPinIcon(p.category.color_code) }
-        ).addTo(layers[catId]);
-
-        // ★クリックでカード表示（mapはパンしない）
-        marker.on("click", (e) => {
-          track({
-            type:"poi_click",
-            event_id:p.event_id,
-            event_name:p.event_name,
-            category_id:catId,
-            category_name:p.category.category_name
-          });
-
-          openCard(p, e.latlng);
-
-          // ★ document click に伝播させない（他ピン押下はそのまま切替）
-          if(e && e.originalEvent){
-            e.originalEvent.stopPropagation?.();
-          }
-        });
-      });
-
-      const wrap = document.getElementById("categoryList");
-      let isFirst = true;
-
-      function hideAll(){
-        Object.values(layers).forEach(l => map.removeLayer(l));
-      }
-      function showAll(){
-        Object.values(layers).forEach(l => map.addLayer(l));
-      }
-      function resetCheck(){
-        document.querySelectorAll("#categoryList input")
-          .forEach(cb => cb.checked = false);
-      }
-      function selectAll(){
-        hideAll();
-        showAll();
-        resetCheck();
-        allCheckbox.checked = true;
-        if(!isFirst){
-          track({
-            type:"category_select",
-            category_id:"all",
-            category_name:"すべて"
-          });
-        }
-      }
-      function selectCategory(catId, checkbox, name){
-        hideAll();
-        map.addLayer(layers[catId]);
-        resetCheck();
-        checkbox.checked = true;
-
-        track({
-          type:"category_select",
-          category_id:catId,
-          category_name:name
-        });
-      }
-
-      /* すべてのみ（◎）に表示 */
-      const allRow = document.createElement("label");
-      allRow.className = "item";
-      allRow.innerHTML = `
-        <input type="checkbox">
-        <span class="dot dot-all"></span>
-        <span>すべて</span>
-      `;
-      const allCheckbox = allRow.querySelector("input");
-      allCheckbox.addEventListener("change", () => {
-        selectAll();
-        isFirst = false;
-      });
-      wrap.appendChild(allRow);
-
-      /* --- 個別カテゴリ --- */
-      categories.forEach(c => {
-        const row = document.createElement("label");
-        row.className = "item";
-        row.innerHTML = `
-          <input type="checkbox">
-          <span class="dot" style="background:${c.color_code}"></span>
-          <span>${c.category_name}</span>
-        `;
-        const checkbox = row.querySelector("input");
-        checkbox.addEventListener("change", () => {
-          selectCategory(c.category_id, checkbox, c.category_name);
-          isFirst = false;
-        });
-        wrap.appendChild(row);
-      });
-
-      /* --- カテゴリ開閉 --- */
-      const toggleBtn = document.getElementById("toggleCategory");
-      let open = true;
-      toggleBtn.addEventListener("click", () => {
-        open = !open;
-        wrap.classList.toggle("hidden", !open);
-        toggleBtn.textContent = open ? "－" : "＋";
-      });
-
-      selectAll();
-    })();
-  </script>
-</body>
-</html>
+    // 説明文内URLを自動リンク化（http/https）
+    function linkify(text){
