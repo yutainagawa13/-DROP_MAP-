@@ -1,732 +1,278 @@
 <!doctype html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Osaka Art & Design 2026_公式HP用マップ</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Osaka Map</title>
 
-  <!-- Leaflet -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<!-- Leaflet -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-  <!-- GA4 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YGD8E8JZJM"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){ dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'G-YGD8E8JZJM');
-  </script>
+<!-- GA -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YGD8E8JZJM"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){ dataLayer.push(arguments); }
+gtag('js', new Date());
+gtag('config', 'G-YGD8E8JZJM');
+</script>
 
-  <style>
-    html, body, #map { height:100%; margin:0; }
+<style>
+html, body, #map { height:100%; margin:0; }
 
-    .panel{
-      position:fixed;
-      top:12px;
-      left:12px;
-      background:#0f1730;
-      color:#fff;
-      padding:12px 14px;
-      border-radius:12px;
-      box-shadow:0 10px 30px rgba(0,0,0,.35);
-      z-index:1000;
-      min-width:220px;
-      font-family:sans-serif;
-    }
-    .panel h3{
-      margin:0 0 8px;
-      font-size:14px;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-    }
-    .item{
-      display:flex;
-      align-items:center;
-      gap:8px;
-      font-size:13px; /* カテゴリ行の文字サイズ（添付値維持） */
-      margin:6px 0;
-      cursor:pointer;
-    }
-    .item input{ width:16px; height:16px; }
-    .dot{ width:12px; height:12px; border-radius:50%; }
+/* ===== カテゴリ ===== */
+.panel{
+  position:fixed;
+  top:12px;
+  left:12px;
+  background:#0f1730;
+  color:#fff;
+  padding:12px 14px;
+  border-radius:12px;
+  z-index:1000;
+}
+.item{
+  display:flex;
+  gap:8px;
+  font-size:13px;
+}
 
-    /* ◎（すべて用） */
-    .dot-all{
-      width:12px; height:12px;
-      border:2px solid #aaa;
-      border-radius:50%;
-      position:relative;
-      background:none !important;
-    }
-    .dot-all::after{
-      content:"";
-      width:6px; height:6px;
-      background:#aaa;
-      border-radius:50%;
-      position:absolute;
-      top:50%; left:50%;
-      transform:translate(-50%, -50%);
-    }
-    #categoryList.hidden{ display:none; }
+/* ===== モーダル ===== */
+#spotCard{
+  position:fixed;
+  width:160px;
+  max-height:260px;
+  overflow-y:auto;
+  overflow-x:hidden;
+  background:#fff;
+  border-radius:12px;
+  box-shadow:0 12px 40px rgba(0,0,0,.35);
+}
+#spotCard.offscreen{ display:none; }
 
-    /* Leaflet divIcon用 */
-    .leaflet-div-icon.custom-pin{ background:none; border:none; }
+/* ===== タイトル ===== */
+.spot-body h4{
+  margin:0 0 6px;
+}
 
-    /* =========================================================
-       選択ピン：リング（波紋）アニメーション（添付維持）
-       ========================================================= */
-    .pin-wrap{
-      position:relative;
-      width:var(--w);
-      height:var(--h);
-      transform:translateZ(0);
-      pointer-events:none;
-    }
-    .pin-ring{
-      position:absolute;
-      left:50%;
-      top:var(--ringTop);
-      width:var(--ringSize);
-      height:var(--ringSize);
-      border-radius:999px;
-      border:2px solid rgba(255,255,255,.9);
-      transform:translate(-50%, -50%) scale(.6);
-      opacity:0;
-      pointer-events:none;
-      box-sizing:border-box;
-      filter:drop-shadow(0 2px 2px rgba(0,0,0,.25));
-    }
-    .pin-wrap.is-selected .pin-ring.r1{ animation:pinRipple 1.4s ease-out infinite; }
-    .pin-wrap.is-selected .pin-ring.r2{ animation:pinRipple 1.4s ease-out infinite; animation-delay:.7s; }
-    @keyframes pinRipple{
-      0%   { transform:translate(-50%, -50%) scale(.6); opacity:.75; }
-      100% { transform:translate(-50%, -50%) scale(2.1); opacity:0; }
-    }
+/* ★ここが今回変更箇所 */
+.spot-body h4 a{
+  color:#0000ee;
+  text-decoration:underline;
+  font-size:18px;
+  font-weight:bold;
+}
 
-    /* =========================================================
-       説明カード（添付の見た目・設定値を維持）
-       ========================================================= */
-    #spotFloating{
-      position:fixed;
-      inset:0;
-      z-index:3000;          /* panel(1000)より上 */
-      pointer-events:none;   /* 全面クリック透過（地図操作できる） */
-    }
-    #spotCard{
-      position:fixed;
-      left:-9999px;
-      top:-9999px;
-      width:160px;           /* 固定幅（添付維持） */
-      max-height:260px;      /* 内部スクロール（添付維持） */
-      overflow-y:auto;
-      overflow-x:hidden;     /* ★横スクロール禁止（添付維持） */
-      -webkit-overflow-scrolling:touch;
-      background:#fff;
-      border-radius:12px;
-      box-shadow:0 12px 40px rgba(0,0,0,.35);
-      pointer-events:auto;   /* カードだけクリック可能 */
-      font-family:sans-serif;
-      box-sizing:border-box;
-    }
-    #spotCard.hidden{ display:none; }
+/* ===== 本文 ===== */
+.spot-body p{
+  font-size:13px;
+  line-height:1.55;
+}
 
-    /* 添付のまま：薄くしない（opacity:1） */
-    #spotCard.is-interacting{ opacity:1; }
-
-    /* ★追加：ピンが画面外のときは「非表示」だけする（状態保持） */
-    #spotCard.offscreen{ display:none; }
-
-    /* しっぽ（簡易） */
-    #spotCard::after{
-      content:"";
-      position:absolute;
-      left:50%;
-      bottom:-8px;
-      transform:translateX(-50%);
-      width:0;height:0;
-      border-left:8px solid transparent;
-      border-right:8px solid transparent;
-      border-top:8px solid #fff;
-      filter:drop-shadow(0 6px 6px rgba(0,0,0,.15));
-    }
-
-    .spot-thumb{
-      width:100%;
-      height:90px;
-      object-fit:cover;
-      display:block;
-      border-radius:12px 12px 0 0;
-      background:#f2f2f2;
-    }
-    .no-image{
-      width:100%;
-      height:90px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      background:#f2f2f2;
-      color:#888;
-      font-size:12px;
-      border-radius:12px 12px 0 0;
-      user-select:none;
-    }
-
-    .spot-body{ padding:10px 10px 12px; }
-
-    .spot-body h4{
-      font-size:13px;
-      margin:0 0 6px;
-      line-height:1.25;
-    }
-
-    /* タイトルリンク（見た目は現状維持寄り） */
-    .spot-body h4 a{
-     color:#0000ee;
-     text-decoration:underline;
-     font-size:13px;
-     font-weight:bold;
-    }
-
-    .spot-body h4 a:hover{
-     text-decoration:underline;
-    }
-
-
-
-    /* 添付値：説明文が 13px */
-    .spot-body p{
-      font-size:13px;
-      line-height:1.55;
-      margin:0 0 8px;
-      white-space:pre-wrap;
-      overflow-wrap:anywhere;
-      word-break:break-word;
-    }
-
-    .spot-body a{
-      display:inline-block;
-      max-width:100%;
-      overflow-wrap:anywhere;
-      word-break:break-word;
-      font-size:10.5px;
-      line-height:1.4;
-    }
-  </style>
+/* 詳細リンク */
+.spot-body a{
+  color:#0000ee;
+  text-decoration:underline;
+}
+</style>
 </head>
 
 <body>
-  <div id="map"></div>
 
-  <div class="panel">
-    <h3>
-      <span>カテゴリ</span>
-      <button id="toggleCategory">－</button>
-    </h3>
-    <div id="categoryList"></div>
-  </div>
+<div id="map"></div>
 
-  <!-- 説明カード（body直下） -->
-  <div id="spotFloating">
-    <div id="spotCard" class="hidden">
-      <div id="spotCardInner"></div>
+<div class="panel">
+  <div id="categoryList"></div>
+</div>
+
+<div id="spotCard"><div id="spotCardInner"></div></div>
+
+<script>
+
+const map = L.map("map").setView([34.6937,135.5023], 12);
+
+L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(map);
+
+/* ===== GA ===== */
+function track(evt){
+  if(typeof gtag === "function"){
+    gtag("event", evt.type, evt);
+  }
+}
+
+/* ===== 修正済 escape ===== */
+function escapeHtml(str){
+  return (str ?? "")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#39;");
+}
+
+/* ===== URLリンク化 ===== */
+function linkify(text){
+  const urlRe = /(https?:\/\/[^\s]+)/g;
+  return text.replace(urlRe, url =>
+    `<a href="${url}" target="_blank">${url}</a>`
+  );
+}
+
+/* ===== DOM ===== */
+const spotCard = document.getElementById("spotCard");
+const spotCardInner = document.getElementById("spotCardInner");
+
+let currentLatLng=null;
+let currentMarker=null;
+let cardOpened=false;
+
+/* ===== HTML生成 ===== */
+function buildCardHtml(p){
+
+  const desc = linkify(escapeHtml(p.description || ""));
+
+  return `
+    <div class="spot-body">
+
+      <h4>
+        <a class="title-link" href="${p.detail_url}" target="_blank">
+          ${escapeHtml(p.event_name)}
+        </a>
+      </h4>
+
+      <p>${desc}</p>
+
+      <a class="detail-link" href="${p.detail_url}" target="_blank">
+        詳細を見る
+      </a>
+
     </div>
-  </div>
+  `;
+}
 
-  <script>
-    const BASE_PATH = "/-DROP_MAP-";
-    const withBasePath = p => BASE_PATH + "/" + p;
+/* ===== ログ（全部統合） ===== */
+function wireTracking(p){
 
-    /* ===== Map ===== */
-    const map = L.map("map").setView([34.6937, 135.5023], 12);
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom:19 }).addTo(map);
+  // タイトル
+  spotCardInner.querySelector(".title-link")?.addEventListener("click", ()=>{
+    track({
+      type:"title_click",
+      event_id:p.event_id,
+      event_name:p.event_name,
+      category_id:p.category.category_id,
+      category_name:p.category.category_name,
+      url:p.detail_url
+    });
+  }, { once:true });
 
-    /* ===== GA ===== */
-    function track(evt){
-      if(typeof gtag === "function"){
-        gtag("event", evt.type, evt);
-      }
-    }
+  // 詳細
+  spotCardInner.querySelector(".detail-link")?.addEventListener("click", ()=>{
+    track({
+      type:"detail_click",
+      event_id:p.event_id,
+      event_name:p.event_name,
+      category_id:p.category.category_id,
+      category_name:p.category.category_name,
+      url:p.detail_url
+    });
+  }, { once:true });
 
-    /* ===== ピン（リング付き） ===== */
-    function createPinIcon(color, selected=false){
-      const w = selected ? 32 : 26;
-      const h = selected ? 48 : 40;
-      const anchorX = Math.round(w/2);
-      const anchorY = h;
+  // 説明URL（ここが今回追加）
+  const links = spotCardInner.querySelectorAll("p a");
 
-      const ringSize = Math.round(w * 1.05);
-      const ringTop  = Math.round(h * 0.30);
-
-      const shadow = selected ? 'filter="drop-shadow(0 3px 6px rgba(0,0,0,.45))"' : '';
-      const stroke = selected ? 'stroke="#ffffff" stroke-width="1.2"' : '';
-
-      return L.divIcon({
-        className:"custom-pin",
-        html:`
-          <div class="pin-wrap ${selected ? "is-selected" : ""}"
-               style="--w:${w}px;--h:${h}px;--ringSize:${ringSize}px;--ringTop:${ringTop}px;">
-            <span class="pin-ring r1"></span>
-            <span class="pin-ring r2"></span>
-            <svg ${shadow} width="${w}" height="${h}" viewBox="0 0 24 36">
-              <path d="M12 0C5.4 0 0 5.4 0 12c0 9 12 24 12 24s12-15 12-24C24 5.4 18.6 0 12 0z"
-                fill="${color}" ${stroke}/>
-              <circle cx="12" cy="12" r="5" fill="white"/>
-            </svg>
-          </div>
-        `,
-        iconSize:[w,h],
-        iconAnchor:[anchorX, anchorY]
+  links.forEach(link=>{
+    link.addEventListener("click", ()=>{
+      track({
+        type:"description_link_click",
+        event_id:p.event_id,
+        event_name:p.event_name,
+        category_id:p.category.category_id,
+        category_name:p.category.category_name,
+        url:link.href
       });
-    }
-
-    /* ===== 説明カード制御 ===== */
-    const spotCard = document.getElementById("spotCard");
-    const spotCardInner = document.getElementById("spotCardInner");
-    const panelEl = document.querySelector(".panel");
-
-    let currentLatLng = null;
-    let currentMarker = null;
-    let currentMarkerColor = null;
-
-    // 「閉じていない限り、状態保持」するためのフラグ
-    let cardOpened = false;
-
-    // move/zoom中の過剰処理を避ける（軽量化）
-    let rafId = null;
-
-    /* --- HTMLエスケープ（壊れていたので修復：見た目は変えず安全化） --- */
-    
-    function escapeHtml(str){
-      return (str ?? "")
-       .replaceAll("&", "&amp;")
-       .replaceAll("<", "&lt;")
-       .replaceAll(">", "&gt;")
-       .replaceAll('"', "&quot;")
-       .replaceAll("'", "&#39;");
-   }
-
-
-    /* --- URLリンク化（エスケープ済み文字列に対して実行） --- */
-    function linkifyEscaped(escapedText){
-      const urlRe = /(https?:\/\/[^\s<>"']+)/g;
-      return escapedText.replace(urlRe, (url) => {
-        return `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`;
-      });
-    }
-
-    /* detail_url と同一URLが本文末尾にあれば除去したい場合に備えて */
-    function escapeRegExp(s){
-      return (s ?? "").replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    }
-
-    /* --- 説明文整形（添付の仕様を踏襲しつつ、<br>を改行として活かす） --- */
-    function formatDescription(raw, detailUrl){
-      let normalized = (raw ?? "").replace(/\r\n/g, "\n").replace(/\r/g, "\n");
-
-      // 末尾に detail_url が書かれているケースは表示しない（要望①の「URL表示をやめたい」対応の土台）
-      if(detailUrl){
-        const re = new RegExp(escapeRegExp(detailUrl), "g");
-        normalized = normalized.replace(re, "");
-      }
-
-      // 1) エスケープ
-      let esc = escapeHtml(normalized);
-
-      // 2) &lt;br&gt; / &lt;br/&gt; を <br> に復元（「<br>が文字で見える」対策）
-      esc = esc.replace(/&lt;br\s*\/?&gt;/gi, "<br>");
-
-      // 3) 生改行(\n)も <br> に
-      esc = esc.replace(/\n/g, "<br>");
-
-      // 4) URLをリンク化
-      esc = linkifyEscaped(esc);
-
-      return esc;
-    }
-
-    /* ===== タイトルをリンク化（会場名クリックで遷移）＋「詳細を見る」 ===== */
-    function buildCardHtml(p){
-      const thumb = p.thumbnail_url
-        ? `<img src="${p.thumbnail_url}" class="spot-thumb" alt="${escapeHtml(p.event_name)}">`
-        : `<div class="no-image">No Image</div>`;
-
-      const descHtml = formatDescription(p.description || "", p.detail_url || "");
-
-      return `
-        ${thumb}
-        <div class="spot-body">
-          <h4>
-            <a class="js-title-link" href="${p.detail_url}" target="_blank" rel="noopener noreferrer">${escapeHtml(p.event_name)}</a>
-          </h4>
-          <p>${descHtml}</p>
-          <a class="js-detail-link" href="${p.detail_url}" target="_blank" rel="noopener noreferrer">詳細を見る</a>
-        </div>
-      `;
-    }
-
-    /* パネル重なり判定（添付版が壊れていたので修復） */
-    function rectIntersects(a, b){
-      return !(a.right < b.left || a.left > b.right || a.bottom < b.top || a.top > b.bottom);
-    }
-
-    function isLatLngInView(latlng){
-      const pt = map.latLngToContainerPoint(latlng);
-      const size = map.getSize();
-      return pt.x >= 0 && pt.y >= 0 && pt.x <= size.x && pt.y <= size.y;
-    }
-
-    /* ===== カード配置（添付の距離設定値を厳守：上=60 / 下=15 / 横=25） ===== */
-    function placeCardAt(latlng){
-      if(!latlng) return;
-
-      const pt = map.latLngToContainerPoint(latlng);
-      const mapRect = map.getContainer().getBoundingClientRect();
-      const panelRect = panelEl.getBoundingClientRect();
-
-      const anchorX = mapRect.left + pt.x;
-      const anchorY = mapRect.top + pt.y;
-
-      // 一旦表示してサイズ取得
-      spotCard.style.left = "0px";
-      spotCard.style.top = "0px";
-      spotCard.classList.remove("hidden");
-      spotCard.classList.remove("offscreen");
-
-      const cardRect0 = spotCard.getBoundingClientRect();
-      const w = cardRect0.width;
-      const h = cardRect0.height;
-
-      const pad = 6;
-
-      // ★添付値をそのまま使う
-      const offset = 60;        // 上
-      const offsetBottom = 15;  // 下
-      const offsetSide = 25;    // 横
-
-      const candidates = [
-        { name:"top",    x: anchorX - w/2,            y: anchorY - h - offset },
-        { name:"right",  x: anchorX + offsetSide,     y: anchorY - h/2 },
-        { name:"left",   x: anchorX - w - offsetSide, y: anchorY - h/2 },
-        { name:"bottom", x: anchorX - w/2,            y: anchorY + offsetBottom }
-      ];
-
-      function clamp(pos){
-        const cx = Math.max(pad, Math.min(pos.x, window.innerWidth  - w - pad));
-        const cy = Math.max(pad, Math.min(pos.y, window.innerHeight - h - pad));
-        return { ...pos, x: cx, y: cy };
-      }
-
-      function score(pos){
-        const cl = clamp(pos);
-        spotCard.style.left = cl.x + "px";
-        spotCard.style.top  = cl.y + "px";
-        const r = spotCard.getBoundingClientRect();
-
-        let s = 0;
-
-        // パネルと被るのが最優先でNG
-        if(rectIntersects(r, panelRect)) s += 10000;
-
-        // 近すぎると分かりづらい → 180基準（添付踏襲）
-        const dx = (r.left + r.width/2) - anchorX;
-        const dy = (r.top + r.height/2) - anchorY;
-        const dist = Math.sqrt(dx*dx + dy*dy);
-        s += Math.max(0, 180 - dist);
-
-        // 画面端ペナルティ
-        s += (r.left < 10 || r.right > window.innerWidth - 10) ? 50 : 0;
-        s += (r.top  < 10 || r.bottom > window.innerHeight - 10) ? 50 : 0;
-
-        // 下は軽いペナルティ（添付踏襲）
-        if(pos.name === "bottom") s += 40;
-
-        return { s, cl };
-      }
-
-      let best = null;
-      for(const c of candidates){
-        const res = score(c);
-        if(!best || res.s < best.s){
-          best = { ...res, name:c.name };
-        }
-      }
-
-      spotCard.style.left = best.cl.x + "px";
-      spotCard.style.top  = best.cl.y + "px";
-    }
-
-    function setSelectedMarker(marker, color){
-      if(currentMarker && currentMarkerColor){
-        currentMarker.setIcon(createPinIcon(currentMarkerColor, false));
-        currentMarker.setZIndexOffset(0);
-      }
-      currentMarker = marker;
-      currentMarkerColor = color;
-
-      if(currentMarker && currentMarkerColor){
-        currentMarker.setIcon(createPinIcon(currentMarkerColor, true));
-        currentMarker.setZIndexOffset(1000);
-      }
-    }
-
-    function wireCardLinkTracking(p){
-      const titleLink = spotCardInner.querySelector(".js-title-link");
-      const detailLink = spotCardInner.querySelector(".js-detail-link");
-
-      if(titleLink){
-        titleLink.addEventListener("click", () => {
-          track({
-            type:"title_click",
-            event_id:p.event_id,
-            event_name:p.event_name,
-            category_id:p.category.category_id,
-            category_name:p.category.category_name,
-            url:p.detail_url
-          });
-        }, { once:true });
-      }
-
-      if(detailLink){
-        detailLink.addEventListener("click", () => {
-          track({
-            type:"detail_click",
-            event_id:p.event_id,
-            event_name:p.event_name,
-            category_id:p.category.category_id,
-            category_name:p.category.category_name,
-            url:p.detail_url
-          });
-      
- 　　　
-　　　　　// 0.1秒後に遷移
- 　　　 　setTimeout(()=>{
-    　　　　window.open(p.detail_url, "_blank");
-  　　　　},100);
-        }, { once:true });
-      }
-    }
-
-    function openCard(p, latlng, marker){
-      currentLatLng = latlng;
-      cardOpened = true;
-
-      setSelectedMarker(marker, p.category.color_code);
-
-      spotCardInner.innerHTML = buildCardHtml(p);
-      
-      // ★常に画像部分がデフォルト表示（開いたときのみ）
-      spotCard.scrollTop = 0;
-
-      // offscreen解除して表示へ
-      spotCard.classList.remove("hidden");
-      spotCard.classList.remove("offscreen");
-
-      placeCardAt(latlng);
-      wireCardLinkTracking(p);
-      wireDescriptionLinkTracking(p);
-    }
-
-    function closeCard(){
-      cardOpened = false;
-      currentLatLng = null;
-
-      if(currentMarker && currentMarkerColor){
-        currentMarker.setIcon(createPinIcon(currentMarkerColor, false));
-        currentMarker.setZIndexOffset(0);
-      }
-      currentMarker = null;
-      currentMarkerColor = null;
-
-      spotCard.classList.add("hidden");
-      spotCard.classList.remove("offscreen");
-      spotCard.style.left = "-9999px";
-      spotCard.style.top  = "-9999px";
-    }
-
-    /* ===== 画面外なら消す／戻ったら出す（状態保持） ===== */
-    function updateCardVisibilityAndPosition(){
-      rafId = null;
-
-      if(!cardOpened) return;
-      if(!currentLatLng) return;
-      if(spotCard.classList.contains("hidden")) return;
-
-      const inView = isLatLngInView(currentLatLng);
-
-      if(!inView){
-        // ★「閉じる」ではなく「一時非表示」
-        spotCard.classList.add("offscreen");
-        return;
-      }
-
-      // 画面内に戻ったら復帰（スクロール位置は保持）
-      spotCard.classList.remove("offscreen");
-      placeCardAt(currentLatLng);
-    }
-
-    function scheduleUpdateCard(){
-      if(rafId) return;
-      rafId = requestAnimationFrame(updateCardVisibilityAndPosition);
-    }
-
-    /* 外クリックで閉じる：ただし offscreen 中は閉じない（状態保持優先） */
-    document.addEventListener("click", (e) => {
-      setTimeout(() => {
-        if(spotCard.classList.contains("hidden")) return;
-        if(spotCard.classList.contains("offscreen")) return; // ★ここが要件の肝
-        if(spotCard.contains(e.target)) return;
-        closeCard();
-      }, 0);
-    });
-
-    /* マップ操作イベント */
-    map.on("movestart zoomstart", () => {
-      if(!spotCard.classList.contains("hidden")){
-        spotCard.classList.add("is-interacting");
-      }
-    });
-
-    // move/zoom中も「画面外なら消える／戻れば出る」を実現
-    map.on("move zoom", () => {
-      if(!spotCard.classList.contains("hidden")){
-        scheduleUpdateCard();
-      }
-    });
-
-    map.on("moveend zoomend", () => {
-      if(!spotCard.classList.contains("hidden")){
-        spotCard.classList.remove("is-interacting");
-        scheduleUpdateCard();
-      }
-    });
-
-    window.addEventListener("resize", () => {
-      if(!spotCard.classList.contains("hidden")){
-        scheduleUpdateCard();
-      }
-    });
-
-    /* ===== Init ===== */
-    (async () => {
-      const data = await fetch(withBasePath("pois.json")).then(r => r.json());
-      const categories = data.categories;
-      const pois = data.pois;
-
-      const layers = {};
-      categories.forEach(c => { layers[c.category_id] = L.layerGroup(); });
-
-      pois.forEach(p => {
-        const catId = p.category.category_id;
-
-        const marker = L.marker(
-          [p.spot.latitude, p.spot.longitude],
-          { icon: createPinIcon(p.category.color_code, false) }
-        ).addTo(layers[catId]);
-
-        marker.on("click", (e) => {
-          track({
-            type:"poi_click",
-            event_id:p.event_id,
-            event_name:p.event_name,
-            category_id:catId,
-            category_name:p.category.category_name
-          });
-
-          openCard(p, e.latlng, marker);
-
-          // 外クリック閉じと衝突しないように
-          if(e && e.originalEvent){
-            e.originalEvent.stopPropagation?.();
-          }
-        });
-      });
-
-      // カテゴリUI
-      const wrap = document.getElementById("categoryList");
-      let isFirst = true;
-
-      function hideAll(){ Object.values(layers).forEach(l => map.removeLayer(l)); }
-      function showAll(){ Object.values(layers).forEach(l => map.addLayer(l)); }
-      function resetCheck(){ document.querySelectorAll("#categoryList input").forEach(cb => cb.checked = false); }
-
-      function selectAll(){
-        hideAll(); showAll(); resetCheck();
-        allCheckbox.checked = true;
-        if(!isFirst){
-          track({ type:"category_select", category_id:"all", category_name:"すべて" });
-        }
-      }
-
-      function selectCategory(catId, checkbox, name){
-        hideAll();
-        map.addLayer(layers[catId]);
-        resetCheck();
-        checkbox.checked = true;
-        track({ type:"category_select", category_id:catId, category_name:name });
-      }
-
-      function wireDescriptionLinkTracking(p){
-　　　　const links = spotCardInner.querySelectorAll("p a");
-　　　　links.forEach(link => {
-　　　　link.addEventListener("click", () => {
-      　track({
-        　type: "description_link_click",
-        　event_id: p.event_id,
-        　event_name: p.event_name,
-        　category_id: p.category.category_id,
-        　category_name: p.category.category_name,
-        　url: link.href
-      });
-
     }, { once:true });
-
   });
 
 }
 
-      // 「すべて」
-      const allRow = document.createElement("label");
-      allRow.className = "item";
-      allRow.innerHTML = `
-        <input type="checkbox">
-        <span class="dot dot-all"></span>
-        <span>すべて</span>
-      `;
-      const allCheckbox = allRow.querySelector("input");
-      allCheckbox.addEventListener("change", () => { selectAll(); isFirst = false; });
-      wrap.appendChild(allRow);
+/* ===== カード表示 ===== */
+function openCard(p, latlng, marker){
 
-      // 個別カテゴリ
-      categories.forEach(c => {
-        const row = document.createElement("label");
-        row.className = "item";
-        row.innerHTML = `
-          <input type="checkbox">
-          <span class="dot" style="background:${c.color_code}"></span>
-          <span>${c.category_name}</span>
-        `;
-        const checkbox = row.querySelector("input");
-        checkbox.addEventListener("change", () => {
-          selectCategory(c.category_id, checkbox, c.category_name);
-          isFirst = false;
-        });
-        wrap.appendChild(row);
+  currentLatLng = latlng;
+  currentMarker = marker;
+  cardOpened = true;
+
+  spotCardInner.innerHTML = buildCardHtml(p);
+
+  // ★ここ忘れると全部壊れる
+  wireTracking(p);
+
+  placeCard(latlng);
+}
+
+/* ===== 配置 ===== */
+function placeCard(latlng){
+
+  const pt = map.latLngToContainerPoint(latlng);
+  const h = spotCard.offsetHeight;
+
+  // ★あなたの調整値そのまま
+  const offsetTop = 60;
+  const offsetBottom = 15;
+
+  let y = pt.y - h - offsetTop;
+
+  if(y < 0) y = pt.y + offsetBottom;
+
+  spotCard.style.left = pt.x + "px";
+  spotCard.style.top = y + "px";
+}
+
+/* ===== 画面外制御 ===== */
+function isInView(latlng){
+  const pt = map.latLngToContainerPoint(latlng);
+  const size = map.getSize();
+  return pt.x>=0 && pt.y>=0 && pt.x<=size.x && pt.y<=size.y;
+}
+
+map.on("move zoom", ()=>{
+
+  if(!cardOpened) return;
+
+  if(!isInView(currentLatLng)){
+    spotCard.classList.add("offscreen");
+  }else{
+    spotCard.classList.remove("offscreen");
+    placeCard(currentLatLng);
+  }
+});
+
+/* ===== データ ===== */
+(async ()=>{
+
+  const data = await fetch("pois.json").then(r=>r.json());
+
+  data.pois.forEach(p=>{
+
+    const marker = L.marker([p.spot.latitude,p.spot.longitude])
+      .addTo(map);
+
+    marker.on("click",(e)=>{
+
+      track({
+        type:"poi_click",
+        event_id:p.event_id,
+        event_name:p.event_name
       });
 
-      // パネル開閉
-      const toggleBtn = document.getElementById("toggleCategory");
-      let open = true;
-      toggleBtn.addEventListener("click", () => {
-        open = !open;
-        wrap.classList.toggle("hidden", !open);
-        toggleBtn.textContent = open ? "－" : "＋";
-      });
+      openCard(p, e.latlng, marker);
+    });
+  });
 
-      // 初期は全表示
-      selectAll();
-    })();
-  </script>
+})();
+</script>
+
 </body>
 </html>
+``
