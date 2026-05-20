@@ -299,14 +299,16 @@
     /* --- HTMLエスケープ（壊れていたので修復：見た目は変えず安全化） --- */
     
     
-  function escapeHtml(str){
-    return (str ?? "")
-     .replaceAll("&", "&amp;")
-     .replaceAll("<", "&lt;")
-     .replaceAll(">", "&gt;")
-     .replaceAll('"', "&quot;")
-     .replaceAll("'", "&#39;");
+  
+function escapeHtml(str){
+  return (str ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
 }
+
 
 
 
@@ -369,9 +371,16 @@
     }
 
     /* パネル重なり判定（添付版が壊れていたので修復） */
-    function rectIntersects(a, b){
-      return !(a.right < b.left || a.left > b.right || a.bottom < b.top || a.top > b.bottom);
-    }
+    
+function rectIntersects(a, b){
+  return !(
+    a.right < b.left ||
+    a.left > b.right ||
+    a.bottom < b.top ||
+    a.top > b.bottom
+  );
+}
+
 
     function isLatLngInView(latlng){
       const pt = map.latLngToContainerPoint(latlng);
