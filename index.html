@@ -297,14 +297,16 @@
     let rafId = null;
 
     /* --- HTMLエスケープ（壊れていたので修復：見た目は変えず安全化） --- */
+    
     function escapeHtml(str){
       return (str ?? "")
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#39;");
-    }
+       .replaceAll("&", "&amp;")
+       .replaceAll("<", "&lt;")
+       .replaceAll(">", "&gt;")
+       .replaceAll('"', "&quot;")
+       .replaceAll("'", "&#39;");
+   }
+
 
     /* --- URLリンク化（エスケープ済み文字列に対して実行） --- */
     function linkifyEscaped(escapedText){
