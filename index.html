@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Osaka Art & Design 2026_公式HP用マップ</title>
+  <title>・Osaka Art & Design 2026_公式HP用マップ</title>
 
   <!-- Leaflet -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
@@ -21,7 +21,6 @@
   <style>
     html, body, #map { height:100%; margin:0; }
 
-    /* ===== カテゴリパネル ===== */
     .panel{
       position:fixed;
       top:12px;
@@ -46,7 +45,7 @@
       display:flex;
       align-items:center;
       gap:8px;
-      font-size:13px;
+      font-size:13px; /* カテゴリ行の文字サイズ（添付値維持） */
       margin:6px 0;
       cursor:pointer;
     }
@@ -76,7 +75,7 @@
     .leaflet-div-icon.custom-pin{ background:none; border:none; }
 
     /* =========================================================
-       ★ 選択ピン：リング（波紋）
+       選択ピン：リング（波紋）アニメーション（添付維持）
        ========================================================= */
     .pin-wrap{
       position:relative;
@@ -101,32 +100,29 @@
     }
     .pin-wrap.is-selected .pin-ring.r1{ animation:pinRipple 1.4s ease-out infinite; }
     .pin-wrap.is-selected .pin-ring.r2{ animation:pinRipple 1.4s ease-out infinite; animation-delay:.7s; }
-
     @keyframes pinRipple{
       0%   { transform:translate(-50%, -50%) scale(.6); opacity:.75; }
       100% { transform:translate(-50%, -50%) scale(2.1); opacity:0; }
     }
 
     /* =========================================================
-       ★ 説明カード（body直下・最前面）
+       説明カード（添付の見た目・設定値を維持）
        ========================================================= */
     #spotFloating{
       position:fixed;
       inset:0;
-      z-index:3000;          /* カテゴリより上 */
-      pointer-events:none;   /* 全面はクリック透過 */
+      z-index:3000;          /* panel(1000)より上 */
+      pointer-events:none;   /* 全面クリック透過（地図操作できる） */
     }
     #spotCard{
       position:fixed;
       left:-9999px;
       top:-9999px;
-      width:160px;
-      max-height:260px;
-
+      width:160px;           /* 固定幅（添付維持） */
+      max-height:260px;      /* 内部スクロール（添付維持） */
       overflow-y:auto;
-      overflow-x:hidden;     /* ★横スクロール禁止 */
+      overflow-x:hidden;     /* ★横スクロール禁止（添付維持） */
       -webkit-overflow-scrolling:touch;
-
       background:#fff;
       border-radius:12px;
       box-shadow:0 12px 40px rgba(0,0,0,.35);
@@ -136,13 +132,11 @@
     }
     #spotCard.hidden{ display:none; }
 
-    /* マップ操作中：薄く + 誤タップ防止（不要なら opacity を 1 に） */
-    #spotCard.is-interacting{ opacity:1;}
+    /* 添付のまま：薄くしない（opacity:1） */
+    #spotCard.is-interacting{ opacity:1; }
 
-    /* 画面外のとき：状態は保持しつつ「表示だけ消す」 */
-    #spotCard.offscreen{
-      display:none;          /* ←ここが「画面外で消える」 */
-    }
+    /* ★追加：ピンが画面外のときは「非表示」だけする（状態保持） */
+    #spotCard.offscreen{ display:none; }
 
     /* しっぽ（簡易） */
     #spotCard::after{
@@ -180,25 +174,30 @@
     }
 
     .spot-body{ padding:10px 10px 12px; }
+
     .spot-body h4{
       font-size:13px;
       margin:0 0 6px;
       line-height:1.25;
     }
+
+    /* タイトルリンク（見た目は現状維持寄り） */
     .spot-body h4 a{
       color:inherit;
       text-decoration:none;
     }
     .spot-body h4 a:hover{ text-decoration:underline; }
 
+    /* 添付値：説明文が 13px */
     .spot-body p{
-      font-size:10.5px;
+      font-size:13px;
       line-height:1.55;
       margin:0 0 8px;
       white-space:pre-wrap;
       overflow-wrap:anywhere;
       word-break:break-word;
     }
+
     .spot-body a{
       display:inline-block;
       max-width:100%;
@@ -221,6 +220,7 @@
     <div id="categoryList"></div>
   </div>
 
+  <!-- 説明カード（body直下） -->
   <div id="spotFloating">
     <div id="spotCard" class="hidden">
       <div id="spotCardInner"></div>
@@ -283,12 +283,13 @@
     let currentMarker = null;
     let currentMarkerColor = null;
 
-    // 「閉じた」状態（hidden）と「画面外で一時非表示」（offscreen）を分離するためのフラグ
+    // 「閉じていない限り、状態保持」するためのフラグ
     let cardOpened = false;
 
-    // 描画負荷を抑えるため requestAnimationFrame で更新をまとめる
+    // move/zoom中の過剰処理を避ける（軽量化）
     let rafId = null;
 
+    /* --- HTMLエスケープ（壊れていたので修復：見た目は変えず安全化） --- */
     function escapeHtml(str){
       return (str ?? "")
         .replaceAll("&", "&amp;")
@@ -298,11 +299,7 @@
         .replaceAll("'", "&#39;");
     }
 
-    function escapeRegExp(s){
-      return (s ?? "").replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    }
-
-    // URLをリンク化（エスケープ済み文字列に対して実行）
+    /* --- URLリンク化（エスケープ済み文字列に対して実行） --- */
     function linkifyEscaped(escapedText){
       const urlRe = /(https?:\/\/[^\s<>"']+)/g;
       return escapedText.replace(urlRe, (url) => {
@@ -310,36 +307,37 @@
       });
     }
 
-    // 説明文整形：
-    // - detail_url を本文末尾などに持っている場合があるので表示しない（重複排除）
-    // - &lt;br&gt; / &lt;br/&gt; を <br> に戻す
-    // - \n も <br> に変換
-    // - その後 URL をリンク化
+    /* detail_url と同一URLが本文末尾にあれば除去したい場合に備えて */
+    function escapeRegExp(s){
+      return (s ?? "").replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    }
+
+    /* --- 説明文整形（添付の仕様を踏襲しつつ、<br>を改行として活かす） --- */
     function formatDescription(raw, detailUrl){
       let normalized = (raw ?? "").replace(/\r\n/g, "\n").replace(/\r/g, "\n");
 
+      // 末尾に detail_url が書かれているケースは表示しない（要望①の「URL表示をやめたい」対応の土台）
       if(detailUrl){
         const re = new RegExp(escapeRegExp(detailUrl), "g");
         normalized = normalized.replace(re, "");
-        // URLだけの行が残りやすいので空行を詰める
-        normalized = normalized.replace(/\n\s*\n+/g, "\n\n");
       }
 
-      // まずエスケープ
+      // 1) エスケープ
       let esc = escapeHtml(normalized);
 
-      // もともと <br> が文字として入っているケース（&lt;br&gt;）だけを改行に復元
+      // 2) &lt;br&gt; / &lt;br/&gt; を <br> に復元（「<br>が文字で見える」対策）
       esc = esc.replace(/&lt;br\s*\/?&gt;/gi, "<br>");
 
-      // 生改行も <br> に
+      // 3) 生改行(\n)も <br> に
       esc = esc.replace(/\n/g, "<br>");
 
-      // 最後にURLリンク化
+      // 4) URLをリンク化
       esc = linkifyEscaped(esc);
 
       return esc;
     }
 
+    /* ===== タイトルをリンク化（会場名クリックで遷移）＋「詳細を見る」 ===== */
     function buildCardHtml(p){
       const thumb = p.thumbnail_url
         ? `<img src="${p.thumbnail_url}" class="spot-thumb" alt="${escapeHtml(p.event_name)}">`
@@ -347,15 +345,11 @@
 
       const descHtml = formatDescription(p.description || "", p.detail_url || "");
 
-      // ①タイトルをリンク化（URL表示はしない）
-      // ②「詳細を見る」クリックはGA送信（別タブで開くので送信が途切れにくい）
       return `
         ${thumb}
         <div class="spot-body">
           <h4>
-            <a class="js-title-link" href="${p.detail_url}" target="_blank" rel="noopener noreferrer">
-              ${escapeHtml(p.event_name)}
-            </a>
+            <a class="js-title-link" href="${p.detail_url}" target="_blank" rel="noopener noreferrer">${escapeHtml(p.event_name)}</a>
           </h4>
           <p>${descHtml}</p>
           <a class="js-detail-link" href="${p.detail_url}" target="_blank" rel="noopener noreferrer">詳細を見る</a>
@@ -363,6 +357,7 @@
       `;
     }
 
+    /* パネル重なり判定（添付版が壊れていたので修復） */
     function rectIntersects(a, b){
       return !(a.right < b.left || a.left > b.right || a.bottom < b.top || a.top > b.bottom);
     }
@@ -373,7 +368,7 @@
       return pt.x >= 0 && pt.y >= 0 && pt.x <= size.x && pt.y <= size.y;
     }
 
-    // カード配置：上/右/左/下の候補から最適配置（カテゴリパネル重なり回避）
+    /* ===== カード配置（添付の距離設定値を厳守：上=60 / 下=15 / 横=25） ===== */
     function placeCardAt(latlng){
       if(!latlng) return;
 
@@ -390,19 +385,19 @@
       spotCard.classList.remove("hidden");
       spotCard.classList.remove("offscreen");
 
-      const r0 = spotCard.getBoundingClientRect();
-      const w = r0.width;
-      const h = r0.height;
+      const cardRect0 = spotCard.getBoundingClientRect();
+      const w = cardRect0.width;
+      const h = cardRect0.height;
 
       const pad = 6;
 
-      // 上は少し離す、下は近づける（遠すぎ問題の対策）
-      const offsetTop = 28;
-      const offsetBottom = 8;
-      const offsetSide = 16;
+      // ★添付値をそのまま使う
+      const offset = 60;        // 上
+      const offsetBottom = 15;  // 下
+      const offsetSide = 25;    // 横
 
       const candidates = [
-        { name:"top",    x: anchorX - w/2,            y: anchorY - h - offsetTop },
+        { name:"top",    x: anchorX - w/2,            y: anchorY - h - offset },
         { name:"right",  x: anchorX + offsetSide,     y: anchorY - h/2 },
         { name:"left",   x: anchorX - w - offsetSide, y: anchorY - h/2 },
         { name:"bottom", x: anchorX - w/2,            y: anchorY + offsetBottom }
@@ -421,9 +416,11 @@
         const r = spotCard.getBoundingClientRect();
 
         let s = 0;
+
+        // パネルと被るのが最優先でNG
         if(rectIntersects(r, panelRect)) s += 10000;
 
-        // ピンと近すぎるとどれのカードか分かりづらい → 距離ペナルティ
+        // 近すぎると分かりづらい → 180基準（添付踏襲）
         const dx = (r.left + r.width/2) - anchorX;
         const dy = (r.top + r.height/2) - anchorY;
         const dist = Math.sqrt(dx*dx + dy*dy);
@@ -433,8 +430,8 @@
         s += (r.left < 10 || r.right > window.innerWidth - 10) ? 50 : 0;
         s += (r.top  < 10 || r.bottom > window.innerHeight - 10) ? 50 : 0;
 
-        // 下は少しだけ不利（上が可能なら上を取りやすく）
-        if(pos.name === "bottom") s += 30;
+        // 下は軽いペナルティ（添付踏襲）
+        if(pos.name === "bottom") s += 40;
 
         return { s, cl };
       }
@@ -460,7 +457,7 @@
       currentMarkerColor = color;
 
       if(currentMarker && currentMarkerColor){
-        currentMarker.setIcon(createPinIcon(currentMarkerColor, true)); // リングON
+        currentMarker.setIcon(createPinIcon(currentMarkerColor, true));
         currentMarker.setZIndexOffset(1000);
       }
     }
@@ -500,23 +497,18 @@
       currentLatLng = latlng;
       cardOpened = true;
 
-      // 選択ピン強調
       setSelectedMarker(marker, p.category.color_code);
 
-      // 内容差し替え
       spotCardInner.innerHTML = buildCardHtml(p);
 
-      // 常に画像が先頭
+      // ★常に画像部分がデフォルト表示（開いたときのみ）
       spotCard.scrollTop = 0;
 
-      // 表示状態に戻す（offscreen解除）
+      // offscreen解除して表示へ
       spotCard.classList.remove("hidden");
       spotCard.classList.remove("offscreen");
 
-      // 位置合わせ
       placeCardAt(latlng);
-
-      // リンクのGA送信
       wireCardLinkTracking(p);
     }
 
@@ -524,7 +516,6 @@
       cardOpened = false;
       currentLatLng = null;
 
-      // ピン強調解除
       if(currentMarker && currentMarkerColor){
         currentMarker.setIcon(createPinIcon(currentMarkerColor, false));
         currentMarker.setZIndexOffset(0);
@@ -532,16 +523,16 @@
       currentMarker = null;
       currentMarkerColor = null;
 
-      // 完全に閉じる
       spotCard.classList.add("hidden");
       spotCard.classList.remove("offscreen");
       spotCard.style.left = "-9999px";
       spotCard.style.top  = "-9999px";
     }
 
-    // ★カード表示状態の更新（画面外なら一時非表示、戻ったら復帰）
+    /* ===== 画面外なら消す／戻ったら出す（状態保持） ===== */
     function updateCardVisibilityAndPosition(){
       rafId = null;
+
       if(!cardOpened) return;
       if(!currentLatLng) return;
       if(spotCard.classList.contains("hidden")) return;
@@ -549,12 +540,12 @@
       const inView = isLatLngInView(currentLatLng);
 
       if(!inView){
-        // 「閉じる」ではなく「一時非表示（状態保持）」にする
+        // ★「閉じる」ではなく「一時非表示」
         spotCard.classList.add("offscreen");
         return;
       }
 
-      // 画面内に戻ってきたら復帰
+      // 画面内に戻ったら復帰（スクロール位置は保持）
       spotCard.classList.remove("offscreen");
       placeCardAt(currentLatLng);
     }
@@ -564,24 +555,24 @@
       rafId = requestAnimationFrame(updateCardVisibilityAndPosition);
     }
 
-    // 外クリックで閉じる（ただし offscreen中は閉じない＝状態保持）
+    /* 外クリックで閉じる：ただし offscreen 中は閉じない（状態保持優先） */
     document.addEventListener("click", (e) => {
       setTimeout(() => {
         if(spotCard.classList.contains("hidden")) return;
-        if(spotCard.classList.contains("offscreen")) return; // ★画面外非表示中は閉じない
+        if(spotCard.classList.contains("offscreen")) return; // ★ここが要件の肝
         if(spotCard.contains(e.target)) return;
         closeCard();
       }, 0);
     });
 
-    // マップ操作中の見た目制御 + 表示更新
+    /* マップ操作イベント */
     map.on("movestart zoomstart", () => {
       if(!spotCard.classList.contains("hidden")){
         spotCard.classList.add("is-interacting");
       }
     });
 
-    // 動いている最中も「画面外なら消える / 戻れば出る」を実現するため move/zoom でも追従
+    // move/zoom中も「画面外なら消える／戻れば出る」を実現
     map.on("move zoom", () => {
       if(!spotCard.classList.contains("hidden")){
         scheduleUpdateCard();
@@ -610,10 +601,6 @@
       const layers = {};
       categories.forEach(c => { layers[c.category_id] = L.layerGroup(); });
 
-      // 初期fitBounds用
-      const allLatLngs = [];
-
-      // ピン生成
       pois.forEach(p => {
         const catId = p.category.category_id;
 
@@ -621,8 +608,6 @@
           [p.spot.latitude, p.spot.longitude],
           { icon: createPinIcon(p.category.color_code, false) }
         ).addTo(layers[catId]);
-
-        allLatLngs.push([p.spot.latitude, p.spot.longitude]);
 
         marker.on("click", (e) => {
           track({
@@ -635,14 +620,14 @@
 
           openCard(p, e.latlng, marker);
 
-          // 外クリック閉じとの衝突を防止
+          // 外クリック閉じと衝突しないように
           if(e && e.originalEvent){
             e.originalEvent.stopPropagation?.();
           }
         });
       });
 
-      // ===== カテゴリUI =====
+      // カテゴリUI
       const wrap = document.getElementById("categoryList");
       let isFirst = true;
 
@@ -663,7 +648,6 @@
         map.addLayer(layers[catId]);
         resetCheck();
         checkbox.checked = true;
-
         track({ type:"category_select", category_id:catId, category_name:name });
       }
 
@@ -705,17 +689,8 @@
         toggleBtn.textContent = open ? "－" : "＋";
       });
 
-      // 初期：全表示
+      // 初期は全表示
       selectAll();
-
-      // 初期表示を「ピンの範囲に合わせて寄せる」（必要なければ削除OK）
-      if(allLatLngs.length){
-        map.fitBounds(allLatLngs, {
-          paddingTopLeft: [260, 40],      // カテゴリパネル分
-          paddingBottomRight: [40, 40],
-          maxZoom: 15
-        });
-      }
     })();
   </script>
 </body>
