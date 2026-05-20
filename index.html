@@ -513,7 +513,7 @@
       setSelectedMarker(marker, p.category.color_code);
 
       spotCardInner.innerHTML = buildCardHtml(p);
-
+      
       // ★常に画像部分がデフォルト表示（開いたときのみ）
       spotCard.scrollTop = 0;
 
@@ -523,6 +523,7 @@
 
       placeCardAt(latlng);
       wireCardLinkTracking(p);
+      wireDescriptionLinkTracking(p);
     }
 
     function closeCard(){
@@ -663,6 +664,25 @@
         checkbox.checked = true;
         track({ type:"category_select", category_id:catId, category_name:name });
       }
+
+      function wireDescriptionLinkTracking(p){
+　　　　const links = spotCardInner.querySelectorAll("p a");
+　　　　links.forEach(link => {
+　　　　link.addEventListener("click", () => {
+      　track({
+        　type: "description_link_click",
+        　event_id: p.event_id,
+        　event_name: p.event_name,
+        　category_id: p.category.category_id,
+        　category_name: p.category.category_name,
+        　url: link.href
+      });
+
+    }, { once:true });
+
+  });
+
+}
 
       // 「すべて」
       const allRow = document.createElement("label");
