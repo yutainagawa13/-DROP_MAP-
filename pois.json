@@ -25,7 +25,7 @@
         {
             "event_id": "EV02000001",
             "event_name": "NORIBA10 Umeda",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000001_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000001_01_s.jpg",
             "category": {
                 "category_id": "MC00000001",
                 "category_name": "5月27日（水）～6月2日（火）",
@@ -38,13 +38,13 @@
                 "longitude": 135.498988150533,
                 "address": "大阪市北区芝田１丁目１−３"
             },
-            "description": "NORIBA10 Umeda",
+            "description": "NORIBA10 Umeda<br>（展示会場情報は準備中）",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000001/"
         },
         {
             "event_id": "EV02000003",
             "event_name": "NU茶屋町 1階 コリドールプラザ",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000003_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000003_01_s.jpg",
             "category": {
                 "category_id": "MC00000001",
                 "category_name": "5月27日（水）～6月2日（火）",
@@ -57,13 +57,13 @@
                 "longitude": 135.499055438668,
                 "address": "大阪市北区茶屋町10-12 NU茶屋町"
             },
-            "description": "NU茶屋町 1階 コリドールプラザ",
+            "description": "NU茶屋町 1階 コリドールプラザ<br>（展示会場情報は準備中）",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000003/"
         },
         {
             "event_id": "EV02000004",
             "event_name": "グラングリーン大阪",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000004_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000004_01_s.jpg",
             "category": {
                 "category_id": "MC00000001",
                 "category_name": "5月27日（水）～6月2日（火）",
@@ -82,7 +82,7 @@
         {
             "event_id": "EV02000005",
             "event_name": "グラングリーン大阪 南館 地下1階 タイムアウトマーケット大阪",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000005_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000005_01_s.jpg",
             "category": {
                 "category_id": "MC00000001",
                 "category_name": "5月27日（水）～6月2日（火）",
@@ -95,13 +95,13 @@
                 "longitude": 135.492436740518,
                 "address": "大阪市北区大深町4-1"
             },
-            "description": "グラングリーン大阪 南館 地下1階 タイムアウトマーケット大阪",
+            "description": "【アーティスト／ブランド】<br>SHUN NAKAO<br><br>【プログラム名】<br>your city lights<br><br>【期間】<br>5/27 wed.-6/23 tue.<br>※常設展示<br><br>【営業時間】<br>11:00-23:00<br><br>【会場】<br>グラングリーン大阪 南館 地下1階<br>タイムアウトマーケット大阪<br><br>【プログラム紹介】<br>グラングリーン大阪南館地下1階に位置する「タイムアウトマーケット大阪」では、大阪を拠点に活躍するアーティスト・SHUN NAKAO/中尾舜（ナカオ シュン、1992年 兵庫県朝来市生まれ）が手がけるアートワークを展示している。<br><br>大阪芸術大学 デザイン学科卒業後、イラストレーターを経てアーティストとして活動する中尾は、幼少期から80年代のファッションや音楽に大きな影響を受けてきたとのこと。『アジア初となる「タイムアウトマーケット大阪」にこのような作品を展示できることを光栄に思います。作品としてエネルギッシュな大阪を表現することを考え、飛び跳ねるような色と形を配置し、大阪の街をバックに窓の結露に子供が落書き遊びをしたようなデザインで無邪気さや元気な街をビジュアル化しました。新たなランドマークとなる「グラングリーン大阪」で、この作品が大阪の方々だけでなく「タイムアウトマーケット大阪」に訪れる多くの方々に親しまれる存在になることを願っております。』と中尾は話す。<br><br>【WEBサイト】<br>https://www.timeout.jp/time-out-market-osaka/ja",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000005/"
         },
         {
             "event_id": "EV02000006",
             "event_name": "グランフロント大阪 うめきた広場 他",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000006_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000006_01_s.jpg",
             "category": {
                 "category_id": "MC00000001",
                 "category_name": "5月27日（水）～6月2日（火）",
@@ -120,7 +120,7 @@
         {
             "event_id": "EV02000007",
             "event_name": "大阪ステーションシティノースゲートビルディング 11階 風の広場",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000007_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000007_01_s.jpg",
             "category": {
                 "category_id": "MC00000001",
                 "category_name": "5月27日（水）～6月2日（火）",
@@ -133,13 +133,13 @@
                 "longitude": 135.494772723326,
                 "address": "大阪市北区梅田3-1-3 ルクア大阪"
             },
-            "description": "大阪ステーションシティノースゲートビルディング 11階 風の広場",
+            "description": "大阪ステーションシティノースゲートビルディング 11階 風の広場<br>（展示会場情報は準備中）",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000007/"
         },
         {
             "event_id": "EV02000008",
             "event_name": "阪急メンズ大阪",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000008_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000008_01_s.jpg",
             "category": {
                 "category_id": "MC00000001",
                 "category_name": "5月27日（水）～6月2日（火）",
@@ -152,13 +152,13 @@
                 "longitude": 135.499816680997,
                 "address": "大阪市北区角田町7-10"
             },
-            "description": "阪急メンズ大阪",
+            "description": "【アーティスト／ブランド】<br>SWJP / torinoko / ミカヅキショウテン / Forever ever<br><br>【プログラム名】<br>D.I.T.R. MARKET DIAMOND IN THE ROUGH<br><br>【期間】<br>5/27 wed. - 6/9 tue.<br><br>【営業時間】<br>10:00-20:00<br>※平日は11:00-20:00<br><br>【会場】<br>阪急メンズ大阪<br>1階 プロモーションスペース11<br><br>【プログラム紹介】<br>D.I.T.R.MARKET -DIAMOND IN THE ROUGH-では、瀬戸内を起点に、“ダイヤの原石”のような価値にフォーカス。瀬戸内はもちろん、周辺地域や独自の視点でセレクトしたプロダクトが集まるマーケット型イベントです。直島のコーヒースタンド「ミカヅキショウテン」の土産品や、「SWJP」によるカスタム古着、「torinoko」が選ぶ郷土玩具、「HYSTERIC MINI」のCOTTON FARMによるTシャツなどが並びます。「Forever ever」のプロダクトとともに、新たな価値との出会いを提案します。<br><br>【WEBサイト】<br>https://website.hankyu-dept.co.jp/honten/h/oad/",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000008/"
         },
         {
             "event_id": "EV02000009",
             "event_name": "阪急うめだ本店",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000009_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000009_01_s.jpg",
             "category": {
                 "category_id": "MC00000001",
                 "category_name": "5月27日（水）～6月2日（火）",
@@ -171,13 +171,13 @@
                 "longitude": 135.498435736819,
                 "address": "大阪市北区角田町8-7"
             },
-            "description": "【プログラム】<br>複数プログラムが展開されます。<br>詳細は会場ホームページや、Osaka Art & Designのホームページのプログラムページ（以下に記載のURL）にてご確認ください。<br>※プログラムによって会期が異なる場合がございますのでご注意ください。<br><br>阪急うめだ本店 ホームページ<br>https://website.hankyu-dept.co.jp/honten/h/oad/index.html<br><br>平子雄一<br>NON NATURE<br>会場：<br>1階 コンコースウィンドー<br>9階 祝祭広場 / 阪急うめだギャラリー / アートステージ<br>https://www.osaka-artanddesign.com/2026/programs/detail/a_061<br><br>青山明生 / 小林モー子 ほか<br>Wearable Art & Object LIMITED SHOP - Stories in Small Forms<br>会場：1階 プロモーションスペース11<br>https://www.osaka-artanddesign.com/2026/programs/detail/a_066<br><br>ジャンパオロ・ファッラーニ<br>「トッズ ヴァカンツェ イタリアーネ」ポップアップ<br>会場：1階 コトコトステージ11<br>https://www.osaka-artanddesign.com/2026/programs/detail/a_075<br><br>岩崎貴宏<br>「ANTEPRIMA」POP UP STORE －Fragile and Strength－<br>会場：1階 コトコトステージ11<br>https://www.osaka-artanddesign.com/2026/programs/detail/a_074<br><br>NATURALLY PAINTING Co.<br>「コール ハーン」Customization Bar<br>会場：4階 コトコトステージ42<br>https://www.osaka-artanddesign.com/2026/programs/detail/a_067<br><br>塚本智也<br>塚本智也 個展「光の循環」<br>会場：8階 Contemporary Art Gallery<br>https://www.osaka-artanddesign.com/2026/programs/detail/a_063<br><br>yutaokuda<br>yutaokuda solo exhibition &quot;With Gratitude&quot;<br>会場：<br>8階 Contemporary Art Gallery<br>1階 コトコトステージ11<br>https://www.osaka-artanddesign.com/2026/programs/detail/a_062<br><br>SOMETA<br>RE：COLLECTION vol.1 SOMETA With &quot;F&quot;<br>会場：8階 コトコトステージ81<br>https://www.osaka-artanddesign.com/2026/programs/detail/a_069<br><br>谷口智則<br>『谷口智則 絵本の世界』 “余白の美”が導くアートな子育て<br>会場：11階 コトコトステージ111<br>https://www.osaka-artanddesign.com/2026/programs/detail/28<br><br>京都・永楽屋<br>～伝統を守り、未来へつなぐ～ 京都・永楽屋 14世・細辻伊兵衛 てぬぐいアート展<br>会場：11階 コトコトステージ113<br>https://www.osaka-artanddesign.com/2026/programs/detail/a_072",
+            "description": "【プログラム】<br>複数プログラムが展開されます。<br>詳細は会場ホームページや、Osaka Art & Designのホームページのプログラムページ（以下に記載のURL）にてご確認ください。<br>※プログラムによって会期が異なる場合がございますのでご注意ください。<br><br>阪急うめだ本店 ホームページ<br>https://website.hankyu-dept.co.jp/honten/h/oad/index.html<br><br>平子雄一<br>NON NATURE<br>会場：<br>1階 コンコースウィンドー<br>9階 祝祭広場 / 阪急うめだギャラリー / アートステージ<br>https://www.osaka-artanddesign.com/2026/programs/detail/a_061<br><br>青山明生 / 小林モー子 ほか<br>Wearable Art & Object LIMITED SHOP - Stories in Small Forms<br>会場：1階 プロモーションスペース11<br>https://www.osaka-artanddesign.com/2026/programs/detail/a_066<br><br>ジャンパオロ・ファッラーニ<br>「トッズ ヴァカンツェ イタリアーネ」ポップアップ<br>会場：1階 コトコトステージ11<br>https://www.osaka-artanddesign.com/2026/programs/detail/a_075<br><br>岩崎貴宏<br>「ANTEPRIMA」POP UP STORE －Fragile and Strength－<br>会場：1階 コトコトステージ11<br>https://www.osaka-artanddesign.com/2026/programs/detail/a_074<br><br>NATURALLY PAINTING Co.<br>「コール ハーン」Customization Bar<br>会場：4階 コトコトステージ42<br>https://www.osaka-artanddesign.com/2026/programs/detail/a_067<br><br>山崎円城<br>山崎円城 言葉のうつわ<br>会場：7階プロモーションスペース71<br>https://osaka-artanddesign.ecbeing.biz/2026/programs/detail/a_070<br><br>佐々木香菜子<br>FLOW & BLOOM ー 佐々木香菜子 meets Botanical<br>会場：7階 コトコトステージ71<br>https://osaka-artanddesign.ecbeing.biz/2026/programs/detail/a_068<br><br>塚本智也<br>塚本智也 個展「光の循環」<br>会場：8階 Contemporary Art Gallery<br>https://www.osaka-artanddesign.com/2026/programs/detail/a_063<br><br>yutaokuda<br>yutaokuda solo exhibition &quot;With Gratitude&quot;<br>会場：<br>8階 Contemporary Art Gallery<br>1階 コトコトステージ11<br>https://www.osaka-artanddesign.com/2026/programs/detail/a_062<br><br>SOMETA<br>RE：COLLECTION vol.1 SOMETA With &quot;F&quot;<br>会場：8階 コトコトステージ81<br>https://www.osaka-artanddesign.com/2026/programs/detail/a_069<br><br>HERALBONY<br>HERALBONY ART PARK<br>会場：9階 祝祭広場<br>https://osaka-artanddesign.ecbeing.biz/2026/programs/detail/a_064<br><br>谷口智則<br>『谷口智則 絵本の世界』 “余白の美”が導くアートな子育て<br>会場：11階 コトコトステージ111<br>https://www.osaka-artanddesign.com/2026/programs/detail/28<br><br>京都・永楽屋<br>～伝統を守り、未来へつなぐ～ 京都・永楽屋 14世・細辻伊兵衛 てぬぐいアート展<br>会場：11階 コトコトステージ113<br>https://www.osaka-artanddesign.com/2026/programs/detail/a_072",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000009/"
         },
         {
             "event_id": "EV02000010",
             "event_name": "阪急うめだ本店 コンコースウィンドー / 大阪梅田ツインタワーズ・ノース 1階 コンコース",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000010_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000010_01_s.jpg",
             "category": {
                 "category_id": "MC00000001",
                 "category_name": "5月27日（水）～6月2日（火）",
@@ -190,13 +190,13 @@
                 "longitude": 135.498682145148,
                 "address": "大阪市北区角田町8-1"
             },
-            "description": "【アーティスト／ブランド】<br>平子雄一<br><br>【プログラム名】<br>NON NATURE<br><br>【期間】<br>1階｜5/20 wed. - 6/22 mon.　9階｜5/27 wed. - 6/8 mon.<br><br>【営業時間】<br>10:00-20:00<br>※9階のみ催し最終日は17:00終了<br><br>【会場】<br>阪急うめだ本店<br>1階 コンコースウィンドー<br>9階 祝祭広場 / 阪急うめだギャラリー / アートステージ<br><br>【プログラム紹介】<br>都市には自然のようなもの、もしくは自然の環境を模したものが多く存在します。そもそも、どの状態を自然と定義するのかを確定することは困難ですが、都市に存在するそれらのほとんどは、人の手が関わった人工物と言えます。<br>私たちの多くは、利便性を求め都市で生活し生産活動を行いますが、同時に精神のどこかでは自然を求めているのではないでしょうか。自然とは未知のものであり、人がコントロール出来ない存在、意思の疎通が不可能なもの。それらに癒しや、景観美を求める行動はとても人間らしいと思います。<br>今回のプロジェクトで出現させる作品は、自然の断片のようなもの、人間らしさを象徴するものでもあり、その２つが混ざり合った様なものでもあります。大都会大阪の中心、人間が作り出した世界屈指の構造の中心に自身の作品を登場させることによって、鑑賞される方が自然を感じるのか、「非」自然を感じるのか、楽しみです。　ー平子雄一<br><br>トップ画像：平子雄一「Lost in Thought 229」2025 ©Yuichi Hirako photo by Osamu Sakamoto<br><br>【WEBサイト】<br>https://website.hankyu-dept.co.jp/honten/h/oad/",
+            "description": "【アーティスト／ブランド】<br>平子雄一<br><br>【プログラム名】<br>LAMPENFLORA「照明植生」<br><br>【期間】<br>5/20 wed. - 6/22 mon.<br>※Osaka Art & Design 2026の会期は5月27日（水）〜 6月23日（火）<br><br>【営業時間】<br>9:00-21:00<br>※9階のみ催し最終日は17:00終了<br><br>【会場】<br>大阪梅田ツインタワーズ・ノース 1階 コンコース / 阪急うめだ本店 コンコースウィンドー<br><br>【プログラム紹介】<br>阪急うめだ本店などを舞台に展開するプロジェクト、NON NATURE。<br>そのひとつとなる本作では、コンコース空間が、平⼦雄⼀⽒の⼿によってひとつの⼤きなキャンバスへと変貌します。本企画は、国内外で活躍する現代美術作家・平⼦雄⼀⽒が「モノクロームのドローイング」のみで空間を構築する意欲的な試みです。<br>ダークブラウンを基調としたドローイングが、天井のバナーからウィンドー、そして床⾯へとダイナミックに拡張していきます。その圧倒的なモノクロームの⾵景から、平⼦雄⼀⽒の代名詞ともいえる「植物と⼈間の関係性」を問う作品群が⽴ち現れます。 国際的な評価を集めるアーティストが未知の表現へと踏み出した、貴重なインスタレーションを発信する企画です。今回のプロジェクトで出現させる作品は、自然の断片のようなもの、人間らしさを象徴するものでもあり、その２つが混ざり合った様なものでもあります。大都会大阪の中心、人間が作り出した世界屈指の構造の中心に自身の作品を登場させることによって、鑑賞される方が自然を感じるのか、「非」自然を感じるのか、楽しみです。　ー平子雄一<br><br>トップ画像：平子雄一「Lost in Thought 229」2025 ©Yuichi Hirako photo by Osamu Sakamoto<br><br>Artist Message<br><br>NON NATURE<br>都市には⾃然のようなもの、もしくは⾃然の環境を模したものが多く存在します。そもそも、どの状態を⾃然と定義するのかを確定することは困難ですが、都市に存在するそれらのほとんどは、⼈の⼿が関わった⼈⼯物と⾔えます。私たちの多くは、利便性を求め都市で⽣活し⽣産活動を⾏いますが、同時に精神のどこかでは⾃然を求めているのではないでしょうか。⾃然とは未知のものであり、⼈がコントロール出来ない存在、意思の疎通が不可能なもの。それらに癒しや、景観美を求める⾏動はとても⼈間らしいと思います。私が今回のプロジェクトで出現させる作品は、⾃然の断⽚のようなもの、⼈間らしさを象徴するものでもあり、その２つが混ざり合ったようなものでもあります。⼤都会⼤阪の中⼼、⼈間が作り出した世界屈指の構造の中⼼に⾃⾝の作品を登場させることによって、鑑賞される⽅が⾃然を感じるのか、「⾮」⾃然を感じるのか、楽しみです。<br><br>LAMPENFLORA「照明植生」<br>⾃然光が当たることのないコンコースですが、⼈⼯的な場所でも⼒強く繁栄する植物を意識して空間を構成しました。⼈が居るからこそ、作りあげることのできる植⽣のようなものを体験してもらえればと思います。<br><br>平子雄一<br><br>【WEBサイト】<br>https://umedayuen.com/",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000010/"
         },
         {
             "event_id": "EV02000011",
             "event_name": "大阪ステーションシティノースゲートビル3階",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000011_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000011_01_s.jpg",
             "category": {
                 "category_id": "MC00000001",
                 "category_name": "5月27日（水）～6月2日（火）",
@@ -209,13 +209,13 @@
                 "longitude": 135.49542479634,
                 "address": "大阪市北区梅田３丁目１−３ ノースゲートビル 3階"
             },
-            "description": "大阪ステーションシティノースゲートビル3階",
+            "description": "【アーティスト／ブランド】<br>佐藤紘子<br><br>【プログラム名】<br>静寂の古城、ぼくらの 混ざり合う 場所<br><br>【期間】<br>5/27 wed. - 6/23 tue.<br><br>【営業時間】<br>6:30-25:30<br><br>【会場】<br>大阪ステーションシティ インフォメーション前<br>（大阪駅3階南北連絡橋）<br><br>【プログラム紹介】<br>かつては境界だった古城の窓や壁が、今は生命を繋ぐ「広場」へと変わります。 ここでは種族も、大きさも、役割も関係ありません。<br><br>パンダもキリンも、小さなネコも、そしてこどもたちも、同じ場所に集い、同じ光を浴びて、ただ「そこにいる」ことを等しく肯定し合っています。<br><br>「だれかが笑えば、わたしも嬉しい。わたしが楽しければ、きっとだれかも楽しい。」<br><br>そんな、自分と他者が地続きで繋がっているような、温かく賑やかな世界。<br><br>この作品は、かつての静寂を賑わいで塗り替え、一人ひとりがかけがえのない存在として、色彩豊かに混ざり合う、明るい共生と新たな生命の芽吹きを描いています。<br><br>【WEBサイト】<br>https://osakastationcity.com/",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000011/"
         },
         {
             "event_id": "EV02000012",
             "event_name": "JR大阪駅・大阪ステーションシティ 5階 時空の広場",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000012_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000012_01_s.jpg",
             "category": {
                 "category_id": "MC00000001",
                 "category_name": "5月27日（水）～6月2日（火）",
@@ -234,7 +234,7 @@
         {
             "event_id": "EV02000013",
             "event_name": "APイノゲート大阪",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000013_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000013_01_s.jpg",
             "category": {
                 "category_id": "MC00000001",
                 "category_name": "5月27日（水）～6月2日（火）",
@@ -247,13 +247,13 @@
                 "longitude": 135.493267954011,
                 "address": "大阪市北区梅田3-2-123　イノゲート大阪 11F"
             },
-            "description": "APイノゲート大阪",
+            "description": "APイノゲート大阪<br>（展示会場情報は準備中）",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000013/"
         },
         {
             "event_id": "EV02000014",
             "event_name": "大阪駅御堂筋口デジタルサイネージ",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000014_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000014_01_s.jpg",
             "category": {
                 "category_id": "MC00000001",
                 "category_name": "5月27日（水）～6月2日（火）",
@@ -266,13 +266,13 @@
                 "longitude": 135.493707154011,
                 "address": "大阪市北区梅田3-1-1"
             },
-            "description": "大阪駅御堂筋口デジタルサイネージ",
+            "description": "【アーティスト／ブランド】<br>ISCA（International Students Creative Award）、 NYAA（Next Young Artist Award）<br><br>【プログラム名】<br>ISCA / NYAA セレクト作品上映<br><br>【期間】<br>5/27 wed. - 6/23 tue.<br><br>【営業時間】<br>6:00-24:00<br><br>【会場】<br>JR大阪駅 御堂筋南口ビジョン<br><br>【プログラム紹介】<br>Osaka Art and Design 2026では、JR西日本ステーションシティ株式会社の協力を得て、初の試みとしてJR大阪駅 御堂筋南口ビジョンで映像作品を終日放映します。長年、若き才能を発掘してきた「ISCA（International Students Creative Award）」と「NYAA（Next Young Artist Award）」より過去の受賞・入選作品から各5作品をセレクトいただき、行き交う人々へお届けします。次世代が紡ぐ、今この時代ならではの表現にぜひご注目ください。",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000014/"
         },
         {
             "event_id": "EV02000015",
             "event_name": "大丸梅田店",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000015_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000015_01_s.jpg",
             "category": {
                 "category_id": "MC00000001",
                 "category_name": "5月27日（水）～6月2日（火）",
@@ -291,7 +291,7 @@
         {
             "event_id": "EV02000016",
             "event_name": "大阪駅前地下道イベントスペース（阪神梅田本店前）",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000016_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000016_01_s.jpg",
             "category": {
                 "category_id": "MC00000001",
                 "category_name": "5月27日（水）～6月2日（火）",
@@ -304,13 +304,13 @@
                 "longitude": 135.496891,
                 "address": "大阪市北区梅田1"
             },
-            "description": "大阪駅前地下道イベントスペース（阪神梅田本店前）",
+            "description": "大阪駅前地下道イベントスペース（阪神梅田本店前）<br>（展示会場情報は準備中）",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000016/"
         },
         {
             "event_id": "EV02000017",
             "event_name": "阪神梅田本店 8階 催事場",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000017_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000017_01_s.jpg",
             "category": {
                 "category_id": "MC00000001",
                 "category_name": "5月27日（水）～6月2日（火）",
@@ -329,7 +329,7 @@
         {
             "event_id": "EV02000018",
             "event_name": "ＡＰ大阪駅前",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000018_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000018_01_s.jpg",
             "category": {
                 "category_id": "MC00000001",
                 "category_name": "5月27日（水）～6月2日（火）",
@@ -342,13 +342,13 @@
                 "longitude": 135.498227565654,
                 "address": "大阪市北区梅田1-12-12 東京建物梅田ビル B1F・B2F（受付B1F）"
             },
-            "description": "ＡＰ大阪駅前",
+            "description": "ＡＰ大阪駅前<br>（展示会場情報は準備中）",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000018/"
         },
         {
             "event_id": "EV02000019",
             "event_name": "ハービス PLAZA ENT 3F ライオンラグス",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000019_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000019_01_s.jpg",
             "category": {
                 "category_id": "MC00000001",
                 "category_name": "5月27日（水）～6月2日（火）",
@@ -367,7 +367,7 @@
         {
             "event_id": "EV02000020",
             "event_name": "翠波画廊大阪店",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000020_01_s.png",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000020_01_s.png",
             "category": {
                 "category_id": "MC00000001",
                 "category_name": "5月27日（水）～6月2日（火）",
@@ -386,7 +386,7 @@
         {
             "event_id": "EV02000022",
             "event_name": "アートコートギャラリー",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000022_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000022_01_s.jpg",
             "category": {
                 "category_id": "MC00000001",
                 "category_name": "5月27日（水）～6月2日（火）",
@@ -405,7 +405,7 @@
         {
             "event_id": "EV02000023",
             "event_name": "YOD Gallery",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000023_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000023_01_s.jpg",
             "category": {
                 "category_id": "MC00000001",
                 "category_name": "5月27日（水）～6月2日（火）",
@@ -424,7 +424,7 @@
         {
             "event_id": "EV02000025",
             "event_name": "Ritzwell 大阪ショールーム（堂島リバーフォーラム）",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000025_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000025_01_s.jpg",
             "category": {
                 "category_id": "MC00000001",
                 "category_name": "5月27日（水）～6月2日（火）",
@@ -443,7 +443,7 @@
         {
             "event_id": "EV02000026",
             "event_name": "graf porch",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000026_01_s.jpeg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000026_01_s.jpeg",
             "category": {
                 "category_id": "MC00000001",
                 "category_name": "5月27日（水）～6月2日（火）",
@@ -462,7 +462,7 @@
         {
             "event_id": "EV02000027",
             "event_name": "藤田美術館",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000027_01_s.png",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000027_01_s.png",
             "category": {
                 "category_id": "MC00000001",
                 "category_name": "5月27日（水）～6月2日（火）",
@@ -481,7 +481,7 @@
         {
             "event_id": "EV02000028",
             "event_name": "LIBRE GALLERY y SPACE",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000028_01_s.jpeg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000028_01_s.jpeg",
             "category": {
                 "category_id": "MC00000001",
                 "category_name": "5月27日（水）～6月2日（火）",
@@ -500,7 +500,7 @@
         {
             "event_id": "EV02000029",
             "event_name": "大阪市中央公会堂",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000029_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000029_01_s.jpg",
             "category": {
                 "category_id": "MC00000001",
                 "category_name": "5月27日（水）～6月2日（火）",
@@ -513,13 +513,13 @@
                 "longitude": 135.503998127024,
                 "address": "大阪市北区中之島1丁目1番27号"
             },
-            "description": "大阪市中央公会堂",
+            "description": "大阪市中央公会堂<br>（展示会場情報は準備中）",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000029/"
         },
         {
             "event_id": "EV02000030",
             "event_name": "アートエリアB1",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000030_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000030_01_s.jpg",
             "category": {
                 "category_id": "MC00000001",
                 "category_name": "5月27日（水）～6月2日（火）",
@@ -532,13 +532,13 @@
                 "longitude": 135.505243723325,
                 "address": "大阪市北区中之島1-1-1"
             },
-            "description": "アートエリアB1",
+            "description": "アートエリアB1<br>（展示会場情報は準備中）",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000030/"
         },
         {
             "event_id": "EV02000031",
             "event_name": "国立国際美術館",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000031_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000031_01_s.jpg",
             "category": {
                 "category_id": "MC00000001",
                 "category_name": "5月27日（水）～6月2日（火）",
@@ -557,7 +557,7 @@
         {
             "event_id": "EV02000032",
             "event_name": "淀屋橋ステーションシティ",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000032_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000032_01_s.jpg",
             "category": {
                 "category_id": "MC00000001",
                 "category_name": "5月27日（水）～6月2日（火）",
@@ -570,13 +570,13 @@
                 "longitude": 135.5014925432,
                 "address": "大阪市中央区北浜３丁目６−２２"
             },
-            "description": "淀屋橋ステーションシティ",
+            "description": "【アーティスト／ブランド】<br>大竹舞人<br><br>【プログラム名】<br>編む、つなぐ、ひらく<br><br>【期間】<br>5/27 wed. - 6/23 tue.<br><br>【営業時間】<br>期間中常設<br><br>【会場】<br>淀屋橋ステーションワン B1F 淀屋橋広場<br><br>【プログラム紹介】<br>大竹舞人は、布を手で編み上げて中空の立体作品を制作する作家です。本作は地下鉄が交差する都市の中心に設置され、街や人の流れと呼応しながら、時間や記憶、文化を編み込み、未来へとつないでいく象徴として立ち現れます。<br><br>【WEBサイト】<br>https://yodoyabashi-stationone.com/",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000032/"
         },
         {
             "event_id": "EV02000033",
             "event_name": "ポルトローナ・フラウ大阪",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000033_01_s.jpeg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000033_01_s.jpeg",
             "category": {
                 "category_id": "MC00000001",
                 "category_name": "5月27日（水）～6月2日（火）",
@@ -595,7 +595,7 @@
         {
             "event_id": "EV02000034",
             "event_name": "maruni osaka",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000034_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000034_01_s.jpg",
             "category": {
                 "category_id": "MC00000001",
                 "category_name": "5月27日（水）～6月2日（火）",
@@ -614,7 +614,7 @@
         {
             "event_id": "EV02000035",
             "event_name": "WAILEA御堂筋",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000035_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000035_01_s.jpg",
             "category": {
                 "category_id": "MC00000001",
                 "category_name": "5月27日（水）～6月2日（火）",
@@ -633,7 +633,7 @@
         {
             "event_id": "EV02000036",
             "event_name": "大阪デザインセンター",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000036_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000036_01_s.jpg",
             "category": {
                 "category_id": "MC00000001",
                 "category_name": "5月27日（水）～6月2日（火）",
@@ -652,7 +652,7 @@
         {
             "event_id": "EV02000037",
             "event_name": "Osaka Metro 本町ビル",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000037_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000037_01_s.jpg",
             "category": {
                 "category_id": "MC00000001",
                 "category_name": "5月27日（水）～6月2日（火）",
@@ -665,13 +665,13 @@
                 "longitude": 135.500953988668,
                 "address": "大阪市中央区本町3丁目6-4"
             },
-            "description": "Osaka Metro 本町ビル",
+            "description": "Osaka Metro 本町ビル<br>（展示会場情報は準備中）",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000037/"
         },
         {
             "event_id": "EV02000038",
             "event_name": "JR大阪環状線 西九条駅高架下",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000038_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000038_01_s.jpg",
             "category": {
                 "category_id": "MC00000001",
                 "category_name": "5月27日（水）～6月2日（火）",
@@ -684,13 +684,13 @@
                 "longitude": 135.466106181047,
                 "address": "大阪市此花区西九条3丁目15-13"
             },
-            "description": "JR大阪環状線 西九条駅高架下",
+            "description": "JR大阪環状線 西九条駅高架下<br>（展示会場情報は準備中）",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000038/"
         },
         {
             "event_id": "EV02000039",
             "event_name": "W大阪",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000039_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000039_01_s.jpg",
             "category": {
                 "category_id": "MC00000001",
                 "category_name": "5月27日（水）～6月2日（火）",
@@ -703,13 +703,13 @@
                 "longitude": 135.500125511733,
                 "address": "大阪市中央区南船場4-1-3"
             },
-            "description": "W大阪",
+            "description": "【アーティスト／ブランド】<br>xorium<br><br>【プログラム名】<br>AUTONOMA<br><br>【期間】<br>5/27 wed. - 6/23 tue.<br><br>【営業時間】<br>期間中常設<br><br>【会場】<br>W大阪<br><br>【プログラム紹介】<br>「Whatever / Whenever🄬（お望みの物を / お望みの時に）」の理念に基づき、存在そのものを楽しませる工夫としてアーティストとのコラボレーションも積極的に行うラグジュアリー・ライフスタイルホテル、W大阪。昨年は総支配人としてピーター・ルーカスが就任し、「ユニークでアートに満ちた施設の魅力を高めたい」と意欲的な姿勢を見せた。Osaka Art ＆ Design 3度目の参加となる今回、新たなパートナーと共に、体験型アートの新境地を開く。<br><br>ひとつの違和感から始まった、創作の軌跡<br>情報のデジタル化により、世界との距離が急激に近くなった昨今。その膨大な世界と接続する手段が、ディスプレイという限られた窓口に終始している状況に、ひとつのアーティストコレクティブが違和感を覚えた。2017年7月に結成された竹川諒と中村慎吾による「xorium」は、多様なデジタル技術を活用しながら、人や物、環境、社会構造といった身の回りの要素が相互作用し変化する中で、要素の狭間に見えてくる現象や違和感を解釈し、作品へと昇華させている。<br>今回、彼らが向き合ったのは、制御する世界への違和感である。これまで社会は定められたルールによって、整然と管理されていた。だが、情報が氾濫し、AIが効率化を促し、多様な価値観が交差する現代において、もはや単一の縛りによる制御は限界を迎えている。xoriumは確信した。これからの時代は制御されるのではなく、他者や環境との“関係”の中でこそ生きていく世界なのだと。彼らはその答えを、形を自由に変えながら漂う“泡”の現象に託した。<br><br>弾け膨らみ成長する、泡が描き出す現代の縮図<br>xoriumが制作において最も重視しているのは、鑑賞者が感覚で理解することだ。言葉による説明を介さずともコンセプトが心に染み渡るよう、素材選びから技法の検証まで幾度も実験が繰り返される。<br>本作は、水盤型装置から絶え間なく泡が発生し続けるインスタレーションだ。一つひとつの泡は、独立した“個”としての私たち人間を表している。泡は触れ合い、寄り添い、時に反発しながら、やがて一つの大きな流れを形成していく。<br>蛍光塗料で彩られた泡が紫外線の光を受け、泡同士の境界が鮮明に浮かび上がる様子は、個の関係性から秩序あるネットワークが生み出される現代社会そのものだ。儚く、些細な衝撃で消えてしまう脆さを持ちながらも、空気の変化に合わせて柔軟に形を変え、他者と繋がりながら成長し続ける泡。その姿は、これから発展し続ける世界を私たちが生き抜くための指針となるはずだ。<br><br>W大阪とアートが誘う、非日常のひととき<br>展示の舞台となるのは、独創的な世界が広がるW大阪のアライバルホール。国内外のゲストが刺激的な体験を求めて行き交うステージは、xoriumの作品が持つ流動的なメッセージと見事に響き合う。作家自身も“作品が空間にインストールされる感覚”を強く覚えたというこの場所で、日常の違和感は共感へと変わり、その先にある新たな生き方のヒントへと繋がっていくだろう。<br><br>【WEBサイト】<br>https://www.marriott.com/ja/hotels/osaow-w-osaka/overview/",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000039/"
         },
         {
             "event_id": "EV02000040",
             "event_name": "アルフレックス大阪",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000040_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000040_01_s.jpg",
             "category": {
                 "category_id": "MC00000001",
                 "category_name": "5月27日（水）～6月2日（火）",
@@ -728,7 +728,7 @@
         {
             "event_id": "EV02000041",
             "event_name": "Marco Gallery",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000041_01_s.png",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000041_01_s.png",
             "category": {
                 "category_id": "MC00000001",
                 "category_name": "5月27日（水）～6月2日（火）",
@@ -747,7 +747,7 @@
         {
             "event_id": "EV02000042",
             "event_name": "クリスタ長堀 滝の広場",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000042_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000042_01_s.jpg",
             "category": {
                 "category_id": "MC00000001",
                 "category_name": "5月27日（水）～6月2日（火）",
@@ -760,13 +760,13 @@
                 "longitude": 135.501366581047,
                 "address": "大阪市中央区南船場３丁目 長堀地下街"
             },
-            "description": "クリスタ長堀 滝の広場",
+            "description": "【アーティスト／ブランド】<br>大西伸明<br><br>【プログラム名】<br>Re-Mirroring Matter<br><br>【期間】<br>5/28 thu. - 6/14 sun.<br><br>【営業時間】<br>11:00-21:00<br><br>【会場】<br>クリスタ長堀 滝の広場・南側<br><br>【プログラム紹介】<br>日用品を精巧な「型」へと写しとり、モノの存在を再度立ち上げる。それは、情報が飽和し、あらゆる事象が記号に覆われた現代において、「見慣れた世界」という既成概念を解体します。会場には、滝を借景とした電球の作品と、広場に佇む見慣れた物たち。透明な樹脂の内部を凝視するとき、眼前の風景は反転し、逆流する滝のごとく、現実をリ・ミラーリングする光景が浮かび上がります。<br><br>【WEBサイト】<br>https://www.crystaweb.jp/",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000042/"
         },
         {
             "event_id": "EV02000043",
             "event_name": "大丸心斎橋店",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000043_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000043_01_s.jpg",
             "category": {
                 "category_id": "MC00000001",
                 "category_name": "5月27日（水）～6月2日（火）",
@@ -779,13 +779,13 @@
                 "longitude": 135.500843279196,
                 "address": "大阪市中央区心斎橋筋1-7-1"
             },
-            "description": "大丸心斎橋店",
+            "description": "【プログラム】<br>複数プログラムが展開されます。<br>詳細はOsaka Art & Designのホームページのプログラムページ（以下に記載のURL）にてご確認ください。<br>※プログラムによって会期が異なる場合がございますのでご注意ください。<br><br>五十嵐威暢<br>五十嵐威暢 積木ベンチ<br>会場：本館前・心斎橋パルコ前御堂筋歩道<br>https://osaka-artanddesign.ecbeing.biz/2026/programs/detail/a_082<br><br>黒田征太郎 / コシノヒロコ / 佐伯和良 / SHIRACO WORLD / ドナルド・ロバートソン / 山下浩平 / ロブ・ライアン<br>大丸心斎橋店開業300周年 ひとます美術館 ＝未来へはばたくフェニックスの餐宴＝ 〈併催〉未来の大阪を担う子供たちへの チャリティオークション<br>会場：本館1階 心斎橋筋側ウィンドウ・各階エスカレーター前<br>https://osaka-artanddesign.ecbeing.biz/2026/programs/detail/a_081<br><br>高木耕一郎 / 田村琢朗<br>〈AYIN×MAKI Gallery〉高木耕一郎・田村琢郎特別展示<br>会場：本館1階 御堂筋側イベントスペース<br>https://osaka-artanddesign.ecbeing.biz/2026/programs/detail/a_083<br><br>田中ラオウ ほか<br>現代アート POPUP STORE<br>会場：本館1階 御堂筋側イベントスペース<br>https://osaka-artanddesign.ecbeing.biz/2026/programs/detail/a_090<br><br>篠田桃紅<br>篠田桃紅 〜時をこえる抽象の美〜<br>https://osaka-artanddesign.ecbeing.biz/2026/programs/detail/a_089<br>会場：本館8階 アールグロリュー ギャラリー オブ オーサカ<br>https://www.daimaru.co.jp/shinsaibashi/",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000043/"
         },
         {
             "event_id": "EV02000044",
             "event_name": "心斎橋PARCO",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000044_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000044_01_s.jpg",
             "category": {
                 "category_id": "MC00000001",
                 "category_name": "5月27日（水）～6月2日（火）",
@@ -798,13 +798,13 @@
                 "longitude": 135.500914481047,
                 "address": "大阪市中央区心斎橋筋1-8-3"
             },
-            "description": "【アーティスト／ブランド】<br>五十嵐威暢<br><br>【プログラム名】<br>A–Z Homage to Takenobu Igarashi<br><br>【期間】<br>5/22 fri. - 6/14 sun.<br><br>【営業時間】<br>10:00-20:00<br>※最終日は18:00まで<br><br>【会場】<br>心斎橋PARCO・14F PARCO HALL<br><br>【プログラム紹介】<br>　五十嵐氏とPARCOの出会いは、1981年にオープンした渋谷PARCO PART3のプロジェクトでした。中心的なデザイナーのひとりとして参加した五十嵐氏は、ロゴや看板、ショッパー、館内グラフィックなど、多くのデザインを手がけました。シンプルで力強いPARCOロゴは、社内で「五十嵐ロゴ」として愛され、吉祥寺PARCOや名古屋PARCOなどで現在も外壁サインとして使用されています。建て替えのために解体された渋谷PARCOの外壁から取り外されたネオンサインは、現在は渋谷PARCOと心斎橋PARCOの店舗内で大切に常設展示されています。五十嵐ロゴは、世代を超えて語り継がれる、PARCOの文化を象徴する存在です。<br><br>　本展では、1994年に彫刻家に転身する以前の、デザイナーとしての五十嵐氏のアルファベット作品に焦点を当てます。渋谷PARCO PART3のためのロゴデザインを紐解き、書体のバリエーションも紹介。渋谷PARCO PART3のストリートギャラリーで発表されたアルファベット彫刻（現存する24点のうち20点を展示予定）や、ポスターカレンダー［PARCO ver.（1982年制作）］、AからZまでのアルファベットを題材にした彫刻やグラフィックデザインの作品を、心斎橋PARCO館内の常設展示や屋外空間も舞台として、五十嵐氏の創造性あふれる作品を一堂に展示します。<br><br>【WEBサイト】<br>https://shinsaibashi.parco.jp/",
+            "description": "【プログラム】<br>複数プログラムが展開されます。<br>詳細はOsaka Art & Designのホームページのプログラムページ（以下に記載のURL）にてご確認ください。<br>※プログラムによって会期が異なる場合がございますのでご注意ください。<br><br>五十嵐威暢<br>A–Z Homage to Takenobu Igarashi<br>会場：14階 PARCO HALL<br>https://www.osaka-artanddesign.com/2026/programs/detail/b_026<br><br>中尾博恵<br>中尾博恵 特集<br>会場：14階 PARCO HALL<br>https://osaka-artanddesign.ecbeing.biz/2026/programs/detail/a_088<br><br>篠原有司男<br>篠原有司男 特集<br>会場：14階 PARCO HALL<br>https://osaka-artanddesign.ecbeing.biz/2026/programs/detail/a_087<br><br>平田望<br>平田望 特集<br>会場：14階 PARCO HALL<br>https://osaka-artanddesign.ecbeing.biz/2026/programs/detail/a_086<br><br>ニック・ウォーカー<br>ニック・ウォーカー来日記念展<br>会場：14階 PARCO HALL<br>https://osaka-artanddesign.ecbeing.biz/2026/programs/detail/a_085",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000044/"
         },
         {
             "event_id": "EV02000045",
             "event_name": "アクタス・心斎橋店",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000045_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000045_01_s.jpg",
             "category": {
                 "category_id": "MC00000001",
                 "category_name": "5月27日（水）～6月2日（火）",
@@ -823,7 +823,7 @@
         {
             "event_id": "EV02000046",
             "event_name": "エスパス ルイ・ヴィトン大阪",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000046_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000046_01_s.jpg",
             "category": {
                 "category_id": "MC00000001",
                 "category_name": "5月27日（水）～6月2日（火）",
@@ -842,7 +842,7 @@
         {
             "event_id": "EV02000047",
             "event_name": "カール・ハンセン＆サン 大阪",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000047_01_s.png",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000047_01_s.png",
             "category": {
                 "category_id": "MC00000001",
                 "category_name": "5月27日（水）～6月2日（火）",
@@ -861,7 +861,7 @@
         {
             "event_id": "EV02000048",
             "event_name": "TEZUKAYAMA GALLERY",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000048_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000048_01_s.jpg",
             "category": {
                 "category_id": "MC00000001",
                 "category_name": "5月27日（水）～6月2日（火）",
@@ -880,7 +880,7 @@
         {
             "event_id": "EV02000049",
             "event_name": "JITSUZAISEI",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000049_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000049_01_s.jpg",
             "category": {
                 "category_id": "MC00000001",
                 "category_name": "5月27日（水）～6月2日（火）",
@@ -899,7 +899,7 @@
         {
             "event_id": "EV02000050",
             "event_name": "べんてんひろば（大阪環状線 弁天町駅改札直結）",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000050_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000050_01_s.jpg",
             "category": {
                 "category_id": "MC00000001",
                 "category_name": "5月27日（水）～6月2日（火）",
@@ -918,7 +918,7 @@
         {
             "event_id": "EV02000052",
             "event_name": "髙島屋大阪店",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000052_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000052_01_s.jpg",
             "category": {
                 "category_id": "MC00000001",
                 "category_name": "5月27日（水）～6月2日（火）",
@@ -937,7 +937,7 @@
         {
             "event_id": "EV02000054",
             "event_name": "髙島屋史料館 企画展示室",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000054_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000054_01_s.jpg",
             "category": {
                 "category_id": "MC00000001",
                 "category_name": "5月27日（水）～6月2日（火）",
@@ -956,7 +956,7 @@
         {
             "event_id": "EV02000055",
             "event_name": "RID",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000055_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000055_01_s.jpg",
             "category": {
                 "category_id": "MC00000001",
                 "category_name": "5月27日（水）～6月2日（火）",
@@ -975,7 +975,7 @@
         {
             "event_id": "EV02000056",
             "event_name": "大阪市立美術館",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000056_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000056_01_s.jpg",
             "category": {
                 "category_id": "MC00000001",
                 "category_name": "5月27日（水）～6月2日（火）",
@@ -994,7 +994,7 @@
         {
             "event_id": "EV02000057",
             "event_name": "あべのハルカス近鉄本店",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000057_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000057_01_s.jpg",
             "category": {
                 "category_id": "MC00000001",
                 "category_name": "5月27日（水）～6月2日（火）",
@@ -1011,9 +1011,28 @@
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000057/"
         },
         {
+            "event_id": "EV02000058",
+            "event_name": "あべのハルカス美術館",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000058_01_s.jpg",
+            "category": {
+                "category_id": "MC00000001",
+                "category_name": "5月27日（水）～6月2日（火）",
+                "color_code": "#FFFF00"
+            },
+            "spot": {
+                "spot_id": "SP00001069",
+                "spot_name": "あべのハルカス美術館",
+                "latitude": 34.6465130526722,
+                "longitude": 135.513230981046,
+                "address": "大阪市阿倍野区阿倍野筋1-1-43"
+            },
+            "description": "【アーティスト／ブランド】<br>-<br><br>【プログラム名】<br>ブルックリン博物館所蔵 　特別展 　古代エジプト<br><br>【期間】<br>開催中 - 6/14 sun.<br>※Osaka Art & Design 2026の会期は5月27日（水）〜 6月23日（火）<br><br>【営業時間】<br>火~ 金 / 10:00-20:00｜月・土・日・祝 / 10:00-18:00<br>※入館は閉館30分前まで<br><br>【会場】<br>あべのハルカス美術館<br><br>【プログラム紹介】<br>彫刻、棺、宝飾品、陶器、土器、パピルス、そして人間やネコのミイラなど約150点の遺物を通じて、私たちの想像を超える高度な文化を創出した人々の営みをひも解く。「知っているようで知らない事実」から最新技術を使ったピラミッド研究まで、映像や音声も交えてご紹介。<br><br>【WEBサイト】<br>https://www.aham.jp/",
+            "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000058/"
+        },
+        {
             "event_id": "EV02000059",
             "event_name": "ART community space Nano Gallery",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000059_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000059_01_s.jpg",
             "category": {
                 "category_id": "MC00000001",
                 "category_name": "5月27日（水）～6月2日（火）",
@@ -1032,7 +1051,7 @@
         {
             "event_id": "EV02000061",
             "event_name": "gallery &sing",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000061_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000061_01_s.jpg",
             "category": {
                 "category_id": "MC00000001",
                 "category_name": "5月27日（水）～6月2日（火）",
@@ -1051,7 +1070,7 @@
         {
             "event_id": "EV02000062",
             "event_name": "Super Studio Kitakagaya",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000062_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000062_01_s.jpg",
             "category": {
                 "category_id": "MC00000001",
                 "category_name": "5月27日（水）～6月2日（火）",
@@ -1064,13 +1083,13 @@
                 "longitude": 135.473598911731,
                 "address": "大阪市住之江区北加賀屋５丁目４−６４"
             },
-            "description": "Super Studio Kitakagaya",
+            "description": "Super Studio Kitakagaya<br>（展示会場情報は準備中）",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000062/"
         },
         {
             "event_id": "EV02000063",
             "event_name": "ハービス PLAZA ENT B1F 東エントランス",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000063_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000063_01_s.jpg",
             "category": {
                 "category_id": "MC00000001",
                 "category_name": "5月27日（水）～6月2日（火）",
@@ -1083,13 +1102,13 @@
                 "longitude": 135.494526881048,
                 "address": "大阪府大阪市北区梅田２丁目２−２２"
             },
-            "description": "ハービス PLAZA ENT B1F 東エントランス",
+            "description": "【アーティスト／ブランド】<br>Vit<br><br>【プログラム名】<br>ICHIGO ICHIE 一期一会 アートシリーズ - Circle of Peace -<br><br>【期間】<br>5/27 wed. - 6/23 tue.<br><br>【営業時間】<br>11:00 - 22:00<br>※一部営業時間の異なる店舗がございます<br><br>【会場】<br>ハービスPLAZA ENT B1東エントランス<br><br>【プログラム紹介】<br>Vitの作品は、静と動、制御と自由、そして明確な形と抽象的な表現のあいだにある、静かなバランスを探求しています。深い黒や鮮やかな白、そして力強い色彩のコントラストは、彼自身の歩んできた人生と、内にある穏やかな精神の状態を映し出しています。<br>彼の作品においては、形と余白が同じくらい重要な意味を持ちます。余白は単なる「空白」ではなく、他のすべてを存在させるための空間です。私たちに、目に見えるものだけでなく、見えないものにも意識を向けるよう促します。<br>制作のプロセスは、ゆっくりとした思索の時間でもあります。ひとつの線や形が置かれると、それを急いで進めることはありません。時間の中で静かに対話しながら、自然と作品が育ち、やがて完成へと導かれていきます。<br>Vitのアートは、単に「見るもの」ではありません。日常の喧騒から一歩離れ、立ち止まり、自分自身の内側にある静けさやバランスと再びつながるための「場」を生み出します。<br>このような考え方は、「一期一会（すべての瞬間は一度きりである）」や「間（余白や静けさの意味）」といった日本の思想とも深く響き合っています。<br>そしてそれらの思想は、ライブペインティング「ICHIGO ICHIE – Circle of Peace –」において、最も明確なかたちで表現されます。ここで大切なのは、作品そのものではなく、それが生まれる瞬間の内面の状態です。描くという行為そのものが、静かで現在に集中した、平和の体験となります。<br>作品はただ一度、その瞬間にのみ生まれ、同じものは二度と現れません。そして最後には、その作品は観客と分かち合われます。そこにあるのは「所有」ではなく、「共有される感覚」です。<br>その根底にあるのは、とてもシンプルな考えです。<br>「平和な人だけが、平和な世界をつくることができる。」<br>作品は、その瞬間の痕跡にすぎません。本当の意味は、それが生まれた心の状態と、そこから生まれる感覚にあります。<br><br>【WEBサイト】<br>https://www.herbis.jp/",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000063/"
         },
         {
             "event_id": "EV02000001",
             "event_name": "NORIBA10 Umeda",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000001_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000001_01_s.jpg",
             "category": {
                 "category_id": "MC00000002",
                 "category_name": "6月3日（水）～6月9日（火）",
@@ -1102,13 +1121,13 @@
                 "longitude": 135.498988150533,
                 "address": "大阪市北区芝田１丁目１−３"
             },
-            "description": "NORIBA10 Umeda",
+            "description": "NORIBA10 Umeda<br>（展示会場情報は準備中）",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000001/"
         },
         {
             "event_id": "EV02000003",
             "event_name": "NU茶屋町 1階 コリドールプラザ",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000003_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000003_01_s.jpg",
             "category": {
                 "category_id": "MC00000002",
                 "category_name": "6月3日（水）～6月9日（火）",
@@ -1121,13 +1140,13 @@
                 "longitude": 135.499055438668,
                 "address": "大阪市北区茶屋町10-12 NU茶屋町"
             },
-            "description": "NU茶屋町 1階 コリドールプラザ",
+            "description": "NU茶屋町 1階 コリドールプラザ<br>（展示会場情報は準備中）",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000003/"
         },
         {
             "event_id": "EV02000005",
             "event_name": "グラングリーン大阪 南館 地下1階 タイムアウトマーケット大阪",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000005_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000005_01_s.jpg",
             "category": {
                 "category_id": "MC00000002",
                 "category_name": "6月3日（水）～6月9日（火）",
@@ -1140,13 +1159,13 @@
                 "longitude": 135.492436740518,
                 "address": "大阪市北区大深町4-1"
             },
-            "description": "グラングリーン大阪 南館 地下1階 タイムアウトマーケット大阪",
+            "description": "【アーティスト／ブランド】<br>SHUN NAKAO<br><br>【プログラム名】<br>your city lights<br><br>【期間】<br>5/27 wed.-6/23 tue.<br>※常設展示<br><br>【営業時間】<br>11:00-23:00<br><br>【会場】<br>グラングリーン大阪 南館 地下1階<br>タイムアウトマーケット大阪<br><br>【プログラム紹介】<br>グラングリーン大阪南館地下1階に位置する「タイムアウトマーケット大阪」では、大阪を拠点に活躍するアーティスト・SHUN NAKAO/中尾舜（ナカオ シュン、1992年 兵庫県朝来市生まれ）が手がけるアートワークを展示している。<br><br>大阪芸術大学 デザイン学科卒業後、イラストレーターを経てアーティストとして活動する中尾は、幼少期から80年代のファッションや音楽に大きな影響を受けてきたとのこと。『アジア初となる「タイムアウトマーケット大阪」にこのような作品を展示できることを光栄に思います。作品としてエネルギッシュな大阪を表現することを考え、飛び跳ねるような色と形を配置し、大阪の街をバックに窓の結露に子供が落書き遊びをしたようなデザインで無邪気さや元気な街をビジュアル化しました。新たなランドマークとなる「グラングリーン大阪」で、この作品が大阪の方々だけでなく「タイムアウトマーケット大阪」に訪れる多くの方々に親しまれる存在になることを願っております。』と中尾は話す。<br><br>【WEBサイト】<br>https://www.timeout.jp/time-out-market-osaka/ja",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000005/"
         },
         {
             "event_id": "EV02000006",
             "event_name": "グランフロント大阪 うめきた広場 他",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000006_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000006_01_s.jpg",
             "category": {
                 "category_id": "MC00000002",
                 "category_name": "6月3日（水）～6月9日（火）",
@@ -1165,7 +1184,7 @@
         {
             "event_id": "EV02000007",
             "event_name": "大阪ステーションシティノースゲートビルディング 11階 風の広場",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000007_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000007_01_s.jpg",
             "category": {
                 "category_id": "MC00000002",
                 "category_name": "6月3日（水）～6月9日（火）",
@@ -1178,13 +1197,13 @@
                 "longitude": 135.494772723326,
                 "address": "大阪市北区梅田3-1-3 ルクア大阪"
             },
-            "description": "大阪ステーションシティノースゲートビルディング 11階 風の広場",
+            "description": "大阪ステーションシティノースゲートビルディング 11階 風の広場<br>（展示会場情報は準備中）",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000007/"
         },
         {
             "event_id": "EV02000008",
             "event_name": "阪急メンズ大阪",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000008_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000008_01_s.jpg",
             "category": {
                 "category_id": "MC00000002",
                 "category_name": "6月3日（水）～6月9日（火）",
@@ -1197,13 +1216,13 @@
                 "longitude": 135.499816680997,
                 "address": "大阪市北区角田町7-10"
             },
-            "description": "阪急メンズ大阪",
+            "description": "【アーティスト／ブランド】<br>SWJP / torinoko / ミカヅキショウテン / Forever ever<br><br>【プログラム名】<br>D.I.T.R. MARKET DIAMOND IN THE ROUGH<br><br>【期間】<br>5/27 wed. - 6/9 tue.<br><br>【営業時間】<br>10:00-20:00<br>※平日は11:00-20:00<br><br>【会場】<br>阪急メンズ大阪<br>1階 プロモーションスペース11<br><br>【プログラム紹介】<br>D.I.T.R.MARKET -DIAMOND IN THE ROUGH-では、瀬戸内を起点に、“ダイヤの原石”のような価値にフォーカス。瀬戸内はもちろん、周辺地域や独自の視点でセレクトしたプロダクトが集まるマーケット型イベントです。直島のコーヒースタンド「ミカヅキショウテン」の土産品や、「SWJP」によるカスタム古着、「torinoko」が選ぶ郷土玩具、「HYSTERIC MINI」のCOTTON FARMによるTシャツなどが並びます。「Forever ever」のプロダクトとともに、新たな価値との出会いを提案します。<br><br>【WEBサイト】<br>https://website.hankyu-dept.co.jp/honten/h/oad/",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000008/"
         },
         {
             "event_id": "EV02000009",
             "event_name": "阪急うめだ本店",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000009_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000009_01_s.jpg",
             "category": {
                 "category_id": "MC00000002",
                 "category_name": "6月3日（水）～6月9日（火）",
@@ -1216,13 +1235,13 @@
                 "longitude": 135.498435736819,
                 "address": "大阪市北区角田町8-7"
             },
-            "description": "【プログラム】<br>複数プログラムが展開されます。<br>詳細は会場ホームページや、Osaka Art & Designのホームページのプログラムページ（以下に記載のURL）にてご確認ください。<br>※プログラムによって会期が異なる場合がございますのでご注意ください。<br><br>阪急うめだ本店 ホームページ<br>https://website.hankyu-dept.co.jp/honten/h/oad/index.html<br><br>平子雄一<br>NON NATURE<br>会場：<br>1階 コンコースウィンドー<br>9階 祝祭広場 / 阪急うめだギャラリー / アートステージ<br>https://www.osaka-artanddesign.com/2026/programs/detail/a_061<br><br>青山明生 / 小林モー子 ほか<br>Wearable Art & Object LIMITED SHOP - Stories in Small Forms<br>会場：1階 プロモーションスペース11<br>https://www.osaka-artanddesign.com/2026/programs/detail/a_066<br><br>ジャンパオロ・ファッラーニ<br>「トッズ ヴァカンツェ イタリアーネ」ポップアップ<br>会場：1階 コトコトステージ11<br>https://www.osaka-artanddesign.com/2026/programs/detail/a_075<br><br>岩崎貴宏<br>「ANTEPRIMA」POP UP STORE －Fragile and Strength－<br>会場：1階 コトコトステージ11<br>https://www.osaka-artanddesign.com/2026/programs/detail/a_074<br><br>NATURALLY PAINTING Co.<br>「コール ハーン」Customization Bar<br>会場：4階 コトコトステージ42<br>https://www.osaka-artanddesign.com/2026/programs/detail/a_067<br><br>塚本智也<br>塚本智也 個展「光の循環」<br>会場：8階 Contemporary Art Gallery<br>https://www.osaka-artanddesign.com/2026/programs/detail/a_063<br><br>yutaokuda<br>yutaokuda solo exhibition &quot;With Gratitude&quot;<br>会場：<br>8階 Contemporary Art Gallery<br>1階 コトコトステージ11<br>https://www.osaka-artanddesign.com/2026/programs/detail/a_062<br><br>SOMETA<br>RE：COLLECTION vol.1 SOMETA With &quot;F&quot;<br>会場：8階 コトコトステージ81<br>https://www.osaka-artanddesign.com/2026/programs/detail/a_069<br><br>谷口智則<br>『谷口智則 絵本の世界』 “余白の美”が導くアートな子育て<br>会場：11階 コトコトステージ111<br>https://www.osaka-artanddesign.com/2026/programs/detail/28<br><br>京都・永楽屋<br>～伝統を守り、未来へつなぐ～ 京都・永楽屋 14世・細辻伊兵衛 てぬぐいアート展<br>会場：11階 コトコトステージ113<br>https://www.osaka-artanddesign.com/2026/programs/detail/a_072",
+            "description": "【プログラム】<br>複数プログラムが展開されます。<br>詳細は会場ホームページや、Osaka Art & Designのホームページのプログラムページ（以下に記載のURL）にてご確認ください。<br>※プログラムによって会期が異なる場合がございますのでご注意ください。<br><br>阪急うめだ本店 ホームページ<br>https://website.hankyu-dept.co.jp/honten/h/oad/index.html<br><br>平子雄一<br>NON NATURE<br>会場：<br>1階 コンコースウィンドー<br>9階 祝祭広場 / 阪急うめだギャラリー / アートステージ<br>https://www.osaka-artanddesign.com/2026/programs/detail/a_061<br><br>青山明生 / 小林モー子 ほか<br>Wearable Art & Object LIMITED SHOP - Stories in Small Forms<br>会場：1階 プロモーションスペース11<br>https://www.osaka-artanddesign.com/2026/programs/detail/a_066<br><br>ジャンパオロ・ファッラーニ<br>「トッズ ヴァカンツェ イタリアーネ」ポップアップ<br>会場：1階 コトコトステージ11<br>https://www.osaka-artanddesign.com/2026/programs/detail/a_075<br><br>岩崎貴宏<br>「ANTEPRIMA」POP UP STORE －Fragile and Strength－<br>会場：1階 コトコトステージ11<br>https://www.osaka-artanddesign.com/2026/programs/detail/a_074<br><br>NATURALLY PAINTING Co.<br>「コール ハーン」Customization Bar<br>会場：4階 コトコトステージ42<br>https://www.osaka-artanddesign.com/2026/programs/detail/a_067<br><br>山崎円城<br>山崎円城 言葉のうつわ<br>会場：7階プロモーションスペース71<br>https://osaka-artanddesign.ecbeing.biz/2026/programs/detail/a_070<br><br>佐々木香菜子<br>FLOW & BLOOM ー 佐々木香菜子 meets Botanical<br>会場：7階 コトコトステージ71<br>https://osaka-artanddesign.ecbeing.biz/2026/programs/detail/a_068<br><br>塚本智也<br>塚本智也 個展「光の循環」<br>会場：8階 Contemporary Art Gallery<br>https://www.osaka-artanddesign.com/2026/programs/detail/a_063<br><br>yutaokuda<br>yutaokuda solo exhibition &quot;With Gratitude&quot;<br>会場：<br>8階 Contemporary Art Gallery<br>1階 コトコトステージ11<br>https://www.osaka-artanddesign.com/2026/programs/detail/a_062<br><br>SOMETA<br>RE：COLLECTION vol.1 SOMETA With &quot;F&quot;<br>会場：8階 コトコトステージ81<br>https://www.osaka-artanddesign.com/2026/programs/detail/a_069<br><br>HERALBONY<br>HERALBONY ART PARK<br>会場：9階 祝祭広場<br>https://osaka-artanddesign.ecbeing.biz/2026/programs/detail/a_064<br><br>谷口智則<br>『谷口智則 絵本の世界』 “余白の美”が導くアートな子育て<br>会場：11階 コトコトステージ111<br>https://www.osaka-artanddesign.com/2026/programs/detail/28<br><br>京都・永楽屋<br>～伝統を守り、未来へつなぐ～ 京都・永楽屋 14世・細辻伊兵衛 てぬぐいアート展<br>会場：11階 コトコトステージ113<br>https://www.osaka-artanddesign.com/2026/programs/detail/a_072",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000009/"
         },
         {
             "event_id": "EV02000010",
             "event_name": "阪急うめだ本店 コンコースウィンドー / 大阪梅田ツインタワーズ・ノース 1階 コンコース",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000010_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000010_01_s.jpg",
             "category": {
                 "category_id": "MC00000002",
                 "category_name": "6月3日（水）～6月9日（火）",
@@ -1235,13 +1254,13 @@
                 "longitude": 135.498682145148,
                 "address": "大阪市北区角田町8-1"
             },
-            "description": "【アーティスト／ブランド】<br>平子雄一<br><br>【プログラム名】<br>NON NATURE<br><br>【期間】<br>1階｜5/20 wed. - 6/22 mon.　9階｜5/27 wed. - 6/8 mon.<br><br>【営業時間】<br>10:00-20:00<br>※9階のみ催し最終日は17:00終了<br><br>【会場】<br>阪急うめだ本店<br>1階 コンコースウィンドー<br>9階 祝祭広場 / 阪急うめだギャラリー / アートステージ<br><br>【プログラム紹介】<br>都市には自然のようなもの、もしくは自然の環境を模したものが多く存在します。そもそも、どの状態を自然と定義するのかを確定することは困難ですが、都市に存在するそれらのほとんどは、人の手が関わった人工物と言えます。<br>私たちの多くは、利便性を求め都市で生活し生産活動を行いますが、同時に精神のどこかでは自然を求めているのではないでしょうか。自然とは未知のものであり、人がコントロール出来ない存在、意思の疎通が不可能なもの。それらに癒しや、景観美を求める行動はとても人間らしいと思います。<br>今回のプロジェクトで出現させる作品は、自然の断片のようなもの、人間らしさを象徴するものでもあり、その２つが混ざり合った様なものでもあります。大都会大阪の中心、人間が作り出した世界屈指の構造の中心に自身の作品を登場させることによって、鑑賞される方が自然を感じるのか、「非」自然を感じるのか、楽しみです。　ー平子雄一<br><br>トップ画像：平子雄一「Lost in Thought 229」2025 ©Yuichi Hirako photo by Osamu Sakamoto<br><br>【WEBサイト】<br>https://website.hankyu-dept.co.jp/honten/h/oad/",
+            "description": "【アーティスト／ブランド】<br>平子雄一<br><br>【プログラム名】<br>LAMPENFLORA「照明植生」<br><br>【期間】<br>5/20 wed. - 6/22 mon.<br>※Osaka Art & Design 2026の会期は5月27日（水）〜 6月23日（火）<br><br>【営業時間】<br>9:00-21:00<br>※9階のみ催し最終日は17:00終了<br><br>【会場】<br>大阪梅田ツインタワーズ・ノース 1階 コンコース / 阪急うめだ本店 コンコースウィンドー<br><br>【プログラム紹介】<br>阪急うめだ本店などを舞台に展開するプロジェクト、NON NATURE。<br>そのひとつとなる本作では、コンコース空間が、平⼦雄⼀⽒の⼿によってひとつの⼤きなキャンバスへと変貌します。本企画は、国内外で活躍する現代美術作家・平⼦雄⼀⽒が「モノクロームのドローイング」のみで空間を構築する意欲的な試みです。<br>ダークブラウンを基調としたドローイングが、天井のバナーからウィンドー、そして床⾯へとダイナミックに拡張していきます。その圧倒的なモノクロームの⾵景から、平⼦雄⼀⽒の代名詞ともいえる「植物と⼈間の関係性」を問う作品群が⽴ち現れます。 国際的な評価を集めるアーティストが未知の表現へと踏み出した、貴重なインスタレーションを発信する企画です。今回のプロジェクトで出現させる作品は、自然の断片のようなもの、人間らしさを象徴するものでもあり、その２つが混ざり合った様なものでもあります。大都会大阪の中心、人間が作り出した世界屈指の構造の中心に自身の作品を登場させることによって、鑑賞される方が自然を感じるのか、「非」自然を感じるのか、楽しみです。　ー平子雄一<br><br>トップ画像：平子雄一「Lost in Thought 229」2025 ©Yuichi Hirako photo by Osamu Sakamoto<br><br>Artist Message<br><br>NON NATURE<br>都市には⾃然のようなもの、もしくは⾃然の環境を模したものが多く存在します。そもそも、どの状態を⾃然と定義するのかを確定することは困難ですが、都市に存在するそれらのほとんどは、⼈の⼿が関わった⼈⼯物と⾔えます。私たちの多くは、利便性を求め都市で⽣活し⽣産活動を⾏いますが、同時に精神のどこかでは⾃然を求めているのではないでしょうか。⾃然とは未知のものであり、⼈がコントロール出来ない存在、意思の疎通が不可能なもの。それらに癒しや、景観美を求める⾏動はとても⼈間らしいと思います。私が今回のプロジェクトで出現させる作品は、⾃然の断⽚のようなもの、⼈間らしさを象徴するものでもあり、その２つが混ざり合ったようなものでもあります。⼤都会⼤阪の中⼼、⼈間が作り出した世界屈指の構造の中⼼に⾃⾝の作品を登場させることによって、鑑賞される⽅が⾃然を感じるのか、「⾮」⾃然を感じるのか、楽しみです。<br><br>LAMPENFLORA「照明植生」<br>⾃然光が当たることのないコンコースですが、⼈⼯的な場所でも⼒強く繁栄する植物を意識して空間を構成しました。⼈が居るからこそ、作りあげることのできる植⽣のようなものを体験してもらえればと思います。<br><br>平子雄一<br><br>【WEBサイト】<br>https://umedayuen.com/",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000010/"
         },
         {
             "event_id": "EV02000011",
             "event_name": "大阪ステーションシティノースゲートビル3階",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000011_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000011_01_s.jpg",
             "category": {
                 "category_id": "MC00000002",
                 "category_name": "6月3日（水）～6月9日（火）",
@@ -1254,13 +1273,13 @@
                 "longitude": 135.49542479634,
                 "address": "大阪市北区梅田３丁目１−３ ノースゲートビル 3階"
             },
-            "description": "大阪ステーションシティノースゲートビル3階",
+            "description": "【アーティスト／ブランド】<br>佐藤紘子<br><br>【プログラム名】<br>静寂の古城、ぼくらの 混ざり合う 場所<br><br>【期間】<br>5/27 wed. - 6/23 tue.<br><br>【営業時間】<br>6:30-25:30<br><br>【会場】<br>大阪ステーションシティ インフォメーション前<br>（大阪駅3階南北連絡橋）<br><br>【プログラム紹介】<br>かつては境界だった古城の窓や壁が、今は生命を繋ぐ「広場」へと変わります。 ここでは種族も、大きさも、役割も関係ありません。<br><br>パンダもキリンも、小さなネコも、そしてこどもたちも、同じ場所に集い、同じ光を浴びて、ただ「そこにいる」ことを等しく肯定し合っています。<br><br>「だれかが笑えば、わたしも嬉しい。わたしが楽しければ、きっとだれかも楽しい。」<br><br>そんな、自分と他者が地続きで繋がっているような、温かく賑やかな世界。<br><br>この作品は、かつての静寂を賑わいで塗り替え、一人ひとりがかけがえのない存在として、色彩豊かに混ざり合う、明るい共生と新たな生命の芽吹きを描いています。<br><br>【WEBサイト】<br>https://osakastationcity.com/",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000011/"
         },
         {
             "event_id": "EV02000012",
             "event_name": "JR大阪駅・大阪ステーションシティ 5階 時空の広場",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000012_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000012_01_s.jpg",
             "category": {
                 "category_id": "MC00000002",
                 "category_name": "6月3日（水）～6月9日（火）",
@@ -1279,7 +1298,7 @@
         {
             "event_id": "EV02000013",
             "event_name": "APイノゲート大阪",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000013_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000013_01_s.jpg",
             "category": {
                 "category_id": "MC00000002",
                 "category_name": "6月3日（水）～6月9日（火）",
@@ -1292,13 +1311,13 @@
                 "longitude": 135.493267954011,
                 "address": "大阪市北区梅田3-2-123　イノゲート大阪 11F"
             },
-            "description": "APイノゲート大阪",
+            "description": "APイノゲート大阪<br>（展示会場情報は準備中）",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000013/"
         },
         {
             "event_id": "EV02000014",
             "event_name": "大阪駅御堂筋口デジタルサイネージ",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000014_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000014_01_s.jpg",
             "category": {
                 "category_id": "MC00000002",
                 "category_name": "6月3日（水）～6月9日（火）",
@@ -1311,13 +1330,13 @@
                 "longitude": 135.493707154011,
                 "address": "大阪市北区梅田3-1-1"
             },
-            "description": "大阪駅御堂筋口デジタルサイネージ",
+            "description": "【アーティスト／ブランド】<br>ISCA（International Students Creative Award）、 NYAA（Next Young Artist Award）<br><br>【プログラム名】<br>ISCA / NYAA セレクト作品上映<br><br>【期間】<br>5/27 wed. - 6/23 tue.<br><br>【営業時間】<br>6:00-24:00<br><br>【会場】<br>JR大阪駅 御堂筋南口ビジョン<br><br>【プログラム紹介】<br>Osaka Art and Design 2026では、JR西日本ステーションシティ株式会社の協力を得て、初の試みとしてJR大阪駅 御堂筋南口ビジョンで映像作品を終日放映します。長年、若き才能を発掘してきた「ISCA（International Students Creative Award）」と「NYAA（Next Young Artist Award）」より過去の受賞・入選作品から各5作品をセレクトいただき、行き交う人々へお届けします。次世代が紡ぐ、今この時代ならではの表現にぜひご注目ください。",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000014/"
         },
         {
             "event_id": "EV02000015",
             "event_name": "大丸梅田店",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000015_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000015_01_s.jpg",
             "category": {
                 "category_id": "MC00000002",
                 "category_name": "6月3日（水）～6月9日（火）",
@@ -1336,7 +1355,7 @@
         {
             "event_id": "EV02000016",
             "event_name": "大阪駅前地下道イベントスペース（阪神梅田本店前）",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000016_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000016_01_s.jpg",
             "category": {
                 "category_id": "MC00000002",
                 "category_name": "6月3日（水）～6月9日（火）",
@@ -1349,13 +1368,13 @@
                 "longitude": 135.496891,
                 "address": "大阪市北区梅田1"
             },
-            "description": "大阪駅前地下道イベントスペース（阪神梅田本店前）",
+            "description": "大阪駅前地下道イベントスペース（阪神梅田本店前）<br>（展示会場情報は準備中）",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000016/"
         },
         {
             "event_id": "EV02000018",
             "event_name": "ＡＰ大阪駅前",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000018_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000018_01_s.jpg",
             "category": {
                 "category_id": "MC00000002",
                 "category_name": "6月3日（水）～6月9日（火）",
@@ -1368,13 +1387,13 @@
                 "longitude": 135.498227565654,
                 "address": "大阪市北区梅田1-12-12 東京建物梅田ビル B1F・B2F（受付B1F）"
             },
-            "description": "ＡＰ大阪駅前",
+            "description": "ＡＰ大阪駅前<br>（展示会場情報は準備中）",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000018/"
         },
         {
             "event_id": "EV02000019",
             "event_name": "ハービス PLAZA ENT 3F ライオンラグス",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000019_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000019_01_s.jpg",
             "category": {
                 "category_id": "MC00000002",
                 "category_name": "6月3日（水）～6月9日（火）",
@@ -1393,7 +1412,7 @@
         {
             "event_id": "EV02000020",
             "event_name": "翠波画廊大阪店",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000020_01_s.png",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000020_01_s.png",
             "category": {
                 "category_id": "MC00000002",
                 "category_name": "6月3日（水）～6月9日（火）",
@@ -1412,7 +1431,7 @@
         {
             "event_id": "EV02000021",
             "event_name": "FabCafe Osaka",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000021_01_s.png",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000021_01_s.png",
             "category": {
                 "category_id": "MC00000002",
                 "category_name": "6月3日（水）～6月9日（火）",
@@ -1431,7 +1450,7 @@
         {
             "event_id": "EV02000022",
             "event_name": "アートコートギャラリー",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000022_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000022_01_s.jpg",
             "category": {
                 "category_id": "MC00000002",
                 "category_name": "6月3日（水）～6月9日（火）",
@@ -1450,7 +1469,7 @@
         {
             "event_id": "EV02000023",
             "event_name": "YOD Gallery",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000023_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000023_01_s.jpg",
             "category": {
                 "category_id": "MC00000002",
                 "category_name": "6月3日（水）～6月9日（火）",
@@ -1469,7 +1488,7 @@
         {
             "event_id": "EV02000024",
             "event_name": "KAZE ART PLANNING",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000024_01_s.png",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000024_01_s.png",
             "category": {
                 "category_id": "MC00000002",
                 "category_name": "6月3日（水）～6月9日（火）",
@@ -1488,7 +1507,7 @@
         {
             "event_id": "EV02000025",
             "event_name": "Ritzwell 大阪ショールーム（堂島リバーフォーラム）",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000025_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000025_01_s.jpg",
             "category": {
                 "category_id": "MC00000002",
                 "category_name": "6月3日（水）～6月9日（火）",
@@ -1507,7 +1526,7 @@
         {
             "event_id": "EV02000026",
             "event_name": "graf porch",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000026_01_s.jpeg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000026_01_s.jpeg",
             "category": {
                 "category_id": "MC00000002",
                 "category_name": "6月3日（水）～6月9日（火）",
@@ -1526,7 +1545,7 @@
         {
             "event_id": "EV02000027",
             "event_name": "藤田美術館",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000027_01_s.png",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000027_01_s.png",
             "category": {
                 "category_id": "MC00000002",
                 "category_name": "6月3日（水）～6月9日（火）",
@@ -1545,7 +1564,7 @@
         {
             "event_id": "EV02000028",
             "event_name": "LIBRE GALLERY y SPACE",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000028_01_s.jpeg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000028_01_s.jpeg",
             "category": {
                 "category_id": "MC00000002",
                 "category_name": "6月3日（水）～6月9日（火）",
@@ -1564,7 +1583,7 @@
         {
             "event_id": "EV02000029",
             "event_name": "大阪市中央公会堂",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000029_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000029_01_s.jpg",
             "category": {
                 "category_id": "MC00000002",
                 "category_name": "6月3日（水）～6月9日（火）",
@@ -1577,13 +1596,13 @@
                 "longitude": 135.503998127024,
                 "address": "大阪市北区中之島1丁目1番27号"
             },
-            "description": "大阪市中央公会堂",
+            "description": "大阪市中央公会堂<br>（展示会場情報は準備中）",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000029/"
         },
         {
             "event_id": "EV02000030",
             "event_name": "アートエリアB1",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000030_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000030_01_s.jpg",
             "category": {
                 "category_id": "MC00000002",
                 "category_name": "6月3日（水）～6月9日（火）",
@@ -1596,13 +1615,13 @@
                 "longitude": 135.505243723325,
                 "address": "大阪市北区中之島1-1-1"
             },
-            "description": "アートエリアB1",
+            "description": "アートエリアB1<br>（展示会場情報は準備中）",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000030/"
         },
         {
             "event_id": "EV02000031",
             "event_name": "国立国際美術館",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000031_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000031_01_s.jpg",
             "category": {
                 "category_id": "MC00000002",
                 "category_name": "6月3日（水）～6月9日（火）",
@@ -1621,7 +1640,7 @@
         {
             "event_id": "EV02000032",
             "event_name": "淀屋橋ステーションシティ",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000032_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000032_01_s.jpg",
             "category": {
                 "category_id": "MC00000002",
                 "category_name": "6月3日（水）～6月9日（火）",
@@ -1634,13 +1653,13 @@
                 "longitude": 135.5014925432,
                 "address": "大阪市中央区北浜３丁目６−２２"
             },
-            "description": "淀屋橋ステーションシティ",
+            "description": "【アーティスト／ブランド】<br>大竹舞人<br><br>【プログラム名】<br>編む、つなぐ、ひらく<br><br>【期間】<br>5/27 wed. - 6/23 tue.<br><br>【営業時間】<br>期間中常設<br><br>【会場】<br>淀屋橋ステーションワン B1F 淀屋橋広場<br><br>【プログラム紹介】<br>大竹舞人は、布を手で編み上げて中空の立体作品を制作する作家です。本作は地下鉄が交差する都市の中心に設置され、街や人の流れと呼応しながら、時間や記憶、文化を編み込み、未来へとつないでいく象徴として立ち現れます。<br><br>【WEBサイト】<br>https://yodoyabashi-stationone.com/",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000032/"
         },
         {
             "event_id": "EV02000033",
             "event_name": "ポルトローナ・フラウ大阪",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000033_01_s.jpeg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000033_01_s.jpeg",
             "category": {
                 "category_id": "MC00000002",
                 "category_name": "6月3日（水）～6月9日（火）",
@@ -1659,7 +1678,7 @@
         {
             "event_id": "EV02000034",
             "event_name": "maruni osaka",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000034_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000034_01_s.jpg",
             "category": {
                 "category_id": "MC00000002",
                 "category_name": "6月3日（水）～6月9日（火）",
@@ -1678,7 +1697,7 @@
         {
             "event_id": "EV02000035",
             "event_name": "WAILEA御堂筋",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000035_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000035_01_s.jpg",
             "category": {
                 "category_id": "MC00000002",
                 "category_name": "6月3日（水）～6月9日（火）",
@@ -1697,7 +1716,7 @@
         {
             "event_id": "EV02000036",
             "event_name": "大阪デザインセンター",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000036_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000036_01_s.jpg",
             "category": {
                 "category_id": "MC00000002",
                 "category_name": "6月3日（水）～6月9日（火）",
@@ -1716,7 +1735,7 @@
         {
             "event_id": "EV02000037",
             "event_name": "Osaka Metro 本町ビル",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000037_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000037_01_s.jpg",
             "category": {
                 "category_id": "MC00000002",
                 "category_name": "6月3日（水）～6月9日（火）",
@@ -1729,13 +1748,13 @@
                 "longitude": 135.500953988668,
                 "address": "大阪市中央区本町3丁目6-4"
             },
-            "description": "Osaka Metro 本町ビル",
+            "description": "Osaka Metro 本町ビル<br>（展示会場情報は準備中）",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000037/"
         },
         {
             "event_id": "EV02000038",
             "event_name": "JR大阪環状線 西九条駅高架下",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000038_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000038_01_s.jpg",
             "category": {
                 "category_id": "MC00000002",
                 "category_name": "6月3日（水）～6月9日（火）",
@@ -1748,13 +1767,13 @@
                 "longitude": 135.466106181047,
                 "address": "大阪市此花区西九条3丁目15-13"
             },
-            "description": "JR大阪環状線 西九条駅高架下",
+            "description": "JR大阪環状線 西九条駅高架下<br>（展示会場情報は準備中）",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000038/"
         },
         {
             "event_id": "EV02000039",
             "event_name": "W大阪",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000039_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000039_01_s.jpg",
             "category": {
                 "category_id": "MC00000002",
                 "category_name": "6月3日（水）～6月9日（火）",
@@ -1767,13 +1786,13 @@
                 "longitude": 135.500125511733,
                 "address": "大阪市中央区南船場4-1-3"
             },
-            "description": "W大阪",
+            "description": "【アーティスト／ブランド】<br>xorium<br><br>【プログラム名】<br>AUTONOMA<br><br>【期間】<br>5/27 wed. - 6/23 tue.<br><br>【営業時間】<br>期間中常設<br><br>【会場】<br>W大阪<br><br>【プログラム紹介】<br>「Whatever / Whenever🄬（お望みの物を / お望みの時に）」の理念に基づき、存在そのものを楽しませる工夫としてアーティストとのコラボレーションも積極的に行うラグジュアリー・ライフスタイルホテル、W大阪。昨年は総支配人としてピーター・ルーカスが就任し、「ユニークでアートに満ちた施設の魅力を高めたい」と意欲的な姿勢を見せた。Osaka Art ＆ Design 3度目の参加となる今回、新たなパートナーと共に、体験型アートの新境地を開く。<br><br>ひとつの違和感から始まった、創作の軌跡<br>情報のデジタル化により、世界との距離が急激に近くなった昨今。その膨大な世界と接続する手段が、ディスプレイという限られた窓口に終始している状況に、ひとつのアーティストコレクティブが違和感を覚えた。2017年7月に結成された竹川諒と中村慎吾による「xorium」は、多様なデジタル技術を活用しながら、人や物、環境、社会構造といった身の回りの要素が相互作用し変化する中で、要素の狭間に見えてくる現象や違和感を解釈し、作品へと昇華させている。<br>今回、彼らが向き合ったのは、制御する世界への違和感である。これまで社会は定められたルールによって、整然と管理されていた。だが、情報が氾濫し、AIが効率化を促し、多様な価値観が交差する現代において、もはや単一の縛りによる制御は限界を迎えている。xoriumは確信した。これからの時代は制御されるのではなく、他者や環境との“関係”の中でこそ生きていく世界なのだと。彼らはその答えを、形を自由に変えながら漂う“泡”の現象に託した。<br><br>弾け膨らみ成長する、泡が描き出す現代の縮図<br>xoriumが制作において最も重視しているのは、鑑賞者が感覚で理解することだ。言葉による説明を介さずともコンセプトが心に染み渡るよう、素材選びから技法の検証まで幾度も実験が繰り返される。<br>本作は、水盤型装置から絶え間なく泡が発生し続けるインスタレーションだ。一つひとつの泡は、独立した“個”としての私たち人間を表している。泡は触れ合い、寄り添い、時に反発しながら、やがて一つの大きな流れを形成していく。<br>蛍光塗料で彩られた泡が紫外線の光を受け、泡同士の境界が鮮明に浮かび上がる様子は、個の関係性から秩序あるネットワークが生み出される現代社会そのものだ。儚く、些細な衝撃で消えてしまう脆さを持ちながらも、空気の変化に合わせて柔軟に形を変え、他者と繋がりながら成長し続ける泡。その姿は、これから発展し続ける世界を私たちが生き抜くための指針となるはずだ。<br><br>W大阪とアートが誘う、非日常のひととき<br>展示の舞台となるのは、独創的な世界が広がるW大阪のアライバルホール。国内外のゲストが刺激的な体験を求めて行き交うステージは、xoriumの作品が持つ流動的なメッセージと見事に響き合う。作家自身も“作品が空間にインストールされる感覚”を強く覚えたというこの場所で、日常の違和感は共感へと変わり、その先にある新たな生き方のヒントへと繋がっていくだろう。<br><br>【WEBサイト】<br>https://www.marriott.com/ja/hotels/osaow-w-osaka/overview/",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000039/"
         },
         {
             "event_id": "EV02000040",
             "event_name": "アルフレックス大阪",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000040_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000040_01_s.jpg",
             "category": {
                 "category_id": "MC00000002",
                 "category_name": "6月3日（水）～6月9日（火）",
@@ -1792,7 +1811,7 @@
         {
             "event_id": "EV02000041",
             "event_name": "Marco Gallery",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000041_01_s.png",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000041_01_s.png",
             "category": {
                 "category_id": "MC00000002",
                 "category_name": "6月3日（水）～6月9日（火）",
@@ -1811,7 +1830,7 @@
         {
             "event_id": "EV02000042",
             "event_name": "クリスタ長堀 滝の広場",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000042_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000042_01_s.jpg",
             "category": {
                 "category_id": "MC00000002",
                 "category_name": "6月3日（水）～6月9日（火）",
@@ -1824,13 +1843,13 @@
                 "longitude": 135.501366581047,
                 "address": "大阪市中央区南船場３丁目 長堀地下街"
             },
-            "description": "クリスタ長堀 滝の広場",
+            "description": "【アーティスト／ブランド】<br>大西伸明<br><br>【プログラム名】<br>Re-Mirroring Matter<br><br>【期間】<br>5/28 thu. - 6/14 sun.<br><br>【営業時間】<br>11:00-21:00<br><br>【会場】<br>クリスタ長堀 滝の広場・南側<br><br>【プログラム紹介】<br>日用品を精巧な「型」へと写しとり、モノの存在を再度立ち上げる。それは、情報が飽和し、あらゆる事象が記号に覆われた現代において、「見慣れた世界」という既成概念を解体します。会場には、滝を借景とした電球の作品と、広場に佇む見慣れた物たち。透明な樹脂の内部を凝視するとき、眼前の風景は反転し、逆流する滝のごとく、現実をリ・ミラーリングする光景が浮かび上がります。<br><br>【WEBサイト】<br>https://www.crystaweb.jp/",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000042/"
         },
         {
             "event_id": "EV02000043",
             "event_name": "大丸心斎橋店",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000043_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000043_01_s.jpg",
             "category": {
                 "category_id": "MC00000002",
                 "category_name": "6月3日（水）～6月9日（火）",
@@ -1843,13 +1862,13 @@
                 "longitude": 135.500843279196,
                 "address": "大阪市中央区心斎橋筋1-7-1"
             },
-            "description": "大丸心斎橋店",
+            "description": "【プログラム】<br>複数プログラムが展開されます。<br>詳細はOsaka Art & Designのホームページのプログラムページ（以下に記載のURL）にてご確認ください。<br>※プログラムによって会期が異なる場合がございますのでご注意ください。<br><br>五十嵐威暢<br>五十嵐威暢 積木ベンチ<br>会場：本館前・心斎橋パルコ前御堂筋歩道<br>https://osaka-artanddesign.ecbeing.biz/2026/programs/detail/a_082<br><br>黒田征太郎 / コシノヒロコ / 佐伯和良 / SHIRACO WORLD / ドナルド・ロバートソン / 山下浩平 / ロブ・ライアン<br>大丸心斎橋店開業300周年 ひとます美術館 ＝未来へはばたくフェニックスの餐宴＝ 〈併催〉未来の大阪を担う子供たちへの チャリティオークション<br>会場：本館1階 心斎橋筋側ウィンドウ・各階エスカレーター前<br>https://osaka-artanddesign.ecbeing.biz/2026/programs/detail/a_081<br><br>高木耕一郎 / 田村琢朗<br>〈AYIN×MAKI Gallery〉高木耕一郎・田村琢郎特別展示<br>会場：本館1階 御堂筋側イベントスペース<br>https://osaka-artanddesign.ecbeing.biz/2026/programs/detail/a_083<br><br>田中ラオウ ほか<br>現代アート POPUP STORE<br>会場：本館1階 御堂筋側イベントスペース<br>https://osaka-artanddesign.ecbeing.biz/2026/programs/detail/a_090<br><br>篠田桃紅<br>篠田桃紅 〜時をこえる抽象の美〜<br>https://osaka-artanddesign.ecbeing.biz/2026/programs/detail/a_089<br>会場：本館8階 アールグロリュー ギャラリー オブ オーサカ<br>https://www.daimaru.co.jp/shinsaibashi/",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000043/"
         },
         {
             "event_id": "EV02000044",
             "event_name": "心斎橋PARCO",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000044_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000044_01_s.jpg",
             "category": {
                 "category_id": "MC00000002",
                 "category_name": "6月3日（水）～6月9日（火）",
@@ -1862,13 +1881,13 @@
                 "longitude": 135.500914481047,
                 "address": "大阪市中央区心斎橋筋1-8-3"
             },
-            "description": "【アーティスト／ブランド】<br>五十嵐威暢<br><br>【プログラム名】<br>A–Z Homage to Takenobu Igarashi<br><br>【期間】<br>5/22 fri. - 6/14 sun.<br><br>【営業時間】<br>10:00-20:00<br>※最終日は18:00まで<br><br>【会場】<br>心斎橋PARCO・14F PARCO HALL<br><br>【プログラム紹介】<br>　五十嵐氏とPARCOの出会いは、1981年にオープンした渋谷PARCO PART3のプロジェクトでした。中心的なデザイナーのひとりとして参加した五十嵐氏は、ロゴや看板、ショッパー、館内グラフィックなど、多くのデザインを手がけました。シンプルで力強いPARCOロゴは、社内で「五十嵐ロゴ」として愛され、吉祥寺PARCOや名古屋PARCOなどで現在も外壁サインとして使用されています。建て替えのために解体された渋谷PARCOの外壁から取り外されたネオンサインは、現在は渋谷PARCOと心斎橋PARCOの店舗内で大切に常設展示されています。五十嵐ロゴは、世代を超えて語り継がれる、PARCOの文化を象徴する存在です。<br><br>　本展では、1994年に彫刻家に転身する以前の、デザイナーとしての五十嵐氏のアルファベット作品に焦点を当てます。渋谷PARCO PART3のためのロゴデザインを紐解き、書体のバリエーションも紹介。渋谷PARCO PART3のストリートギャラリーで発表されたアルファベット彫刻（現存する24点のうち20点を展示予定）や、ポスターカレンダー［PARCO ver.（1982年制作）］、AからZまでのアルファベットを題材にした彫刻やグラフィックデザインの作品を、心斎橋PARCO館内の常設展示や屋外空間も舞台として、五十嵐氏の創造性あふれる作品を一堂に展示します。<br><br>【WEBサイト】<br>https://shinsaibashi.parco.jp/",
+            "description": "【プログラム】<br>複数プログラムが展開されます。<br>詳細はOsaka Art & Designのホームページのプログラムページ（以下に記載のURL）にてご確認ください。<br>※プログラムによって会期が異なる場合がございますのでご注意ください。<br><br>五十嵐威暢<br>A–Z Homage to Takenobu Igarashi<br>会場：14階 PARCO HALL<br>https://www.osaka-artanddesign.com/2026/programs/detail/b_026<br><br>中尾博恵<br>中尾博恵 特集<br>会場：14階 PARCO HALL<br>https://osaka-artanddesign.ecbeing.biz/2026/programs/detail/a_088<br><br>篠原有司男<br>篠原有司男 特集<br>会場：14階 PARCO HALL<br>https://osaka-artanddesign.ecbeing.biz/2026/programs/detail/a_087<br><br>平田望<br>平田望 特集<br>会場：14階 PARCO HALL<br>https://osaka-artanddesign.ecbeing.biz/2026/programs/detail/a_086<br><br>ニック・ウォーカー<br>ニック・ウォーカー来日記念展<br>会場：14階 PARCO HALL<br>https://osaka-artanddesign.ecbeing.biz/2026/programs/detail/a_085",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000044/"
         },
         {
             "event_id": "EV02000045",
             "event_name": "アクタス・心斎橋店",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000045_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000045_01_s.jpg",
             "category": {
                 "category_id": "MC00000002",
                 "category_name": "6月3日（水）～6月9日（火）",
@@ -1887,7 +1906,7 @@
         {
             "event_id": "EV02000046",
             "event_name": "エスパス ルイ・ヴィトン大阪",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000046_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000046_01_s.jpg",
             "category": {
                 "category_id": "MC00000002",
                 "category_name": "6月3日（水）～6月9日（火）",
@@ -1906,7 +1925,7 @@
         {
             "event_id": "EV02000047",
             "event_name": "カール・ハンセン＆サン 大阪",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000047_01_s.png",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000047_01_s.png",
             "category": {
                 "category_id": "MC00000002",
                 "category_name": "6月3日（水）～6月9日（火）",
@@ -1925,7 +1944,7 @@
         {
             "event_id": "EV02000048",
             "event_name": "TEZUKAYAMA GALLERY",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000048_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000048_01_s.jpg",
             "category": {
                 "category_id": "MC00000002",
                 "category_name": "6月3日（水）～6月9日（火）",
@@ -1944,7 +1963,7 @@
         {
             "event_id": "EV02000049",
             "event_name": "JITSUZAISEI",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000049_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000049_01_s.jpg",
             "category": {
                 "category_id": "MC00000002",
                 "category_name": "6月3日（水）～6月9日（火）",
@@ -1963,7 +1982,7 @@
         {
             "event_id": "EV02000050",
             "event_name": "べんてんひろば（大阪環状線 弁天町駅改札直結）",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000050_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000050_01_s.jpg",
             "category": {
                 "category_id": "MC00000002",
                 "category_name": "6月3日（水）～6月9日（火）",
@@ -1982,7 +2001,7 @@
         {
             "event_id": "EV02000052",
             "event_name": "髙島屋大阪店",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000052_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000052_01_s.jpg",
             "category": {
                 "category_id": "MC00000002",
                 "category_name": "6月3日（水）～6月9日（火）",
@@ -2001,7 +2020,7 @@
         {
             "event_id": "EV02000054",
             "event_name": "髙島屋史料館 企画展示室",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000054_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000054_01_s.jpg",
             "category": {
                 "category_id": "MC00000002",
                 "category_name": "6月3日（水）～6月9日（火）",
@@ -2020,7 +2039,7 @@
         {
             "event_id": "EV02000055",
             "event_name": "RID",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000055_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000055_01_s.jpg",
             "category": {
                 "category_id": "MC00000002",
                 "category_name": "6月3日（水）～6月9日（火）",
@@ -2039,7 +2058,7 @@
         {
             "event_id": "EV02000056",
             "event_name": "大阪市立美術館",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000056_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000056_01_s.jpg",
             "category": {
                 "category_id": "MC00000002",
                 "category_name": "6月3日（水）～6月9日（火）",
@@ -2056,9 +2075,28 @@
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000056/"
         },
         {
+            "event_id": "EV02000058",
+            "event_name": "あべのハルカス美術館",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000058_01_s.jpg",
+            "category": {
+                "category_id": "MC00000002",
+                "category_name": "6月3日（水）～6月9日（火）",
+                "color_code": "#AAE571"
+            },
+            "spot": {
+                "spot_id": "SP00001069",
+                "spot_name": "あべのハルカス美術館",
+                "latitude": 34.6465130526722,
+                "longitude": 135.513230981046,
+                "address": "大阪市阿倍野区阿倍野筋1-1-43"
+            },
+            "description": "【アーティスト／ブランド】<br>-<br><br>【プログラム名】<br>ブルックリン博物館所蔵 　特別展 　古代エジプト<br><br>【期間】<br>開催中 - 6/14 sun.<br>※Osaka Art & Design 2026の会期は5月27日（水）〜 6月23日（火）<br><br>【営業時間】<br>火~ 金 / 10:00-20:00｜月・土・日・祝 / 10:00-18:00<br>※入館は閉館30分前まで<br><br>【会場】<br>あべのハルカス美術館<br><br>【プログラム紹介】<br>彫刻、棺、宝飾品、陶器、土器、パピルス、そして人間やネコのミイラなど約150点の遺物を通じて、私たちの想像を超える高度な文化を創出した人々の営みをひも解く。「知っているようで知らない事実」から最新技術を使ったピラミッド研究まで、映像や音声も交えてご紹介。<br><br>【WEBサイト】<br>https://www.aham.jp/",
+            "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000058/"
+        },
+        {
             "event_id": "EV02000059",
             "event_name": "ART community space Nano Gallery",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000059_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000059_01_s.jpg",
             "category": {
                 "category_id": "MC00000002",
                 "category_name": "6月3日（水）～6月9日（火）",
@@ -2077,7 +2115,7 @@
         {
             "event_id": "EV02000060",
             "event_name": "ギャラリーと雑貨・太陽とハリネズミ",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000060_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000060_01_s.jpg",
             "category": {
                 "category_id": "MC00000002",
                 "category_name": "6月3日（水）～6月9日（火）",
@@ -2096,7 +2134,7 @@
         {
             "event_id": "EV02000061",
             "event_name": "gallery &sing",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000061_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000061_01_s.jpg",
             "category": {
                 "category_id": "MC00000002",
                 "category_name": "6月3日（水）～6月9日（火）",
@@ -2115,7 +2153,7 @@
         {
             "event_id": "EV02000062",
             "event_name": "Super Studio Kitakagaya",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000062_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000062_01_s.jpg",
             "category": {
                 "category_id": "MC00000002",
                 "category_name": "6月3日（水）～6月9日（火）",
@@ -2128,13 +2166,13 @@
                 "longitude": 135.473598911731,
                 "address": "大阪市住之江区北加賀屋５丁目４−６４"
             },
-            "description": "Super Studio Kitakagaya",
+            "description": "Super Studio Kitakagaya<br>（展示会場情報は準備中）",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000062/"
         },
         {
             "event_id": "EV02000063",
             "event_name": "ハービス PLAZA ENT B1F 東エントランス",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000063_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000063_01_s.jpg",
             "category": {
                 "category_id": "MC00000002",
                 "category_name": "6月3日（水）～6月9日（火）",
@@ -2147,13 +2185,13 @@
                 "longitude": 135.494526881048,
                 "address": "大阪府大阪市北区梅田２丁目２−２２"
             },
-            "description": "ハービス PLAZA ENT B1F 東エントランス",
+            "description": "【アーティスト／ブランド】<br>Vit<br><br>【プログラム名】<br>ICHIGO ICHIE 一期一会 アートシリーズ - Circle of Peace -<br><br>【期間】<br>5/27 wed. - 6/23 tue.<br><br>【営業時間】<br>11:00 - 22:00<br>※一部営業時間の異なる店舗がございます<br><br>【会場】<br>ハービスPLAZA ENT B1東エントランス<br><br>【プログラム紹介】<br>Vitの作品は、静と動、制御と自由、そして明確な形と抽象的な表現のあいだにある、静かなバランスを探求しています。深い黒や鮮やかな白、そして力強い色彩のコントラストは、彼自身の歩んできた人生と、内にある穏やかな精神の状態を映し出しています。<br>彼の作品においては、形と余白が同じくらい重要な意味を持ちます。余白は単なる「空白」ではなく、他のすべてを存在させるための空間です。私たちに、目に見えるものだけでなく、見えないものにも意識を向けるよう促します。<br>制作のプロセスは、ゆっくりとした思索の時間でもあります。ひとつの線や形が置かれると、それを急いで進めることはありません。時間の中で静かに対話しながら、自然と作品が育ち、やがて完成へと導かれていきます。<br>Vitのアートは、単に「見るもの」ではありません。日常の喧騒から一歩離れ、立ち止まり、自分自身の内側にある静けさやバランスと再びつながるための「場」を生み出します。<br>このような考え方は、「一期一会（すべての瞬間は一度きりである）」や「間（余白や静けさの意味）」といった日本の思想とも深く響き合っています。<br>そしてそれらの思想は、ライブペインティング「ICHIGO ICHIE – Circle of Peace –」において、最も明確なかたちで表現されます。ここで大切なのは、作品そのものではなく、それが生まれる瞬間の内面の状態です。描くという行為そのものが、静かで現在に集中した、平和の体験となります。<br>作品はただ一度、その瞬間にのみ生まれ、同じものは二度と現れません。そして最後には、その作品は観客と分かち合われます。そこにあるのは「所有」ではなく、「共有される感覚」です。<br>その根底にあるのは、とてもシンプルな考えです。<br>「平和な人だけが、平和な世界をつくることができる。」<br>作品は、その瞬間の痕跡にすぎません。本当の意味は、それが生まれた心の状態と、そこから生まれる感覚にあります。<br><br>【WEBサイト】<br>https://www.herbis.jp/",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000063/"
         },
         {
             "event_id": "EV02000001",
             "event_name": "NORIBA10 Umeda",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000001_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000001_01_s.jpg",
             "category": {
                 "category_id": "MC00000003",
                 "category_name": "6月10日（水）～6月16日（火）",
@@ -2166,13 +2204,13 @@
                 "longitude": 135.498988150533,
                 "address": "大阪市北区芝田１丁目１−３"
             },
-            "description": "NORIBA10 Umeda",
+            "description": "NORIBA10 Umeda<br>（展示会場情報は準備中）",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000001/"
         },
         {
             "event_id": "EV02000003",
             "event_name": "NU茶屋町 1階 コリドールプラザ",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000003_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000003_01_s.jpg",
             "category": {
                 "category_id": "MC00000003",
                 "category_name": "6月10日（水）～6月16日（火）",
@@ -2185,13 +2223,13 @@
                 "longitude": 135.499055438668,
                 "address": "大阪市北区茶屋町10-12 NU茶屋町"
             },
-            "description": "NU茶屋町 1階 コリドールプラザ",
+            "description": "NU茶屋町 1階 コリドールプラザ<br>（展示会場情報は準備中）",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000003/"
         },
         {
             "event_id": "EV02000005",
             "event_name": "グラングリーン大阪 南館 地下1階 タイムアウトマーケット大阪",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000005_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000005_01_s.jpg",
             "category": {
                 "category_id": "MC00000003",
                 "category_name": "6月10日（水）～6月16日（火）",
@@ -2204,13 +2242,13 @@
                 "longitude": 135.492436740518,
                 "address": "大阪市北区大深町4-1"
             },
-            "description": "グラングリーン大阪 南館 地下1階 タイムアウトマーケット大阪",
+            "description": "【アーティスト／ブランド】<br>SHUN NAKAO<br><br>【プログラム名】<br>your city lights<br><br>【期間】<br>5/27 wed.-6/23 tue.<br>※常設展示<br><br>【営業時間】<br>11:00-23:00<br><br>【会場】<br>グラングリーン大阪 南館 地下1階<br>タイムアウトマーケット大阪<br><br>【プログラム紹介】<br>グラングリーン大阪南館地下1階に位置する「タイムアウトマーケット大阪」では、大阪を拠点に活躍するアーティスト・SHUN NAKAO/中尾舜（ナカオ シュン、1992年 兵庫県朝来市生まれ）が手がけるアートワークを展示している。<br><br>大阪芸術大学 デザイン学科卒業後、イラストレーターを経てアーティストとして活動する中尾は、幼少期から80年代のファッションや音楽に大きな影響を受けてきたとのこと。『アジア初となる「タイムアウトマーケット大阪」にこのような作品を展示できることを光栄に思います。作品としてエネルギッシュな大阪を表現することを考え、飛び跳ねるような色と形を配置し、大阪の街をバックに窓の結露に子供が落書き遊びをしたようなデザインで無邪気さや元気な街をビジュアル化しました。新たなランドマークとなる「グラングリーン大阪」で、この作品が大阪の方々だけでなく「タイムアウトマーケット大阪」に訪れる多くの方々に親しまれる存在になることを願っております。』と中尾は話す。<br><br>【WEBサイト】<br>https://www.timeout.jp/time-out-market-osaka/ja",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000005/"
         },
         {
             "event_id": "EV02000006",
             "event_name": "グランフロント大阪 うめきた広場 他",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000006_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000006_01_s.jpg",
             "category": {
                 "category_id": "MC00000003",
                 "category_name": "6月10日（水）～6月16日（火）",
@@ -2229,7 +2267,7 @@
         {
             "event_id": "EV02000007",
             "event_name": "大阪ステーションシティノースゲートビルディング 11階 風の広場",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000007_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000007_01_s.jpg",
             "category": {
                 "category_id": "MC00000003",
                 "category_name": "6月10日（水）～6月16日（火）",
@@ -2242,32 +2280,13 @@
                 "longitude": 135.494772723326,
                 "address": "大阪市北区梅田3-1-3 ルクア大阪"
             },
-            "description": "大阪ステーションシティノースゲートビルディング 11階 風の広場",
+            "description": "大阪ステーションシティノースゲートビルディング 11階 風の広場<br>（展示会場情報は準備中）",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000007/"
-        },
-        {
-            "event_id": "EV02000008",
-            "event_name": "阪急メンズ大阪",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000008_01_s.jpg",
-            "category": {
-                "category_id": "MC00000003",
-                "category_name": "6月10日（水）～6月16日（火）",
-                "color_code": "#9999FF"
-            },
-            "spot": {
-                "spot_id": "SP00001019",
-                "spot_name": "阪急メンズ大阪 1階 プロモーションスペース 11",
-                "latitude": 34.7033053586075,
-                "longitude": 135.499816680997,
-                "address": "大阪市北区角田町7-10"
-            },
-            "description": "阪急メンズ大阪",
-            "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000008/"
         },
         {
             "event_id": "EV02000010",
             "event_name": "阪急うめだ本店 コンコースウィンドー / 大阪梅田ツインタワーズ・ノース 1階 コンコース",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000010_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000010_01_s.jpg",
             "category": {
                 "category_id": "MC00000003",
                 "category_name": "6月10日（水）～6月16日（火）",
@@ -2280,13 +2299,13 @@
                 "longitude": 135.498682145148,
                 "address": "大阪市北区角田町8-1"
             },
-            "description": "【アーティスト／ブランド】<br>平子雄一<br><br>【プログラム名】<br>NON NATURE<br><br>【期間】<br>1階｜5/20 wed. - 6/22 mon.　9階｜5/27 wed. - 6/8 mon.<br><br>【営業時間】<br>10:00-20:00<br>※9階のみ催し最終日は17:00終了<br><br>【会場】<br>阪急うめだ本店<br>1階 コンコースウィンドー<br>9階 祝祭広場 / 阪急うめだギャラリー / アートステージ<br><br>【プログラム紹介】<br>都市には自然のようなもの、もしくは自然の環境を模したものが多く存在します。そもそも、どの状態を自然と定義するのかを確定することは困難ですが、都市に存在するそれらのほとんどは、人の手が関わった人工物と言えます。<br>私たちの多くは、利便性を求め都市で生活し生産活動を行いますが、同時に精神のどこかでは自然を求めているのではないでしょうか。自然とは未知のものであり、人がコントロール出来ない存在、意思の疎通が不可能なもの。それらに癒しや、景観美を求める行動はとても人間らしいと思います。<br>今回のプロジェクトで出現させる作品は、自然の断片のようなもの、人間らしさを象徴するものでもあり、その２つが混ざり合った様なものでもあります。大都会大阪の中心、人間が作り出した世界屈指の構造の中心に自身の作品を登場させることによって、鑑賞される方が自然を感じるのか、「非」自然を感じるのか、楽しみです。　ー平子雄一<br><br>トップ画像：平子雄一「Lost in Thought 229」2025 ©Yuichi Hirako photo by Osamu Sakamoto<br><br>【WEBサイト】<br>https://website.hankyu-dept.co.jp/honten/h/oad/",
+            "description": "【アーティスト／ブランド】<br>平子雄一<br><br>【プログラム名】<br>LAMPENFLORA「照明植生」<br><br>【期間】<br>5/20 wed. - 6/22 mon.<br>※Osaka Art & Design 2026の会期は5月27日（水）〜 6月23日（火）<br><br>【営業時間】<br>9:00-21:00<br>※9階のみ催し最終日は17:00終了<br><br>【会場】<br>大阪梅田ツインタワーズ・ノース 1階 コンコース / 阪急うめだ本店 コンコースウィンドー<br><br>【プログラム紹介】<br>阪急うめだ本店などを舞台に展開するプロジェクト、NON NATURE。<br>そのひとつとなる本作では、コンコース空間が、平⼦雄⼀⽒の⼿によってひとつの⼤きなキャンバスへと変貌します。本企画は、国内外で活躍する現代美術作家・平⼦雄⼀⽒が「モノクロームのドローイング」のみで空間を構築する意欲的な試みです。<br>ダークブラウンを基調としたドローイングが、天井のバナーからウィンドー、そして床⾯へとダイナミックに拡張していきます。その圧倒的なモノクロームの⾵景から、平⼦雄⼀⽒の代名詞ともいえる「植物と⼈間の関係性」を問う作品群が⽴ち現れます。 国際的な評価を集めるアーティストが未知の表現へと踏み出した、貴重なインスタレーションを発信する企画です。今回のプロジェクトで出現させる作品は、自然の断片のようなもの、人間らしさを象徴するものでもあり、その２つが混ざり合った様なものでもあります。大都会大阪の中心、人間が作り出した世界屈指の構造の中心に自身の作品を登場させることによって、鑑賞される方が自然を感じるのか、「非」自然を感じるのか、楽しみです。　ー平子雄一<br><br>トップ画像：平子雄一「Lost in Thought 229」2025 ©Yuichi Hirako photo by Osamu Sakamoto<br><br>Artist Message<br><br>NON NATURE<br>都市には⾃然のようなもの、もしくは⾃然の環境を模したものが多く存在します。そもそも、どの状態を⾃然と定義するのかを確定することは困難ですが、都市に存在するそれらのほとんどは、⼈の⼿が関わった⼈⼯物と⾔えます。私たちの多くは、利便性を求め都市で⽣活し⽣産活動を⾏いますが、同時に精神のどこかでは⾃然を求めているのではないでしょうか。⾃然とは未知のものであり、⼈がコントロール出来ない存在、意思の疎通が不可能なもの。それらに癒しや、景観美を求める⾏動はとても⼈間らしいと思います。私が今回のプロジェクトで出現させる作品は、⾃然の断⽚のようなもの、⼈間らしさを象徴するものでもあり、その２つが混ざり合ったようなものでもあります。⼤都会⼤阪の中⼼、⼈間が作り出した世界屈指の構造の中⼼に⾃⾝の作品を登場させることによって、鑑賞される⽅が⾃然を感じるのか、「⾮」⾃然を感じるのか、楽しみです。<br><br>LAMPENFLORA「照明植生」<br>⾃然光が当たることのないコンコースですが、⼈⼯的な場所でも⼒強く繁栄する植物を意識して空間を構成しました。⼈が居るからこそ、作りあげることのできる植⽣のようなものを体験してもらえればと思います。<br><br>平子雄一<br><br>【WEBサイト】<br>https://umedayuen.com/",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000010/"
         },
         {
             "event_id": "EV02000011",
             "event_name": "大阪ステーションシティノースゲートビル3階",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000011_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000011_01_s.jpg",
             "category": {
                 "category_id": "MC00000003",
                 "category_name": "6月10日（水）～6月16日（火）",
@@ -2299,13 +2318,13 @@
                 "longitude": 135.49542479634,
                 "address": "大阪市北区梅田３丁目１−３ ノースゲートビル 3階"
             },
-            "description": "大阪ステーションシティノースゲートビル3階",
+            "description": "【アーティスト／ブランド】<br>佐藤紘子<br><br>【プログラム名】<br>静寂の古城、ぼくらの 混ざり合う 場所<br><br>【期間】<br>5/27 wed. - 6/23 tue.<br><br>【営業時間】<br>6:30-25:30<br><br>【会場】<br>大阪ステーションシティ インフォメーション前<br>（大阪駅3階南北連絡橋）<br><br>【プログラム紹介】<br>かつては境界だった古城の窓や壁が、今は生命を繋ぐ「広場」へと変わります。 ここでは種族も、大きさも、役割も関係ありません。<br><br>パンダもキリンも、小さなネコも、そしてこどもたちも、同じ場所に集い、同じ光を浴びて、ただ「そこにいる」ことを等しく肯定し合っています。<br><br>「だれかが笑えば、わたしも嬉しい。わたしが楽しければ、きっとだれかも楽しい。」<br><br>そんな、自分と他者が地続きで繋がっているような、温かく賑やかな世界。<br><br>この作品は、かつての静寂を賑わいで塗り替え、一人ひとりがかけがえのない存在として、色彩豊かに混ざり合う、明るい共生と新たな生命の芽吹きを描いています。<br><br>【WEBサイト】<br>https://osakastationcity.com/",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000011/"
         },
         {
             "event_id": "EV02000012",
             "event_name": "JR大阪駅・大阪ステーションシティ 5階 時空の広場",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000012_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000012_01_s.jpg",
             "category": {
                 "category_id": "MC00000003",
                 "category_name": "6月10日（水）～6月16日（火）",
@@ -2324,7 +2343,7 @@
         {
             "event_id": "EV02000013",
             "event_name": "APイノゲート大阪",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000013_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000013_01_s.jpg",
             "category": {
                 "category_id": "MC00000003",
                 "category_name": "6月10日（水）～6月16日（火）",
@@ -2337,13 +2356,13 @@
                 "longitude": 135.493267954011,
                 "address": "大阪市北区梅田3-2-123　イノゲート大阪 11F"
             },
-            "description": "APイノゲート大阪",
+            "description": "APイノゲート大阪<br>（展示会場情報は準備中）",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000013/"
         },
         {
             "event_id": "EV02000014",
             "event_name": "大阪駅御堂筋口デジタルサイネージ",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000014_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000014_01_s.jpg",
             "category": {
                 "category_id": "MC00000003",
                 "category_name": "6月10日（水）～6月16日（火）",
@@ -2356,13 +2375,13 @@
                 "longitude": 135.493707154011,
                 "address": "大阪市北区梅田3-1-1"
             },
-            "description": "大阪駅御堂筋口デジタルサイネージ",
+            "description": "【アーティスト／ブランド】<br>ISCA（International Students Creative Award）、 NYAA（Next Young Artist Award）<br><br>【プログラム名】<br>ISCA / NYAA セレクト作品上映<br><br>【期間】<br>5/27 wed. - 6/23 tue.<br><br>【営業時間】<br>6:00-24:00<br><br>【会場】<br>JR大阪駅 御堂筋南口ビジョン<br><br>【プログラム紹介】<br>Osaka Art and Design 2026では、JR西日本ステーションシティ株式会社の協力を得て、初の試みとしてJR大阪駅 御堂筋南口ビジョンで映像作品を終日放映します。長年、若き才能を発掘してきた「ISCA（International Students Creative Award）」と「NYAA（Next Young Artist Award）」より過去の受賞・入選作品から各5作品をセレクトいただき、行き交う人々へお届けします。次世代が紡ぐ、今この時代ならではの表現にぜひご注目ください。",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000014/"
         },
         {
             "event_id": "EV02000015",
             "event_name": "大丸梅田店",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000015_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000015_01_s.jpg",
             "category": {
                 "category_id": "MC00000003",
                 "category_name": "6月10日（水）～6月16日（火）",
@@ -2381,7 +2400,7 @@
         {
             "event_id": "EV02000016",
             "event_name": "大阪駅前地下道イベントスペース（阪神梅田本店前）",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000016_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000016_01_s.jpg",
             "category": {
                 "category_id": "MC00000003",
                 "category_name": "6月10日（水）～6月16日（火）",
@@ -2394,13 +2413,13 @@
                 "longitude": 135.496891,
                 "address": "大阪市北区梅田1"
             },
-            "description": "大阪駅前地下道イベントスペース（阪神梅田本店前）",
+            "description": "大阪駅前地下道イベントスペース（阪神梅田本店前）<br>（展示会場情報は準備中）",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000016/"
         },
         {
             "event_id": "EV02000018",
             "event_name": "ＡＰ大阪駅前",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000018_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000018_01_s.jpg",
             "category": {
                 "category_id": "MC00000003",
                 "category_name": "6月10日（水）～6月16日（火）",
@@ -2413,13 +2432,13 @@
                 "longitude": 135.498227565654,
                 "address": "大阪市北区梅田1-12-12 東京建物梅田ビル B1F・B2F（受付B1F）"
             },
-            "description": "ＡＰ大阪駅前",
+            "description": "ＡＰ大阪駅前<br>（展示会場情報は準備中）",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000018/"
         },
         {
             "event_id": "EV02000019",
             "event_name": "ハービス PLAZA ENT 3F ライオンラグス",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000019_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000019_01_s.jpg",
             "category": {
                 "category_id": "MC00000003",
                 "category_name": "6月10日（水）～6月16日（火）",
@@ -2438,7 +2457,7 @@
         {
             "event_id": "EV02000020",
             "event_name": "翠波画廊大阪店",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000020_01_s.png",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000020_01_s.png",
             "category": {
                 "category_id": "MC00000003",
                 "category_name": "6月10日（水）～6月16日（火）",
@@ -2457,7 +2476,7 @@
         {
             "event_id": "EV02000021",
             "event_name": "FabCafe Osaka",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000021_01_s.png",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000021_01_s.png",
             "category": {
                 "category_id": "MC00000003",
                 "category_name": "6月10日（水）～6月16日（火）",
@@ -2476,7 +2495,7 @@
         {
             "event_id": "EV02000022",
             "event_name": "アートコートギャラリー",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000022_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000022_01_s.jpg",
             "category": {
                 "category_id": "MC00000003",
                 "category_name": "6月10日（水）～6月16日（火）",
@@ -2495,7 +2514,7 @@
         {
             "event_id": "EV02000023",
             "event_name": "YOD Gallery",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000023_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000023_01_s.jpg",
             "category": {
                 "category_id": "MC00000003",
                 "category_name": "6月10日（水）～6月16日（火）",
@@ -2514,7 +2533,7 @@
         {
             "event_id": "EV02000024",
             "event_name": "KAZE ART PLANNING",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000024_01_s.png",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000024_01_s.png",
             "category": {
                 "category_id": "MC00000003",
                 "category_name": "6月10日（水）～6月16日（火）",
@@ -2533,7 +2552,7 @@
         {
             "event_id": "EV02000027",
             "event_name": "藤田美術館",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000027_01_s.png",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000027_01_s.png",
             "category": {
                 "category_id": "MC00000003",
                 "category_name": "6月10日（水）～6月16日（火）",
@@ -2552,7 +2571,7 @@
         {
             "event_id": "EV02000028",
             "event_name": "LIBRE GALLERY y SPACE",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000028_01_s.jpeg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000028_01_s.jpeg",
             "category": {
                 "category_id": "MC00000003",
                 "category_name": "6月10日（水）～6月16日（火）",
@@ -2571,7 +2590,7 @@
         {
             "event_id": "EV02000029",
             "event_name": "大阪市中央公会堂",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000029_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000029_01_s.jpg",
             "category": {
                 "category_id": "MC00000003",
                 "category_name": "6月10日（水）～6月16日（火）",
@@ -2584,13 +2603,13 @@
                 "longitude": 135.503998127024,
                 "address": "大阪市北区中之島1丁目1番27号"
             },
-            "description": "大阪市中央公会堂",
+            "description": "大阪市中央公会堂<br>（展示会場情報は準備中）",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000029/"
         },
         {
             "event_id": "EV02000030",
             "event_name": "アートエリアB1",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000030_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000030_01_s.jpg",
             "category": {
                 "category_id": "MC00000003",
                 "category_name": "6月10日（水）～6月16日（火）",
@@ -2603,13 +2622,13 @@
                 "longitude": 135.505243723325,
                 "address": "大阪市北区中之島1-1-1"
             },
-            "description": "アートエリアB1",
+            "description": "アートエリアB1<br>（展示会場情報は準備中）",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000030/"
         },
         {
             "event_id": "EV02000031",
             "event_name": "国立国際美術館",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000031_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000031_01_s.jpg",
             "category": {
                 "category_id": "MC00000003",
                 "category_name": "6月10日（水）～6月16日（火）",
@@ -2628,7 +2647,7 @@
         {
             "event_id": "EV02000032",
             "event_name": "淀屋橋ステーションシティ",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000032_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000032_01_s.jpg",
             "category": {
                 "category_id": "MC00000003",
                 "category_name": "6月10日（水）～6月16日（火）",
@@ -2641,13 +2660,13 @@
                 "longitude": 135.5014925432,
                 "address": "大阪市中央区北浜３丁目６−２２"
             },
-            "description": "淀屋橋ステーションシティ",
+            "description": "【アーティスト／ブランド】<br>大竹舞人<br><br>【プログラム名】<br>編む、つなぐ、ひらく<br><br>【期間】<br>5/27 wed. - 6/23 tue.<br><br>【営業時間】<br>期間中常設<br><br>【会場】<br>淀屋橋ステーションワン B1F 淀屋橋広場<br><br>【プログラム紹介】<br>大竹舞人は、布を手で編み上げて中空の立体作品を制作する作家です。本作は地下鉄が交差する都市の中心に設置され、街や人の流れと呼応しながら、時間や記憶、文化を編み込み、未来へとつないでいく象徴として立ち現れます。<br><br>【WEBサイト】<br>https://yodoyabashi-stationone.com/",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000032/"
         },
         {
             "event_id": "EV02000033",
             "event_name": "ポルトローナ・フラウ大阪",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000033_01_s.jpeg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000033_01_s.jpeg",
             "category": {
                 "category_id": "MC00000003",
                 "category_name": "6月10日（水）～6月16日（火）",
@@ -2666,7 +2685,7 @@
         {
             "event_id": "EV02000034",
             "event_name": "maruni osaka",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000034_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000034_01_s.jpg",
             "category": {
                 "category_id": "MC00000003",
                 "category_name": "6月10日（水）～6月16日（火）",
@@ -2685,7 +2704,7 @@
         {
             "event_id": "EV02000035",
             "event_name": "WAILEA御堂筋",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000035_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000035_01_s.jpg",
             "category": {
                 "category_id": "MC00000003",
                 "category_name": "6月10日（水）～6月16日（火）",
@@ -2704,7 +2723,7 @@
         {
             "event_id": "EV02000036",
             "event_name": "大阪デザインセンター",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000036_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000036_01_s.jpg",
             "category": {
                 "category_id": "MC00000003",
                 "category_name": "6月10日（水）～6月16日（火）",
@@ -2723,7 +2742,7 @@
         {
             "event_id": "EV02000037",
             "event_name": "Osaka Metro 本町ビル",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000037_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000037_01_s.jpg",
             "category": {
                 "category_id": "MC00000003",
                 "category_name": "6月10日（水）～6月16日（火）",
@@ -2736,13 +2755,13 @@
                 "longitude": 135.500953988668,
                 "address": "大阪市中央区本町3丁目6-4"
             },
-            "description": "Osaka Metro 本町ビル",
+            "description": "Osaka Metro 本町ビル<br>（展示会場情報は準備中）",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000037/"
         },
         {
             "event_id": "EV02000038",
             "event_name": "JR大阪環状線 西九条駅高架下",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000038_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000038_01_s.jpg",
             "category": {
                 "category_id": "MC00000003",
                 "category_name": "6月10日（水）～6月16日（火）",
@@ -2755,13 +2774,13 @@
                 "longitude": 135.466106181047,
                 "address": "大阪市此花区西九条3丁目15-13"
             },
-            "description": "JR大阪環状線 西九条駅高架下",
+            "description": "JR大阪環状線 西九条駅高架下<br>（展示会場情報は準備中）",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000038/"
         },
         {
             "event_id": "EV02000039",
             "event_name": "W大阪",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000039_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000039_01_s.jpg",
             "category": {
                 "category_id": "MC00000003",
                 "category_name": "6月10日（水）～6月16日（火）",
@@ -2774,13 +2793,13 @@
                 "longitude": 135.500125511733,
                 "address": "大阪市中央区南船場4-1-3"
             },
-            "description": "W大阪",
+            "description": "【アーティスト／ブランド】<br>xorium<br><br>【プログラム名】<br>AUTONOMA<br><br>【期間】<br>5/27 wed. - 6/23 tue.<br><br>【営業時間】<br>期間中常設<br><br>【会場】<br>W大阪<br><br>【プログラム紹介】<br>「Whatever / Whenever🄬（お望みの物を / お望みの時に）」の理念に基づき、存在そのものを楽しませる工夫としてアーティストとのコラボレーションも積極的に行うラグジュアリー・ライフスタイルホテル、W大阪。昨年は総支配人としてピーター・ルーカスが就任し、「ユニークでアートに満ちた施設の魅力を高めたい」と意欲的な姿勢を見せた。Osaka Art ＆ Design 3度目の参加となる今回、新たなパートナーと共に、体験型アートの新境地を開く。<br><br>ひとつの違和感から始まった、創作の軌跡<br>情報のデジタル化により、世界との距離が急激に近くなった昨今。その膨大な世界と接続する手段が、ディスプレイという限られた窓口に終始している状況に、ひとつのアーティストコレクティブが違和感を覚えた。2017年7月に結成された竹川諒と中村慎吾による「xorium」は、多様なデジタル技術を活用しながら、人や物、環境、社会構造といった身の回りの要素が相互作用し変化する中で、要素の狭間に見えてくる現象や違和感を解釈し、作品へと昇華させている。<br>今回、彼らが向き合ったのは、制御する世界への違和感である。これまで社会は定められたルールによって、整然と管理されていた。だが、情報が氾濫し、AIが効率化を促し、多様な価値観が交差する現代において、もはや単一の縛りによる制御は限界を迎えている。xoriumは確信した。これからの時代は制御されるのではなく、他者や環境との“関係”の中でこそ生きていく世界なのだと。彼らはその答えを、形を自由に変えながら漂う“泡”の現象に託した。<br><br>弾け膨らみ成長する、泡が描き出す現代の縮図<br>xoriumが制作において最も重視しているのは、鑑賞者が感覚で理解することだ。言葉による説明を介さずともコンセプトが心に染み渡るよう、素材選びから技法の検証まで幾度も実験が繰り返される。<br>本作は、水盤型装置から絶え間なく泡が発生し続けるインスタレーションだ。一つひとつの泡は、独立した“個”としての私たち人間を表している。泡は触れ合い、寄り添い、時に反発しながら、やがて一つの大きな流れを形成していく。<br>蛍光塗料で彩られた泡が紫外線の光を受け、泡同士の境界が鮮明に浮かび上がる様子は、個の関係性から秩序あるネットワークが生み出される現代社会そのものだ。儚く、些細な衝撃で消えてしまう脆さを持ちながらも、空気の変化に合わせて柔軟に形を変え、他者と繋がりながら成長し続ける泡。その姿は、これから発展し続ける世界を私たちが生き抜くための指針となるはずだ。<br><br>W大阪とアートが誘う、非日常のひととき<br>展示の舞台となるのは、独創的な世界が広がるW大阪のアライバルホール。国内外のゲストが刺激的な体験を求めて行き交うステージは、xoriumの作品が持つ流動的なメッセージと見事に響き合う。作家自身も“作品が空間にインストールされる感覚”を強く覚えたというこの場所で、日常の違和感は共感へと変わり、その先にある新たな生き方のヒントへと繋がっていくだろう。<br><br>【WEBサイト】<br>https://www.marriott.com/ja/hotels/osaow-w-osaka/overview/",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000039/"
         },
         {
             "event_id": "EV02000040",
             "event_name": "アルフレックス大阪",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000040_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000040_01_s.jpg",
             "category": {
                 "category_id": "MC00000003",
                 "category_name": "6月10日（水）～6月16日（火）",
@@ -2799,7 +2818,7 @@
         {
             "event_id": "EV02000041",
             "event_name": "Marco Gallery",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000041_01_s.png",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000041_01_s.png",
             "category": {
                 "category_id": "MC00000003",
                 "category_name": "6月10日（水）～6月16日（火）",
@@ -2818,7 +2837,7 @@
         {
             "event_id": "EV02000042",
             "event_name": "クリスタ長堀 滝の広場",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000042_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000042_01_s.jpg",
             "category": {
                 "category_id": "MC00000003",
                 "category_name": "6月10日（水）～6月16日（火）",
@@ -2831,13 +2850,13 @@
                 "longitude": 135.501366581047,
                 "address": "大阪市中央区南船場３丁目 長堀地下街"
             },
-            "description": "クリスタ長堀 滝の広場",
+            "description": "【アーティスト／ブランド】<br>大西伸明<br><br>【プログラム名】<br>Re-Mirroring Matter<br><br>【期間】<br>5/28 thu. - 6/14 sun.<br><br>【営業時間】<br>11:00-21:00<br><br>【会場】<br>クリスタ長堀 滝の広場・南側<br><br>【プログラム紹介】<br>日用品を精巧な「型」へと写しとり、モノの存在を再度立ち上げる。それは、情報が飽和し、あらゆる事象が記号に覆われた現代において、「見慣れた世界」という既成概念を解体します。会場には、滝を借景とした電球の作品と、広場に佇む見慣れた物たち。透明な樹脂の内部を凝視するとき、眼前の風景は反転し、逆流する滝のごとく、現実をリ・ミラーリングする光景が浮かび上がります。<br><br>【WEBサイト】<br>https://www.crystaweb.jp/",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000042/"
         },
         {
             "event_id": "EV02000043",
             "event_name": "大丸心斎橋店",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000043_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000043_01_s.jpg",
             "category": {
                 "category_id": "MC00000003",
                 "category_name": "6月10日（水）～6月16日（火）",
@@ -2850,13 +2869,13 @@
                 "longitude": 135.500843279196,
                 "address": "大阪市中央区心斎橋筋1-7-1"
             },
-            "description": "大丸心斎橋店",
+            "description": "【プログラム】<br>複数プログラムが展開されます。<br>詳細はOsaka Art & Designのホームページのプログラムページ（以下に記載のURL）にてご確認ください。<br>※プログラムによって会期が異なる場合がございますのでご注意ください。<br><br>五十嵐威暢<br>五十嵐威暢 積木ベンチ<br>会場：本館前・心斎橋パルコ前御堂筋歩道<br>https://osaka-artanddesign.ecbeing.biz/2026/programs/detail/a_082<br><br>黒田征太郎 / コシノヒロコ / 佐伯和良 / SHIRACO WORLD / ドナルド・ロバートソン / 山下浩平 / ロブ・ライアン<br>大丸心斎橋店開業300周年 ひとます美術館 ＝未来へはばたくフェニックスの餐宴＝ 〈併催〉未来の大阪を担う子供たちへの チャリティオークション<br>会場：本館1階 心斎橋筋側ウィンドウ・各階エスカレーター前<br>https://osaka-artanddesign.ecbeing.biz/2026/programs/detail/a_081<br><br>高木耕一郎 / 田村琢朗<br>〈AYIN×MAKI Gallery〉高木耕一郎・田村琢郎特別展示<br>会場：本館1階 御堂筋側イベントスペース<br>https://osaka-artanddesign.ecbeing.biz/2026/programs/detail/a_083<br><br>田中ラオウ ほか<br>現代アート POPUP STORE<br>会場：本館1階 御堂筋側イベントスペース<br>https://osaka-artanddesign.ecbeing.biz/2026/programs/detail/a_090<br><br>篠田桃紅<br>篠田桃紅 〜時をこえる抽象の美〜<br>https://osaka-artanddesign.ecbeing.biz/2026/programs/detail/a_089<br>会場：本館8階 アールグロリュー ギャラリー オブ オーサカ<br>https://www.daimaru.co.jp/shinsaibashi/",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000043/"
         },
         {
             "event_id": "EV02000044",
             "event_name": "心斎橋PARCO",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000044_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000044_01_s.jpg",
             "category": {
                 "category_id": "MC00000003",
                 "category_name": "6月10日（水）～6月16日（火）",
@@ -2869,13 +2888,13 @@
                 "longitude": 135.500914481047,
                 "address": "大阪市中央区心斎橋筋1-8-3"
             },
-            "description": "【アーティスト／ブランド】<br>五十嵐威暢<br><br>【プログラム名】<br>A–Z Homage to Takenobu Igarashi<br><br>【期間】<br>5/22 fri. - 6/14 sun.<br><br>【営業時間】<br>10:00-20:00<br>※最終日は18:00まで<br><br>【会場】<br>心斎橋PARCO・14F PARCO HALL<br><br>【プログラム紹介】<br>　五十嵐氏とPARCOの出会いは、1981年にオープンした渋谷PARCO PART3のプロジェクトでした。中心的なデザイナーのひとりとして参加した五十嵐氏は、ロゴや看板、ショッパー、館内グラフィックなど、多くのデザインを手がけました。シンプルで力強いPARCOロゴは、社内で「五十嵐ロゴ」として愛され、吉祥寺PARCOや名古屋PARCOなどで現在も外壁サインとして使用されています。建て替えのために解体された渋谷PARCOの外壁から取り外されたネオンサインは、現在は渋谷PARCOと心斎橋PARCOの店舗内で大切に常設展示されています。五十嵐ロゴは、世代を超えて語り継がれる、PARCOの文化を象徴する存在です。<br><br>　本展では、1994年に彫刻家に転身する以前の、デザイナーとしての五十嵐氏のアルファベット作品に焦点を当てます。渋谷PARCO PART3のためのロゴデザインを紐解き、書体のバリエーションも紹介。渋谷PARCO PART3のストリートギャラリーで発表されたアルファベット彫刻（現存する24点のうち20点を展示予定）や、ポスターカレンダー［PARCO ver.（1982年制作）］、AからZまでのアルファベットを題材にした彫刻やグラフィックデザインの作品を、心斎橋PARCO館内の常設展示や屋外空間も舞台として、五十嵐氏の創造性あふれる作品を一堂に展示します。<br><br>【WEBサイト】<br>https://shinsaibashi.parco.jp/",
+            "description": "【プログラム】<br>複数プログラムが展開されます。<br>詳細はOsaka Art & Designのホームページのプログラムページ（以下に記載のURL）にてご確認ください。<br>※プログラムによって会期が異なる場合がございますのでご注意ください。<br><br>五十嵐威暢<br>A–Z Homage to Takenobu Igarashi<br>会場：14階 PARCO HALL<br>https://www.osaka-artanddesign.com/2026/programs/detail/b_026<br><br>中尾博恵<br>中尾博恵 特集<br>会場：14階 PARCO HALL<br>https://osaka-artanddesign.ecbeing.biz/2026/programs/detail/a_088<br><br>篠原有司男<br>篠原有司男 特集<br>会場：14階 PARCO HALL<br>https://osaka-artanddesign.ecbeing.biz/2026/programs/detail/a_087<br><br>平田望<br>平田望 特集<br>会場：14階 PARCO HALL<br>https://osaka-artanddesign.ecbeing.biz/2026/programs/detail/a_086<br><br>ニック・ウォーカー<br>ニック・ウォーカー来日記念展<br>会場：14階 PARCO HALL<br>https://osaka-artanddesign.ecbeing.biz/2026/programs/detail/a_085",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000044/"
         },
         {
             "event_id": "EV02000045",
             "event_name": "アクタス・心斎橋店",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000045_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000045_01_s.jpg",
             "category": {
                 "category_id": "MC00000003",
                 "category_name": "6月10日（水）～6月16日（火）",
@@ -2894,7 +2913,7 @@
         {
             "event_id": "EV02000046",
             "event_name": "エスパス ルイ・ヴィトン大阪",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000046_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000046_01_s.jpg",
             "category": {
                 "category_id": "MC00000003",
                 "category_name": "6月10日（水）～6月16日（火）",
@@ -2913,7 +2932,7 @@
         {
             "event_id": "EV02000047",
             "event_name": "カール・ハンセン＆サン 大阪",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000047_01_s.png",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000047_01_s.png",
             "category": {
                 "category_id": "MC00000003",
                 "category_name": "6月10日（水）～6月16日（火）",
@@ -2932,7 +2951,7 @@
         {
             "event_id": "EV02000048",
             "event_name": "TEZUKAYAMA GALLERY",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000048_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000048_01_s.jpg",
             "category": {
                 "category_id": "MC00000003",
                 "category_name": "6月10日（水）～6月16日（火）",
@@ -2951,7 +2970,7 @@
         {
             "event_id": "EV02000049",
             "event_name": "JITSUZAISEI",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000049_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000049_01_s.jpg",
             "category": {
                 "category_id": "MC00000003",
                 "category_name": "6月10日（水）～6月16日（火）",
@@ -2970,7 +2989,7 @@
         {
             "event_id": "EV02000050",
             "event_name": "べんてんひろば（大阪環状線 弁天町駅改札直結）",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000050_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000050_01_s.jpg",
             "category": {
                 "category_id": "MC00000003",
                 "category_name": "6月10日（水）～6月16日（火）",
@@ -2989,7 +3008,7 @@
         {
             "event_id": "EV02000052",
             "event_name": "髙島屋大阪店",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000052_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000052_01_s.jpg",
             "category": {
                 "category_id": "MC00000003",
                 "category_name": "6月10日（水）～6月16日（火）",
@@ -3008,7 +3027,7 @@
         {
             "event_id": "EV02000053",
             "event_name": "Laugh & Peace Art Gallery",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000053_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000053_01_s.jpg",
             "category": {
                 "category_id": "MC00000003",
                 "category_name": "6月10日（水）～6月16日（火）",
@@ -3027,7 +3046,7 @@
         {
             "event_id": "EV02000054",
             "event_name": "髙島屋史料館 企画展示室",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000054_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000054_01_s.jpg",
             "category": {
                 "category_id": "MC00000003",
                 "category_name": "6月10日（水）～6月16日（火）",
@@ -3046,7 +3065,7 @@
         {
             "event_id": "EV02000055",
             "event_name": "RID",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000055_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000055_01_s.jpg",
             "category": {
                 "category_id": "MC00000003",
                 "category_name": "6月10日（水）～6月16日（火）",
@@ -3065,7 +3084,7 @@
         {
             "event_id": "EV02000056",
             "event_name": "大阪市立美術館",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000056_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000056_01_s.jpg",
             "category": {
                 "category_id": "MC00000003",
                 "category_name": "6月10日（水）～6月16日（火）",
@@ -3084,7 +3103,7 @@
         {
             "event_id": "EV02000058",
             "event_name": "あべのハルカス美術館",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000058_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000058_01_s.jpg",
             "category": {
                 "category_id": "MC00000003",
                 "category_name": "6月10日（水）～6月16日（火）",
@@ -3103,7 +3122,7 @@
         {
             "event_id": "EV02000059",
             "event_name": "ART community space Nano Gallery",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000059_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000059_01_s.jpg",
             "category": {
                 "category_id": "MC00000003",
                 "category_name": "6月10日（水）～6月16日（火）",
@@ -3122,7 +3141,7 @@
         {
             "event_id": "EV02000060",
             "event_name": "ギャラリーと雑貨・太陽とハリネズミ",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000060_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000060_01_s.jpg",
             "category": {
                 "category_id": "MC00000003",
                 "category_name": "6月10日（水）～6月16日（火）",
@@ -3141,7 +3160,7 @@
         {
             "event_id": "EV02000062",
             "event_name": "Super Studio Kitakagaya",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000062_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000062_01_s.jpg",
             "category": {
                 "category_id": "MC00000003",
                 "category_name": "6月10日（水）～6月16日（火）",
@@ -3154,13 +3173,13 @@
                 "longitude": 135.473598911731,
                 "address": "大阪市住之江区北加賀屋５丁目４−６４"
             },
-            "description": "Super Studio Kitakagaya",
+            "description": "Super Studio Kitakagaya<br>（展示会場情報は準備中）",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000062/"
         },
         {
             "event_id": "EV02000063",
             "event_name": "ハービス PLAZA ENT B1F 東エントランス",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000063_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000063_01_s.jpg",
             "category": {
                 "category_id": "MC00000003",
                 "category_name": "6月10日（水）～6月16日（火）",
@@ -3173,13 +3192,13 @@
                 "longitude": 135.494526881048,
                 "address": "大阪府大阪市北区梅田２丁目２−２２"
             },
-            "description": "ハービス PLAZA ENT B1F 東エントランス",
+            "description": "【アーティスト／ブランド】<br>Vit<br><br>【プログラム名】<br>ICHIGO ICHIE 一期一会 アートシリーズ - Circle of Peace -<br><br>【期間】<br>5/27 wed. - 6/23 tue.<br><br>【営業時間】<br>11:00 - 22:00<br>※一部営業時間の異なる店舗がございます<br><br>【会場】<br>ハービスPLAZA ENT B1東エントランス<br><br>【プログラム紹介】<br>Vitの作品は、静と動、制御と自由、そして明確な形と抽象的な表現のあいだにある、静かなバランスを探求しています。深い黒や鮮やかな白、そして力強い色彩のコントラストは、彼自身の歩んできた人生と、内にある穏やかな精神の状態を映し出しています。<br>彼の作品においては、形と余白が同じくらい重要な意味を持ちます。余白は単なる「空白」ではなく、他のすべてを存在させるための空間です。私たちに、目に見えるものだけでなく、見えないものにも意識を向けるよう促します。<br>制作のプロセスは、ゆっくりとした思索の時間でもあります。ひとつの線や形が置かれると、それを急いで進めることはありません。時間の中で静かに対話しながら、自然と作品が育ち、やがて完成へと導かれていきます。<br>Vitのアートは、単に「見るもの」ではありません。日常の喧騒から一歩離れ、立ち止まり、自分自身の内側にある静けさやバランスと再びつながるための「場」を生み出します。<br>このような考え方は、「一期一会（すべての瞬間は一度きりである）」や「間（余白や静けさの意味）」といった日本の思想とも深く響き合っています。<br>そしてそれらの思想は、ライブペインティング「ICHIGO ICHIE – Circle of Peace –」において、最も明確なかたちで表現されます。ここで大切なのは、作品そのものではなく、それが生まれる瞬間の内面の状態です。描くという行為そのものが、静かで現在に集中した、平和の体験となります。<br>作品はただ一度、その瞬間にのみ生まれ、同じものは二度と現れません。そして最後には、その作品は観客と分かち合われます。そこにあるのは「所有」ではなく、「共有される感覚」です。<br>その根底にあるのは、とてもシンプルな考えです。<br>「平和な人だけが、平和な世界をつくることができる。」<br>作品は、その瞬間の痕跡にすぎません。本当の意味は、それが生まれた心の状態と、そこから生まれる感覚にあります。<br><br>【WEBサイト】<br>https://www.herbis.jp/",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000063/"
         },
         {
             "event_id": "EV02000001",
             "event_name": "NORIBA10 Umeda",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000001_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000001_01_s.jpg",
             "category": {
                 "category_id": "MC00000004",
                 "category_name": "6月17日（水）～6月23日（火）",
@@ -3192,13 +3211,13 @@
                 "longitude": 135.498988150533,
                 "address": "大阪市北区芝田１丁目１−３"
             },
-            "description": "NORIBA10 Umeda",
+            "description": "NORIBA10 Umeda<br>（展示会場情報は準備中）",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000001/"
         },
         {
             "event_id": "EV02000003",
             "event_name": "NU茶屋町 1階 コリドールプラザ",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000003_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000003_01_s.jpg",
             "category": {
                 "category_id": "MC00000004",
                 "category_name": "6月17日（水）～6月23日（火）",
@@ -3211,13 +3230,13 @@
                 "longitude": 135.499055438668,
                 "address": "大阪市北区茶屋町10-12 NU茶屋町"
             },
-            "description": "NU茶屋町 1階 コリドールプラザ",
+            "description": "NU茶屋町 1階 コリドールプラザ<br>（展示会場情報は準備中）",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000003/"
         },
         {
             "event_id": "EV02000005",
             "event_name": "グラングリーン大阪 南館 地下1階 タイムアウトマーケット大阪",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000005_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000005_01_s.jpg",
             "category": {
                 "category_id": "MC00000004",
                 "category_name": "6月17日（水）～6月23日（火）",
@@ -3230,13 +3249,13 @@
                 "longitude": 135.492436740518,
                 "address": "大阪市北区大深町4-1"
             },
-            "description": "グラングリーン大阪 南館 地下1階 タイムアウトマーケット大阪",
+            "description": "【アーティスト／ブランド】<br>SHUN NAKAO<br><br>【プログラム名】<br>your city lights<br><br>【期間】<br>5/27 wed.-6/23 tue.<br>※常設展示<br><br>【営業時間】<br>11:00-23:00<br><br>【会場】<br>グラングリーン大阪 南館 地下1階<br>タイムアウトマーケット大阪<br><br>【プログラム紹介】<br>グラングリーン大阪南館地下1階に位置する「タイムアウトマーケット大阪」では、大阪を拠点に活躍するアーティスト・SHUN NAKAO/中尾舜（ナカオ シュン、1992年 兵庫県朝来市生まれ）が手がけるアートワークを展示している。<br><br>大阪芸術大学 デザイン学科卒業後、イラストレーターを経てアーティストとして活動する中尾は、幼少期から80年代のファッションや音楽に大きな影響を受けてきたとのこと。『アジア初となる「タイムアウトマーケット大阪」にこのような作品を展示できることを光栄に思います。作品としてエネルギッシュな大阪を表現することを考え、飛び跳ねるような色と形を配置し、大阪の街をバックに窓の結露に子供が落書き遊びをしたようなデザインで無邪気さや元気な街をビジュアル化しました。新たなランドマークとなる「グラングリーン大阪」で、この作品が大阪の方々だけでなく「タイムアウトマーケット大阪」に訪れる多くの方々に親しまれる存在になることを願っております。』と中尾は話す。<br><br>【WEBサイト】<br>https://www.timeout.jp/time-out-market-osaka/ja",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000005/"
         },
         {
             "event_id": "EV02000006",
             "event_name": "グランフロント大阪 うめきた広場 他",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000006_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000006_01_s.jpg",
             "category": {
                 "category_id": "MC00000004",
                 "category_name": "6月17日（水）～6月23日（火）",
@@ -3255,7 +3274,7 @@
         {
             "event_id": "EV02000007",
             "event_name": "大阪ステーションシティノースゲートビルディング 11階 風の広場",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000007_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000007_01_s.jpg",
             "category": {
                 "category_id": "MC00000004",
                 "category_name": "6月17日（水）～6月23日（火）",
@@ -3268,32 +3287,13 @@
                 "longitude": 135.494772723326,
                 "address": "大阪市北区梅田3-1-3 ルクア大阪"
             },
-            "description": "大阪ステーションシティノースゲートビルディング 11階 風の広場",
+            "description": "大阪ステーションシティノースゲートビルディング 11階 風の広場<br>（展示会場情報は準備中）",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000007/"
-        },
-        {
-            "event_id": "EV02000008",
-            "event_name": "阪急メンズ大阪",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000008_01_s.jpg",
-            "category": {
-                "category_id": "MC00000004",
-                "category_name": "6月17日（水）～6月23日（火）",
-                "color_code": "#FFC000"
-            },
-            "spot": {
-                "spot_id": "SP00001019",
-                "spot_name": "阪急メンズ大阪 1階 プロモーションスペース 11",
-                "latitude": 34.7033053586075,
-                "longitude": 135.499816680997,
-                "address": "大阪市北区角田町7-10"
-            },
-            "description": "阪急メンズ大阪",
-            "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000008/"
         },
         {
             "event_id": "EV02000010",
             "event_name": "阪急うめだ本店 コンコースウィンドー / 大阪梅田ツインタワーズ・ノース 1階 コンコース",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000010_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000010_01_s.jpg",
             "category": {
                 "category_id": "MC00000004",
                 "category_name": "6月17日（水）～6月23日（火）",
@@ -3306,13 +3306,13 @@
                 "longitude": 135.498682145148,
                 "address": "大阪市北区角田町8-1"
             },
-            "description": "【アーティスト／ブランド】<br>平子雄一<br><br>【プログラム名】<br>NON NATURE<br><br>【期間】<br>1階｜5/20 wed. - 6/22 mon.　9階｜5/27 wed. - 6/8 mon.<br><br>【営業時間】<br>10:00-20:00<br>※9階のみ催し最終日は17:00終了<br><br>【会場】<br>阪急うめだ本店<br>1階 コンコースウィンドー<br>9階 祝祭広場 / 阪急うめだギャラリー / アートステージ<br><br>【プログラム紹介】<br>都市には自然のようなもの、もしくは自然の環境を模したものが多く存在します。そもそも、どの状態を自然と定義するのかを確定することは困難ですが、都市に存在するそれらのほとんどは、人の手が関わった人工物と言えます。<br>私たちの多くは、利便性を求め都市で生活し生産活動を行いますが、同時に精神のどこかでは自然を求めているのではないでしょうか。自然とは未知のものであり、人がコントロール出来ない存在、意思の疎通が不可能なもの。それらに癒しや、景観美を求める行動はとても人間らしいと思います。<br>今回のプロジェクトで出現させる作品は、自然の断片のようなもの、人間らしさを象徴するものでもあり、その２つが混ざり合った様なものでもあります。大都会大阪の中心、人間が作り出した世界屈指の構造の中心に自身の作品を登場させることによって、鑑賞される方が自然を感じるのか、「非」自然を感じるのか、楽しみです。　ー平子雄一<br><br>トップ画像：平子雄一「Lost in Thought 229」2025 ©Yuichi Hirako photo by Osamu Sakamoto<br><br>【WEBサイト】<br>https://website.hankyu-dept.co.jp/honten/h/oad/",
+            "description": "【アーティスト／ブランド】<br>平子雄一<br><br>【プログラム名】<br>LAMPENFLORA「照明植生」<br><br>【期間】<br>5/20 wed. - 6/22 mon.<br>※Osaka Art & Design 2026の会期は5月27日（水）〜 6月23日（火）<br><br>【営業時間】<br>9:00-21:00<br>※9階のみ催し最終日は17:00終了<br><br>【会場】<br>大阪梅田ツインタワーズ・ノース 1階 コンコース / 阪急うめだ本店 コンコースウィンドー<br><br>【プログラム紹介】<br>阪急うめだ本店などを舞台に展開するプロジェクト、NON NATURE。<br>そのひとつとなる本作では、コンコース空間が、平⼦雄⼀⽒の⼿によってひとつの⼤きなキャンバスへと変貌します。本企画は、国内外で活躍する現代美術作家・平⼦雄⼀⽒が「モノクロームのドローイング」のみで空間を構築する意欲的な試みです。<br>ダークブラウンを基調としたドローイングが、天井のバナーからウィンドー、そして床⾯へとダイナミックに拡張していきます。その圧倒的なモノクロームの⾵景から、平⼦雄⼀⽒の代名詞ともいえる「植物と⼈間の関係性」を問う作品群が⽴ち現れます。 国際的な評価を集めるアーティストが未知の表現へと踏み出した、貴重なインスタレーションを発信する企画です。今回のプロジェクトで出現させる作品は、自然の断片のようなもの、人間らしさを象徴するものでもあり、その２つが混ざり合った様なものでもあります。大都会大阪の中心、人間が作り出した世界屈指の構造の中心に自身の作品を登場させることによって、鑑賞される方が自然を感じるのか、「非」自然を感じるのか、楽しみです。　ー平子雄一<br><br>トップ画像：平子雄一「Lost in Thought 229」2025 ©Yuichi Hirako photo by Osamu Sakamoto<br><br>Artist Message<br><br>NON NATURE<br>都市には⾃然のようなもの、もしくは⾃然の環境を模したものが多く存在します。そもそも、どの状態を⾃然と定義するのかを確定することは困難ですが、都市に存在するそれらのほとんどは、⼈の⼿が関わった⼈⼯物と⾔えます。私たちの多くは、利便性を求め都市で⽣活し⽣産活動を⾏いますが、同時に精神のどこかでは⾃然を求めているのではないでしょうか。⾃然とは未知のものであり、⼈がコントロール出来ない存在、意思の疎通が不可能なもの。それらに癒しや、景観美を求める⾏動はとても⼈間らしいと思います。私が今回のプロジェクトで出現させる作品は、⾃然の断⽚のようなもの、⼈間らしさを象徴するものでもあり、その２つが混ざり合ったようなものでもあります。⼤都会⼤阪の中⼼、⼈間が作り出した世界屈指の構造の中⼼に⾃⾝の作品を登場させることによって、鑑賞される⽅が⾃然を感じるのか、「⾮」⾃然を感じるのか、楽しみです。<br><br>LAMPENFLORA「照明植生」<br>⾃然光が当たることのないコンコースですが、⼈⼯的な場所でも⼒強く繁栄する植物を意識して空間を構成しました。⼈が居るからこそ、作りあげることのできる植⽣のようなものを体験してもらえればと思います。<br><br>平子雄一<br><br>【WEBサイト】<br>https://umedayuen.com/",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000010/"
         },
         {
             "event_id": "EV02000011",
             "event_name": "大阪ステーションシティノースゲートビル3階",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000011_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000011_01_s.jpg",
             "category": {
                 "category_id": "MC00000004",
                 "category_name": "6月17日（水）～6月23日（火）",
@@ -3325,13 +3325,13 @@
                 "longitude": 135.49542479634,
                 "address": "大阪市北区梅田３丁目１−３ ノースゲートビル 3階"
             },
-            "description": "大阪ステーションシティノースゲートビル3階",
+            "description": "【アーティスト／ブランド】<br>佐藤紘子<br><br>【プログラム名】<br>静寂の古城、ぼくらの 混ざり合う 場所<br><br>【期間】<br>5/27 wed. - 6/23 tue.<br><br>【営業時間】<br>6:30-25:30<br><br>【会場】<br>大阪ステーションシティ インフォメーション前<br>（大阪駅3階南北連絡橋）<br><br>【プログラム紹介】<br>かつては境界だった古城の窓や壁が、今は生命を繋ぐ「広場」へと変わります。 ここでは種族も、大きさも、役割も関係ありません。<br><br>パンダもキリンも、小さなネコも、そしてこどもたちも、同じ場所に集い、同じ光を浴びて、ただ「そこにいる」ことを等しく肯定し合っています。<br><br>「だれかが笑えば、わたしも嬉しい。わたしが楽しければ、きっとだれかも楽しい。」<br><br>そんな、自分と他者が地続きで繋がっているような、温かく賑やかな世界。<br><br>この作品は、かつての静寂を賑わいで塗り替え、一人ひとりがかけがえのない存在として、色彩豊かに混ざり合う、明るい共生と新たな生命の芽吹きを描いています。<br><br>【WEBサイト】<br>https://osakastationcity.com/",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000011/"
         },
         {
             "event_id": "EV02000012",
             "event_name": "JR大阪駅・大阪ステーションシティ 5階 時空の広場",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000012_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000012_01_s.jpg",
             "category": {
                 "category_id": "MC00000004",
                 "category_name": "6月17日（水）～6月23日（火）",
@@ -3350,7 +3350,7 @@
         {
             "event_id": "EV02000013",
             "event_name": "APイノゲート大阪",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000013_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000013_01_s.jpg",
             "category": {
                 "category_id": "MC00000004",
                 "category_name": "6月17日（水）～6月23日（火）",
@@ -3363,13 +3363,13 @@
                 "longitude": 135.493267954011,
                 "address": "大阪市北区梅田3-2-123　イノゲート大阪 11F"
             },
-            "description": "APイノゲート大阪",
+            "description": "APイノゲート大阪<br>（展示会場情報は準備中）",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000013/"
         },
         {
             "event_id": "EV02000014",
             "event_name": "大阪駅御堂筋口デジタルサイネージ",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000014_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000014_01_s.jpg",
             "category": {
                 "category_id": "MC00000004",
                 "category_name": "6月17日（水）～6月23日（火）",
@@ -3382,13 +3382,13 @@
                 "longitude": 135.493707154011,
                 "address": "大阪市北区梅田3-1-1"
             },
-            "description": "大阪駅御堂筋口デジタルサイネージ",
+            "description": "【アーティスト／ブランド】<br>ISCA（International Students Creative Award）、 NYAA（Next Young Artist Award）<br><br>【プログラム名】<br>ISCA / NYAA セレクト作品上映<br><br>【期間】<br>5/27 wed. - 6/23 tue.<br><br>【営業時間】<br>6:00-24:00<br><br>【会場】<br>JR大阪駅 御堂筋南口ビジョン<br><br>【プログラム紹介】<br>Osaka Art and Design 2026では、JR西日本ステーションシティ株式会社の協力を得て、初の試みとしてJR大阪駅 御堂筋南口ビジョンで映像作品を終日放映します。長年、若き才能を発掘してきた「ISCA（International Students Creative Award）」と「NYAA（Next Young Artist Award）」より過去の受賞・入選作品から各5作品をセレクトいただき、行き交う人々へお届けします。次世代が紡ぐ、今この時代ならではの表現にぜひご注目ください。",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000014/"
         },
         {
             "event_id": "EV02000015",
             "event_name": "大丸梅田店",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000015_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000015_01_s.jpg",
             "category": {
                 "category_id": "MC00000004",
                 "category_name": "6月17日（水）～6月23日（火）",
@@ -3407,7 +3407,7 @@
         {
             "event_id": "EV02000016",
             "event_name": "大阪駅前地下道イベントスペース（阪神梅田本店前）",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000016_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000016_01_s.jpg",
             "category": {
                 "category_id": "MC00000004",
                 "category_name": "6月17日（水）～6月23日（火）",
@@ -3420,13 +3420,13 @@
                 "longitude": 135.496891,
                 "address": "大阪市北区梅田1"
             },
-            "description": "大阪駅前地下道イベントスペース（阪神梅田本店前）",
+            "description": "大阪駅前地下道イベントスペース（阪神梅田本店前）<br>（展示会場情報は準備中）",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000016/"
         },
         {
             "event_id": "EV02000018",
             "event_name": "ＡＰ大阪駅前",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000018_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000018_01_s.jpg",
             "category": {
                 "category_id": "MC00000004",
                 "category_name": "6月17日（水）～6月23日（火）",
@@ -3439,13 +3439,13 @@
                 "longitude": 135.498227565654,
                 "address": "大阪市北区梅田1-12-12 東京建物梅田ビル B1F・B2F（受付B1F）"
             },
-            "description": "ＡＰ大阪駅前",
+            "description": "ＡＰ大阪駅前<br>（展示会場情報は準備中）",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000018/"
         },
         {
             "event_id": "EV02000019",
             "event_name": "ハービス PLAZA ENT 3F ライオンラグス",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000019_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000019_01_s.jpg",
             "category": {
                 "category_id": "MC00000004",
                 "category_name": "6月17日（水）～6月23日（火）",
@@ -3464,7 +3464,7 @@
         {
             "event_id": "EV02000020",
             "event_name": "翠波画廊大阪店",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000020_01_s.png",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000020_01_s.png",
             "category": {
                 "category_id": "MC00000004",
                 "category_name": "6月17日（水）～6月23日（火）",
@@ -3483,7 +3483,7 @@
         {
             "event_id": "EV02000021",
             "event_name": "FabCafe Osaka",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000021_01_s.png",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000021_01_s.png",
             "category": {
                 "category_id": "MC00000004",
                 "category_name": "6月17日（水）～6月23日（火）",
@@ -3502,7 +3502,7 @@
         {
             "event_id": "EV02000022",
             "event_name": "アートコートギャラリー",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000022_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000022_01_s.jpg",
             "category": {
                 "category_id": "MC00000004",
                 "category_name": "6月17日（水）～6月23日（火）",
@@ -3521,7 +3521,7 @@
         {
             "event_id": "EV02000023",
             "event_name": "YOD Gallery",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000023_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000023_01_s.jpg",
             "category": {
                 "category_id": "MC00000004",
                 "category_name": "6月17日（水）～6月23日（火）",
@@ -3540,7 +3540,7 @@
         {
             "event_id": "EV02000027",
             "event_name": "藤田美術館",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000027_01_s.png",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000027_01_s.png",
             "category": {
                 "category_id": "MC00000004",
                 "category_name": "6月17日（水）～6月23日（火）",
@@ -3559,7 +3559,7 @@
         {
             "event_id": "EV02000028",
             "event_name": "LIBRE GALLERY y SPACE",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000028_01_s.jpeg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000028_01_s.jpeg",
             "category": {
                 "category_id": "MC00000004",
                 "category_name": "6月17日（水）～6月23日（火）",
@@ -3578,7 +3578,7 @@
         {
             "event_id": "EV02000029",
             "event_name": "大阪市中央公会堂",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000029_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000029_01_s.jpg",
             "category": {
                 "category_id": "MC00000004",
                 "category_name": "6月17日（水）～6月23日（火）",
@@ -3591,13 +3591,13 @@
                 "longitude": 135.503998127024,
                 "address": "大阪市北区中之島1丁目1番27号"
             },
-            "description": "大阪市中央公会堂",
+            "description": "大阪市中央公会堂<br>（展示会場情報は準備中）",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000029/"
         },
         {
             "event_id": "EV02000030",
             "event_name": "アートエリアB1",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000030_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000030_01_s.jpg",
             "category": {
                 "category_id": "MC00000004",
                 "category_name": "6月17日（水）～6月23日（火）",
@@ -3610,13 +3610,13 @@
                 "longitude": 135.505243723325,
                 "address": "大阪市北区中之島1-1-1"
             },
-            "description": "アートエリアB1",
+            "description": "アートエリアB1<br>（展示会場情報は準備中）",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000030/"
         },
         {
             "event_id": "EV02000032",
             "event_name": "淀屋橋ステーションシティ",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000032_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000032_01_s.jpg",
             "category": {
                 "category_id": "MC00000004",
                 "category_name": "6月17日（水）～6月23日（火）",
@@ -3629,13 +3629,13 @@
                 "longitude": 135.5014925432,
                 "address": "大阪市中央区北浜３丁目６−２２"
             },
-            "description": "淀屋橋ステーションシティ",
+            "description": "【アーティスト／ブランド】<br>大竹舞人<br><br>【プログラム名】<br>編む、つなぐ、ひらく<br><br>【期間】<br>5/27 wed. - 6/23 tue.<br><br>【営業時間】<br>期間中常設<br><br>【会場】<br>淀屋橋ステーションワン B1F 淀屋橋広場<br><br>【プログラム紹介】<br>大竹舞人は、布を手で編み上げて中空の立体作品を制作する作家です。本作は地下鉄が交差する都市の中心に設置され、街や人の流れと呼応しながら、時間や記憶、文化を編み込み、未来へとつないでいく象徴として立ち現れます。<br><br>【WEBサイト】<br>https://yodoyabashi-stationone.com/",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000032/"
         },
         {
             "event_id": "EV02000033",
             "event_name": "ポルトローナ・フラウ大阪",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000033_01_s.jpeg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000033_01_s.jpeg",
             "category": {
                 "category_id": "MC00000004",
                 "category_name": "6月17日（水）～6月23日（火）",
@@ -3654,7 +3654,7 @@
         {
             "event_id": "EV02000034",
             "event_name": "maruni osaka",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000034_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000034_01_s.jpg",
             "category": {
                 "category_id": "MC00000004",
                 "category_name": "6月17日（水）～6月23日（火）",
@@ -3673,7 +3673,7 @@
         {
             "event_id": "EV02000035",
             "event_name": "WAILEA御堂筋",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000035_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000035_01_s.jpg",
             "category": {
                 "category_id": "MC00000004",
                 "category_name": "6月17日（水）～6月23日（火）",
@@ -3692,7 +3692,7 @@
         {
             "event_id": "EV02000036",
             "event_name": "大阪デザインセンター",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000036_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000036_01_s.jpg",
             "category": {
                 "category_id": "MC00000004",
                 "category_name": "6月17日（水）～6月23日（火）",
@@ -3711,7 +3711,7 @@
         {
             "event_id": "EV02000037",
             "event_name": "Osaka Metro 本町ビル",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000037_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000037_01_s.jpg",
             "category": {
                 "category_id": "MC00000004",
                 "category_name": "6月17日（水）～6月23日（火）",
@@ -3724,13 +3724,13 @@
                 "longitude": 135.500953988668,
                 "address": "大阪市中央区本町3丁目6-4"
             },
-            "description": "Osaka Metro 本町ビル",
+            "description": "Osaka Metro 本町ビル<br>（展示会場情報は準備中）",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000037/"
         },
         {
             "event_id": "EV02000038",
             "event_name": "JR大阪環状線 西九条駅高架下",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000038_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000038_01_s.jpg",
             "category": {
                 "category_id": "MC00000004",
                 "category_name": "6月17日（水）～6月23日（火）",
@@ -3743,13 +3743,13 @@
                 "longitude": 135.466106181047,
                 "address": "大阪市此花区西九条3丁目15-13"
             },
-            "description": "JR大阪環状線 西九条駅高架下",
+            "description": "JR大阪環状線 西九条駅高架下<br>（展示会場情報は準備中）",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000038/"
         },
         {
             "event_id": "EV02000039",
             "event_name": "W大阪",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000039_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000039_01_s.jpg",
             "category": {
                 "category_id": "MC00000004",
                 "category_name": "6月17日（水）～6月23日（火）",
@@ -3762,13 +3762,13 @@
                 "longitude": 135.500125511733,
                 "address": "大阪市中央区南船場4-1-3"
             },
-            "description": "W大阪",
+            "description": "【アーティスト／ブランド】<br>xorium<br><br>【プログラム名】<br>AUTONOMA<br><br>【期間】<br>5/27 wed. - 6/23 tue.<br><br>【営業時間】<br>期間中常設<br><br>【会場】<br>W大阪<br><br>【プログラム紹介】<br>「Whatever / Whenever🄬（お望みの物を / お望みの時に）」の理念に基づき、存在そのものを楽しませる工夫としてアーティストとのコラボレーションも積極的に行うラグジュアリー・ライフスタイルホテル、W大阪。昨年は総支配人としてピーター・ルーカスが就任し、「ユニークでアートに満ちた施設の魅力を高めたい」と意欲的な姿勢を見せた。Osaka Art ＆ Design 3度目の参加となる今回、新たなパートナーと共に、体験型アートの新境地を開く。<br><br>ひとつの違和感から始まった、創作の軌跡<br>情報のデジタル化により、世界との距離が急激に近くなった昨今。その膨大な世界と接続する手段が、ディスプレイという限られた窓口に終始している状況に、ひとつのアーティストコレクティブが違和感を覚えた。2017年7月に結成された竹川諒と中村慎吾による「xorium」は、多様なデジタル技術を活用しながら、人や物、環境、社会構造といった身の回りの要素が相互作用し変化する中で、要素の狭間に見えてくる現象や違和感を解釈し、作品へと昇華させている。<br>今回、彼らが向き合ったのは、制御する世界への違和感である。これまで社会は定められたルールによって、整然と管理されていた。だが、情報が氾濫し、AIが効率化を促し、多様な価値観が交差する現代において、もはや単一の縛りによる制御は限界を迎えている。xoriumは確信した。これからの時代は制御されるのではなく、他者や環境との“関係”の中でこそ生きていく世界なのだと。彼らはその答えを、形を自由に変えながら漂う“泡”の現象に託した。<br><br>弾け膨らみ成長する、泡が描き出す現代の縮図<br>xoriumが制作において最も重視しているのは、鑑賞者が感覚で理解することだ。言葉による説明を介さずともコンセプトが心に染み渡るよう、素材選びから技法の検証まで幾度も実験が繰り返される。<br>本作は、水盤型装置から絶え間なく泡が発生し続けるインスタレーションだ。一つひとつの泡は、独立した“個”としての私たち人間を表している。泡は触れ合い、寄り添い、時に反発しながら、やがて一つの大きな流れを形成していく。<br>蛍光塗料で彩られた泡が紫外線の光を受け、泡同士の境界が鮮明に浮かび上がる様子は、個の関係性から秩序あるネットワークが生み出される現代社会そのものだ。儚く、些細な衝撃で消えてしまう脆さを持ちながらも、空気の変化に合わせて柔軟に形を変え、他者と繋がりながら成長し続ける泡。その姿は、これから発展し続ける世界を私たちが生き抜くための指針となるはずだ。<br><br>W大阪とアートが誘う、非日常のひととき<br>展示の舞台となるのは、独創的な世界が広がるW大阪のアライバルホール。国内外のゲストが刺激的な体験を求めて行き交うステージは、xoriumの作品が持つ流動的なメッセージと見事に響き合う。作家自身も“作品が空間にインストールされる感覚”を強く覚えたというこの場所で、日常の違和感は共感へと変わり、その先にある新たな生き方のヒントへと繋がっていくだろう。<br><br>【WEBサイト】<br>https://www.marriott.com/ja/hotels/osaow-w-osaka/overview/",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000039/"
         },
         {
             "event_id": "EV02000041",
             "event_name": "Marco Gallery",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000041_01_s.png",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000041_01_s.png",
             "category": {
                 "category_id": "MC00000004",
                 "category_name": "6月17日（水）～6月23日（火）",
@@ -3785,28 +3785,9 @@
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000041/"
         },
         {
-            "event_id": "EV02000042",
-            "event_name": "クリスタ長堀 滝の広場",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000042_01_s.jpg",
-            "category": {
-                "category_id": "MC00000004",
-                "category_name": "6月17日（水）～6月23日（火）",
-                "color_code": "#FFC000"
-            },
-            "spot": {
-                "spot_id": "SP00001053",
-                "spot_name": "クリスタ長堀 滝の広場・南側",
-                "latitude": 34.6752818784807,
-                "longitude": 135.501366581047,
-                "address": "大阪市中央区南船場３丁目 長堀地下街"
-            },
-            "description": "クリスタ長堀 滝の広場",
-            "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000042/"
-        },
-        {
             "event_id": "EV02000043",
             "event_name": "大丸心斎橋店",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000043_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000043_01_s.jpg",
             "category": {
                 "category_id": "MC00000004",
                 "category_name": "6月17日（水）～6月23日（火）",
@@ -3819,13 +3800,13 @@
                 "longitude": 135.500843279196,
                 "address": "大阪市中央区心斎橋筋1-7-1"
             },
-            "description": "大丸心斎橋店",
+            "description": "【プログラム】<br>複数プログラムが展開されます。<br>詳細はOsaka Art & Designのホームページのプログラムページ（以下に記載のURL）にてご確認ください。<br>※プログラムによって会期が異なる場合がございますのでご注意ください。<br><br>五十嵐威暢<br>五十嵐威暢 積木ベンチ<br>会場：本館前・心斎橋パルコ前御堂筋歩道<br>https://osaka-artanddesign.ecbeing.biz/2026/programs/detail/a_082<br><br>黒田征太郎 / コシノヒロコ / 佐伯和良 / SHIRACO WORLD / ドナルド・ロバートソン / 山下浩平 / ロブ・ライアン<br>大丸心斎橋店開業300周年 ひとます美術館 ＝未来へはばたくフェニックスの餐宴＝ 〈併催〉未来の大阪を担う子供たちへの チャリティオークション<br>会場：本館1階 心斎橋筋側ウィンドウ・各階エスカレーター前<br>https://osaka-artanddesign.ecbeing.biz/2026/programs/detail/a_081<br><br>高木耕一郎 / 田村琢朗<br>〈AYIN×MAKI Gallery〉高木耕一郎・田村琢郎特別展示<br>会場：本館1階 御堂筋側イベントスペース<br>https://osaka-artanddesign.ecbeing.biz/2026/programs/detail/a_083<br><br>田中ラオウ ほか<br>現代アート POPUP STORE<br>会場：本館1階 御堂筋側イベントスペース<br>https://osaka-artanddesign.ecbeing.biz/2026/programs/detail/a_090<br><br>篠田桃紅<br>篠田桃紅 〜時をこえる抽象の美〜<br>https://osaka-artanddesign.ecbeing.biz/2026/programs/detail/a_089<br>会場：本館8階 アールグロリュー ギャラリー オブ オーサカ<br>https://www.daimaru.co.jp/shinsaibashi/",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000043/"
         },
         {
             "event_id": "EV02000045",
             "event_name": "アクタス・心斎橋店",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000045_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000045_01_s.jpg",
             "category": {
                 "category_id": "MC00000004",
                 "category_name": "6月17日（水）～6月23日（火）",
@@ -3844,7 +3825,7 @@
         {
             "event_id": "EV02000046",
             "event_name": "エスパス ルイ・ヴィトン大阪",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000046_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000046_01_s.jpg",
             "category": {
                 "category_id": "MC00000004",
                 "category_name": "6月17日（水）～6月23日（火）",
@@ -3863,7 +3844,7 @@
         {
             "event_id": "EV02000047",
             "event_name": "カール・ハンセン＆サン 大阪",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000047_01_s.png",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000047_01_s.png",
             "category": {
                 "category_id": "MC00000004",
                 "category_name": "6月17日（水）～6月23日（火）",
@@ -3882,7 +3863,7 @@
         {
             "event_id": "EV02000048",
             "event_name": "TEZUKAYAMA GALLERY",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000048_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000048_01_s.jpg",
             "category": {
                 "category_id": "MC00000004",
                 "category_name": "6月17日（水）～6月23日（火）",
@@ -3901,7 +3882,7 @@
         {
             "event_id": "EV02000050",
             "event_name": "べんてんひろば（大阪環状線 弁天町駅改札直結）",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000050_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000050_01_s.jpg",
             "category": {
                 "category_id": "MC00000004",
                 "category_name": "6月17日（水）～6月23日（火）",
@@ -3920,7 +3901,7 @@
         {
             "event_id": "EV02000051",
             "event_name": "錢屋本舗本館 錢屋ギャラリー",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000051_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000051_01_s.jpg",
             "category": {
                 "category_id": "MC00000004",
                 "category_name": "6月17日（水）～6月23日（火）",
@@ -3939,7 +3920,7 @@
         {
             "event_id": "EV02000052",
             "event_name": "髙島屋大阪店",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000052_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000052_01_s.jpg",
             "category": {
                 "category_id": "MC00000004",
                 "category_name": "6月17日（水）～6月23日（火）",
@@ -3958,7 +3939,7 @@
         {
             "event_id": "EV02000053",
             "event_name": "Laugh & Peace Art Gallery",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000053_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000053_01_s.jpg",
             "category": {
                 "category_id": "MC00000004",
                 "category_name": "6月17日（水）～6月23日（火）",
@@ -3977,7 +3958,7 @@
         {
             "event_id": "EV02000054",
             "event_name": "髙島屋史料館 企画展示室",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000054_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000054_01_s.jpg",
             "category": {
                 "category_id": "MC00000004",
                 "category_name": "6月17日（水）～6月23日（火）",
@@ -3996,7 +3977,7 @@
         {
             "event_id": "EV02000056",
             "event_name": "大阪市立美術館",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000056_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000056_01_s.jpg",
             "category": {
                 "category_id": "MC00000004",
                 "category_name": "6月17日（水）～6月23日（火）",
@@ -4015,7 +3996,7 @@
         {
             "event_id": "EV02000059",
             "event_name": "ART community space Nano Gallery",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000059_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000059_01_s.jpg",
             "category": {
                 "category_id": "MC00000004",
                 "category_name": "6月17日（水）～6月23日（火）",
@@ -4034,7 +4015,7 @@
         {
             "event_id": "EV02000060",
             "event_name": "ギャラリーと雑貨・太陽とハリネズミ",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000060_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000060_01_s.jpg",
             "category": {
                 "category_id": "MC00000004",
                 "category_name": "6月17日（水）～6月23日（火）",
@@ -4053,7 +4034,7 @@
         {
             "event_id": "EV02000062",
             "event_name": "Super Studio Kitakagaya",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000062_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000062_01_s.jpg",
             "category": {
                 "category_id": "MC00000004",
                 "category_name": "6月17日（水）～6月23日（火）",
@@ -4066,13 +4047,13 @@
                 "longitude": 135.473598911731,
                 "address": "大阪市住之江区北加賀屋５丁目４−６４"
             },
-            "description": "Super Studio Kitakagaya",
+            "description": "Super Studio Kitakagaya<br>（展示会場情報は準備中）",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000062/"
         },
         {
             "event_id": "EV02000063",
             "event_name": "ハービス PLAZA ENT B1F 東エントランス",
-            "thumbnail_url": "https://drop.machiapps.com/collab/upload/special/oad/assets/images/event/EV02000063_01_s.jpg",
+            "thumbnail_url": "https://drop.machiapps.com/collab-a/upload/assets/images/event/EV02000063_01_s.jpg",
             "category": {
                 "category_id": "MC00000004",
                 "category_name": "6月17日（水）～6月23日（火）",
@@ -4085,7 +4066,7 @@
                 "longitude": 135.494526881048,
                 "address": "大阪府大阪市北区梅田２丁目２−２２"
             },
-            "description": "ハービス PLAZA ENT B1F 東エントランス",
+            "description": "【アーティスト／ブランド】<br>Vit<br><br>【プログラム名】<br>ICHIGO ICHIE 一期一会 アートシリーズ - Circle of Peace -<br><br>【期間】<br>5/27 wed. - 6/23 tue.<br><br>【営業時間】<br>11:00 - 22:00<br>※一部営業時間の異なる店舗がございます<br><br>【会場】<br>ハービスPLAZA ENT B1東エントランス<br><br>【プログラム紹介】<br>Vitの作品は、静と動、制御と自由、そして明確な形と抽象的な表現のあいだにある、静かなバランスを探求しています。深い黒や鮮やかな白、そして力強い色彩のコントラストは、彼自身の歩んできた人生と、内にある穏やかな精神の状態を映し出しています。<br>彼の作品においては、形と余白が同じくらい重要な意味を持ちます。余白は単なる「空白」ではなく、他のすべてを存在させるための空間です。私たちに、目に見えるものだけでなく、見えないものにも意識を向けるよう促します。<br>制作のプロセスは、ゆっくりとした思索の時間でもあります。ひとつの線や形が置かれると、それを急いで進めることはありません。時間の中で静かに対話しながら、自然と作品が育ち、やがて完成へと導かれていきます。<br>Vitのアートは、単に「見るもの」ではありません。日常の喧騒から一歩離れ、立ち止まり、自分自身の内側にある静けさやバランスと再びつながるための「場」を生み出します。<br>このような考え方は、「一期一会（すべての瞬間は一度きりである）」や「間（余白や静けさの意味）」といった日本の思想とも深く響き合っています。<br>そしてそれらの思想は、ライブペインティング「ICHIGO ICHIE – Circle of Peace –」において、最も明確なかたちで表現されます。ここで大切なのは、作品そのものではなく、それが生まれる瞬間の内面の状態です。描くという行為そのものが、静かで現在に集中した、平和の体験となります。<br>作品はただ一度、その瞬間にのみ生まれ、同じものは二度と現れません。そして最後には、その作品は観客と分かち合われます。そこにあるのは「所有」ではなく、「共有される感覚」です。<br>その根底にあるのは、とてもシンプルな考えです。<br>「平和な人だけが、平和な世界をつくることができる。」<br>作品は、その瞬間の痕跡にすぎません。本当の意味は、それが生まれた心の状態と、そこから生まれる感覚にあります。<br><br>【WEBサイト】<br>https://www.herbis.jp/",
             "detail_url": "https://drop.machiapps.com/collab-a/event/EV02000063/"
         }
     ]
