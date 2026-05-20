@@ -496,14 +496,11 @@
             url:p.detail_url
           });
       
- 　　　// ★追加：確実に送る
-    　　　if(navigator.sendBeacon){
-      　　　navigator.sendBeacon(
-        　　"https://www.google-analytics.com/g/collect",
-        　　JSON.stringify({ event:"detail_click" })
-      　　　);
-    　　　}
-
+ 　　　
+　　　　　// 0.1秒後に遷移
+ 　　　 　setTimeout(()=>{
+    　　　　window.open(p.detail_url, "_blank");
+  　　　　},100);
         }, { once:true });
       }
     }
