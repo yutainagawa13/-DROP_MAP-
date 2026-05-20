@@ -45,14 +45,13 @@
       display:flex;
       align-items:center;
       gap:8px;
-      font-size:13px; /* カテゴリ行の文字サイズ（添付値維持） */
+      font-size:13px; /* 添付維持 */
       margin:6px 0;
       cursor:pointer;
     }
     .item input{ width:16px; height:16px; }
     .dot{ width:12px; height:12px; border-radius:50%; }
 
-    /* ◎（すべて用） */
     .dot-all{
       width:12px; height:12px;
       border:2px solid #aaa;
@@ -71,12 +70,9 @@
     }
     #categoryList.hidden{ display:none; }
 
-    /* Leaflet divIcon用 */
     .leaflet-div-icon.custom-pin{ background:none; border:none; }
 
-    /* =========================================================
-       選択ピン：リング（波紋）アニメーション（添付維持）
-       ========================================================= */
+    /* ===== 選択ピン：リング ===== */
     .pin-wrap{
       position:relative;
       width:var(--w);
@@ -101,44 +97,37 @@
     .pin-wrap.is-selected .pin-ring.r1{ animation:pinRipple 1.4s ease-out infinite; }
     .pin-wrap.is-selected .pin-ring.r2{ animation:pinRipple 1.4s ease-out infinite; animation-delay:.7s; }
     @keyframes pinRipple{
-      0%   { transform:translate(-50%, -50%) scale(.6); opacity:.75; }
+      0% { transform:translate(-50%, -50%) scale(.6); opacity:.75; }
       100% { transform:translate(-50%, -50%) scale(2.1); opacity:0; }
     }
 
-    /* =========================================================
-       説明カード（添付の見た目・設定値を維持）
-       ========================================================= */
+    /* ===== 説明カード ===== */
     #spotFloating{
       position:fixed;
       inset:0;
-      z-index:3000;          /* panel(1000)より上 */
-      pointer-events:none;   /* 全面クリック透過（地図操作できる） */
+      z-index:3000;
+      pointer-events:none;
     }
     #spotCard{
       position:fixed;
       left:-9999px;
       top:-9999px;
-      width:160px;           /* 固定幅（添付維持） */
-      max-height:260px;      /* 内部スクロール（添付維持） */
+      width:160px;
+      max-height:260px;
       overflow-y:auto;
-      overflow-x:hidden;     /* ★横スクロール禁止（添付維持） */
+      overflow-x:hidden; /* 横スクロール禁止 */
       -webkit-overflow-scrolling:touch;
       background:#fff;
       border-radius:12px;
       box-shadow:0 12px 40px rgba(0,0,0,.35);
-      pointer-events:auto;   /* カードだけクリック可能 */
+      pointer-events:auto;
       font-family:sans-serif;
       box-sizing:border-box;
     }
     #spotCard.hidden{ display:none; }
-
-    /* 添付のまま：薄くしない（opacity:1） */
-    #spotCard.is-interacting{ opacity:1; }
-
-    /* ★追加：ピンが画面外のときは「非表示」だけする（状態保持） */
+    #spotCard.is-interacting{ opacity:1; } /* 添付維持：薄くしない */
     #spotCard.offscreen{ display:none; }
 
-    /* しっぽ（簡易） */
     #spotCard::after{
       content:"";
       position:absolute;
@@ -174,28 +163,20 @@
     }
 
     .spot-body{ padding:10px 10px 12px; }
-
     .spot-body h4{
       font-size:13px;
       margin:0 0 6px;
       line-height:1.25;
     }
 
-    /* タイトルリンク（見た目は現状維持寄り） */
+    /* タイトル：詳細と同じ青＋下線（要望） */
     .spot-body h4 a{
-     color:#0000ee;
-     text-decoration:underline;
-     font-size:13px;
-     font-weight:bold;
+      color:#0000ee;
+      text-decoration:underline;
+      font-size:13px;  /* 添付維持。大きくしたいならここを18pxへ */
+      font-weight:bold;
     }
 
-    .spot-body h4 a:hover{
-     text-decoration:underline;
-    }
-
-
-
-    /* 添付値：説明文が 13px */
     .spot-body p{
       font-size:13px;
       line-height:1.55;
@@ -227,7 +208,6 @@
     <div id="categoryList"></div>
   </div>
 
-  <!-- 説明カード（body直下） -->
   <div id="spotFloating">
     <div id="spotCard" class="hidden">
       <div id="spotCardInner"></div>
@@ -249,7 +229,60 @@
       }
     }
 
-    /* ===== ピン（リング付き） ===== */
+    /* ✅ 修正：構文エラーのない escapeHtml */
+    function escapeHtml(str){
+      return (str ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#39;");
+    }
+
+    function escapeRegExp(s){
+      return (s ?? "").replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    }
+
+    function linkifyEscaped(escapedText){
+      const urlRe = /(https?:\/\/[^\s<>"']+)/g;
+      return escapedText.replace(urlRe, (url) => {
+        return `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`;
+      });
+    }
+
+    function formatDescription(raw, detailUrl){
+      let normalized = (raw ?? "").replace(/\r\n/g, "\n").replace(/\r/g, "\n");
+      if(detailUrl){
+        const re = new RegExp(escapeRegExp(detailUrl), "g");
+        normalized = normalized.replace(re, "");
+      }
+
+      let esc = escapeHtml(normalized);
+
+      // &lt;br&gt; のみ <br> に戻す（安全）
+      esc = esc.replace(/&lt;br\s*\/?&gt;/gi, "<br>");
+      esc = esc.replace(/\n/g, "<br>");
+
+      esc = linkifyEscaped(esc);
+      return esc;
+    }
+
+    /* ✅ 修正：|| が抜けて壊れていた */
+    function rectIntersects(a, b){
+      return !(
+        a.right < b.left ||
+        a.left > b.right ||
+        a.bottom < b.top ||
+        a.top > b.bottom
+      );
+    }
+
+    function isLatLngInView(latlng){
+      const pt = map.latLngToContainerPoint(latlng);
+      const size = map.getSize();
+      return pt.x >= 0 && pt.y >= 0 && pt.x <= size.x && pt.y <= size.y;
+    }
+
     function createPinIcon(color, selected=false){
       const w = selected ? 32 : 26;
       const h = selected ? 48 : 40;
@@ -281,7 +314,6 @@
       });
     }
 
-    /* ===== 説明カード制御 ===== */
     const spotCard = document.getElementById("spotCard");
     const spotCardInner = document.getElementById("spotCardInner");
     const panelEl = document.querySelector(".panel");
@@ -289,68 +321,9 @@
     let currentLatLng = null;
     let currentMarker = null;
     let currentMarkerColor = null;
-
-    // 「閉じていない限り、状態保持」するためのフラグ
     let cardOpened = false;
-
-    // move/zoom中の過剰処理を避ける（軽量化）
     let rafId = null;
 
-    /* --- HTMLエスケープ（壊れていたので修復：見た目は変えず安全化） --- */
-    
-    
-  
-function escapeHtml(str){
-  return (str ?? "")
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#39;");
-}
-
-
-
-
-    /* --- URLリンク化（エスケープ済み文字列に対して実行） --- */
-    function linkifyEscaped(escapedText){
-      const urlRe = /(https?:\/\/[^\s<>"']+)/g;
-      return escapedText.replace(urlRe, (url) => {
-        return `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`;
-      });
-    }
-
-    /* detail_url と同一URLが本文末尾にあれば除去したい場合に備えて */
-    function escapeRegExp(s){
-      return (s ?? "").replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    }
-
-    /* --- 説明文整形（添付の仕様を踏襲しつつ、<br>を改行として活かす） --- */
-    function formatDescription(raw, detailUrl){
-      let normalized = (raw ?? "").replace(/\r\n/g, "\n").replace(/\r/g, "\n");
-
-      // 末尾に detail_url が書かれているケースは表示しない（要望①の「URL表示をやめたい」対応の土台）
-      if(detailUrl){
-        const re = new RegExp(escapeRegExp(detailUrl), "g");
-        normalized = normalized.replace(re, "");
-      }
-
-      // 1) エスケープ
-      let esc = escapeHtml(normalized);
-
-      // 2) &lt;br&gt; / &lt;br/&gt; を <br> に復元（「<br>が文字で見える」対策）
-      esc = esc.replace(/&lt;br\s*\/?&gt;/gi, "<br>");
-
-      // 3) 生改行(\n)も <br> に
-      esc = esc.replace(/\n/g, "<br>");
-
-      // 4) URLをリンク化
-      esc = linkifyEscaped(esc);
-
-      return esc;
-    }
-
-    /* ===== タイトルをリンク化（会場名クリックで遷移）＋「詳細を見る」 ===== */
     function buildCardHtml(p){
       const thumb = p.thumbnail_url
         ? `<img src="${p.thumbnail_url}" class="spot-thumb" alt="${escapeHtml(p.event_name)}">`
@@ -370,25 +343,62 @@ function escapeHtml(str){
       `;
     }
 
-    /* パネル重なり判定（添付版が壊れていたので修復） */
-    
-function rectIntersects(a, b){
-  return !(
-    a.right < b.left ||
-    a.left > b.right ||
-    a.bottom < b.top ||
-    a.top > b.bottom
-  );
-}
-
-
-    function isLatLngInView(latlng){
-      const pt = map.latLngToContainerPoint(latlng);
-      const size = map.getSize();
-      return pt.x >= 0 && pt.y >= 0 && pt.x <= size.x && pt.y <= size.y;
+    /* ✅ 追加：説明文内リンクログ（openCard から呼ぶため「グローバル」に定義） */
+    function wireDescriptionLinkTracking(p){
+      const links = spotCardInner.querySelectorAll("p a");
+      links.forEach(link => {
+        link.addEventListener("click", () => {
+          track({
+            type:"description_link_click",
+            event_id:p.event_id,
+            event_name:p.event_name,
+            category_id:p.category.category_id,
+            category_name:p.category.category_name,
+            url:link.href
+          });
+        }, { once:true });
+      });
     }
 
-    /* ===== カード配置（添付の距離設定値を厳守：上=60 / 下=15 / 横=25） ===== */
+    function wireCardLinkTracking(p){
+      const titleLink = spotCardInner.querySelector(".js-title-link");
+      const detailLink = spotCardInner.querySelector(".js-detail-link");
+
+      if(titleLink){
+        titleLink.addEventListener("click", () => {
+          track({
+            type:"title_click",
+            event_id:p.event_id,
+            event_name:p.event_name,
+            category_id:p.category.category_id,
+            category_name:p.category.category_name,
+            url:p.detail_url
+          });
+        }, { once:true });
+      }
+
+      if(detailLink){
+        detailLink.addEventListener("click", (e) => {
+          // ✅ 二重に開くのを防ぐ（元コードは open + link で2回開きやすい）
+          e.preventDefault();
+
+          track({
+            type:"detail_click",
+            event_id:p.event_id,
+            event_name:p.event_name,
+            category_id:p.category.category_id,
+            category_name:p.category.category_name,
+            url:p.detail_url
+          });
+
+          setTimeout(() => {
+            window.open(p.detail_url, "_blank", "noopener,noreferrer");
+          }, 100);
+        }, { once:true });
+      }
+    }
+
+    /* ===== カード配置（添付値：上=60/下=15/横=25） ===== */
     function placeCardAt(latlng){
       if(!latlng) return;
 
@@ -399,22 +409,19 @@ function rectIntersects(a, b){
       const anchorX = mapRect.left + pt.x;
       const anchorY = mapRect.top + pt.y;
 
-      // 一旦表示してサイズ取得
       spotCard.style.left = "0px";
       spotCard.style.top = "0px";
       spotCard.classList.remove("hidden");
       spotCard.classList.remove("offscreen");
 
-      const cardRect0 = spotCard.getBoundingClientRect();
-      const w = cardRect0.width;
-      const h = cardRect0.height;
+      const r0 = spotCard.getBoundingClientRect();
+      const w = r0.width;
+      const h = r0.height;
 
       const pad = 6;
-
-      // ★添付値をそのまま使う
-      const offset = 60;        // 上
-      const offsetBottom = 15;  // 下
-      const offsetSide = 25;    // 横
+      const offset = 60;
+      const offsetBottom = 15;
+      const offsetSide = 25;
 
       const candidates = [
         { name:"top",    x: anchorX - w/2,            y: anchorY - h - offset },
@@ -436,23 +443,17 @@ function rectIntersects(a, b){
         const r = spotCard.getBoundingClientRect();
 
         let s = 0;
-
-        // パネルと被るのが最優先でNG
         if(rectIntersects(r, panelRect)) s += 10000;
 
-        // 近すぎると分かりづらい → 180基準（添付踏襲）
         const dx = (r.left + r.width/2) - anchorX;
         const dy = (r.top + r.height/2) - anchorY;
         const dist = Math.sqrt(dx*dx + dy*dy);
         s += Math.max(0, 180 - dist);
 
-        // 画面端ペナルティ
         s += (r.left < 10 || r.right > window.innerWidth - 10) ? 50 : 0;
         s += (r.top  < 10 || r.bottom > window.innerHeight - 10) ? 50 : 0;
 
-        // 下は軽いペナルティ（添付踏襲）
         if(pos.name === "bottom") s += 40;
-
         return { s, cl };
       }
 
@@ -482,43 +483,6 @@ function rectIntersects(a, b){
       }
     }
 
-    function wireCardLinkTracking(p){
-      const titleLink = spotCardInner.querySelector(".js-title-link");
-      const detailLink = spotCardInner.querySelector(".js-detail-link");
-
-      if(titleLink){
-        titleLink.addEventListener("click", () => {
-          track({
-            type:"title_click",
-            event_id:p.event_id,
-            event_name:p.event_name,
-            category_id:p.category.category_id,
-            category_name:p.category.category_name,
-            url:p.detail_url
-          });
-        }, { once:true });
-      }
-
-      if(detailLink){
-        detailLink.addEventListener("click", () => {
-          track({
-            type:"detail_click",
-            event_id:p.event_id,
-            event_name:p.event_name,
-            category_id:p.category.category_id,
-            category_name:p.category.category_name,
-            url:p.detail_url
-          });
-      
- 　　　
-　　　　　// 0.1秒後に遷移
- 　　　 　setTimeout(()=>{
-    　　　　window.open(p.detail_url, "_blank");
-  　　　　},100);
-        }, { once:true });
-      }
-    }
-
     function openCard(p, latlng, marker){
       currentLatLng = latlng;
       cardOpened = true;
@@ -526,17 +490,15 @@ function rectIntersects(a, b){
       setSelectedMarker(marker, p.category.color_code);
 
       spotCardInner.innerHTML = buildCardHtml(p);
-      
-      // ★常に画像部分がデフォルト表示（開いたときのみ）
       spotCard.scrollTop = 0;
 
-      // offscreen解除して表示へ
       spotCard.classList.remove("hidden");
       spotCard.classList.remove("offscreen");
 
       placeCardAt(latlng);
+
       wireCardLinkTracking(p);
-      wireDescriptionLinkTracking(p);
+      wireDescriptionLinkTracking(p); // ✅ ここで説明URLも拾う
     }
 
     function closeCard(){
@@ -565,14 +527,11 @@ function rectIntersects(a, b){
       if(spotCard.classList.contains("hidden")) return;
 
       const inView = isLatLngInView(currentLatLng);
-
       if(!inView){
-        // ★「閉じる」ではなく「一時非表示」
         spotCard.classList.add("offscreen");
         return;
       }
 
-      // 画面内に戻ったら復帰（スクロール位置は保持）
       spotCard.classList.remove("offscreen");
       placeCardAt(currentLatLng);
     }
@@ -582,24 +541,22 @@ function rectIntersects(a, b){
       rafId = requestAnimationFrame(updateCardVisibilityAndPosition);
     }
 
-    /* 外クリックで閉じる：ただし offscreen 中は閉じない（状態保持優先） */
+    /* 外クリックで閉じる（offscreen中は閉じない） */
     document.addEventListener("click", (e) => {
       setTimeout(() => {
         if(spotCard.classList.contains("hidden")) return;
-        if(spotCard.classList.contains("offscreen")) return; // ★ここが要件の肝
+        if(spotCard.classList.contains("offscreen")) return;
         if(spotCard.contains(e.target)) return;
         closeCard();
       }, 0);
     });
 
-    /* マップ操作イベント */
     map.on("movestart zoomstart", () => {
       if(!spotCard.classList.contains("hidden")){
         spotCard.classList.add("is-interacting");
       }
     });
 
-    // move/zoom中も「画面外なら消える／戻れば出る」を実現
     map.on("move zoom", () => {
       if(!spotCard.classList.contains("hidden")){
         scheduleUpdateCard();
@@ -628,6 +585,7 @@ function rectIntersects(a, b){
       const layers = {};
       categories.forEach(c => { layers[c.category_id] = L.layerGroup(); });
 
+      // ピン
       pois.forEach(p => {
         const catId = p.category.category_id;
 
@@ -647,7 +605,6 @@ function rectIntersects(a, b){
 
           openCard(p, e.latlng, marker);
 
-          // 外クリック閉じと衝突しないように
           if(e && e.originalEvent){
             e.originalEvent.stopPropagation?.();
           }
@@ -678,26 +635,7 @@ function rectIntersects(a, b){
         track({ type:"category_select", category_id:catId, category_name:name });
       }
 
-      function wireDescriptionLinkTracking(p){
-　　　　const links = spotCardInner.querySelectorAll("p a");
-　　　　links.forEach(link => {
-　　　　link.addEventListener("click", () => {
-      　track({
-        　type: "description_link_click",
-        　event_id: p.event_id,
-        　event_name: p.event_name,
-        　category_id: p.category.category_id,
-        　category_name: p.category.category_name,
-        　url: link.href
-      });
-
-    }, { once:true });
-
-  });
-
-}
-
-      // 「すべて」
+      // すべて
       const allRow = document.createElement("label");
       allRow.className = "item";
       allRow.innerHTML = `
@@ -709,7 +647,7 @@ function rectIntersects(a, b){
       allCheckbox.addEventListener("change", () => { selectAll(); isFirst = false; });
       wrap.appendChild(allRow);
 
-      // 個別カテゴリ
+      // 個別
       categories.forEach(c => {
         const row = document.createElement("label");
         row.className = "item";
@@ -735,7 +673,6 @@ function rectIntersects(a, b){
         toggleBtn.textContent = open ? "－" : "＋";
       });
 
-      // 初期は全表示
       selectAll();
     })();
   </script>
